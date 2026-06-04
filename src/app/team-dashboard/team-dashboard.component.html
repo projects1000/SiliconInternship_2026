@@ -103,45 +103,154 @@
 
     </div>
 
-    <!-- Student Details -->
-    <div *ngIf="selectedStudent" class="profile-card">
+    <!-- CHANDAN SPECIAL PROFILE -->
 
-      <h1>
-        Welcome {{ selectedStudent.name }} 👋
-      </h1>
+<div
+  *ngIf="selectedStudent?.name === 'Chandan Kumar Sahu'"
+  class="chandan-profile"
+>
 
-      <hr>
+  <div class="hero">
 
-      <p>
-        <strong>Student Name :</strong>
-        {{ selectedStudent.name }}
-      </p>
-
-      <p>
-        <strong>Group :</strong>
-        {{ selectedGroup }}
-      </p>
-
-      <p>
-        <strong>Project :</strong>
-        Silicon Internship Batch 2026
-      </p>
-
-      <p>
-        <strong>Total Team Members :</strong>
-        {{ students.length }}
-      </p>
-
-      <p>
-        <strong>Status :</strong>
-        Active Member
-      </p>
-
-      <p>
-        🚀 Keep Learning and Growing
-      </p>
-
+    <div class="profile-image">
+      <img src="assets/chandan.jpeg" alt="Chandan">
     </div>
+
+    <h1>Chandan Kumar Sahu</h1>
+
+    <h2>Angular Developer</h2>
+
+    <h1>Chandan Kumar Sahu</h1>
+
+    <h2>Angular Developer</h2>
+
+    <p class="leader-badge">
+       👑 Group Leader - Team D
+    </p>
+
+    <p class="tagline">
+      Passionate Frontend Developer specializing in Angular,
+      TypeScript, Java and Modern Web Technologies.
+    </p>
+
+  </div>
+
+<div class="info-grid">
+
+  <div class="card">
+    <h3>Group</h3>
+    <p>{{ selectedGroup }}</p>
+  </div>
+
+  <div class="card">
+    <h3>Role</h3>
+    <p>👑 Group Leader</p>
+  </div>
+
+  <div class="card">
+    <h3>Project</h3>
+    <p>Silicon Internship Batch 2026</p>
+  </div>
+
+  <div class="card">
+    <h3>Status</h3>
+    <p>Active Developer</p>
+  </div>
+
+  <div class="card">
+    <h3>Team Members</h3>
+    <p>{{ students.length }}</p>
+  </div>
+
+</div>
+
+  <div class="skills-section">
+
+    <h2>Technical Skills</h2>
+
+    <div class="skill">
+      <span>Angular</span>
+      <div class="bar">
+        <div class="fill angular"></div>
+      </div>
+    </div>
+
+    <div class="skill">
+      <span>TypeScript</span>
+      <div class="bar">
+        <div class="fill ts"></div>
+      </div>
+    </div>
+
+    <div class="skill">
+      <span>Java</span>
+      <div class="bar">
+        <div class="fill java"></div>
+      </div>
+    </div>
+
+    <div class="skill">
+      <span>Git & GitHub</span>
+      <div class="bar">
+        <div class="fill git"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="quote-box">
+    <h3>Developer Motto</h3>
+    <p>"Code. Learn. Build. Repeat."</p>
+  </div>
+
+</div>
+
+<!-- OTHER STUDENTS -->
+
+<div
+  *ngIf="
+    selectedStudent &&
+    selectedStudent.name !== 'Chandan Kumar Sahu'
+  "
+  class="profile-card"
+>
+
+  <h1>
+    Welcome {{ selectedStudent.name }} 👋
+  </h1>
+
+  <hr>
+
+  <p>
+    <strong>Student Name :</strong>
+    {{ selectedStudent.name }}
+  </p>
+
+  <p>
+    <strong>Group :</strong>
+    {{ selectedGroup }}
+  </p>
+
+  <p>
+    <strong>Project :</strong>
+    Silicon Internship Batch 2026
+  </p>
+
+  <p>
+    <strong>Total Team Members :</strong>
+    {{ students.length }}
+  </p>
+
+  <p>
+    <strong>Status :</strong>
+    Active Member
+  </p>
+
+  <p>
+    🚀 Keep Learning and Growing
+  </p>
+
+</div>
 
   </div>
 
