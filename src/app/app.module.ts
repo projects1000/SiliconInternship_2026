@@ -3,12 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
-import { TeamDashboardComponent } from './team-dashboard/team-dashboard.component';
+
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TeamDashboardComponent
+    NavBarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
