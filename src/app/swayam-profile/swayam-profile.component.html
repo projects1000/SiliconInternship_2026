@@ -1,0 +1,166 @@
+<main class="swayam-page" [style.--yellow]="activeThemeColor">
+    <nav class="swayam-nav">
+        <div class="nav-left">
+            <a (click)="scrollTo('work')" style="cursor: pointer;">WORK</a>
+            <a (click)="scrollTo('about')" style="cursor: pointer;">LIFESTYLE</a>
+            <a (click)="scrollTo('hello')" style="cursor: pointer;">HELLO</a>
+        </div>
+        <div class="nav-center-group">
+            <a routerLink="/" class="back-chip">
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="arrow-svg"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                <span>BACK TO GROUP E</span>
+            </a>
+            <div class="theme-switcher">
+                <button *ngFor="let t of themes" 
+                        class="theme-dot" 
+                        [class.active]="activeThemeColor === t.color"
+                        [style.background-color]="t.color"
+                        (click)="setTheme(t.color)"
+                        [title]="'Switch to ' + t.name">
+                </button>
+            </div>
+        </div>
+        <div class="nav-right">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer">GIT</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LIN</a>
+            <a href="mailto:swayam@example.com">MAIL</a>
+        </div>
+    </nav>
+
+    <section id="work" class="hero-panel panel-yellow">
+        <div class="asterisk">✳</div>
+        <span class="edition">swayam edition</span>
+        <h1>Swayam<br><span>Sahu</span></h1>
+        <span class="count">(26)</span>
+
+        <div class="hero-copy left-copy">
+            <p>FRONT-END LEARNER AND CREATIVE DESIGNER FROM GROUP E.</p>
+        </div>
+        <div class="hero-copy right-copy">
+            <p>BUILDING ANGULAR PROJECTS, GAME UI CONCEPTS AND DIGITAL EXPERIENCES.</p>
+        </div>
+
+        <div class="leaf leaf-a"></div>
+        <div class="leaf leaf-b"></div>
+        <div class="leaf leaf-c"></div>
+        <div class="leaf leaf-d"></div>
+
+        <div class="floating-window" [style.transform]="'rotateX(' + tiltX + 'deg) rotateY(' + tiltY + 'deg)'">
+            <div class="hud-panel">
+                <div class="hud-header">
+                    <span class="hud-indicator blinking"></span>
+                    <span class="hud-tag">HUD v2.6_SYS</span>
+                </div>
+                <div class="hud-radial">
+                    <svg viewBox="0 0 36 36" class="hud-circular-chart">
+                        <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <path class="circle" stroke-dasharray="85, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <text x="18" y="20.35" class="hud-percentage">85%</text>
+                    </svg>
+                </div>
+                <div class="hud-progress-group">
+                    <div class="hud-label">COGNITIVE LEVEL</div>
+                    <div class="hud-track"><div class="hud-fill" style="width: 90%;"></div></div>
+                </div>
+            </div>
+            <strong>UI</strong>
+            <p>Interactive layouts with motion, polish, and depth.</p>
+        </div>
+    </section>
+
+    <section id="about" class="about-title panel-cream">
+        <div class="asterisk">✳</div>
+        <h2>about</h2>
+        <span>(sahu)</span>
+        <div class="flower-top"></div>
+    </section>
+
+    <section class="story-panel panel-cream">
+        <div class="oval-art">
+            <div class="podium p1"></div>
+            <div class="podium p2"></div>
+            <div class="podium p3"></div>
+            <div class="gold-piece"></div>
+            <div class="white-arc"></div>
+        </div>
+        <p>
+            Indian front-end learner <span></span> and creative developer working with
+            Angular, web design, playful interfaces and game-style visual systems.
+            A strong passion <span></span> for clean products, motion and memorable pages.
+        </p>
+        <strong>26</strong>
+    </section>
+
+    <section class="skills-panel panel-cream">
+        <div class="asterisk">✳</div>
+        <h2>skills</h2>
+        <div class="skills-grid">
+            <div *ngFor="let s of skills" class="skill-card interactive-item">
+                <span class="skill-icon">{{ s.icon }}</span>
+                <div class="skill-body">
+                    <h4>{{ s.name }}</h4>
+                    <span class="skill-level">{{ s.level }}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="details-panel panel-cream">
+        <div class="flower-top large"></div>
+        <div class="detail-grid">
+            <article *ngFor="let work of works" class="interactive-item">
+                <div class="article-header">
+                    <span>{{ work.type }}</span>
+                    <div class="article-tags">
+                        <span *ngFor="let tag of work.tags" class="tag-badge">{{ tag }}</span>
+                    </div>
+                </div>
+                <h3>{{ work.name }}</h3>
+                <p>{{ work.text }}</p>
+                <div class="article-actions">
+                    <a [href]="work.demoLink" target="_blank" rel="noopener noreferrer" class="action-btn">LAUNCH DEMO</a>
+                    <a [href]="work.codeLink" target="_blank" rel="noopener noreferrer" class="action-btn secondary">VIEW CODE</a>
+                </div>
+            </article>
+        </div>
+        <div class="asterisk lower">✳</div>
+    </section>
+
+    <section class="timeline-panel panel-cream">
+        <div class="asterisk">✳</div>
+        <h2>timeline</h2>
+        <div class="timeline-container">
+            <div *ngFor="let m of milestones" class="timeline-item interactive-item">
+                <span class="timeline-year">{{ m.year }}</span>
+                <div class="timeline-content">
+                    <h3>{{ m.title }}</h3>
+                    <p>{{ m.desc }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hello" class="works-panel panel-cream">
+        <div>
+            <h2>28</h2>
+            <p>Project ideas, UI studies and internship experiments</p>
+        </div>
+        <div class="marquee">
+            <span>Angular Games Design Portfolio Angular Games Design Portfolio</span>
+        </div>
+    </section>
+</main>
+
+<!-- Custom Cursor -->
+<div class="custom-cursor" 
+     *ngIf="cursorVisible"
+     [style.left.px]="cursorX"
+     [style.top.px]="cursorY"
+     [class.hovering]="isHovering">
+</div>
+<div class="custom-cursor-ring" 
+     *ngIf="cursorVisible"
+     [style.left.px]="cursorRingX"
+     [style.top.px]="cursorRingY"
+     [class.hovering]="isHovering">
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface Student {
   name: string;
@@ -10,6 +11,7 @@ interface Student {
   styleUrls: ['./team-dashboard.component.css']
 })
 export class TeamDashboardComponent {
+  constructor(private router: Router) { }
 
   groups: { [key: string]: Student[] } = {
 
@@ -26,7 +28,7 @@ export class TeamDashboardComponent {
     ],
 
 
-    
+
     B: [
       { name: 'Jagannath Padhi' },
       { name: 'Rohan Kumar Nayak' },
@@ -49,7 +51,7 @@ export class TeamDashboardComponent {
       { name: 'Sohan Mohanty' },
       { name: 'Hrushikesh Pattnaik' }
     ],
-     D: [
+    D: [
       { name: 'Chandan Kumar Sahu' },
       { name: 'Sitikantha Dalai' },
       { name: 'Titiksha Sahu' },
@@ -62,7 +64,7 @@ export class TeamDashboardComponent {
       { name: 'Shobha Kumari' },
       { name: 'CS Vishal Rout' }
     ],
- E: [
+    E: [
       { name: 'Rajesh Behera' },
       { name: 'Maniketa Padhan' },
       { name: 'Jeevan Jyoti Panigrahi' },
@@ -75,7 +77,7 @@ export class TeamDashboardComponent {
     ],
 
 
-   F: [
+    F: [
       { name: 'Rajshree Panda' },
       { name: 'Soumyashree Panda' },
       { name: 'Rupali Jena' },
@@ -88,7 +90,7 @@ export class TeamDashboardComponent {
       { name: 'Padmalaya Meher' }
     ],
 
-    
+
     G: [
       { name: 'Shubham Kumar' },
       { name: 'Yash Kumar' },
@@ -115,6 +117,11 @@ export class TeamDashboardComponent {
   }
 
   selectStudent(student: Student): void {
+    if (this.selectedGroup === 'E' && student.name === 'Swayam Sahu') {
+      this.router.navigate(['/group-e/swayam-sahu']);
+      return;
+    }
+
     this.selectedStudent = student;
   }
 }
