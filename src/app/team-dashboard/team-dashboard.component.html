@@ -1,0 +1,152 @@
+<header class="header">
+  <h1>SILICON INTERNSHIP BATCH 2026</h1>
+</header>
+
+<div class="container">
+
+  <!-- LEFT SIDEBAR -->
+  <div class="sidebar">
+
+    <h2>Groups</h2>
+
+    <button (click)="showGroup('A')">Group A</button>
+    <button (click)="showGroup('B')">Group B</button>
+    <button (click)="showGroup('C')">Group C</button>
+    <button (click)="showGroup('D')">Group D</button>
+    <button (click)="showGroup('E')">Group E</button>
+    <button (click)="showGroup('F')">Group F</button>
+    <button (click)="showGroup('G')">Group G</button>
+
+  </div>
+
+  <!-- STUDENT LIST -->
+  <div class="student-panel">
+
+    <div *ngIf="selectedGroup">
+      <h2>Group {{ selectedGroup }}</h2>
+      <p>Total Students: {{ students.length }}</p>
+    </div>
+
+    <div
+      *ngFor="let student of students"
+      class="student-card"
+      (click)="selectStudent(student)"
+    >
+      {{ student.name }}
+    </div>
+
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="dashboard">
+
+    <!-- Default Welcome Screen -->
+    <div *ngIf="!selectedStudent" class="welcome-container">
+
+      <div class="welcome-header">
+        <h1 class="welcome-title">🚀 Welcome to Team Finder Portal</h1>
+        <p class="welcome-subtitle">Discover Your Team • Explore Talents • Build Connections</p>
+      </div>
+
+      <div class="welcome-content">
+        <div class="quick-guide">
+          <h2>Quick Start Guide</h2>
+          <div class="guide-steps">
+            <div class="step">
+              <div class="step-icon">1️⃣</div>
+              <div class="step-text">
+                <h3>Select a Group</h3>
+                <p>Choose from 7 groups (A-G) in the left sidebar</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-icon">2️⃣</div>
+              <div class="step-text">
+                <h3>Click a Student</h3>
+                <p>View detailed profile information</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-icon">3️⃣</div>
+              <div class="step-text">
+                <h3>Explore Teams</h3>
+                <p>Discover team members and connections</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="program-info">
+          <div class="info-card-premium">
+            <div class="info-header">
+              <h2>SILICON INTERNSHIP</h2>
+              <p class="batch-label">Batch 2026</p>
+            </div>
+            <div class="info-body">
+              <div class="stat">
+                <span class="stat-number">7</span>
+                <span class="stat-label">Teams</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">77+</span>
+                <span class="stat-label">Students</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">∞</span>
+                <span class="stat-label">Possibilities</span>
+              </div>
+            </div>
+            <p class="info-description">Join us in building the future with talent, innovation, and collaboration.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Student Details -->
+    <div *ngIf="selectedStudent" class="profile-card">
+
+      <h1>
+        Welcome {{ selectedStudent.name }} 👋
+      </h1>
+
+      <hr>
+
+      <p>
+        <strong>Student Name :</strong>
+        {{ selectedStudent.name }}
+      </p>
+
+      <p>
+        <strong>Group :</strong>
+        {{ selectedGroup }}
+      </p>
+
+      <p>
+        <strong>Project :</strong>
+        Silicon Internship Batch 2026
+      </p>
+
+      <p>
+        <strong>Total Team Members :</strong>
+        {{ students.length }}
+      </p>
+
+      <p>
+        <strong>Status :</strong>
+        Active Member
+      </p>
+
+      <p>
+        🚀 Keep Learning and Growing
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+<footer class="footer">
+  © 2026 Silicon Internship Program | Team Finder Dashboard
+</footer>
