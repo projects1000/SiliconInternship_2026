@@ -27,11 +27,7 @@
       <p>Total Students: {{ students.length }}</p>
     </div>
 
-    <div
-      *ngFor="let student of students"
-      class="student-card"
-      (click)="selectStudent(student)"
-    >
+    <div *ngFor="let student of students" class="student-card" (click)="selectStudent(student)">
       {{ student.name }}
     </div>
 
@@ -104,7 +100,9 @@
     </div>
 
     <!-- Student Details -->
-    <div *ngIf="selectedStudent" class="profile-card">
+    <app-rohan-profile *ngIf="selectedStudent?.name === 'Rohan Kumar Nayak'">
+    </app-rohan-profile>
+    <!-- <div *ngIf="selectedStudent" class="profile-card">
 
       <h1>
         Welcome {{ selectedStudent.name }} 👋
@@ -141,7 +139,7 @@
         🚀 Keep Learning and Growing
       </p>
 
-    </div>
+    </div> -->
 
   </div>
 

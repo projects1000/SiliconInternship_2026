@@ -5,12 +5,14 @@ import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { TeamDashboardComponent } from './team-dashboard/team-dashboard.component';
+import { RohanProfileComponent } from './rohan-profile/rohan-profile.component';
 
 @NgModule({
   declarations: [
     
     AppComponent,
-    TeamDashboardComponent
+    TeamDashboardComponent,
+    RohanProfileComponent
   ],
   imports: [
     BrowserModule,
