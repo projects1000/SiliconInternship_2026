@@ -1,33 +1,127 @@
-.member-page {
-  height: 100vh;
+/* Full page background wrapper */
+.profile-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  font-family: Arial, sans-serif;
-  background: #f4f6f9;
+  min-height: 80vh;
+  background: radial-gradient(circle at top left, #0b2e27, #050e14 70%);
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h1 {
-  font-size: 32px;
+/* Main Profile Card */
+.profile-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: rgba(15, 23, 30, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 45px;
+  max-width: 850px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  gap: 40px;
+}
+
+/* Glowing Profile Circle */
+.avatar-glow {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  padding: 5px;
+  background: linear-gradient(135deg, #00ffcc, #0099ff);
+  box-shadow: 0 0 25px rgba(0, 255, 204, 0.4);
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #222;
+}
+
+/* Info Elements */
+.info-section {
+  flex: 1;
+}
+
+.profile-name {
+  color: #ffffff;
+  font-size: 2.5rem;
+  margin: 0 0 5px 0;
+  font-family: 'Georgia', serif;
+}
+
+.profile-title {
+  color: #00ffcc;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0 0 15px 0;
+}
+
+/* Availability Badge */
+.status-badge {
+  display: inline-block;
+  border: 1px solid #00ffcc;
+  color: #00ffcc;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: rgba(0, 255, 204, 0.05);
   margin-bottom: 20px;
-  color: #2a2a2a;
 }
 
-button {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 6px;
+.profile-bio {
+  color: #a0aec0;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin-bottom: 25px;
+}
 
-  background: #2a5298;
+/* Skills Badges */
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.skill-tag {
+  border: 1px solid #1a3636;
+  color: #00ffcc;
+  background-color: rgba(11, 46, 39, 0.4);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
+/* Action Links buttons */
+.links-container {
+  display: flex;
+  gap: 15px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
   color: white;
-
-  cursor: pointer;
-  transition: 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.03);
+  transition: all 0.3s ease;
 }
 
-button:hover {
-  background: #1e3c72;
-  transform: scale(1.05);
+.social-btn:hover {
+  background-color: white;
+  color: black;
+  transform: translateY(-2px);
 }
