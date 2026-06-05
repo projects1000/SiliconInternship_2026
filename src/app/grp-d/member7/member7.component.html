@@ -1,32 +1,52 @@
-<div class="profile-container">
+<div class="profile-page">
 
   <div class="profile-card">
 
-    <div class="profile-header">
-      <img src="https://i.pravatar.cc/150?img=7" alt="Profile" />
-      <h1>Member 7</h1>
-      <p>Group D Developer</p>
+    <!-- PROFILE IMAGE (INITIALS AVATAR) -->
+    <div class="profile-image">
+      TS
     </div>
 
-    <div class="profile-body">
+    <h1>Tanmay Sahu</h1>
+    <p class="role">Group D • Member 7</p>
+    <p class="tagline">
+      Frontend Developer passionate about Angular, UI design and building clean web applications.
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="section">
       <h3>About Me</h3>
       <p>
-        Passionate Angular developer who enjoys building clean UI and learning new technologies.
+        I am a dedicated developer who enjoys creating responsive and user-friendly interfaces.
+        I like solving problems and learning modern web technologies.
       </p>
+    </div>
 
+    <div class="section">
       <h3>Skills</h3>
       <div class="skills">
         <span>Angular</span>
+        <span>TypeScript</span>
         <span>HTML</span>
         <span>CSS</span>
         <span>JavaScript</span>
+        <span>Git</span>
       </div>
     </div>
 
-    <!-- KEEP YOUR FUNCTIONAL BUTTON -->
-    <button (click)="goBackToGroup()">
-      Go back to Group D
-    </button>
+    <div class="section">
+      <h3>Connect</h3>
+      <div class="links">
+        <a href="#">GitHub</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Email</a>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button (click)="goBackToGroup()">← Go Back to Group D</button>
+    </div>
 
   </div>
 
