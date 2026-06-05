@@ -1,9 +1,33 @@
-<div class="member-page">
+<div class="profile-container">
 
-  <h1>Member 7</h1>
+  <div class="profile-card">
 
-  <button (click)="goBackToGroup()">
-    Go back to Group D
-  </button>
+    <div class="profile-header">
+      <img src="https://i.pravatar.cc/150?img=7" alt="Profile" />
+      <h1>Member 7</h1>
+      <p>Group D Developer</p>
+    </div>
+
+    <div class="profile-body">
+      <h3>About Me</h3>
+      <p>
+        Passionate Angular developer who enjoys building clean UI and learning new technologies.
+      </p>
+
+      <h3>Skills</h3>
+      <div class="skills">
+        <span>Angular</span>
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+      </div>
+    </div>
+
+    <!-- KEEP YOUR FUNCTIONAL BUTTON -->
+    <button (click)="goBackToGroup()">
+      Go back to Group D
+    </button>
+
+  </div>
 
 </div>
