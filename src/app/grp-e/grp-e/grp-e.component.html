@@ -1,29 +1,70 @@
 <div class="member-container">
 
-  <!-- LEFT NAV BAR -->
-  <div class="member-sidebar">
+  <!-- Sidebar -->
+  <aside class="member-sidebar">
 
-    <button (click)="goBack()">← Back to HOME</button>
+    <div class="brand-section">
+      <h2>GRP-E</h2>
+      <span>Team Dashboard</span>
+    </div>
 
-    <h3>Members</h3>
+    <button class="back-btn" (click)="goBack()">
+      🏠 Back to Home
+    </button>
 
-    <button (click)="goToMember1()">Member 1</button>
-    <button (click)="goToMember2()">Member 2</button>
-    <button (click)="goToMember3()">Member 3</button>
-    <button (click)="goToMember4()">Member 4</button>
-    <button (click)="goToMember5()">Member 5</button>
-    <button (click)="goToMember6()">Member 6</button>
-    <button (click)="goToMember7()">Member 7</button>
-    <button (click)="goToMember8()">Member 8</button>
-    <button (click)="goToMember9()">Member 9</button>
+    <div class="member-list">
 
-  </div>
+      <button (click)="goToMember1()">1.👨‍💻 Rajesh Behera</button>
+      <button (click)="goToMember2()">2.👨‍💻 Maniket Padhan</button>
+      <button (click)="goToMember3()">3.👨‍💻 Jeevan Jyoti Panigrahi</button>
+      <button (click)="goToMember4()">4.👨‍💻 Ayush Mishra</button>
+      <button (click)="goToMember5()">5.👨‍💻 Mohit Singal</button>
+      <button (click)="goToMember6()">6.👨‍💻 Dhiraj Mahapatra</button>
+      <button (click)="goToMember7()">7.👨‍💻 Swayam Sahu</button>
+      <button (click)="goToMember8()">8.👩‍💻 Subhashree Mohapatra</button>
+      <button (click)="goToMember9()">9.👩‍💻 Subhalaxmi Sahoo</button>
 
-  <!-- MAIN CONTENT AREA -->
-  <div class="member-content">
+    </div>
 
-    <h1>GRP-E</h1>
+  </aside>
 
-  </div>
+  <!-- Main Content -->
+  <main class="member-content">
+
+    <div class="hero-card">
+
+      <div class="hero-text">
+
+        <h1>🚀 Welcome To Group E</h1>
+
+        <p>
+          Together we learn, innovate and build impactful software solutions.
+          Our team focuses on collaboration, creativity and continuous growth.
+        </p>
+
+      </div>
+
+      <div class="stats-container">
+
+        <div class="stat-card">
+          <h2>9</h2>
+          <span>Team Members</span>
+        </div>
+
+        <div class="stat-card">
+          <h2>JAVA</h2>
+          <span>Program</span>
+        </div>
+
+        <div class="stat-card">
+          <h2>2026</h2>
+          <span>Batch</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
 
 </div>
