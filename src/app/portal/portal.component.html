@@ -1,0 +1,16 @@
+<div class="container">
+
+  <app-sidebar
+    [teams]="teams"
+    (memberSelected)="onMemberSelect($event)">
+  </app-sidebar>
+
+  <div class="content">
+
+    <app-member-details
+      [member]="selectedMember">
+    </app-member-details>
+
+  </div>
+
+</div>

@@ -1,0 +1,37 @@
+<div class="sidebar">
+
+  <div *ngFor="let team of teams | keyvalue">
+
+    <!-- TEAM NAME -->
+
+    <div
+      class="team-name"
+      (click)="toggleTeam($any(team.key))"
+    >
+
+      {{team.key}}
+
+    </div>
+
+    <!-- MEMBER LIST -->
+
+    <div
+      *ngIf="openedTeam === team.key"
+      class="member-list"
+    >
+
+      <div
+        class="member-name"
+        *ngFor="let member of $any(team.value)"
+        (click)="selectMember(member)"
+      >
+
+        {{member.name}}
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

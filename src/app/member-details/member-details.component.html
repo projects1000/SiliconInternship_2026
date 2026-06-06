@@ -1,0 +1,23 @@
+<div *ngIf="member" class="details">
+
+  <h1>{{member.name}}</h1>
+
+  <h3>{{member.role}}</h3>
+
+  <hr>
+
+  <p><b>Team :</b> {{member.team}}</p>
+
+  <p><b>Email :</b> {{member.email}}</p>
+
+  <p><b>Phone :</b> {{member.phone}}</p>
+
+  <p><b>role :</b> {{member.role}}</p>
+
+</div>
+
+<div *ngIf="!member" class="empty">
+
+  Click Any Member Name
+
+</div>

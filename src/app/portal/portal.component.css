@@ -1,0 +1,8 @@
+.container{
+  display:flex;
+}
+
+.content{
+  flex:1;
+  background:#f1f5f9;
+}
