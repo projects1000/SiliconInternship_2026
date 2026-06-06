@@ -1,4 +1,26 @@
 .member-page {
+<<<<<<< HEAD
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #2a2a2a;
+}
+
+button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+=======
   min-height: 100vh;
   padding: 40px 20px;
 
@@ -118,18 +140,27 @@ button {
 
   border: none;
   border-radius: 8px;
+>>>>>>> 808ff84df3ea16ae08e772c705efb9331eebe50a
 
   background: #2a5298;
   color: white;
 
   cursor: pointer;
+<<<<<<< HEAD
+  transition: 0.2s;
+=======
 
   font-size: 15px;
   transition: 0.3s;
+>>>>>>> 808ff84df3ea16ae08e772c705efb9331eebe50a
 }
 
 button:hover {
   background: #1e3c72;
+<<<<<<< HEAD
+  transform: scale(1.05);
+}
+=======
   transform: translateY(-2px);
 }
 
@@ -144,3 +175,4 @@ button:hover {
     transform: translateY(0);
   }
 }
+>>>>>>> 808ff84df3ea16ae08e772c705efb9331eebe50a
