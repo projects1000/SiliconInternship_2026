@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
+
+:host {
+  /* 1. Background Gradient: Refined Blue sweeping into Pure White */
+  --bg-gradient: linear-gradient(120deg, #122B4B 0%, #467599 40%, #E2EAEF 75%, #FFFFFF 100%);
+  
+  /* 2. Antique Card Background */
+  --card-bg: #ede6d6;        /* Soft alabaster beige */
+  --card-border: #cac1ae;    /* Delicate warm beige/olive border */
+  
+  /* 3. Antique Text Colors */
+  --text-main: #2A3022;      /* Very dark olive-charcoal (No black) */
+  --text-muted: #606854;     /* Medium dusty olive */
+  
+  /* 4. The Accent Combination */
+  --accent-beige: #EBE4D5;   /* Deeper beige for tags */
+  --accent-red: #A33327;     /* Elegant vintage red */
+  --accent-olive: #5A6B41;   /* Rich olive green */
+  
+  /* Component Specifics */
+  --badge-bg: var(--accent-beige);
+  --badge-text: var(--accent-red);
+  
+  --pill-bg: #F2EFE8;        
+  --pill-border: #C8CDBA;    /* Soft olive tint for pill borders */
+  --pill-text: var(--accent-olive);
+  
+  /* Refined, Elegant Shadow */
+  --shadow-elegant: 0 16px 40px rgba(18, 43, 75, 0.08); 
+  --shadow-hover: 0 24px 50px rgba(18, 43, 75, 0.12);
+  
+  --font-antique: 'Playfair Display', serif;
+  --font-main: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* =========================================
+   MEMBER PAGE WRAPPER & ROUTING
+   ========================================= */
+
+.member-page, .modern-wrapper, .aesthetic-wrapper {
+  /* FIX: Use 100% instead of 100vh so it fits perfectly inside your app.component layout */
+  min-height: 100%; 
+  box-sizing: border-box; /* FIX: Ensures padding doesn't cause overflow */
+  
+  background: var(--bg-gradient);
+  padding: 3rem 1.5rem;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-main);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scoped specifically to .member-page so it doesn't break the profile headings */
+.member-page h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #2a2a2a;
+}
+
+/* Scoped specifically to .member-page so it doesn't break future profile buttons */
+.member-page button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  background: #122B4B; /* Matched to your vintage blue gradient */
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: var(--font-main);
+  font-weight: 600;
+}
+
+.member-page button:hover {
+  background: var(--accent-olive);
+  transform: scale(1.05);
+}
+
+
+/* =========================================
+   VINTAGE PROFILE CARD STYLES 
+   ========================================= */
+
+.profile-container {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Bento Box Shared Styles */
+.bento-item {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 18px; 
+  padding: 2.5rem;
+  box-shadow: var(--shadow-elegant);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.bento-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-red), var(--accent-olive));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.bento-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.bento-item:hover::before {
+  opacity: 0.8;
+}
+
+/* Header Section */
+.header-card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.avatar-ring {
+  padding: 6px;
+  background: linear-gradient(135deg, var(--accent-red), var(--accent-olive));
+  border-radius: 50%;
+}
+
+.round-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%; 
+  object-fit: cover;
+  border: 3px solid var(--card-bg);
+  filter: sepia(20%) contrast(1.05); 
+  display: block;
+}
+
+.header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: var(--badge-bg);
+  color: var(--badge-text);
+  padding: 0.4rem 1rem;
+  border-radius: 50px; 
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  width: fit-content;
+  border: 1px solid rgba(163, 51, 39, 0.15); 
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-red); 
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(163, 51, 39, 0.4);
+}
+
+.name {
+  font-family: var(--font-antique);
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.01em;
+  color: var(--text-main);
+}
+
+.role {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+
+.divider {
+  color: var(--accent-red);
+  margin: 0 0.5rem;
+  font-weight: 300;
+}
+
+/* Bento Grid Layout */
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .bento-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .skills-card {
+    grid-column: span 2;
+  }
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.2rem;
+}
+
+.icon {
+  font-style: normal;
+  font-size: 1.5rem;
+}
+
+.card-header h3 {
+  font-family: var(--font-antique);
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--accent-olive);
+  letter-spacing: 0.01em;
+}
+
+.card-text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-main);
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Skills Section */
+.skills-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .skills-layout {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.category-title {
+  font-family: var(--font-antique);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--accent-red); 
+  margin: 0 0 1rem 0;
+  border-bottom: 1px solid rgba(163, 51, 39, 0.2);
+  padding-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.pill-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.skill-pill {
+  background-color: var(--pill-bg); 
+  border: 1px solid var(--pill-border);
+  padding: 0.5rem 1rem;
+  border-radius: 8px; 
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--pill-text);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.skill-pill:hover {
+  background-color: var(--accent-olive);
+  border-color: var(--accent-olive);
+  color: var(--card-bg); 
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(90, 107, 65, 0.2);
+}
