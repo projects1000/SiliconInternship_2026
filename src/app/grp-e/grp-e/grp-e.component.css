@@ -1,0 +1,494 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    font-family:'Poppins',sans-serif;
+
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.member-container{
+
+    display:flex;
+
+    height:100vh;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        135deg,
+        #0f172a,
+        #1e3a8a,
+        #2563eb
+    );
+
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.member-sidebar{
+
+    width:320px;
+
+    height:100vh;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(18px);
+
+    border-right:1px solid rgba(255,255,255,0.15);
+
+    padding:25px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 35px rgba(0,0,0,0.25);
+
+}
+
+/* =========================
+   LOGO SECTION
+========================= */
+
+.brand-section{
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+}
+
+.brand-section h2{
+
+    font-size:38px;
+
+    color:white;
+
+    font-weight:800;
+
+    letter-spacing:2px;
+
+}
+
+.brand-section span{
+
+    color:#cbd5e1;
+
+    font-size:14px;
+
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-btn{
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ef4444,
+        #dc2626
+    );
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.4s;
+
+}
+
+.back-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 25px rgba(239,68,68,0.4);
+
+}
+
+/* =========================
+   MEMBER LIST
+========================= */
+
+.member-list{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    margin-top:25px;
+
+    padding-right:5px;
+
+}
+
+/* SCROLLBAR */
+
+.member-list::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.member-list::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+.member-list::-webkit-scrollbar-thumb{
+
+    background:rgba(255,255,255,0.4);
+
+    border-radius:20px;
+
+}
+
+.member-list::-webkit-scrollbar-thumb:hover{
+
+    background:white;
+
+}
+
+/* =========================
+   MEMBER BUTTONS
+========================= */
+
+.member-list button{
+
+    border:none;
+
+    background:rgba(255,255,255,0.12);
+
+    color:white;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    text-align:left;
+
+    font-size:15px;
+
+    font-weight:500;
+
+    cursor:pointer;
+
+    transition:all .3s ease;
+
+}
+
+.member-list button:hover{
+
+    background:white;
+
+    color:#1e3a8a;
+
+    transform:translateX(8px);
+
+    box-shadow:0 10px 25px rgba(255,255,255,0.25);
+
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.member-content{
+
+    flex:1;
+
+    height:100vh;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+    padding:40px;
+
+    padding-top:40px;
+
+}
+
+/* =========================
+   HERO CARD
+========================= */
+
+.hero-card{
+
+    width:100%;
+
+    max-width:1000px;
+
+    min-height:fit-content;
+
+    padding:45px;
+
+    margin-top:10px;
+
+    margin-bottom:30px;
+
+}
+
+/* =========================
+   HERO TEXT
+========================= */
+
+.hero-text{
+
+    text-align:center;
+
+}
+
+.hero-text h1{
+
+    color:white;
+
+    font-size:50px;
+
+    margin-bottom:15px;
+
+    font-weight:600;
+
+}
+
+.hero-text p{
+
+    color:#dbeafe;
+
+    font-size:20px;
+
+    line-height:2.0;
+
+    max-width:900px;
+
+    margin:auto;
+
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats-container{
+
+    margin-top:100px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:40px;
+
+    flex-wrap:wrap;
+
+}
+
+.stat-card{
+
+    width:240px;
+
+    padding:20px;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.12);
+
+    transition:0.4s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-10px);
+
+    background:rgba(255,255,255,0.22);
+
+    box-shadow:0 15px 30px rgba(0,0,0,0.25);
+
+}
+
+.stat-card h2{
+
+    font-size:42px;
+
+    color:#facc15;
+
+    margin-bottom:5px;
+
+}
+
+.stat-card span{
+
+    color:white;
+
+    font-size:18px;
+
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+/* =========================
+   TABLET VIEW
+========================= */
+
+@media(max-width:900px){
+
+    .member-container{
+
+        flex-direction:column;
+
+    }
+
+    .member-sidebar{
+
+        width:100%;
+
+        height:auto;
+
+        max-height:300px;
+
+        border-right:none;
+
+        border-bottom:1px solid rgba(255,255,255,0.15);
+
+    }
+
+    .member-list{
+
+        display:grid;
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .hero-text h1{
+
+        font-size:38px;
+
+    }
+
+    .member-content{
+
+        padding-top:30px;
+
+    }
+
+}
+
+/* =========================
+   MOBILE VIEW
+========================= */
+
+@media(max-width:600px){
+
+    .member-list{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .member-content{
+
+        padding-top:20px;
+
+        padding-left:15px;
+
+        padding-right:15px;
+
+    }
+
+    .hero-card{
+
+        padding:20px;
+
+    }
+
+    .hero-text h1{
+
+        font-size:28px;
+
+    }
+
+    .hero-text p{
+
+        font-size:15px;
+
+    }
+
+    .stat-card{
+
+        width:100%;
+
+    }
+
+}

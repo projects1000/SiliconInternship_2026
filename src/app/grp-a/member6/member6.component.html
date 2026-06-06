@@ -1,0 +1,64 @@
+<div class="member-page">
+  <div class="aesthetic-wrapper">
+    <div class="profile-container">
+      <!-- Header Profile Section -->
+      <header class="header-card bento-item">
+        <div class="avatar-ring">
+          <img [src]="avatarUrl" alt="Profile Photo" class="round-avatar" />
+        </div>
+        <div class="header-info">
+          <div class="status-badge">
+            <span class="dot"></span>
+            {{ academicStatus }}
+          </div>
+          <h1 class="name">{{ fullName }}</h1>
+          <h2 class="role">
+            {{ role }} <span class="divider">•</span> {{ location }}
+          </h2>
+        </div>
+      </header>
+
+      <!-- Bento Grid Layout -->
+      <main class="bento-grid">
+        <!-- Engagement Card -->
+        <section class="bento-item highlight-card">
+          <div class="card-header">
+            <i class="icon">✨</i>
+            <h3>Current Engagement</h3>
+          </div>
+          <p class="card-text">{{ internshipDetails }}</p>
+        </section>
+
+        <!-- Philosophy Card -->
+        <section class="bento-item secondary-card">
+          <div class="card-header">
+            <i class="icon">📐</i>
+            <h3>Architecture Principles</h3>
+          </div>
+          <p class="card-text">{{ philosophy }}</p>
+        </section>
+
+        <!-- Skills Section spans full width -->
+        <section class="bento-item skills-card">
+          <div class="card-header">
+            <i class="icon">💡</i>
+            <h3>Technical Arsenal</h3>
+          </div>
+
+          <div class="skills-layout">
+            <div class="skill-category" *ngFor="let group of competencies">
+              <h4 class="category-title">{{ group.category }}</h4>
+              <div class="pill-container">
+                <span class="skill-pill" *ngFor="let skill of group.skills">{{
+                  skill
+                }}</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <button (click)="goBackToGroup()">Go back to Group A</button>
+</div>

@@ -1,0 +1,107 @@
+<div class="member-page">
+
+  <div class="top-context-title">Member 7 Portfolio Dashboard</div>
+
+  <div class="profile-page-wrapper">
+  
+    <div class="header-section">
+      <div class="avatar-holder">
+        <div class="avatar-wrapper" (click)="fileInput.click()">
+          <img *ngIf="imageUrl" [src]="imageUrl" alt="Profile Picture" class="avatar-img-actual">
+          
+          <div *ngIf="!imageUrl" class="avatar-img-fallback">DT</div>
+          
+          <div class="avatar-overlay">
+            <span class="camera-icon">📷</span>
+            <span class="overlay-text">Change Photo</span>
+          </div>
+        </div>
+        <input 
+          #fileInput 
+          type="file" 
+          accept="image/*" 
+          style="display: none;" 
+          (change)="onPhotoSelected($event)">
+      </div>
+      <h1 class="user-title-name">Debashis Tripathy</h1>
+      <p class="user-subtitle">B.Tech Student • Group C • Member 7</p>
+    </div>
+
+    <div class="content-card-section">
+      <h2 class="section-card-heading">About Me</h2>
+      <p class="section-card-text">
+        Currently pursuing my B.Tech degree and actively participating in the Silicon Internship Program. I am keenly interested in full-stack development, object-oriented concepts, and constructing clean, responsive user interfaces. I enjoy exploring backend logic architectures alongside front-end frameworks.
+      </p>
+    </div>
+
+    <div class="content-card-section">
+      <h2 class="section-card-heading">Education</h2>
+      <div class="education-block">
+        <h3 class="edu-degree">Bachelor of Technology</h3>
+        <p class="edu-institution">Silicon University</p>
+        <p class="edu-timeline">2024 - Present</p>
+      </div>
+    </div>
+
+    <div class="content-card-section">
+      <h2 class="section-card-heading">Skills</h2>
+      <div class="pills-flex-container">
+        <span class="skill-pill">Angular</span>
+        <span class="skill-pill">HTML</span>
+        <span class="skill-pill">CSS</span>
+        <span class="skill-pill">JavaScript</span>
+        <span class="skill-pill">TypeScript</span>
+        <span class="skill-pill">Java</span>
+        <span class="skill-pill">SQL</span>
+        <span class="skill-pill">Git</span>
+        <span class="skill-pill">GitHub</span>
+      </div>
+    </div>
+
+    <div class="content-card-section">
+      <h2 class="section-card-heading">Currently Learning</h2>
+      <div class="pills-flex-container">
+        <span class="skill-pill learning-pill">Angular Routing</span>
+        <span class="skill-pill learning-pill">REST APIs</span>
+        <span class="skill-pill learning-pill">Verilog HDL</span>
+        <span class="skill-pill learning-pill">Microprocessor 8085</span>
+      </div>
+    </div>
+
+    <div class="content-card-section">
+      <h2 class="section-card-heading">Projects</h2>
+      <div class="projects-display-grid">
+        
+        <div class="project-inner-card">
+          <h3 class="project-inner-title">debsLook</h3>
+          <p class="project-inner-desc">
+            An e-commerce web application concept specialized in clothing sales, emphasizing an interactive layout, styled navigation structures, and fluid responsive design layouts.
+          </p>
+        </div>
+
+        <div class="project-inner-card">
+          <h3 class="project-inner-title">Developer Portfolio</h3>
+          <p class="project-inner-desc">
+            Personal responsive workspace showcasing academic projects, core developer skills, assignment task trackers, and engineering frameworks.
+          </p>
+        </div>
+
+        <div class="project-inner-card">
+          <h3 class="project-inner-title">Database Management Hub</h3>
+          <p class="project-inner-desc">
+            An engineering coursework tracker implementing entity-relationship layouts, relational schemas, queries, and systematic transaction models.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="back-btn-container">
+    <button class="btn-go-back" (click)="goBackToGroup()">
+      ← Go back to Group C
+    </button>
+  </div>
+
+</div>
