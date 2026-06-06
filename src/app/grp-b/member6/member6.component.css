@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 *{
   margin: 0;
   padding: 0;
@@ -265,7 +265,7 @@
     justify-content: center;
   }
 }
-=======
+
 .member-page {
   height: 100vh;
   display: flex;
@@ -299,4 +299,4 @@ button:hover {
   background: #1e3c72;
   transform: scale(1.05);
 }
->>>>>>> 808ff84df3ea16ae08e772c705efb9331eebe50a
+
