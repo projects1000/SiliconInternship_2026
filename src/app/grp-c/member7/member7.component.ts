@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-member7',
@@ -7,9 +6,37 @@ import { Router } from '@angular/router';
   styleUrls: ['./member7.component.css']
 })
 export class Member7Component {
- constructor(private router: Router) {}
+  // Variable to store the uploaded image string preview
+  imageUrl: string | ArrayBuffer | null = null;
 
+  constructor() { }
+
+  // Handles when you choose a photo from your computer
+  onPhotoSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      
+      // Convert the image file to a data URL data string
+      reader.onload = () => {
+        this.imageUrl = reader.result;
+      };
+      
+      reader.readAsDataURL(file);
+    }
+  }
+
+  connectMessage() {
+    alert('Thank you for connecting!');
+  }
+
+  viewProjects() {
+    alert('Projects section coming soon!');
+  }
+
+  // 👇 ADD THIS MISSING FUNCTION SO ANGULAR STOPS COMPLAINING 👇
   goBackToGroup() {
-    this.router.navigate(['grp-c']);
+    // This allows the back navigation button in your template to work smoothly
+    window.history.back();
   }
 }
