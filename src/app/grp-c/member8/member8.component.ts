@@ -12,8 +12,6 @@ export class Member8Component {
   goBackToGroup() {
     this.router.navigate(['grp-c']);
   }
-<<<<<<< HEAD
-=======
   isDarkMode = false;
 
 toggleTheme() {
@@ -23,5 +21,4 @@ toggleTheme() {
 openGithub() {
   window.open('https://github.com/safaq11', '_blank');
 }
->>>>>>> 808ff84df3ea16ae08e772c705efb9331eebe50a
 }
