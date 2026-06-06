@@ -98,9 +98,13 @@
   },
   "cli": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "analytics": false
 =======
     "analytics": "f331cebf-71dd-433c-9ab1-3b9e254081c0"
 >>>>>>> 669a3573bac711efb9ed5004a8624c174aeb98ca
+=======
+    "analytics": "f331cebf-71dd-433c-9ab1-3b9e254081c0"
+>>>>>>> 808ff84df3ea16ae08e772c705efb9331eebe50a
   }
 }
