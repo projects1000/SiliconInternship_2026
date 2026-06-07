@@ -1,0 +1,370 @@
+/* ===========================
+   GLOBAL
+=========================== */
+
+* {
+  box-sizing: border-box;
+}
+
+.attendance-dashboard {
+  height: 100vh;
+  background: #eef2f7;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.dashboard-header {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+  padding: 20px 30px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.header-left h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.header-left p {
+  margin-top: 6px;
+  color: #cbd5e1;
+}
+
+.header-right {
+  display: flex;
+  gap: 12px;
+}
+
+/* ===========================
+   CONTAINER
+=========================== */
+
+.dashboard-container {
+  height: calc(100vh - 92px);
+}
+
+/* ===========================
+   SIDEBAR
+=========================== */
+
+.sidebar {
+  width: 340px;
+  background: #111827;
+  padding: 16px;
+  color: white;
+}
+
+.card {
+  background: #1f2937;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid #374151;
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+/* ===========================
+   INPUTS
+=========================== */
+
+.custom-input,
+.custom-select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+
+  border: 1px solid #4b5563;
+  border-radius: 8px;
+
+  background: #374151;
+  color: white;
+}
+
+.custom-input::placeholder {
+  color: #d1d5db;
+}
+
+.custom-input:focus,
+.custom-select:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.full-width-btn {
+  width: 100%;
+}
+
+/* ===========================
+   CALENDAR
+=========================== */
+
+.selected-date {
+  margin-top: 12px;
+  text-align: center;
+  color: #e5e7eb;
+  font-size: 14px;
+}
+
+/* ===========================
+   TREE
+=========================== */
+
+.tree-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.team-node,
+.member-node {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+
+  transition: 0.2s;
+}
+
+.team-node:hover,
+.member-node:hover {
+  background: rgba(59,130,246,0.15);
+}
+
+.active-node {
+  background: #2563eb;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ===========================
+   CONTENT AREA
+=========================== */
+
+mat-sidenav-content {
+  padding: 24px;
+}
+
+/* ===========================
+   ANALYTICS CARD
+=========================== */
+
+.history-card {
+  background: white;
+  border-radius: 18px;
+  padding: 22px;
+  margin-bottom: 24px;
+
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.history-card h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 0;
+  color: #1e293b;
+}
+
+.history-filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 18px;
+}
+
+.history-filters label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.history-tags {
+  margin-top: 18px;
+}
+
+.history-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  background: #dcfce7;
+  color: #166534;
+
+  padding: 8px 12px;
+  border-radius: 20px;
+  margin: 4px;
+}
+
+/* ===========================
+   TABLE SECTION
+=========================== */
+
+.table-section {
+  background: white;
+  border-radius: 18px;
+  padding: 24px;
+
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.table-header h2 {
+  margin: 0;
+  color: #1e293b;
+}
+
+.attendance-table {
+  width: 100%;
+  overflow: auto;
+  border-radius: 12px;
+}
+
+/* ===========================
+   TABLE HEADER
+=========================== */
+
+.mat-mdc-header-row {
+  background: #2563eb;
+}
+
+.mat-mdc-header-cell {
+  color: white !important;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* ===========================
+   TABLE BODY
+=========================== */
+
+.mat-mdc-row:nth-child(even) {
+  background: #f8fafc;
+}
+
+.mat-mdc-row:hover {
+  background: #e0f2fe;
+}
+
+/* ===========================
+   MEMBER INFO
+=========================== */
+
+.member-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.member-info strong {
+  color: #0f172a;
+}
+
+.member-info small {
+  color: #64748b;
+}
+
+/* ===========================
+   ATTENDANCE CELL
+=========================== */
+
+.attendance-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.tick {
+  color: #22c55e;
+  transform: scale(1.15);
+}
+
+/* ===========================
+   EMPTY STATE
+=========================== */
+
+.empty-state {
+  text-align: center;
+  padding: 50px;
+  color: #64748b;
+}
+
+.empty-state mat-icon {
+  font-size: 55px;
+  width: 55px;
+  height: 55px;
+}
+
+/* ===========================
+   SCROLLBAR
+=========================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 10px;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 1024px) {
+
+  .sidebar {
+    width: 300px;
+  }
+
+  .history-filters {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .dashboard-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .header-right {
+    flex-wrap: wrap;
+  }
+}
