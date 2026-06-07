@@ -1,15 +1,22 @@
+/* Global Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+/* Global Page Styling */
+html,
+body {
   width: 100%;
   min-height: 100vh;
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   background: #0d1117;
 }
 
+/* Angular Root Component */
 app-root {
   display: block;
   width: 100%;

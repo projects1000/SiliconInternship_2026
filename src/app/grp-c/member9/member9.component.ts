@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-member9',
   templateUrl: './member9.component.html',
   styleUrls: ['./member9.component.css']
 })
-export class Member9Component {
- constructor(private router: Router) {}
+export class Member9Component  {
 
-  goBackToGroup() {
-    this.router.navigate(['grp-c']);
-  }
+  name = 'Sohan Mohanty';
+  role = 'Angular Developer';
+  college = 'SILICON UNIVERSITY';
+  email = 'sohan@gmail.com';
+  phone = '+91 6789032112';
+
 }

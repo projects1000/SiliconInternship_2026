@@ -1,33 +1,462 @@
-.member-page {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-  font-family: Arial, sans-serif;
-  background: #f4f6f9;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-h1 {
-  font-size: 32px;
-  margin-bottom: 20px;
-  color: #2a2a2a;
+html,
+body{
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    font-family:'Poppins',sans-serif;
+
 }
 
-button {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 6px;
+/* ==========================
+   MAIN CONTAINER
+========================== */
 
-  background: #2a5298;
-  color: white;
+.portfolio-container{
 
-  cursor: pointer;
-  transition: 0.2s;
+    height:100vh;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    padding:40px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #0f172a,
+        #1e3a8a,
+        #2563eb
+    );
+
 }
 
-button:hover {
-  background: #1e3c72;
-  transform: scale(1.05);
+/* ==========================
+   CUSTOM SCROLLBAR
+========================== */
+
+.portfolio-container::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.portfolio-container::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+.portfolio-container::-webkit-scrollbar-thumb{
+
+    background:rgba(255,255,255,0.4);
+
+    border-radius:20px;
+
+}
+
+.portfolio-container::-webkit-scrollbar-thumb:hover{
+
+    background:white;
+
+}
+
+/* ==========================
+   HERO SECTION
+========================== */
+
+.hero-section{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-bottom:30px;
+
+}
+
+/* ==========================
+   PROFILE CARD
+========================== */
+
+.profile-card{
+
+    width:100%;
+    max-width:950px;
+
+    text-align:center;
+
+    padding:40px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,0.12);
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,0.35);
+
+    animation:fadeIn 1s ease;
+
+    transition:.4s;
+
+}
+
+.profile-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 25px 50px rgba(0,0,0,0.4);
+
+}
+
+/* ==========================
+   PROFILE IMAGE
+========================== */
+
+.profile-image{
+
+    width:130px;
+    height:130px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:60px;
+
+    background:white;
+
+    margin-bottom:25px;
+
+    box-shadow:0 10px 30px rgba(255,255,255,0.3);
+
+    transition:.4s;
+
+}
+
+.profile-image:hover{
+
+    transform:scale(1.08);
+
+}
+
+/* ==========================
+   TEXT
+========================== */
+
+.profile-card h1{
+
+    color:white;
+
+    font-size:48px;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+}
+
+.profile-card h3{
+
+    color:#facc15;
+
+    font-size:24px;
+
+    margin-bottom:15px;
+
+}
+
+.profile-card p{
+
+    color:#dbeafe;
+
+    font-size:18px;
+
+    line-height:1.8;
+
+}
+
+/* ==========================
+   SOCIAL BUTTONS
+========================== */
+
+.social-buttons{
+
+    margin-top:25px;
+
+}
+
+.social-buttons button{
+
+    border:none;
+
+    padding:12px 25px;
+
+    margin:8px;
+
+    border-radius:12px;
+
+    background:white;
+
+    color:#1e3a8a;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.social-buttons button:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 10px 25px rgba(255,255,255,0.3);
+
+}
+
+/* ==========================
+   CONTENT SECTION
+========================== */
+
+.content-section{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
+
+    margin-bottom:30px;
+
+}
+
+/* ==========================
+   INFO CARDS
+========================== */
+
+.card{
+
+    background:rgba(255,255,255,0.12);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:25px;
+
+    padding:30px;
+
+    color:white;
+
+    transition:.4s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 15px 30px rgba(0,0,0,.3);
+
+}
+
+.card h2{
+
+    color:#facc15;
+
+    margin-bottom:18px;
+
+    font-size:24px;
+
+}
+
+.card p{
+
+    line-height:1.8;
+
+    color:#e2e8f0;
+
+}
+
+.card ul{
+
+    list-style:none;
+
+}
+
+.card ul li{
+
+    padding:10px 0;
+
+    border-bottom:1px solid rgba(255,255,255,0.1);
+
+}
+
+/* ==========================
+   FOOTER
+========================== */
+
+.footer-section{
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+}
+
+/* ==========================
+   BACK BUTTON
+========================== */
+
+.back-btn{
+
+    border:none;
+
+    padding:15px 35px;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ef4444,
+        #dc2626
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.back-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 10px 25px rgba(239,68,68,.4);
+
+}
+
+/* ==========================
+   ANIMATION
+========================== */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================
+   TABLET
+========================== */
+
+@media(max-width:900px){
+
+    .portfolio-container{
+
+        padding:25px;
+
+    }
+
+    .profile-card{
+
+        padding:30px;
+
+    }
+
+    .profile-card h1{
+
+        font-size:38px;
+
+    }
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+    .portfolio-container{
+
+        padding:15px;
+
+    }
+
+    .profile-card{
+
+        padding:25px;
+
+    }
+
+    .profile-card h1{
+
+        font-size:30px;
+
+    }
+
+    .profile-card h3{
+
+        font-size:20px;
+
+    }
+
+    .profile-card p{
+
+        font-size:15px;
+
+    }
+
+    .content-section{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .social-buttons button{
+
+        width:100%;
+
+        margin:8px 0;
+
+    }
+
 }
