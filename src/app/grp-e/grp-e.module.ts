@@ -11,6 +11,7 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { GrpERoutingModule } from './grp-e-routing.module';
+import { AttendanceComponent } from './member1/attendance/attendance.component';
 
 
 
@@ -25,11 +26,13 @@ import { GrpERoutingModule } from './grp-e-routing.module';
     Member6Component,
     Member7Component,
     Member8Component,
-    Member9Component
+    Member9Component,
+    
   ],
   imports: [
     CommonModule,
-    GrpERoutingModule
+    GrpERoutingModule,
+    AttendanceComponent
   ]
 })
 export class GrpEModule { }
