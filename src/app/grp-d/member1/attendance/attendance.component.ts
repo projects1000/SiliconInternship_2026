@@ -15,6 +15,9 @@ export class AttendanceComponent implements OnInit {
 
   students: any[] = [];
   filteredStudents: any[] = [];
+  
+  // Track system lock status for dates (Sir Priyabrata Request)
+  lockedDates: { [date: string]: boolean } = {};
 
   searchText = '';
   selectedTeam = 'D'; 
@@ -69,6 +72,12 @@ export class AttendanceComponent implements OnInit {
 
   initializeMatrixDataset() {
     const rawCache = localStorage.getItem('matrixAttendanceSystem');
+    const lockCache = localStorage.getItem('matrixLockedDatesSystem');
+    
+    if (lockCache) {
+      this.lockedDates = JSON.parse(lockCache);
+    }
+
     if (rawCache) {
       this.students = JSON.parse(rawCache);
     } else {
@@ -121,7 +130,18 @@ export class AttendanceComponent implements OnInit {
   }
 
   onCheckboxMatrixChange(student: any, dateKey: string) {
+    if (this.isDateLocked(dateKey)) return; // Protection block
     this.syncStorage();
+  }
+
+  // Attendance Lock Management system API (Sir Priyabrata Request)
+  isDateLocked(dateKey: string): boolean {
+    return !!this.lockedDates[dateKey];
+  }
+
+  toggleDateLock(dateKey: string) {
+    this.lockedDates[dateKey] = !this.lockedDates[dateKey];
+    localStorage.setItem('matrixLockedDatesSystem', JSON.stringify(this.lockedDates));
   }
 
   saveAttendance() {
@@ -155,7 +175,9 @@ export class AttendanceComponent implements OnInit {
   }
 
   toggleColumnBulk(dateKey: string) {
+    if (this.isDateLocked(dateKey)) return; // Safety lock block
     if (!this.filteredStudents || this.filteredStudents.length === 0) return;
+    
     const fullyChecked = this.isColumnFullyChecked(dateKey);
     this.filteredStudents.forEach(student => {
       student.attendanceMatrix[dateKey] = !fullyChecked;
@@ -174,43 +196,39 @@ export class AttendanceComponent implements OnInit {
     return absenceCounter >= 3;
   }
 
- exportActiveMatrixToCSV() {
-  if (this.filteredStudents.length === 0) {
-    alert('No records found matching current views to export.');
-    return;
+  exportActiveMatrixToCSV() {
+    if (this.filteredStudents.length === 0) {
+      alert('No records found matching current views to export.');
+      return;
+    }
+
+    // Encapsulation routine fixes column-width error in Microsoft Excel
+    const formatHeaderForExcel = (dateStr: string): string => {
+      const d = new Date(dateStr);
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      return `"${d.getDate()}-${months[d.getMonth()]}-${d.getFullYear()}"`;
+    };
+
+    const safeHeaders = ['Employee Name', 'Assigned Team', ...this.dateColumns.map(col => formatHeaderForExcel(col))];
+    const csvBuffer = [safeHeaders.join(',')];
+
+    for (const student of this.filteredStudents) {
+      const cells = [
+        `"${student.name}"`,
+        `"${student.team}"`,
+        ...this.dateColumns.map(col => student.attendanceMatrix[col] ? 'Present' : 'Absent')
+      ];
+      csvBuffer.push(cells.join(','));
+    }
+
+    const blob = new Blob([csvBuffer.join('\n')], { type: 'text/csv;charset=utf-8;' });
+    const extractionAnchor = document.createElement('a');
+    extractionAnchor.href = URL.createObjectURL(blob);
+    extractionAnchor.setAttribute('download', `Corporate_Matrix_Export_${this.selectedDate}.csv`);
+    document.body.appendChild(extractionAnchor);
+    extractionAnchor.click();
+    document.body.removeChild(extractionAnchor);
   }
-
-  // HELPER function to make dates Excel-safe by converting to a readable text format
-  const formatHeaderForExcel = (dateStr: string): string => {
-    const d = new Date(dateStr);
-    const months = ['Jun', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    // Appending a space forces Excel to treat it cleanly as a text label string
-    return `"${d.getDate()}-${months[d.getMonth()]}-${d.getFullYear()}"`;
-  };
-
-  // 1. Format headers using our Excel-safe helper instead of raw ISO keys
-  const safeHeaders = ['Employee Name', 'Assigned Team', ...this.dateColumns.map(col => formatHeaderForExcel(col))];
-  const csvBuffer = [safeHeaders.join(',')];
-
-  // 2. Parse the body rows
-  for (const student of this.filteredStudents) {
-    const cells = [
-      `"${student.name}"`,
-      `"${student.team}"`,
-      ...this.dateColumns.map(col => student.attendanceMatrix[col] ? 'Present' : 'Absent')
-    ];
-    csvBuffer.push(cells.join(','));
-  }
-
-  // 3. Generate down-stream file extraction package
-  const blob = new Blob([csvBuffer.join('\n')], { type: 'text/csv;charset=utf-8;' });
-  const extractionAnchor = document.createElement('a');
-  extractionAnchor.href = URL.createObjectURL(blob);
-  extractionAnchor.setAttribute('download', `Corporate_Matrix_Export_${this.selectedDate}.csv`);
-  document.body.appendChild(extractionAnchor);
-  extractionAnchor.click();
-  document.body.removeChild(extractionAnchor);
-}
 
   toggleMonthlyReport() {
     this.showMonthlyReport = !this.showMonthlyReport;
