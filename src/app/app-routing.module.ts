@@ -3,7 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 
+import { AttendanceDashboardComponent } from './attendance-dashboard/attendance-dashboard.component';
+//attandance dashboard route
 const routes: Routes = [
+  {
+    path: 'attendance',
+    component: AttendanceDashboardComponent
+  },
+
   // Home page
   { path: '', component: HomeComponent },
 

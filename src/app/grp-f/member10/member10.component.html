@@ -4,6 +4,41 @@
 
   <button (click)="goBackToGroup()">
     Go back to Group F
-  </button>
+  </button><br><br>
 
+<div class="profile-container">
+
+    <div class="profile-card">
+
+       <img src="assets/images/photos1.jpeg" alt="Profile"  width="300px" height="300px" style="border-radius:50%; margin-bottom:20px;">
+
+        <h1>{{name}}</h1>
+
+        <h3>{{role}}</h3>
+
+        <p><b>College :</b> {{college}}</p>
+
+        <p><b>Email :</b> {{email}}</p>
+
+        <p><b>Phone :</b> {{phone}}</p>
+
+        <p><b>Address :</b> {{address}}</p>
+
+        <p class="about">{{about}}</p>
+
+        <button (click)="contact()">
+            Contact Me
+        </button>
+
+       <button
+            mat-raised-button
+            color="primary"
+            routerLink="/attendance">
+            Open Smart Attendance Dashboard
+       </button>
+
+    </div>
+
+</div>
+  
 </div>

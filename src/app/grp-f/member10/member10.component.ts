@@ -11,5 +11,28 @@ export class Member10Component {
 
   goBackToGroup() {
     this.router.navigate(['grp-f']);
+
   }
+
+  name = 'Padmalaya Meher';
+
+  role = 'Angular Developer';
+
+  college = 'Silicon University';
+
+  email = 'meherpadmalaya@gmail.com';
+
+  phone = '9876543210';
+
+  address = 'balangir, Odisha';
+
+  about = 'I am passionate about web development and Angular projects.';
+
+  contact() {
+    alert('Contact Successful');
+  }
+
 }
+
+  
+

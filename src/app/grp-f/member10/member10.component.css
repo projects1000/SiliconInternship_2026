@@ -31,3 +31,63 @@ button:hover {
   background: #1e3c72;
   transform: scale(1.05);
 }
+
+.profile-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150vh;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+}
+
+.profile-card{
+    width: 500px;
+    height: 600px;
+    background-color: white;
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+}
+
+img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+h1{
+    color: #222;
+    margin-bottom: 5px;
+}
+
+h3{
+    color: #666;
+    margin-bottom: 15px;
+}
+
+p{
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.about{
+    color: #444;
+    font-style: italic;
+}
+
+button{
+    margin-top: 15px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background-color: #1976d2;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #0d47a1;
+}
