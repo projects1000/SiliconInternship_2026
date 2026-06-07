@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,21 @@ import { Router } from '@angular/router';
   templateUrl: './member7.component.html',
   styleUrls: ['./member7.component.css']
 })
-export class Member7Component {
+export class Member7Component implements OnDestroy, OnInit {
+
+  ngOnInit(): void {
+    const sidebar = document.querySelector('app-nav-bar') as HTMLElement;
+    const content = document.querySelector('.content') as HTMLElement;
+    if (sidebar) sidebar.style.display = 'none';
+    if (content) content.style.padding = '0';
+  }
+
+  ngOnDestroy(): void {
+    const sidebar = document.querySelector('app-nav-bar') as HTMLElement;
+    const content = document.querySelector('.content') as HTMLElement;
+    if (sidebar) sidebar.style.display = '';
+    if (content) content.style.padding = '';
+  }
   tiltX = 0;
   tiltY = 0;
 
