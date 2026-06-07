@@ -1,0 +1,22 @@
+.search-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.search-field {
+  width: 100%;
+}
+
+::ng-deep .search-field .mat-mdc-form-field-flex {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 12px;
+}
+
+.search-field input {
+  color: inherit !important;
+}
+
+.search-icon {
+  color: rgba(255, 255, 255, 0.6);
+}
