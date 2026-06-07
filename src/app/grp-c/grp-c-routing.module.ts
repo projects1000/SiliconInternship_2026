@@ -13,6 +13,7 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
+import { AttendanceDashboardComponent } from './member2/attendance-dashboard/attendance-dashboard.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'member2',
     component: Member2Component
+  },
+  {
+    path: 'member2/attendance',
+    component: AttendanceDashboardComponent  
   },
   {
     path: 'member3',

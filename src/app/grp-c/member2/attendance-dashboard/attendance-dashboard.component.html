@@ -1,0 +1,130 @@
+<div class="dashboard-container">
+
+  <div class="left-panel">
+
+    <h2>Group C Members</h2>
+
+    <ul>
+      <li *ngFor="let member of members">
+        {{ member.name }}
+      </li>
+    </ul>
+
+  </div>
+
+  <div class="right-panel">
+
+    <h1>Attendance Management System</h1>
+
+    <div class="summary">
+
+      <mat-card>
+        <h3>Total</h3>
+        <p>{{ members.length }}</p>
+      </mat-card>
+
+      <mat-card>
+        <h3>Present</h3>
+        <p>{{ presentCount }}</p>
+      </mat-card>
+
+      <mat-card>
+        <h3>Absent</h3>
+        <p>{{ absentCount }}</p>
+      </mat-card>
+
+      <mat-card>
+        <h3>Attendance %</h3>
+        <p>{{ attendancePercentage }}%</p>
+      </mat-card>
+
+    </div>
+
+    <table mat-table [dataSource]="members">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.id }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.name }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="attendance">
+        <th mat-header-cell *matHeaderCellDef>
+          Present
+        </th>
+
+        <td mat-cell *matCellDef="let row">
+
+          <mat-checkbox
+            [(ngModel)]="row.present"
+            [disabled]="isLocked">
+          </mat-checkbox>
+
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+
+        <th mat-header-cell *matHeaderCellDef>
+          Status
+        </th>
+
+        <td mat-cell *matCellDef="let row">
+
+          <mat-icon
+            *ngIf="row.present"
+            color="primary">
+            check_circle
+          </mat-icon>
+
+        </td>
+
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    </table>
+
+    <div class="actions">
+
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="saveAttendance()">
+
+        Save Attendance
+
+      </button>
+
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="lockAttendance()">
+
+        Lock Attendance
+
+      </button>
+
+      <button
+        mat-raised-button
+        (click)="backToProfile()">
+
+        Back
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

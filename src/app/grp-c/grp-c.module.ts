@@ -14,6 +14,18 @@ import { Member10Component } from './member10/member10.component';
 
 import { GrpCRoutingModule } from './grp-c-routing.module';
 
+import { AttendanceDashboardComponent } from './member2/attendance-dashboard/attendance-dashboard.component';
+
+import { FormsModule } from '@angular/forms';
+
+import { MatTreeModule } from '@angular/material/tree';
+import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCardModule } from '@angular/material/card';
+
 
 
 @NgModule({
@@ -28,11 +40,21 @@ import { GrpCRoutingModule } from './grp-c-routing.module';
     Member7Component,
     Member8Component,
     Member9Component,
-    Member10Component
+    Member10Component,
+    AttendanceDashboardComponent
   ],
   imports: [
     CommonModule,
-    GrpCRoutingModule
+    GrpCRoutingModule,
+    FormsModule,
+
+    MatTreeModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatCardModule
   ]
 })
 export class GrpCModule { }
