@@ -1,103 +1,444 @@
 <div class="portfolio-container">
 
-  <div class="hero-section">
+  <!-- NAVBAR -->
 
-    <div class="profile-card">
+  <nav class="navbar">
 
-      <div class="profile-image">
-        👨‍💻
+    <div class="logo">
+
+      Rajesh Behera
+
+    </div>
+
+    <ul class="nav-links">
+
+      <li>
+        <a (click)="scrollToSection('home')">Home</a>
+      </li>
+
+      <li>
+        <a (click)="scrollToSection('about')">About</a>
+      </li>
+
+      <li>
+        <a (click)="scrollToSection('skills')">Skills</a>
+      </li>
+
+      <li>
+        <a (click)="scrollToSection('projects')">Projects</a>
+      </li>
+
+      <li>
+        <a (click)="scrollToSection('services')">Services</a>
+      </li>
+
+      <li>
+        <a (click)="scrollToSection('blog')">Blog</a>
+      </li>
+
+      <li>
+        <a (click)="scrollToSection('contact')">Contact</a>
+      </li>
+
+    </ul>
+
+  </nav>
+
+  <!-- HERO SECTION -->
+
+  <section id="home" class="hero-section">
+
+    <div class="hero-content">
+
+      <div class="hero-left">
+
+        <span class="badge">
+          🚀 Full Stack Java Developer
+        </span>
+
+        <h1>
+
+          Building Modern Web Applications
+          with Java & Angular
+
+        </h1>
+
+        <p>
+
+          Passionate MCA student specializing in
+          Spring Boot, Angular, TypeScript and MySQL.
+          Focused on building scalable enterprise-grade
+          applications and modern user experiences.
+
+        </p>
+
+        <div class="hero-buttons">
+
+          <button class="attendance-btn" routerLink="/grp-e/member1/attendance">
+
+            📋 Take Attendance
+
+          </button>
+
+          <button class="back-btn" (click)="goBackToGroup()">
+
+            ← Back To Group E
+
+          </button>
+
+        </div>
+
       </div>
 
-      <h1>Rajesh Behera</h1>
+      <div class="hero-right">
 
-      <h3>Full Stack Java Developer</h3>
-
-      <p>
-        MCA Student | Java | Spring Boot | Angular | MySQL
-      </p>
-
-      <div class="social-buttons">
-
-        <button>LinkedIn</button>
-        <button>GitHub</button>
-        <button>Email</button>
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4" alt="Developer Workspace">
 
       </div>
 
     </div>
 
-  </div>
+  </section>
 
-  <div class="content-section">
+  <!-- STATS -->
 
-    <div class="card">
+  <section class="stats-section">
 
-      <h2>🚀 About Me</h2>
+    <div class="stat-card">
 
-      <p>
-        Passionate Full Stack Developer specializing in Java,
-        Spring Boot, Angular and Database Technologies.
-        I enjoy building scalable web applications and
-        continuously learning modern technologies.
-      </p>
+      <h2>10+</h2>
+
+      <p>Projects Completed</p>
 
     </div>
 
-    <div class="card">
+    <div class="stat-card">
 
-      <h2>💻 Skills</h2>
+      <h2>8+</h2>
 
-      <ul>
-        <li>Java</li>
-        <li>Spring Boot</li>
-        <li>Angular</li>
-        <li>TypeScript</li>
-        <li>MySQL</li>
-        <li>HTML5 & CSS3</li>
-      </ul>
+      <p>Technologies</p>
 
     </div>
 
-    <div class="card">
+    <div class="stat-card">
 
-      <h2>🎓 Education</h2>
+      <h2>100%</h2>
 
-      <p>
-        Master of Computer Applications (MCA)
-      </p>
-
-      <p>
-        Silicon University
-      </p>
+      <p>Learning Focus</p>
 
     </div>
 
-    <div class="card">
+    <div class="stat-card">
 
-      <h2>🏆 Projects</h2>
+      <h2>24/7</h2>
 
-      <ul>
-
-        <li>College ERP System</li>
-
-        <li>Vehicle Management System</li>
-
-        <li>Student Management Portal</li>
-
-        <li>Travel Blog Website</li>
-
-      </ul>
+      <p>Problem Solving</p>
 
     </div>
 
-  </div>
+  </section>
 
-  <div class="footer-section">
+  <!-- ABOUT -->
 
-    <button class="back-btn" (click)="goBackToGroup()">
-      ← Back To Group E
-    </button>
+  <section id="about" class="section-card">
 
-  </div>
+    <h2>🚀 About Me</h2>
+
+    <p>
+
+      I am Rajesh Behera, an MCA student with strong interest in
+      Full Stack Development. I enjoy building enterprise web
+      applications using Angular, Spring Boot and MySQL.
+
+      My goal is to become a highly skilled Software Engineer
+      capable of designing scalable and secure systems.
+
+    </p>
+
+  </section>
+
+  <!-- EDUCATION -->
+
+  <section class="section-card">
+
+    <h2>🎓 Education</h2>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+
+        <h3>Master of Computer Applications</h3>
+
+        <p>Silicon University</p>
+
+        <span>2024 - Present</span>
+
+      </div>
+
+      <div class="timeline-item">
+
+        <h3>Bachelor Degree</h3>
+
+        <p>Computer Science Background</p>
+
+        <span>Completed</span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SKILLS -->
+
+  <section id="skills" class="section-card">
+
+    <h2>💻 Technical Skills</h2>
+
+    <div class="skills-grid">
+
+      <div class="skill-card">Java</div>
+
+      <div class="skill-card">Spring Boot</div>
+
+      <div class="skill-card">Angular</div>
+
+      <div class="skill-card">TypeScript</div>
+
+      <div class="skill-card">MySQL</div>
+
+      <div class="skill-card">Git</div>
+
+      <div class="skill-card">GitHub</div>
+
+      <div class="skill-card">HTML5</div>
+
+      <div class="skill-card">CSS3</div>
+
+      <div class="skill-card">REST API</div>
+
+    </div>
+
+  </section>
+
+  <!-- PROJECTS -->
+
+  <section id="projects" class="section-card">
+
+    <h2>🏆 Featured Projects</h2>
+
+    <div class="project-grid">
+
+      <div class="project-card">
+
+        <h3>Attendance Management System</h3>
+
+        <p>
+
+          Angular based attendance management dashboard
+          with search, validation and attendance tracking.
+
+        </p>
+
+      </div>
+
+      <div class="project-card">
+
+        <h3>Vehicle Management System</h3>
+
+        <p>
+
+          Complete Angular application for managing
+          vehicles, categories and navigation.
+
+        </p>
+
+      </div>
+
+      <div class="project-card">
+
+        <h3>Student Management System</h3>
+
+        <p>
+
+          Student registration, management and
+          administration portal.
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SERVICES -->
+
+  <section id="services" class="section-card">
+
+    <h2>🛠 Services</h2>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+
+        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6" alt="Frontend">
+
+        <h3>Frontend Development</h3>
+
+        <p>
+
+          Responsive Angular applications with
+          modern UI and excellent UX.
+
+        </p>
+
+      </div>
+
+      <div class="service-card">
+
+        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c" alt="Backend">
+
+        <h3>Backend Development</h3>
+
+        <p>
+
+          REST APIs and business logic using
+          Spring Boot and Java.
+
+        </p>
+
+      </div>
+
+      <div class="service-card">
+
+        <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d" alt="Database">
+
+        <h3>Database Design</h3>
+
+        <p>
+
+          MySQL schema design and optimization.
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- BLOG -->
+
+  <section id="blog" class="section-card">
+
+    <h2>📝 Latest Blogs</h2>
+
+    <div class="blog-grid">
+
+      <details class="blog-card">
+
+        <summary>
+
+          Angular Material Dashboard Design
+
+        </summary>
+
+        <p>
+
+          Angular Material provides enterprise-grade UI
+          components that help create scalable and
+          professional web applications.
+
+        </p>
+
+      </details>
+
+      <details class="blog-card">
+
+        <summary>
+
+          Spring Boot Best Practices
+
+        </summary>
+
+        <p>
+
+          Learn how to design clean architecture,
+          REST APIs and production-ready Java applications.
+
+        </p>
+
+      </details>
+
+      <details class="blog-card">
+
+        <summary>
+
+          Modern Full Stack Development
+
+        </summary>
+
+        <p>
+
+          Combining Angular, Spring Boot and MySQL
+          for enterprise application development.
+
+        </p>
+
+      </details>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contact" class="section-card">
+
+    <h2>📞 Contact Information</h2>
+
+    <div class="contact-grid">
+
+      <div class="contact-card">
+
+        📧 Email
+
+      </div>
+
+      <div class="contact-card">
+
+        💼 LinkedIn
+
+      </div>
+
+      <div class="contact-card">
+
+        💻 GitHub
+
+      </div>
+
+      <div class="contact-card">
+
+        📍 Odisha, India
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <p>
+
+      © 2025 Rajesh Behera |
+      Full Stack Java Developer
+
+    </p>
+
+  </footer>
 
 </div>

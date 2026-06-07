@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { GrpEComponent } from './grp-e/grp-e.component';
 
 import { Member1Component } from './member1/member1.component';
+import { AttendanceComponent } from './member1/attendance/attendance.component';
 import { Member2Component } from './member2/member2.component';
 import { Member3Component } from './member3/member3.component';
 import { Member4Component } from './member4/member4.component';
@@ -21,6 +22,10 @@ const routes: Routes = [
     path: 'member1',
     component: Member1Component
   },
+  {
+  path:'member1/attendance',
+  component: AttendanceComponent
+},
   {
     path: 'member2',
     component: Member2Component
