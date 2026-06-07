@@ -44,7 +44,7 @@ html, body {
 /* Navigation Bar */
 .navbar {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   padding: 16px 40px;
   background: rgba(26, 26, 62, 0.95);
@@ -87,6 +87,48 @@ html, body {
 
 .back-btn:hover .btn-icon {
   transform: translateX(-2px);
+}
+
+/* Attendance Button */
+.attendance-btn {
+  background: linear-gradient(135deg, #00d4ff, #0099ff);
+  color: #fff;
+  border: 1.5px solid rgba(0, 212, 255, 0.4);
+  padding: 9px 18px;
+  border-radius: 22px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(15px);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+  letter-spacing: 0.5px;
+}
+
+.attendance-icon {
+  font-size: 14px;
+  display: inline-block;
+  animation: pulse-icon 2s ease-in-out infinite;
+}
+
+@keyframes pulse-icon {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.attendance-btn:hover {
+  background: linear-gradient(135deg, #00e5ff, #00aaff);
+  border-color: rgba(0, 212, 255, 0.7);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 212, 255, 0.35);
+}
+
+.attendance-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.25);
 }
 
 /* Main Content */
