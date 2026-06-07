@@ -1,0 +1,169 @@
+<mat-card class="portal-container">
+  
+  <div class="portal-header">
+    <div class="header-titles">
+      <h1>Silicon Internship Portal 2026</h1>
+      <span class="portal-subtitle">Advanced Attendance Change Matrix Dashboard</span>
+    </div>
+    <div class="header-actions">
+      <button class="action-btn btn-export" (click)="exportActiveMatrixToCSV()">
+        <mat-icon>download</mat-icon> Export CSV Matrix
+      </button>
+      <button class="action-btn btn-submit" (click)="saveAttendance()">
+        <mat-icon>save</mat-icon> Save Changes
+      </button>
+    </div>
+  </div>
+
+  <div class="workspace-grid">
+    <div class="sidebar-panel">
+      <div class="control-group">
+        <label class="control-label"><mat-icon>search</mat-icon> Employee Search Filter</label>
+        <input 
+          type="text" 
+          class="custom-input"
+          [(ngModel)]="searchText" 
+          (input)="applyFilters()" 
+          placeholder="Filter down by name...">
+      </div>
+
+      <div class="control-group">
+        <label class="control-label"><mat-icon>group</mat-icon> Directory Corporate Team</label>
+        <select class="custom-select" [(ngModel)]="selectedTeam" (change)="onTeamSelectionChange()">
+          <option value="ALL">All Active Teams</option>
+          <option value="A">Team A</option>
+          <option value="B">Team B</option>
+          <option value="C">Team C</option>
+          <option value="D">Team D</option>
+          <option value="E">Team E</option>
+          <option value="F">Team F</option>
+          <option value="G">Team G</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label"><mat-icon>calendar_today</mat-icon> Target Pivot Date Focus</label>
+        <input type="date" class="custom-input" [(ngModel)]="selectedDate" (change)="onDateChange()">
+      </div>
+
+      <div class="control-group report-toggle">
+        <button mat-flat-button color="accent" class="w-100 btn-audit-toggle" (click)="toggleMonthlyReport()">
+          <mat-icon>analytics</mat-icon> {{ showMonthlyReport ? 'Close' : 'Open' }} Monthly Audit Window
+        </button>
+      </div>
+    </div>
+
+    <div class="main-content-panel">
+      <div class="panel-meta-title">
+        <span>Active Grid Logs Matrix Display ({{ filteredStudents.length }} Entries Loaded)</span>
+      </div>
+
+      <div class="matrix-table-container">
+        <table mat-table [dataSource]="filteredStudents" class="mat-elevation-z1 professional-table">
+          
+          <ng-container matColumnDef="purge">
+            <th mat-header-cell *matHeaderCellDef class="cell-center"> Action </th>
+            <td mat-cell *matCellDef="let student" class="cell-center">
+              <button mat-icon-button color="warn" (click)="deleteStudent(student)">
+                <mat-icon class="table-action-icon">delete_outline</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="identity">
+            <th mat-header-cell *matHeaderCellDef> Employee Identity Profile </th>
+            <td mat-cell *matCellDef="let student">
+              <div class="identity-block">
+                <span class="student-name">{{ student.name }}</span>
+                <span class="student-team-tag">Assigned Team {{ student.team }}</span>
+                
+                <div class="progress-container" matTooltip="Aggregated dynamic activity threshold marker">
+                  <div class="progress-track">
+                    <div class="progress-bar" 
+                         [style.width]="getLiveAttendancePercentage(student) + '%'"
+                         [ngClass]="{'bg-low': getLiveAttendancePercentage(student) < 50, 'bg-high': getLiveAttendancePercentage(student) >= 80}">
+                    </div>
+                  </div>
+                  <span class="progress-text">{{ getLiveAttendancePercentage(student) }}% active</span>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container *ngFor="let dateCol of dateColumns" [matColumnDef]="dateCol">
+            <th mat-header-cell *matHeaderCellDef class="cell-center header-date-label">
+              <div class="header-bulk-wrapper">
+                <span class="date-text-node">{{ formatDateLabel(dateCol) }}</span>
+                <button type="button" class="bulk-toggle-text-link" (click)="toggleColumnBulk(dateCol)">
+                  {{ isColumnFullyChecked(dateCol) ? 'Clear All' : 'Mark All' }}
+                </button>
+              </div>
+            </th>
+            <td mat-cell *matCellDef="let student" class="cell-center">
+              <mat-checkbox 
+                [(ngModel)]="student.attendanceMatrix[dateCol]"
+                (change)="onCheckboxMatrixChange(student, dateCol)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'row-warning': isAbsenceRisk(row)}"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showMonthlyReport" class="analytical-report-section">
+    <div class="section-divider"></div>
+    <h2 class="report-section-title"><mat-icon>bar_chart</mat-icon> Monthly History Summary Lookup Audit Workspace</h2>
+
+    <div class="report-filters-bar">
+      <div class="filter-field">
+        <label>Select Target Intern Record Target</label>
+        <select class="custom-select" [(ngModel)]="selectedStudentForReport" (change)="generateMonthlyReport()">
+          <option [ngValue]="null">-- Select Student to Audit --</option>
+          <option *ngFor="let s of students" [ngValue]="s">{{ s.name }} (Team {{ s.team }})</option>
+        </select>
+      </div>
+
+      <div class="filter-field">
+        <label>Target Reporting Tracking Period</label>
+        <input type="month" class="custom-input" [(ngModel)]="selectedMonth" (change)="generateMonthlyReport()">
+      </div>
+    </div>
+
+    <div class="report-dashboard" *ngIf="selectedStudentForReport">
+      <div class="metrics-summary-card">
+        <h3>Performance Insights</h3>
+        <div class="meta-row"><strong>Intern Identifier:</strong> <span>{{ selectedStudentForReport.name }}</span></div>
+        <div class="meta-row"><strong>Audit Cycle Window:</strong> <span>{{ selectedMonth }}</span></div>
+        <hr class="card-inner-line">
+        <div class="meta-row"><strong>Aggregate Days Present:</strong> <span class="badge-present">{{ totalPresentReport }} Days</span></div>
+        <div class="meta-row"><strong>Aggregate Days Absent:</strong> <span class="badge-absent">{{ totalAbsentReport }} Days</span></div>
+        <div class="meta-row font-large"><strong>Consistency Rating Index:</strong> <span class="score-text">{{ attendancePercentage }}%</span></div>
+      </div>
+
+      <div class="report-table-wrapper" *ngIf="monthlyData.length > 0">
+        <table mat-table [dataSource]="monthlyData" class="mat-elevation-z1 professional-table font-compact">
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Calendar Working Date </th>
+            <td mat-cell *matCellDef="let row"> {{ row.date }} </td>
+          </ng-container>
+          <ng-container matColumnDef="day">
+            <th mat-header-cell *matHeaderCellDef> Day </th>
+            <td mat-cell *matCellDef="let row"> {{ row.day }} </td>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Logging State </th>
+            <td mat-cell *matCellDef="let row" [className]="'status-cell ' + row.status.toLowerCase()">
+              <strong>{{ row.status }}</strong>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="['date', 'day', 'status']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['date', 'day', 'status'];"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</mat-card>
