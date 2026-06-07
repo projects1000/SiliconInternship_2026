@@ -4,6 +4,7 @@
     height: 100vh;
     box-sizing: border-box;
     background-color: #f8fafc;
+    margin-bottom: 20px;
 }
 
 .dashboard-header {
@@ -305,6 +306,7 @@
     width: 100%;
     background-color: #ffffff;
     border-radius: 8px;
+    margin-bottom: 25px;
 }
 
 .table-core-header {
@@ -364,7 +366,7 @@
 .matrix-cell-action-wrapper {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     min-height: 40px;
 }
 
