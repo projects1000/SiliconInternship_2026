@@ -1,9 +1,91 @@
 <div class="member-page">
+  <!-- Navigation -->
+  <nav class="navbar">
+    <button class="back-btn" (click)="goBackToGroup()">
+      <span class="btn-icon">←</span> Back to Group G
+    </button>
+  </nav>
 
-  <h1>Member 9</h1>
+  <!-- Main Content -->
+  <div class="main-content">
+    
+    <!-- Left Panel - All Details -->
+    <div class="left-content">
+      <!-- Greeting -->
+      <div class="greeting">
+        <p class="hello">Hello<span class="dot">.</span></p>
+        <div class="greeting-line"></div>
+      </div>
 
-  <button (click)="goBackToGroup()">
-    Go back to Group G
-  </button>
+      <!-- Name -->
+      <div class="name-section">
+        <p class="im">I'm</p>
+        <h1 class="name">Anil Kumar</h1>
+      </div>
 
+      <!-- Title with icon -->
+      <div class="title-wrapper">
+        <p class="title">Full Stack Developer</p>
+      </div>
+
+      <!-- Description -->
+      <p class="description">
+        Building modern web applications with Angular & TypeScript. 
+        Passionate about clean code and excellent user experiences.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="cta-buttons">
+        <a href="mailto:anil@example.com" class="btn btn-primary">
+          <span class="btn-text">Got a project?</span>
+        </a>
+        <a href="#skills" class="btn btn-secondary">
+          <span class="btn-text">My Skills</span>
+        </a>
+      </div>
+
+      <!-- Social Links -->
+      <div class="social-section">
+        <p class="social-label">Connect with me</p>
+        <div class="social-links">
+          <a href="https://github.com/anilk-jsx" target="_blank" class="social-link github" title="GitHub">
+            <img src="assets/github.png" alt="GitHub">
+            <span>GitHub</span>
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="social-link linkedin" title="LinkedIn">
+            <img src="assets/linkedin.png" alt="LinkedIn">
+            <span>LinkedIn</span>
+          </a>
+          <a href="mailto:anilkumarnayak648@gmail.com" class="social-link email" title="Email">
+            <img src="assets/images/gmail.png" alt="Email">
+            <span>Email</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Skills Tags -->
+      <div class="skills-container">
+        <p class="skills-label">Tech Stack</p>
+        <div class="skills-tags">
+          <span class="skill-tag">Angular</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">REST APIs</span>
+          <span class="skill-tag">HTML5</span>
+          <span class="skill-tag">CSS3</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">GitHub</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel - Image -->
+    <div class="right-content">
+      <div class="image-container">
+        <div class="glow-ring"></div>
+        <img src="assets/anil_kumar.jpg" alt="Anil Kumar" class="profile-image">
+      </div>
+    </div>
+
+  </div>
 </div>
