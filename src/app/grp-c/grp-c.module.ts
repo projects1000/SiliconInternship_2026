@@ -13,6 +13,7 @@ import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 
 import { GrpCRoutingModule } from './grp-c-routing.module';
+import { Member8AttendanceComponent } from './member8-attendance/member8-attendance.component';
 
 
 
@@ -28,7 +29,8 @@ import { GrpCRoutingModule } from './grp-c-routing.module';
     Member7Component,
     Member8Component,
     Member9Component,
-    Member10Component
+    Member10Component,
+    Member8AttendanceComponent
   ],
   imports: [
     CommonModule,

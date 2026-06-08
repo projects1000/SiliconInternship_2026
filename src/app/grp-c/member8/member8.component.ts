@@ -21,4 +21,7 @@ toggleTheme() {
 openGithub() {
   window.open('https://github.com/safaq11', '_blank');
 }
+openAttendance() {
+  this.router.navigate(['grp-c/member8-attendance']);
+}
 }

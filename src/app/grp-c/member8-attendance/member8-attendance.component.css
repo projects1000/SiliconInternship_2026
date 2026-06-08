@@ -1,0 +1,55 @@
+.attendance-container {
+  padding: 30px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.content {
+  display: flex;
+  gap: 20px;
+}
+
+.tree-panel {
+  width: 25%;
+  background: #f4f6f9;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.table-panel {
+  flex: 1;
+  background: #f4f6f9;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #2a5298;
+  color: white;
+}
+
+.lock-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #2a5298;
+  color: white;
+  cursor: pointer;
+}
