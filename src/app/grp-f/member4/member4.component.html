@@ -1,9 +1,170 @@
-<div class="member-page">
+<nav class="navbar">
 
-  <h1>Member 4</h1>
+  <div class="logo">LP.</div>
 
-  <button (click)="goBackToGroup()">
-    Go back to Group F
-  </button>
+  <ul class="nav-links">
+    <li (click)="scrollTo('home')">Home</li>
+    <li (click)="scrollTo('about')">About</li>
+    <li (click)="scrollTo('skills')">Skills</li>
+    <li (click)="scrollTo('contact')">Contact</li>
+  </ul>
 
-</div>
+</nav>
+
+<!-- HOME -->
+
+<section class="portfolio-container" id="home">
+
+  <div class="left-section">
+
+    <p class="welcome">WELCOME TO MY PORTFOLIO</p>
+
+    <h1 class="name">
+      Lipsa
+      <span>Panda</span>
+    </h1>
+
+    <h2 class="role-text">
+      {{ role }}
+    </h2>
+
+    <p class="description">
+      Passionate Frontend Developer specializing in Angular,
+      TypeScript and modern responsive web applications.
+      I enjoy creating beautiful user experiences and
+      professional interfaces.
+    </p>
+
+    <div class="btn-group">
+
+      <button class="primary-btn">
+        Hire Me
+      </button>
+
+      <button
+        class="secondary-btn"
+        (click)="scrollTo('contact')">
+
+        Contact Me
+
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="right-section">
+
+    <div class="circle-bg"></div>
+
+    <div class="profile-box">
+
+      <div class="avatar">
+        LP
+      </div>
+
+      <h3>{{ userName }}</h3>
+
+      <p>{{ role }}</p>
+
+      <span>Available for Internship</span>
+
+      <div class="stats">
+
+        <div>
+          <h4>{{ projects }}+</h4>
+          <p>Projects</p>
+        </div>
+
+        <div>
+          <h4>{{ experience }}</h4>
+          <p>Experience</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="about-section" id="about">
+
+  <h2 class="section-title">
+    About Me
+  </h2>
+
+  <div class="about-card">
+
+    <p>
+      I am an enthusiastic Frontend Developer with a passion
+      for creating responsive and modern web applications.
+      My focus is on Angular, TypeScript, UI Design,
+      and delivering exceptional user experiences.
+    </p>
+
+  </div>
+
+</section>
+
+<!-- SKILLS -->
+
+<section class="skills-section" id="skills">
+
+  <h2 class="section-title">
+    Technical Skills
+  </h2>
+
+  <div class="skills-grid">
+
+    <div
+      class="skill-box"
+      *ngFor="let skill of skills">
+
+      {{ skill }}
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact-section" id="contact">
+
+  <h2 class="section-title">
+    Contact Me
+  </h2>
+
+  <div class="contact-card">
+
+    <div class="contact-item">
+      <h4>Name</h4>
+      <p>{{ userName }}</p>
+    </div>
+
+    <div class="contact-item">
+      <h4>Role</h4>
+      <p>{{ role }}</p>
+    </div>
+
+    <div class="contact-item">
+      <h4>Location</h4>
+      <p>Odisha, India</p>
+    </div>
+
+    <button class="contact-btn">
+      Let's Connect
+    </button>
+
+  </div>
+
+</section>
+
+<footer class="footer">
+  © 2026 Lipsa Panda | Portfolio
+</footer>

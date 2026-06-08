@@ -9,23 +9,43 @@ import { Member3Component } from './member3/member3.component';
 import { Member4Component } from './member4/member4.component';
 import { Member5Component } from './member5/member5.component';
 import { Member6Component } from './member6/member6.component';
-
+import { Member1AttendanceComponent } from './member1/attendance/attendance.component';
+import { AttendanceComponent } from './member2/attendance/attendance.component';
 const routes: Routes = [
   {
     path: '',
-    component: GrpBComponent
+    component: GrpBComponent,
   },
+  // {
+  //   path: 'member1',
+  //   component: Member1Component,
+  //   children: [
+  //     {
+  //       path: 'attendance',
+  //       component: Member1AttendanceComponent
+  //     }
+  //   ]
+  // },
+  {
+    path: 'member2/attendance',
+    component: AttendanceComponent
+  }
+  ,
   {
     path: 'member1',
-    component: Member1Component
+    component: Member1Component,
+  },
+  {
+    path: 'member1/attendance',
+    component: Member1AttendanceComponent,
   },
   {
     path: 'member2',
-    component: Member2Component
+    component: Member2Component,
   },
   {
     path: 'member3',
-    component: Member3Component
+    component: Member3Component,
   },
   {
     path: 'member3/attendance',
@@ -33,20 +53,20 @@ const routes: Routes = [
   },
   {
     path: 'member4',
-    component: Member4Component
+    component: Member4Component,
   },
   {
     path: 'member5',
-    component: Member5Component
+    component: Member5Component,
   },
   {
     path: 'member6',
-    component: Member6Component
-  }
+    component: Member6Component,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class GrpBRoutingModule {}
+export class GrpBRoutingModule { }
