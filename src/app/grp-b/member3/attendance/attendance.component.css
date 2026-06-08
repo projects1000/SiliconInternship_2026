@@ -530,8 +530,12 @@
 .name-cell {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-weight: 600;
+  gap: 10px;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 0 1px rgba(255,255,255,0.15);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .name-cell mat-icon {
@@ -756,7 +760,7 @@
 
 .member-name {
   display: block;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.95rem;
   color: #ffffff;
   letter-spacing: 0.01em;
@@ -765,9 +769,9 @@
 .member-reg {
   display: block;
   font-size: 0.76rem;
-  color: #a8b4e8;
+  color: #c7d2fe;
   font-weight: 600;
-  margin-top: 2px;
+  letter-spacing: 0.3px;
 }
 
 .pct-badge {
