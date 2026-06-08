@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-member9',
@@ -9,12 +10,14 @@ export class Member9Component {
 
   name = 'Nirmit Nayak';
 
+  constructor(private location: Location) {}
+
   showMessage() {
+    alert('Thank you for visiting my profile!');
+  }
 
-    alert(
-      'Thank you for visiting my profile!'
-    );
-
+  goBack() {
+    this.location.back();
   }
 
 }

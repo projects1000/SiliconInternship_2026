@@ -43,6 +43,10 @@ const routes: Routes = [
     path: 'member6',
     component: Member6Component
   },
+  { 
+    path: 'member6/attendance', 
+    loadChildren: () => import('./satyabrat/att-proj/att-proj.module').then(m => m.AttProjModule) 
+  },
   {
     path: 'member7',
     component: Member7Component
