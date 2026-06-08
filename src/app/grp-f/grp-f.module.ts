@@ -12,7 +12,16 @@ import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { GrpFRoutingModule } from './grp-f-routing.module';
+import { Member6AttendanceComponent } from './member6-attendance/member6-attendance.component';
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -27,11 +36,22 @@ import { GrpFRoutingModule } from './grp-f-routing.module';
     Member7Component,
     Member8Component,
     Member9Component,
-    Member10Component
+    Member10Component,
+    Member6AttendanceComponent
   ],
   imports: [
-    CommonModule,
-    GrpFRoutingModule
-  ]
+  CommonModule,
+  GrpFRoutingModule,
+  FormsModule,
+
+  MatButtonModule,
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatCardModule
+]
+
 })
 export class GrpFModule { }

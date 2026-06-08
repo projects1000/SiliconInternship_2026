@@ -9,6 +9,7 @@ import { Member3Component } from './member3/member3.component';
 import { Member4Component } from './member4/member4.component';
 import { Member5Component } from './member5/member5.component';
 import { Member6Component } from './member6/member6.component';
+import { Member6AttendanceComponent } from './member6-attendance/member6-attendance.component';
 import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
@@ -40,9 +41,13 @@ const routes: Routes = [
     component: Member5Component
   },
   {
-    path: 'member6',
-    component: Member6Component
-  },
+  path: 'member6',
+  component: Member6Component
+},
+{
+  path: 'member6-attendance',
+  component: Member6AttendanceComponent
+},
   {
     path: 'member7',
     component: Member7Component
