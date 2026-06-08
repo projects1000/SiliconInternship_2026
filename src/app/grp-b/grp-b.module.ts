@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 import { GrpBComponent } from './grp-b/grp-b.component';
 import { Member1Component } from './member1/member1.component';
 import { Member2Component } from './member2/member2.component';
@@ -7,9 +9,10 @@ import { Member3Component } from './member3/member3.component';
 import { Member4Component } from './member4/member4.component';
 import { Member5Component } from './member5/member5.component';
 import { Member6Component } from './member6/member6.component';
+
+import { AttendanceComponent } from './member5/attendance/attendance.component';
+
 import { GrpBRoutingModule } from './grp-b-routing.module';
-
-
 
 @NgModule({
   declarations: [
@@ -19,10 +22,13 @@ import { GrpBRoutingModule } from './grp-b-routing.module';
     Member3Component,
     Member4Component,
     Member5Component,
-    Member6Component
+    Member6Component,
+    AttendanceComponent
   ],
   imports: [
     CommonModule,
-    GrpBRoutingModule]
+    FormsModule,
+    GrpBRoutingModule
+  ]
 })
 export class GrpBModule { }

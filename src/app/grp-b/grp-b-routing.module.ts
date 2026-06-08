@@ -10,6 +10,8 @@ import { Member4Component } from './member4/member4.component';
 import { Member5Component } from './member5/member5.component';
 import { Member6Component } from './member6/member6.component';
 
+import { AttendanceComponent } from './member5/attendance/attendance.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -38,6 +40,11 @@ const routes: Routes = [
   {
     path: 'member6',
     component: Member6Component
+  },
+
+  {
+    path: 'attendance',
+    component: AttendanceComponent
   }
 ];
 
