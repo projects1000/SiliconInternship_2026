@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { NestedTreeControl } from '@angular/cdk/tree';
@@ -21,7 +21,14 @@ interface AttendanceRecord {
   templateUrl: './attandance.component.html',
   styleUrls: ['./attandance.component.css']
 })
-export class AttandanceComponent implements OnInit {
+export class AttandanceComponent implements OnInit, OnDestroy {
+
+  ngOnDestroy(): void {
+    const sidebar = document.querySelector('app-nav-bar') as HTMLElement;
+    const content = document.querySelector('.content') as HTMLElement;
+    if (sidebar) sidebar.style.display = '';
+    if (content) content.style.padding = '';
+  }
   rawCsvData = [
     { team: 'Team A', name: 'Soyngsruti Jena' },
     { team: 'Team A', name: 'Swagat Das' },
@@ -133,7 +140,11 @@ export class AttandanceComponent implements OnInit {
     this.onCalendarDateChange(this.selectedCalendarDate);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    const sidebar = document.querySelector('app-nav-bar') as HTMLElement;
+    const content = document.querySelector('.content') as HTMLElement;
+    if (sidebar) sidebar.style.display = 'none';
+    if (content) content.style.padding = '0';
     this.loadFromLocalStorage();
     this.applyFilters();
   }
