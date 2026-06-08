@@ -1,40 +1,52 @@
 <div class="attendance-dashboard">
 
   <!-- HEADER -->
-  <div class="dashboard-header">
+  <div class="top-header">
 
-    <div class="header-left">
-      <h1>Smart Attendance Hub</h1>
-      <p>Attendance Tracking & Team Management System</p>
-    </div>
+  <div>
+    <h1>Team F Attendance Command Center</h1>
+    <p>Silicon Internship 2026 Dashboard</p>
+  </div>
 
-    <div class="header-right">
+  <div class="header-actions">
 
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="submitAttendance()"
-        [disabled]="isLocked">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="submitAttendance()"
+      [disabled]="isLocked">
 
-        <mat-icon>save</mat-icon>
-        Save Attendance
-      </button>
+      <mat-icon>save</mat-icon>
+      Save Attendance
 
-      <button
-        mat-raised-button
-        color="warn"
-        (click)="lockSystem()"
-        [disabled]="isLocked">
+    </button>
 
-        <mat-icon>lock</mat-icon>
-        Lock System
-      </button>
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="lockSystem()"
+      [disabled]="isLocked">
 
-    </div>
+      <mat-icon>lock</mat-icon>
+      Lock System
+
+    </button>
 
   </div>
 
+</div>
+
   <mat-sidenav-container class="dashboard-container">
+    <div class="teamf-banner">
+
+  <mat-icon>workspace_premium</mat-icon>
+
+  <div>
+    <h3>Team F</h3>
+    <p>Attendance Portal</p>
+  </div>
+
+</div>
 
     <!-- SIDEBAR -->
     <mat-sidenav
@@ -222,6 +234,35 @@
     <!-- CONTENT -->
 
     <mat-sidenav-content>
+      <div class="stats-container">
+
+       
+
+  <div class="stat-card">
+    <mat-icon>groups</mat-icon>
+    <h2>{{attendanceRecords.length}}</h2>
+    <p>Total Members</p>
+  </div>
+
+  <div class="stat-card">
+    <mat-icon>diversity_3</mat-icon>
+    <h2>{{availableTeams.length}}</h2>
+    <p>Total Teams</p>
+  </div>
+
+  <div class="stat-card">
+    <mat-icon>calendar_today</mat-icon>
+    <h2>{{currentDateStr}}</h2>
+    <p>Active Date</p>
+  </div>
+
+  <div class="stat-card">
+    <mat-icon>lock</mat-icon>
+    <h2>{{isLocked ? 'YES' : 'NO'}}</h2>
+    <p>System Lock</p>
+  </div>
+
+</div>
 
       <!-- HISTORY SECTION -->
 
