@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { GrpCComponent } from './grp-c/grp-c.component';
-import { Member1Component } from './member1/member1.component';
 import { Member2Component } from './member2/member2.component';
 import { Member3Component } from './member3/member3.component';
 import { Member4Component } from './member4/member4.component';
@@ -14,12 +14,9 @@ import { Member10Component } from './member10/member10.component';
 
 import { GrpCRoutingModule } from './grp-c-routing.module';
 
-
-
 @NgModule({
   declarations: [
     GrpCComponent,
-    Member1Component,
     Member2Component,
     Member3Component,
     Member4Component,

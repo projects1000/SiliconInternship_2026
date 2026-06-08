@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { GrpCComponent } from './grp-c/grp-c.component';
 
-import { Member1Component } from './member1/member1.component';
 import { Member2Component } from './member2/member2.component';
 import { Member3Component } from './member3/member3.component';
 import { Member4Component } from './member4/member4.component';
@@ -21,7 +20,8 @@ const routes: Routes = [
   },
   {
     path: 'member1',
-    component: Member1Component
+    loadChildren: () =>
+      import('./member1/member1.module').then(m => m.Member1Module)
   },
   {
     path: 'member2',
@@ -65,4 +65,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class GrpCRoutingModule {}
+export class GrpCRoutingModule { }
