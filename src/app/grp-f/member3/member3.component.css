@@ -31,3 +31,174 @@ button:hover {
   background: #1e3c72;
   transform: scale(1.05);
 }
+
+body {
+  background: #eef2f7;
+  margin: 0;
+  padding: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.profile-container {
+  width: 600px;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  overflow: hidden;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.top-design {
+  position: relative;
+  height: 180px;
+}
+
+.left-shape {
+  position: absolute;
+  left: 0;
+  width: 35%;
+  height: 180px;
+  background: #15356b;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.right-shape {
+  position: absolute;
+  right: 0;
+  width: 35%;
+  height: 180px;
+  background: #15356b;
+  clip-path: polygon(100% 0, 100% 100%, 0 50%);
+}
+
+.profile-image-section {
+  margin-top: -90px;
+}
+
+.profile-image {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 8px solid white;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.name {
+  color: #15356b;
+  font-size: 55px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.diamond {
+  width: 14px;
+  height: 14px;
+  background: #2f5bb5;
+  margin: 15px auto;
+  transform: rotate(45deg);
+}
+
+.role {
+  color: #2f5bb5;
+  font-size: 32px;
+}
+
+.student-info {
+  font-size: 22px;
+  margin-top: 15px;
+  color: #333;
+}
+
+.description {
+  width: 80%;
+  margin: 20px auto;
+  line-height: 1.8;
+  font-size: 18px;
+  color: #555;
+}
+
+.divider {
+  width: 85%;
+  height: 1px;
+  background: #d7dfec;
+  margin: 35px auto;
+}
+
+/* Skills Section */
+
+.skills-section {
+  width: 85%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skills-left {
+  text-align: left;
+  flex: 1;
+}
+
+.skills-left h2 {
+  color: #15356b;
+  margin-bottom: 20px;
+}
+
+.skills-left ul {
+  font-size: 24px;
+  line-height: 2;
+}
+
+.skills-right {
+  flex: 1;
+  text-align: center;
+}
+
+.skills-right img {
+  width: 320px;
+  max-width: 100%;
+}
+
+/* Connect Section */
+
+.section {
+  width: 85%;
+  margin: auto;
+}
+
+.section h2 {
+  color: #15356b;
+  margin-bottom: 20px;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.social-links a {
+  text-decoration: none;
+  border: 2px solid #2f5bb5;
+  color: #2f5bb5;
+  padding: 14px 35px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.social-links a:hover {
+  background: #2f5bb5;
+  color: white;
+}
+
+/* Contact */
+
+.section p {
+  font-size: 20px;
+  color: #444;
+}
