@@ -1,7 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Global Page Styling */
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #0d1117;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Angular Root Component */
+app-root {
+  display: block;
+  width: 100%;
+}

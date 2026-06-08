@@ -1,33 +1,305 @@
-.member-page {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  font-family: Arial, sans-serif;
-  background: #f4f6f9;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-h1 {
-  font-size: 32px;
-  margin-bottom: 20px;
-  color: #2a2a2a;
+.member-page{
+    width:100%;
 }
 
-button {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 6px;
+.portfolio-container{
 
-  background: #2a5298;
-  color: white;
+    padding:30px;
 
-  cursor: pointer;
-  transition: 0.2s;
+    background:
+    radial-gradient(circle at top right,
+    rgba(0,255,255,0.15),
+    transparent 35%),
+
+    radial-gradient(circle at bottom left,
+    rgba(37,99,235,0.25),
+    transparent 35%),
+
+    #050816;
+
+    color:white;
+
+    min-height:100vh;
+
+    font-family:'Segoe UI',sans-serif;
 }
 
-button:hover {
-  background: #1e3c72;
-  transform: scale(1.05);
+/* HERO */
+
+.hero{
+
+    display:flex;
+    align-items:center;
+    gap:40px;
+
+    padding:40px;
+
+    border-radius:25px;
+
+    background:rgba(10,15,35,0.95);
+
+    border:1px solid rgba(0,255,255,.2);
+
+    box-shadow:
+    0 0 20px rgba(0,255,255,.15),
+    0 0 40px rgba(0,255,255,.08);
+
+    margin-bottom:30px;
+}
+
+.profile-section{
+    flex-shrink:0;
+}
+
+
+   .profile-pic{
+
+    width:220px;
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:3px solid #00d4ff;
+
+    box-shadow:
+    0 0 8px rgba(0,212,255,0.35);
+
+    transition:0.3s ease;
+}
+
+.profile-pic:hover{
+    box-shadow:
+    0 0 15px rgba(0,212,255,0.5);
+}
+
+.hero-content{
+    flex:1;
+}
+
+.hero-content h1{
+
+    font-size:3rem;
+    color:white;
+
+    margin-bottom:10px;
+}
+
+.hero-content h3{
+
+    color:#00ffff;
+
+    margin-bottom:15px;
+}
+
+.hero-content p{
+
+    color:#d1d5db;
+
+    line-height:1.8;
+}
+
+.hero-tags{
+
+    display:flex;
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-top:20px;
+}
+
+.hero-tags span{
+
+    background:#0f172a;
+
+    color:#00ffff;
+
+    border:1px solid #00ffff;
+
+    padding:8px 15px;
+
+    border-radius:50px;
+}
+
+/* SECTIONS */
+
+.section{
+
+    background:#0f172a;
+
+    border:1px solid rgba(0,255,255,.15);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 0 10px rgba(0,255,255,.05);
+}
+
+.section h2{
+
+    color:#00ffff;
+
+    margin-bottom:20px;
+}
+
+/* SKILLS */
+
+.skills-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:20px;
+}
+
+.skill-card{
+
+    background:#111827;
+
+    border:1px solid rgba(0,255,255,.15);
+
+    padding:20px;
+
+    border-radius:15px;
+}
+
+.skill-card h4{
+
+    color:#00ffff;
+
+    margin-bottom:10px;
+}
+
+.skill-card ul{
+
+    padding-left:20px;
+}
+
+.skill-card li{
+
+    margin-bottom:8px;
+}
+
+/* PROJECTS */
+
+.project-card{
+
+    background:#111827;
+
+    border-left:4px solid #00ffff;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    margin-bottom:15px;
+
+    transition:0.3s;
+}
+
+.project-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+    0 0 20px rgba(0,255,255,.2);
+}
+
+.project-card h3{
+
+    color:#00ffff;
+
+    margin-bottom:10px;
+}
+
+/* CONTACT */
+
+.contact-info p{
+
+    margin-bottom:15px;
+}
+
+.contact-info a{
+
+    color:#00ffff;
+
+    text-decoration:none;
+}
+
+.contact-info a:hover{
+
+    text-decoration:underline;
+}
+
+/* BUTTON */
+
+.btn-container{
+
+    text-align:center;
+
+    margin-top:20px;
+}
+
+button{
+
+    padding:12px 25px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#00ffff;
+
+    color:black;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 15px #00ffff;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .hero{
+
+        flex-direction:column;
+
+        text-align:center;
+    }
+
+    .hero-content h1{
+
+        font-size:2.2rem;
+    }
+
+    .profile-pic{
+
+        width:180px;
+        height:180px;
+    }
 }
