@@ -13,6 +13,7 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
+import { Member3AttendanceComponent } from './member3/member3-attendance/member3-attendance.component';
 
 const routes: Routes = [
   {
@@ -58,7 +59,8 @@ const routes: Routes = [
   {
     path: 'member10',
     component: Member10Component
-  }
+  },
+  { path: 'member3-attendance', component: Member3AttendanceComponent }
 ];
 
 @NgModule({
