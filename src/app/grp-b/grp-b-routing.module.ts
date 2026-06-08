@@ -10,7 +10,6 @@ import { Member4Component } from './member4/member4.component';
 import { Member5Component } from './member5/member5.component';
 import { Member6Component } from './member6/member6.component';
 import { Member1AttendanceComponent } from './member1/attendance/attendance.component';
-import { AttendanceComponent } from './member2/attendance/attendance.component';
 const routes: Routes = [
   {
     path: '',
