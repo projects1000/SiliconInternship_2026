@@ -9,9 +9,16 @@ import { Member3Component } from './member3/member3.component';
 import { Member4Component } from './member4/member4.component';
 import { Member5Component } from './member5/member5.component';
 import { Member6Component } from './member6/member6.component';
+
 import { GrpBRoutingModule } from './grp-b-routing.module';
 
 import { Member1AttendanceComponent } from './member1/attendance/attendance.component';
+
+import { AttendanceComponent } from './member2/attendance/attendance.component';
+
+import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-attendance.component';
+
+/* MATERIAL */
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTreeModule } from '@angular/material/tree';
@@ -22,43 +29,61 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { AttendanceComponent } from './member2/attendance/attendance.component';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge';
-import { CdkTreeModule } from '@angular/cdk/tree';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
+
     GrpBComponent,
+
     Member1Component,
     Member2Component,
     Member3Component,
     Member4Component,
     Member5Component,
     Member6Component,
+
     Member1AttendanceComponent,
+
     AttendanceComponent,
+
+    Memb6AttendanceComponent
+
   ],
+
   imports: [
+
     CommonModule,
     FormsModule,
+
+    BrowserAnimationsModule,
+
     GrpBRoutingModule,
-    CdkTreeModule,
+
     MatSidenavModule,
     MatTreeModule,
     MatTableModule,
     MatCheckboxModule,
     MatButtonModule,
     MatIconModule,
+
     MatDatepickerModule,
     MatNativeDateModule,
+
     MatInputModule,
     MatFormFieldModule,
     MatCardModule,
     MatToolbarModule,
     MatBadgeModule
-  ],
+
+  ]
 })
+
 export class GrpBModule { }
