@@ -1,13 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 import { GrpDRoutingModule } from './grp-d-routing.module';
-
-// Angular Material Imports (CRITICAL FOR CALENDAR)
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 
 // Components
 import { GrpDComponent } from './grp-d/grp-d.component';
@@ -22,7 +16,27 @@ import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { Member11Component } from './member11/member11.component';
+
+// Preserved Component Imports
+import { AttendanceComponent } from './member1/attendance/attendance.component';
+
+// New Component Imports
 import { AttendanceMatrixComponent } from './member3/attendance-matrix/attendance-matrix.component';
+
+// Angular Material Imports
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTreeModule } from '@angular/material/tree';
+
+// New Angular Material Imports (CRITICAL FOR CALENDAR)
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -38,15 +52,26 @@ import { AttendanceMatrixComponent } from './member3/attendance-matrix/attendanc
     Member9Component,
     Member10Component,
     Member11Component,
-    AttendanceMatrixComponent
+    AttendanceComponent,       // Preserved from first file
+    AttendanceMatrixComponent  // Merged from second file
   ],
   imports: [
     CommonModule,
     FormsModule,
     GrpDRoutingModule,
-    // Add these to imports:
-    MatFormFieldModule,
+    
+    // Preserved Material Modules
+    MatSelectModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatTreeModule,
+    
+    // Merged & Preserved Material Modules
     MatInputModule,
+    MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule 
   ]
