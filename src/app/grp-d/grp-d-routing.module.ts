@@ -15,6 +15,9 @@ import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { Member11Component } from './member11/member11.component';
 
+// 🟩 IMPORT THE ATTENDANCE MATRIX COMPONENT SO THE ROUTER CAN FIND IT
+import { AttendanceMatrixComponent } from './member3/attendance-matrix/attendance-matrix.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -31,6 +34,11 @@ const routes: Routes = [
   {
     path: 'member3',
     component: Member3Component
+  },
+  // 🟩 ADD THIS NEW ROUTE DEFINITION DIRECTLY INTO THE MAP
+  {
+    path: 'member3/attendance-matrix',
+    component: AttendanceMatrixComponent
   },
   {
     path: 'member4',

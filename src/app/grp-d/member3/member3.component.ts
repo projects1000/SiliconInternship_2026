@@ -7,9 +7,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./member3.component.css']
 })
 export class Member3Component {
- constructor(private router: Router) {}
+  constructor(private router: Router) {}
 
   goBackToGroup() {
     this.router.navigate(['grp-d']);
+  }
+
+  // 🟩 THIS SECTIONS FIXES THE RED LINE!
+  goToMatrix() {
+    this.router.navigate(['grp-d/member3/attendance-matrix']);
   }
 }

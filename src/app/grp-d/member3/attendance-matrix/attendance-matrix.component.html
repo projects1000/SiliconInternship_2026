@@ -1,0 +1,56 @@
+<div class="portal-container">
+  <div class="sidebar">
+    <button *ngFor="let g of allGroups" 
+            (click)="selectGroup(g)" 
+            [class.active]="g === selectedGroup">
+      {{ g.groupName }}
+    </button>
+  </div>
+
+  <div class="main-content">
+    <h2>Interns Attendance Dashboard</h2>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Select Date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div class="actions-header">
+      <button (click)="markAll(true)" [disabled]="dayLocks[selectedDate.toDateString()]">Mark All Present</button>
+      <button (click)="markAll(false)" [disabled]="dayLocks[selectedDate.toDateString()]">Mark All Absent</button>
+      <button (click)="exportToCSV()" class="export-btn">📥 Download Excel (CSV)</button>
+    </div>
+
+    <table class="audit-table">
+      <thead>
+        <tr>
+          <th>Intern Name</th>
+          <th>Status ({{selectedDate | date:'shortDate'}})
+            <button (click)="toggleLock(selectedDate)" class="lock-btn">
+              {{ dayLocks[selectedDate.toDateString()] ? '🔓 Unlock' : '🔒 Freeze/Lock' }}
+            </button>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let m of selectedGroup.members">
+          <td>{{ m.name }}</td>
+          <td>
+            <button (click)="toggleAttendance(m, selectedDate)" 
+                    [disabled]="dayLocks[selectedDate.toDateString()]"
+                    [class.present]="m.attendanceMap[selectedDate.toDateString()]"
+                    [class.absent]="!m.attendanceMap[selectedDate.toDateString()]">
+              {{ m.attendanceMap[selectedDate.toDateString()] ? '✅ Present' : '❌ Absent' }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="actions">
+      <button class="save-btn" (click)="saveAndRedirect()">Save Changes & Exit</button>
+    </div>
+  </div>
+</div>

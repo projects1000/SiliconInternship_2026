@@ -1,0 +1,141 @@
+/* 1. Main Portal Layout - Fixed Sidebar, Responsive Main */
+.portal-container {
+    display: flex;
+    gap: 24px;
+    padding: 24px;
+    background: #0f172a;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+/* 2. Sidebar Navigation Styling */
+.sidebar {
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sidebar button {
+    padding: 14px 16px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #94a3b8;
+    text-align: left;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-weight: 500;
+}
+
+.sidebar button.active {
+    background: #3b82f6;
+    color: #ffffff;
+    border-color: #60a5fa;
+}
+
+/* 3. Main Dashboard Card */
+.main-content {
+    flex-grow: 1;
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h2 { color: #1e293b; margin-bottom: 24px; }
+
+/* 4. Date Picker Input Style */
+.mat-mdc-form-field {
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 24px;
+}
+
+/* 5. Bulk Action Header */
+.actions-header {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.actions-header button {
+    padding: 10px 16px;
+    border: 1px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.export-btn {
+    background: #059669 !important;
+    color: white !important;
+    font-weight: 600;
+}
+
+/* 6. Attendance Table Grid */
+.audit-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.audit-table th, .audit-table td {
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    text-align: left;
+}
+
+.audit-table th { background: #f8fafc; color: #475569; }
+
+/* 7. Status Buttons (Present/Absent/Locked) */
+.lock-btn {
+    margin-left: 12px;
+    padding: 4px 8px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    background: #e2e8f0;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+}
+
+button.present {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button.absent {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* 8. Save & Exit Footer */
+.actions {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 24px;
+    text-align: right;
+}
+
+.save-btn {
+    background: #2563eb;
+    color: white;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.save-btn:hover { background: #1d4ed8; }
