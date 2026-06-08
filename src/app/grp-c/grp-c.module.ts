@@ -11,9 +11,9 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
-
+import { FormsModule } from '@angular/forms';
 import { GrpCRoutingModule } from './grp-c-routing.module';
-
+import { Member4attmngComponent } from './member4/member4attmng/member4attmng.component';
 
 
 @NgModule({
@@ -28,11 +28,13 @@ import { GrpCRoutingModule } from './grp-c-routing.module';
     Member7Component,
     Member8Component,
     Member9Component,
-    Member10Component
+    Member10Component,
+    Member4attmngComponent
   ],
   imports: [
     CommonModule,
-    GrpCRoutingModule
+    GrpCRoutingModule,
+    FormsModule
   ]
 })
 export class GrpCModule { }
