@@ -1,0 +1,892 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Round');
+
+:host {
+  display: block;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Color Variables - Dark Theme (Default) */
+.attendance-dashboard {
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-card: #0d0d0d;
+  --border-color: #1a1a1a;
+  --border-hover: #c5a880; /* Elegant Warm Gold */
+  
+  --text-primary: #ffffff;
+  --text-secondary: #888888;
+  --text-dark: #444444;
+  
+  --accent-gold: #c5a880;
+  --accent-gold-glow: rgba(197, 168, 128, 0.15);
+  
+  --color-blue: #2196f3;
+  --color-green: #4caf50;
+  --color-red: #f44336;
+  --color-warn: #ff9800;
+  
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --transition-fast: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100%;
+}
+
+/* Color Variables - Light Theme Override */
+.attendance-dashboard.light-theme {
+  --bg-primary: #f4f5f7;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --border-color: #e2e8f0;
+  --border-hover: #b89765;
+  
+  --text-primary: #1a202c;
+  --text-secondary: #64748b;
+  --text-dark: #94a3b8;
+  
+  --accent-gold: #b89765;
+  --accent-gold-glow: rgba(184, 151, 101, 0.1);
+  
+  --color-blue: #1976d2;
+  --color-green: #2e7d32;
+  --color-red: #d32f2f;
+  --color-warn: #e65100;
+  
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Sidenav Container & Panels */
+.dashboard-container {
+  height: calc(100vh - 180px);
+  min-height: calc(100vh - 180px);
+  max-height: calc(100vh - 180px);
+  background-color: var(--bg-primary) !important;
+}
+
+.dashboard-sidenav {
+  width: 290px;
+  background-color: var(--bg-secondary) !important;
+  border-right: 1px solid var(--border-color) !important;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.dashboard-content {
+  background-color: var(--bg-primary) !important;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Sidenav Brand Header */
+.sidenav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 2rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.brand-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-gold);
+}
+
+.brand-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+.sidenav-header-btn {
+  padding: 1.2rem 1.5rem;
+}
+
+.reset-filter-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  border: 1px solid var(--border-color) !important;
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
+  transition: var(--transition-fast) !important;
+}
+
+.reset-filter-btn:hover {
+  border-color: var(--border-hover) !important;
+  color: var(--accent-gold) !important;
+  box-shadow: 0 0 10px var(--accent-gold-glow);
+}
+
+/* Tree Component Styling */
+.tree-container {
+  padding: 0.5rem 1.5rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.tree-heading {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.member-tree {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+.group-node {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  transition: var(--transition-fast);
+}
+
+.group-node:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.group-node.active-group {
+  background-color: var(--accent-gold-glow) !important;
+  border-left: 2px solid var(--accent-gold);
+}
+
+.group-node.active-group .group-label {
+  color: var(--accent-gold);
+  font-weight: 600;
+}
+
+.node-label {
+  font-size: 0.9rem;
+  user-select: none;
+  width: 100%;
+  padding: 0.4rem 0;
+}
+
+.group-label {
+  font-weight: 500;
+}
+
+.member-node-wrapper {
+  min-height: 36px !important;
+  padding: 0 !important;
+}
+
+.member-node {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100%;
+  padding-left: 0.8rem;
+  transition: var(--transition-fast);
+}
+
+.member-node:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.member-node.active-member {
+  background-color: var(--accent-gold-glow) !important;
+}
+
+.member-node.active-member .member-label {
+  color: var(--accent-gold);
+  font-weight: 600;
+}
+
+.member-node-icon {
+  font-size: 1.1rem !important;
+  width: 20px !important;
+  height: 20px !important;
+  margin-right: 0.4rem;
+  color: var(--text-secondary);
+}
+
+.member-node.active-member .member-node-icon {
+  color: var(--accent-gold);
+}
+
+.member-label {
+  color: var(--text-secondary);
+}
+
+.member-tree-invisible {
+  display: none;
+}
+
+/* Sidenav Scrollbar adjustments */
+.tree-container::-webkit-scrollbar,
+.dashboard-content::-webkit-scrollbar {
+  width: 6px;
+}
+.tree-container::-webkit-scrollbar-track,
+.dashboard-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.tree-container::-webkit-scrollbar-thumb,
+.dashboard-content::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+/* Toolbar Header */
+.dashboard-toolbar {
+  background-color: var(--bg-secondary) !important;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary) !important;
+  height: 70px !important;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem !important;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.toolbar-back-btn {
+  color: var(--text-secondary) !important;
+  transition: var(--transition-fast) !important;
+}
+
+.toolbar-back-btn:hover {
+  color: var(--accent-gold) !important;
+  transform: translateX(-3px);
+}
+
+.toolbar-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.filter-badges {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filter-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  background-color: var(--border-color);
+  color: var(--text-primary);
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.close-badge-icon {
+  font-size: 14px !important;
+  width: 14px !important;
+  height: 14px !important;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.close-badge-icon:hover {
+  color: var(--color-red);
+}
+
+.theme-toggle-btn {
+  color: var(--text-secondary) !important;
+}
+
+.theme-toggle-btn:hover {
+  color: var(--accent-gold) !important;
+}
+
+/* Main content wrapper */
+.content-wrapper {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Cards System */
+.dashboard-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-fast);
+}
+
+.dashboard-card:hover {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.card-title h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.card-icon {
+  font-size: 1.4rem !important;
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.title-icon-blue { color: var(--color-blue); }
+.title-icon-warn { color: var(--color-warn); }
+.title-icon-green { color: var(--color-green); }
+.title-icon-gold { color: var(--accent-gold); }
+
+/* Row 1: Controls Grid */
+.controls-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .controls-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.date-selector-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.datepicker-field {
+  width: 220px;
+}
+
+/* Override Angular Material Datepicker Styling */
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: var(--border-color) !important;
+}
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: var(--accent-gold) !important;
+}
+::ng-deep .mat-form-field-label {
+  color: var(--text-secondary) !important;
+}
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
+  color: var(--accent-gold) !important;
+}
+::ng-deep .mat-input-element {
+  color: var(--text-primary) !important;
+  caret-color: var(--accent-gold) !important;
+}
+::ng-deep .mat-datepicker-toggle {
+  color: var(--text-secondary) !important;
+}
+::ng-deep .mat-datepicker-toggle-active {
+  color: var(--accent-gold) !important;
+}
+
+.current-date-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.info-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.info-value {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.info-status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-green);
+  display: inline-flex;
+  align-items: center;
+}
+
+.info-status.status-locked {
+  color: var(--color-red);
+}
+
+.lock-panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.lock-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.lock-action-btn {
+  align-self: flex-start;
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  padding: 0.4rem 1.2rem !important;
+}
+
+/* Row 2: Table Section */
+.table-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.table-card-header .card-title {
+  margin-bottom: 0;
+}
+
+.search-field {
+  width: 280px;
+}
+
+.table-responsive-container {
+  overflow-x: auto;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+/* Angular Material Table */
+.attendance-table {
+  width: 100%;
+  background: transparent !important;
+}
+
+.attendance-table th {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-secondary) !important;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color) !important;
+  padding: 1rem !important;
+}
+
+.attendance-table td {
+  border-bottom: 1px solid var(--border-color) !important;
+  padding: 0.8rem 1rem !important;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.table-row {
+  transition: var(--transition-fast);
+}
+
+.table-row:hover {
+  background-color: rgba(255, 255, 255, 0.01) !important;
+}
+
+.table-row.selected-row {
+  background-color: rgba(197, 168, 128, 0.03) !important;
+}
+
+/* Column formatting */
+.col-name-header,
+.col-name-cell {
+  min-width: 200px;
+}
+
+.col-group-header,
+.col-group-cell {
+  width: 120px;
+  text-align: left;
+}
+
+.member-profile-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.avatar-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--border-color);
+  color: var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.8rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.member-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.member-name {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.member-id {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  margin-top: 1px;
+}
+
+.highlighted-text .member-name {
+  color: var(--accent-gold);
+  font-weight: 600;
+}
+
+.team-badge {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  background-color: var(--border-color);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  color: var(--text-secondary);
+}
+
+.team-badge[data-group="Group A"] { border-color: rgba(33, 150, 243, 0.3); color: var(--color-blue); }
+.team-badge[data-group="Group B"] { border-color: rgba(76, 175, 80, 0.3); color: var(--color-green); }
+.team-badge[data-group="Group C"] { border-color: rgba(244, 67, 54, 0.3); color: var(--color-red); }
+.team-badge[data-group="Group D"] { border-color: rgba(255, 152, 0, 0.3); color: var(--color-warn); }
+.team-badge[data-group="Group E"] { border-color: rgba(156, 39, 176, 0.3); color: #9c27b0; }
+.team-badge[data-group="Group F"] { border-color: rgba(0, 188, 212, 0.3); color: #00bcd4; }
+.team-badge[data-group="Group G"] { border-color: rgba(197, 168, 128, 0.3); color: var(--accent-gold); }
+
+/* Date Columns and status indicators */
+.date-column-header,
+.date-column-cell {
+  width: 90px;
+  text-align: center !important;
+}
+
+.header-date-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.lbl-date {
+  font-weight: 600;
+}
+
+.lbl-status-icon {
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+.active-col-header {
+  color: var(--accent-gold) !important;
+}
+
+.active-edit-icon {
+  color: var(--accent-gold);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+/* Status Icons colors */
+.green-tick-icon {
+  color: var(--color-green) !important;
+  font-size: 1.4rem !important;
+  width: 24px !important;
+  height: 24px !important;
+  vertical-align: middle;
+}
+
+.red-cross-icon {
+  color: var(--text-dark) !important;
+  font-size: 1.4rem !important;
+  width: 24px !important;
+  height: 24px !important;
+  vertical-align: middle;
+}
+
+.cell-absent-dash {
+  color: var(--text-dark);
+  font-size: 0.9rem;
+}
+
+.editable-checkbox-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Overriding Angular Material Checkbox inside cell */
+.attendance-checkbox {
+  display: inline-flex;
+}
+
+::ng-deep .attendance-checkbox .mat-checkbox-inner-container {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 4px !important;
+}
+
+/* Show green tick inside or right after the checkbox when checked */
+.attendance-checkbox .green-tick-icon {
+  position: absolute;
+  top: -2px;
+  right: -24px;
+}
+
+.empty-table-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  color: var(--text-secondary);
+  gap: 0.8rem;
+}
+
+.empty-icon {
+  font-size: 2.5rem !important;
+  width: 40px !important;
+  height: 40px !important;
+  color: var(--text-dark);
+}
+
+/* Row 3: Reports & Summaries Grid */
+.reports-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+  .reports-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.report-stats-card .stats-row {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  margin: 1.5rem 0 2rem 0;
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.stat-number {
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.color-blue { color: var(--color-blue); }
+.color-green { color: var(--color-green); }
+.color-red { color: var(--color-red); }
+
+.stat-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.active-percent-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.percent-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.progress-track {
+  height: 8px;
+  background-color: var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.bg-green {
+  background-color: var(--color-green);
+}
+
+/* Donut chart summary */
+.scope-progress-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 500px) {
+  .scope-progress-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+}
+
+.circular-progress-wrapper {
+  width: 110px;
+  height: 110px;
+  position: relative;
+}
+
+.circular-chart {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.circle-bg {
+  fill: none;
+  stroke: var(--border-color);
+  stroke-width: 2.8;
+}
+
+.circle {
+  fill: none;
+  stroke: var(--accent-gold);
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.6s ease;
+}
+
+.percentage {
+  fill: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+.scope-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.scope-scope-name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.scope-lbl {
+  color: var(--text-secondary);
+}
+
+.scope-val {
+  color: var(--accent-gold);
+  font-weight: 600;
+}
+
+.scope-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.locked-days-counter {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--color-warn);
+  margin-top: 0.3rem;
+}
+
+.locked-days-counter mat-icon {
+  font-size: 1rem !important;
+  width: 16px !important;
+  height: 16px !important;
+}
