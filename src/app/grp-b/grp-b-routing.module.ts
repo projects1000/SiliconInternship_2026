@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { GrpBComponent } from './grp-b/grp-b.component';
-
+import { AttendanceComponent } from './member3/attendance/attendance.component';
 import { Member1Component } from './member1/member1.component';
 import { Member2Component } from './member2/member2.component';
 import { Member3Component } from './member3/member3.component';
@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'member3',
     component: Member3Component
+  },
+  {
+    path: 'member3/attendance',
+    component: AttendanceComponent
   },
   {
     path: 'member4',
