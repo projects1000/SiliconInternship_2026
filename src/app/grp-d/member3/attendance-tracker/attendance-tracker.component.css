@@ -1,0 +1,114 @@
+/* --- Global Container --- */
+.dashboard-container {
+  padding: 2.5rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #2d3436;
+}
+
+/* --- Header & Navigation --- */
+.tracker-header {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+}
+
+.btn-back {
+  background: #ffffff;
+  color: #495057;
+  border: 1px solid #dee2e6;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-back:hover { background: #e9ecef; border-color: #ced4da; }
+
+/* --- Calendar Section --- */
+.calendar-wrapper {
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+  margin-bottom: 2rem;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+  gap: 10px;
+}
+
+.calendar-grid button {
+  padding: 12px 0;
+  border: none;
+  border-radius: 12px;
+  background: #f8f9fa;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.calendar-grid button.active {
+  background: #6366f1;
+  color: white;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* --- Toolbar (Lock/Export) --- */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.btn-lock { background: #fbbf24; color: #92400e; padding: 10px 20px; border-radius: 10px; }
+.btn-export { background: #06b6d4; color: white; padding: 10px 20px; border-radius: 10px; }
+
+/* --- Table Styles --- */
+.attendance-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+.attendance-table tr {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.attendance-table td { padding: 1.2rem; }
+
+/* --- Status Badges --- */
+.status-present, .status-absent {
+  border: none;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.status-present { background: #dcfce7; color: #166534; }
+.status-absent { background: #fee2e2; color: #991b1b; }
+.status-present:hover, .status-absent:hover { transform: scale(1.05); }
+
+button:disabled { opacity: 0.5; cursor: not-allowed; }
