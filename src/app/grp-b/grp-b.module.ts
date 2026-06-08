@@ -22,9 +22,13 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
-
-
+import { AttendanceComponent } from './member2/attendance/attendance.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatBadgeModule } from '@angular/material/badge';
+import { CdkTreeModule } from '@angular/cdk/tree';
 @NgModule({
   declarations: [
     GrpBComponent,
@@ -35,11 +39,13 @@ import { MatNativeDateModule } from '@angular/material/core';
     Member5Component,
     Member6Component,
     Member1AttendanceComponent,
+    AttendanceComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     GrpBRoutingModule,
+    CdkTreeModule,
     MatSidenavModule,
     MatTreeModule,
     MatTableModule,
@@ -47,7 +53,12 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatButtonModule,
     MatIconModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatBadgeModule
   ],
 })
-export class GrpBModule {}
+export class GrpBModule { }
