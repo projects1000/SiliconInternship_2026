@@ -1,9 +1,25 @@
-<div class="member-page">
+<div class="page">
 
-  <h1>Member 9</h1>
+    <div class="profile-card">
 
-  <button (click)="goBackToGroup()">
-    Go back to Group C
-  </button>
+        <div class="profile-image">
+            👨‍💻
+        </div>
+
+        <h1>{{name}}</h1>
+
+        <h2>{{role}}</h2>
+
+        <div class="info">
+            <p><span>🎓 College:</span> {{college}}</p>
+            <p><span>📧 Email:</span> {{email}}</p>
+            <p><span>📱 Phone:</span> {{phone}}</p>
+        </div>
+
+        <button class="btn">
+            Contact Me
+        </button>
+
+    </div>
 
 </div>

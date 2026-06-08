@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 import { GrpBComponent } from './grp-b/grp-b.component';
 import { Member1Component } from './member1/member1.component';
 import { Member2Component } from './member2/member2.component';
@@ -8,6 +10,18 @@ import { Member4Component } from './member4/member4.component';
 import { Member5Component } from './member5/member5.component';
 import { Member6Component } from './member6/member6.component';
 import { GrpBRoutingModule } from './grp-b-routing.module';
+
+import { Member1AttendanceComponent } from './member1/attendance/attendance.component';
+
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -19,10 +33,21 @@ import { GrpBRoutingModule } from './grp-b-routing.module';
     Member3Component,
     Member4Component,
     Member5Component,
-    Member6Component
+    Member6Component,
+    Member1AttendanceComponent,
   ],
   imports: [
     CommonModule,
-    GrpBRoutingModule]
+    FormsModule,
+    GrpBRoutingModule,
+    MatSidenavModule,
+    MatTreeModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
 })
-export class GrpBModule { }
+export class GrpBModule {}
