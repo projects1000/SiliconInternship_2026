@@ -19,6 +19,13 @@ interface CalendarDay {
   record?: AttendanceRecord;
 }
 
+interface Member {
+  id: string;
+  name: string;
+  group: string;
+  avatarColor: string;
+}
+
 @Component({
   selector: 'app-member1',
   templateUrl: './member1.component.html',
@@ -27,6 +34,7 @@ interface CalendarDay {
 export class Member1Component implements OnInit {
   // Navigation / View State
   activeTab: 'profile' | 'attendance' = 'profile';
+  attendanceViewMode: 'personal' | 'group' = 'personal';
   showSettings: boolean = false;
 
   // Profile Details
@@ -46,7 +54,7 @@ export class Member1Component implements OnInit {
     interests: ['Web Development', 'UI/UX Design', 'Open Source Contribution', 'Painting & Sketching', 'Digital Photography']
   };
 
-  // Calendar State
+  // Calendar State (for Personal Attendance)
   currentDate: Date = new Date();
   selectedMonth: number = new Date().getMonth();
   selectedYear: number = new Date().getFullYear();
@@ -57,9 +65,93 @@ export class Member1Component implements OnInit {
   ];
   weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-  // Attendance Records Store
-  // Key format: YYYY-MM-DD
+  // Personal Attendance Records Store (Key: YYYY-MM-DD)
   attendanceRecords: { [key: string]: AttendanceRecord } = {};
+
+  // Group Management State
+  selectedGroup: string = 'Group A';
+  groupSearchQuery: string = '';
+  groupSelectedDate: string = this.formatDate(new Date());
+  
+  // List of all members from Group A to Group G
+  members: Member[] = [
+    // Group A
+    { id: 'a1', name: 'Soyngsruti Jena', group: 'Group A', avatarColor: '#818cf8' },
+    { id: 'a2', name: 'Swagat Das', group: 'Group A', avatarColor: '#34d399' },
+    { id: 'a3', name: 'Samikshya Samadarshini', group: 'Group A', avatarColor: '#f43f5e' },
+    { id: 'a4', name: 'Archana Devi', group: 'Group A', avatarColor: '#fbbf24' },
+    { id: 'a5', name: 'Roshan Mishra', group: 'Group A', avatarColor: '#60a5fa' },
+    { id: 'a6', name: 'Satyabrat Sarangi', group: 'Group A', avatarColor: '#a78bfa' },
+    { id: 'a7', name: 'Priyanshu Sekhar Badhei', group: 'Group A', avatarColor: '#ec4899' },
+    { id: 'a8', name: 'Ankit Prasad', group: 'Group A', avatarColor: '#14b8a6' },
+    { id: 'a9', name: 'Ronit Kumar Swain', group: 'Group A', avatarColor: '#f97316' },
+    // Group B
+    { id: 'b1', name: 'Jagannath Padhi', group: 'Group B', avatarColor: '#818cf8' },
+    { id: 'b2', name: 'Rohan Kumar Nayak', group: 'Group B', avatarColor: '#34d399' },
+    { id: 'b3', name: 'Tushar Ranjan Muduli', group: 'Group B', avatarColor: '#f43f5e' },
+    { id: 'b4', name: 'Snehasis Das', group: 'Group B', avatarColor: '#fbbf24' },
+    { id: 'b5', name: 'Omkar Sahoo', group: 'Group B', avatarColor: '#60a5fa' },
+    { id: 'b6', name: 'Motilal Turuk', group: 'Group B', avatarColor: '#a78bfa' },
+    // Group C
+    { id: 'c1', name: 'Gayatri Pati', group: 'Group C', avatarColor: '#818cf8' },
+    { id: 'c2', name: 'Gaurav Patra', group: 'Group C', avatarColor: '#34d399' },
+    { id: 'c3', name: 'Ayush Guharay', group: 'Group C', avatarColor: '#f43f5e' },
+    { id: 'c4', name: 'Anup Mohanty', group: 'Group C', avatarColor: '#fbbf24' },
+    { id: 'c5', name: 'Adil Khan', group: 'Group C', avatarColor: '#60a5fa' },
+    { id: 'c6', name: 'Anurag Mohanty', group: 'Group C', avatarColor: '#a78bfa' },
+    { id: 'c7', name: 'Debashis Tripathy', group: 'Group C', avatarColor: '#ec4899' },
+    { id: 'c8', name: 'Safaq Jamal', group: 'Group C', avatarColor: '#14b8a6' },
+    { id: 'c9', name: 'Sohan Mohanty', group: 'Group C', avatarColor: '#f97316' },
+    { id: 'c10', name: 'Hrushikesh Pattnaik', group: 'Group C', avatarColor: '#10b981' },
+    // Group D
+    { id: 'd1', name: 'Chandan Kumar Sahu', group: 'Group D', avatarColor: '#818cf8' },
+    { id: 'd2', name: 'Sitikantha Dalal', group: 'Group D', avatarColor: '#34d399' },
+    { id: 'd3', name: 'Titiksha Sahu', group: 'Group D', avatarColor: '#f43f5e' },
+    { id: 'd4', name: 'Anjali Sahoo', group: 'Group D', avatarColor: '#fbbf24' },
+    { id: 'd5', name: 'Sushree Sangita Sethi', group: 'Group D', avatarColor: '#60a5fa' },
+    { id: 'd6', name: 'Mama Bisoi', group: 'Group D', avatarColor: '#a78bfa' },
+    { id: 'd7', name: 'Tanmay Sahu', group: 'Group D', avatarColor: '#ec4899' },
+    { id: 'd8', name: 'Pratik Parag Pani', group: 'Group D', avatarColor: '#14b8a6' },
+    { id: 'd9', name: 'Ranit Das', group: 'Group D', avatarColor: '#f97316' },
+    { id: 'd10', name: 'Shobha Kumari', group: 'Group D', avatarColor: '#10b981' },
+    { id: 'd11', name: 'CS Vishal Rout', group: 'Group D', avatarColor: '#6366f1' },
+    // Group E
+    { id: 'e1', name: 'Rajesh Behera', group: 'Group E', avatarColor: '#818cf8' },
+    { id: 'e2', name: 'Maniket Padhan', group: 'Group E', avatarColor: '#34d399' },
+    { id: 'e3', name: 'Jeevan Jyoti Panigrahi', group: 'Group E', avatarColor: '#f43f5e' },
+    { id: 'e4', name: 'Ayush Mishra', group: 'Group E', avatarColor: '#fbbf24' },
+    { id: 'e5', name: 'Mohit Singal', group: 'Group E', avatarColor: '#60a5fa' },
+    { id: 'e6', name: 'Dhiraj Mahapatra', group: 'Group E', avatarColor: '#a78bfa' },
+    { id: 'e7', name: 'Swayam Sahu', group: 'Group E', avatarColor: '#ec4899' },
+    { id: 'e8', name: 'Subhashree Mohapatra', group: 'Group E', avatarColor: '#14b8a6' },
+    { id: 'e9', name: 'Subhalaxmi Sahoo', group: 'Group E', avatarColor: '#f97316' },
+    // Group F
+    { id: 'f1', name: 'Rajshree Panda', group: 'Group F', avatarColor: '#818cf8' },
+    { id: 'f2', name: 'Soumyashree Panda', group: 'Group F', avatarColor: '#34d399' },
+    { id: 'f3', name: 'Rupali Jena', group: 'Group F', avatarColor: '#f43f5e' },
+    { id: 'f4', name: 'Lipsa Panda', group: 'Group F', avatarColor: '#fbbf24' },
+    { id: 'f5', name: 'Shreshtha Mohanty', group: 'Group F', avatarColor: '#60a5fa' },
+    { id: 'f6', name: 'Sukanya Subhadarshini', group: 'Group F', avatarColor: '#a78bfa' },
+    { id: 'f7', name: 'Anjali Mishra', group: 'Group F', avatarColor: '#ec4899' },
+    { id: 'f8', name: 'Prachi Pratyasha Das', group: 'Group F', avatarColor: '#14b8a6' },
+    { id: 'f9', name: 'Nirmit Nayak', group: 'Group F', avatarColor: '#f97316' },
+    { id: 'f10', name: 'Padmalaya Meher', group: 'Group F', avatarColor: '#10b981' },
+    // Group G
+    { id: 'g1', name: 'Shubham Kumar', group: 'Group G', avatarColor: '#818cf8' },
+    { id: 'g2', name: 'Yash Kumar', group: 'Group G', avatarColor: '#34d399' },
+    { id: 'g3', name: 'Sasawat Rout', group: 'Group G', avatarColor: '#f43f5e' },
+    { id: 'g4', name: 'Adarsh Kumar', group: 'Group G', avatarColor: '#fbbf24' },
+    { id: 'g5', name: 'Amit Kumar Yash', group: 'Group G', avatarColor: '#60a5fa' },
+    { id: 'g6', name: 'C H Tanisha', group: 'Group G', avatarColor: '#a78bfa' },
+    { id: 'g7', name: 'Pratikshya Acharya', group: 'Group G', avatarColor: '#ec4899' },
+    { id: 'g8', name: 'Mahesh Dakua', group: 'Group G', avatarColor: '#14b8a6' },
+    { id: 'g9', name: 'Anil Kumar Nayak', group: 'Group G', avatarColor: '#f97316' },
+    { id: 'g10', name: 'Khushisahu', group: 'Group G', avatarColor: '#10b981' },
+    { id: 'g11', name: 'Swarna Sharma', group: 'Group G', avatarColor: '#6366f1' }
+  ];
+
+  // Group Attendance Records (Key: memberId_YYYY-MM-DD)
+  groupAttendanceRecords: { [key: string]: AttendanceRecord } = {};
 
   // Advanced Attendance Settings
   settings = {
@@ -92,6 +184,19 @@ export class Member1Component implements OnInit {
     streak: 0
   };
 
+  // Group Summary Statistics
+  groupStats = {
+    present: 0,
+    absent: 0,
+    late: 0,
+    leave: 0,
+    total: 0,
+    percentage: 0
+  };
+
+  // Comparative Group Chart Stats
+  groupCompareStats: Array<{ groupName: string; percentage: number }> = [];
+
   // Check-in Simulation State
   checkInMessage: string = '';
   checkInMessageType: 'success' | 'error' | 'info' | '' = '';
@@ -102,6 +207,7 @@ export class Member1Component implements OnInit {
 
   // Local Storage Keys
   private STORAGE_RECORDS_KEY = 'sruti_attendance_records';
+  private STORAGE_GROUP_RECORDS_KEY = 'sruti_group_attendance_records';
   private STORAGE_SETTINGS_KEY = 'sruti_attendance_settings';
 
   constructor(private router: Router) {}
@@ -109,8 +215,11 @@ export class Member1Component implements OnInit {
   ngOnInit(): void {
     this.loadSettings();
     this.loadRecords();
+    this.loadGroupRecords();
     this.generateCalendar();
     this.calculateStats();
+    this.calculateGroupStats();
+    this.calculateGroupComparison();
     this.checkTodayStatus();
   }
 
@@ -145,6 +254,20 @@ export class Member1Component implements OnInit {
     }
   }
 
+  loadGroupRecords(): void {
+    const saved = localStorage.getItem(this.STORAGE_GROUP_RECORDS_KEY);
+    if (saved) {
+      try {
+        this.groupAttendanceRecords = JSON.parse(saved);
+      } catch (e) {
+        console.error('Failed to parse group records', e);
+      }
+    } else {
+      // Seed demo data for the group wise records as well
+      this.seedGroupDemoData();
+    }
+  }
+
   // Save to Local Storage
   saveSettings(): void {
     localStorage.setItem(this.STORAGE_SETTINGS_KEY, JSON.stringify(this.settings));
@@ -159,10 +282,73 @@ export class Member1Component implements OnInit {
     this.checkTodayStatus();
   }
 
+  saveGroupRecords(): void {
+    localStorage.setItem(this.STORAGE_GROUP_RECORDS_KEY, JSON.stringify(this.groupAttendanceRecords));
+    this.calculateGroupStats();
+    this.calculateGroupComparison();
+  }
+
+  // Seed group data for visual representation of all groups
+  seedGroupDemoData(): void {
+    const today = new Date();
+    // Seed attendance records for the last 5 days for ALL members across all groups
+    for (let dayOffset = 5; dayOffset >= 0; dayOffset--) {
+      const d = new Date(today.getTime() - dayOffset * 24 * 60 * 60 * 1000);
+      const dayOfWeek = d.getDay();
+      if (dayOfWeek === 0 || dayOfWeek === 6) continue; // Skip weekends
+
+      const dateStr = this.formatDate(d);
+
+      this.members.forEach(member => {
+        // Skip Soyngsruti (id: a1) so her personal record doesn't get overwritten or mismatch
+        if (member.id === 'a1') {
+          // Sync her personal record to group records
+          const personalRec = this.attendanceRecords[dateStr];
+          if (personalRec) {
+            this.groupAttendanceRecords[`a1_${dateStr}`] = { ...personalRec };
+          } else {
+            this.groupAttendanceRecords[`a1_${dateStr}`] = { status: 'Present', checkIn: '08:50', checkOut: '17:00' };
+          }
+          return;
+        }
+
+        const rand = Math.random();
+        let status: 'Present' | 'Absent' | 'Late' | 'Leave';
+        let checkIn = '08:52';
+        let checkOut = '17:00';
+
+        if (rand < 0.82) {
+          status = 'Present';
+          checkIn = `08:${String(Math.floor(Math.random() * 12) + 45).padStart(2, '0')}`;
+        } else if (rand < 0.92) {
+          status = 'Late';
+          checkIn = `09:${String(Math.floor(Math.random() * 20) + 16).padStart(2, '0')}`;
+        } else if (rand < 0.96) {
+          status = 'Leave';
+          checkIn = '';
+          checkOut = '';
+        } else {
+          status = 'Absent';
+          checkIn = '';
+          checkOut = '';
+        }
+
+        this.groupAttendanceRecords[`${member.id}_${dateStr}`] = {
+          status,
+          checkIn: checkIn || undefined,
+          checkOut: checkOut || undefined,
+          ip: '192.168.1.' + (Math.floor(Math.random() * 200) + 10),
+          notes: 'Regular check-in'
+        };
+      });
+    }
+    this.saveGroupRecords();
+  }
+
   // Seed data to make the initial screen look rich and filled
   seedDemoData(): void {
     const today = new Date();
-    // Generate records for the last 30 days (excluding weekends)
+    // Generate records for the last 25 days (excluding weekends)
     for (let i = 25; i > 0; i--) {
       const d = new Date(today.getTime() - i * 24 * 60 * 60 * 1000);
       const dayOfWeek = d.getDay();
@@ -235,7 +421,7 @@ export class Member1Component implements OnInit {
       const prevDate = new Date(this.selectedYear, this.selectedMonth - 1, dayNum);
       const dateStr = this.formatDate(prevDate);
       this.calendarDays.push({
-        date: null, // represents inactive/padding days
+        date: null, // padding
         dateStr,
         isToday: false,
         isWeekend: prevDate.getDay() === 0 || prevDate.getDay() === 6,
@@ -296,9 +482,9 @@ export class Member1Component implements OnInit {
     this.generateCalendar();
   }
 
-  // Manual Toggle Attendance on Calendar Click
+  // Manual Toggle Attendance on Calendar Click (Personal)
   toggleDayStatus(day: CalendarDay): void {
-    if (!day.date) return; // Pad slots are not toggleable
+    if (!day.date) return;
 
     const dateStr = day.dateStr;
     const currentRecord = this.attendanceRecords[dateStr] || { status: 'Unmarked' };
@@ -325,8 +511,9 @@ export class Member1Component implements OnInit {
 
     if (newStatus === 'Unmarked') {
       delete this.attendanceRecords[dateStr];
+      delete this.groupAttendanceRecords[`a1_${dateStr}`]; // keep in sync
     } else {
-      this.attendanceRecords[dateStr] = {
+      const newRec: AttendanceRecord = {
         status: newStatus,
         checkIn: newStatus === 'Present' ? '08:55' : (newStatus === 'Late' ? '09:20' : undefined),
         checkOut: (newStatus === 'Present' || newStatus === 'Late') ? '17:00' : undefined,
@@ -335,12 +522,50 @@ export class Member1Component implements OnInit {
         longitude: 85.8033,
         notes: `Manually marked as ${newStatus}`
       };
+      this.attendanceRecords[dateStr] = newRec;
+      this.groupAttendanceRecords[`a1_${dateStr}`] = { ...newRec };
     }
 
     this.saveRecords();
+    this.saveGroupRecords();
   }
 
-  // Live Stats calculations
+  // Group Member Attendance modification
+  setGroupMemberStatus(memberId: string, status: 'Present' | 'Absent' | 'Late' | 'Leave' | 'Unmarked'): void {
+    const key = `${memberId}_${this.groupSelectedDate}`;
+    
+    if (status === 'Unmarked') {
+      delete this.groupAttendanceRecords[key];
+      if (memberId === 'a1') {
+        delete this.attendanceRecords[this.groupSelectedDate];
+      }
+    } else {
+      const rec: AttendanceRecord = {
+        status,
+        checkIn: status === 'Present' ? '08:50' : (status === 'Late' ? '09:20' : undefined),
+        checkOut: (status === 'Present' || status === 'Late') ? '17:00' : undefined,
+        ip: '192.168.1.55',
+        notes: `Marked by Group Admin (Soyngsruti)`
+      };
+      this.groupAttendanceRecords[key] = rec;
+      
+      // If setting Soyngsruti's own status in group view, sync to her personal view
+      if (memberId === 'a1') {
+        this.attendanceRecords[this.groupSelectedDate] = {
+          ...rec,
+          latitude: 20.3503,
+          longitude: 85.8033
+        };
+      }
+    }
+
+    this.saveGroupRecords();
+    if (memberId === 'a1') {
+      this.saveRecords();
+    }
+  }
+
+  // Calculate stats for Personal View
   calculateStats(): void {
     let present = 0;
     let absent = 0;
@@ -357,10 +582,6 @@ export class Member1Component implements OnInit {
     });
 
     const totalLogged = present + absent + late + leave;
-    
-    // Attendance rate formula: (Present + Late) / (Total logged) * 100
-    // Leaves do not count against the rate in standard systems, or we can include them.
-    // Let's use (Present + Late) / (Present + Late + Absent) as standard.
     const denominator = present + late + absent;
     const rate = denominator > 0 ? Math.round(((present + late) / denominator) * 100) : 100;
 
@@ -372,7 +593,6 @@ export class Member1Component implements OnInit {
     this.stats.percentage = rate;
     this.stats.meetsTarget = rate >= this.settings.targetPercentage;
 
-    // Calculate Streak (Consecutive Present/Late days backwards from today)
     this.stats.streak = this.calculateStreak();
   }
 
@@ -380,11 +600,10 @@ export class Member1Component implements OnInit {
     let streak = 0;
     const today = new Date();
     
-    // Check backwards day-by-day
     for (let i = 0; i < 30; i++) {
       const checkDate = new Date(today.getTime() - i * 24 * 60 * 60 * 1000);
       const isWeekend = checkDate.getDay() === 0 || checkDate.getDay() === 6;
-      if (isWeekend) continue; // Skip weekend in streak calculation
+      if (isWeekend) continue;
 
       const dateStr = this.formatDate(checkDate);
       const record = this.attendanceRecords[dateStr];
@@ -392,14 +611,78 @@ export class Member1Component implements OnInit {
       if (record && (record.status === 'Present' || record.status === 'Late')) {
         streak++;
       } else if (record && (record.status === 'Absent' || record.status === 'Leave')) {
-        break; // Streak broken
+        break;
       } else {
-        // Unmarked day. If it's today and not checked in yet, continue check.
         if (i === 0) continue;
-        break; // Otherwise, break
+        break;
       }
     }
     return streak;
+  }
+
+  // Calculate Stats for Group View
+  calculateGroupStats(): void {
+    let present = 0;
+    let absent = 0;
+    let late = 0;
+    let leave = 0;
+
+    const groupMembers = this.members.filter(m => m.group === this.selectedGroup);
+    
+    groupMembers.forEach(m => {
+      const key = `${m.id}_${this.groupSelectedDate}`;
+      const rec = this.groupAttendanceRecords[key];
+      
+      if (rec) {
+        if (rec.status === 'Present') present++;
+        else if (rec.status === 'Absent') absent++;
+        else if (rec.status === 'Late') late++;
+        else if (rec.status === 'Leave') leave++;
+      } else {
+        // default to Unmarked, which doesn't count towards stats yet
+      }
+    });
+
+    const total = present + absent + late + leave;
+    const denominator = present + late + absent;
+    const percentage = denominator > 0 ? Math.round(((present + late) / denominator) * 100) : 0;
+
+    this.groupStats.present = present;
+    this.groupStats.absent = absent;
+    this.groupStats.late = late;
+    this.groupStats.leave = leave;
+    this.groupStats.total = total;
+    this.groupStats.percentage = percentage;
+  }
+
+  // Calculate comparison numbers for different groups
+  calculateGroupComparison(): void {
+    const groups = ['Group A', 'Group B', 'Group C', 'Group D', 'Group E', 'Group F', 'Group G'];
+    this.groupCompareStats = [];
+
+    groups.forEach(grpName => {
+      let present = 0;
+      let absent = 0;
+      let late = 0;
+      const grpMembers = this.members.filter(m => m.group === grpName);
+
+      grpMembers.forEach(m => {
+        const key = `${m.id}_${this.groupSelectedDate}`;
+        const rec = this.groupAttendanceRecords[key];
+        if (rec) {
+          if (rec.status === 'Present') present++;
+          else if (rec.status === 'Late') late++;
+          else if (rec.status === 'Absent') absent++;
+        }
+      });
+
+      const denom = present + late + absent;
+      const rate = denom > 0 ? Math.round(((present + late) / denom) * 100) : 80; // default seed visual
+      this.groupCompareStats.push({
+        groupName: grpName,
+        percentage: rate
+      });
+    });
   }
 
   // Check today's check-in/out status
@@ -420,9 +703,9 @@ export class Member1Component implements OnInit {
     }
   }
 
-  // Geofence Distance Calculator (Haversine Formula)
+  // Geofence Distance Calculator
   calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
-    const R = 6371e3; // Earth radius in meters
+    const R = 6371e3;
     const phi1 = lat1 * Math.PI / 180;
     const phi2 = lat2 * Math.PI / 180;
     const deltaPhi = (lat2 - lat1) * Math.PI / 180;
@@ -433,10 +716,10 @@ export class Member1Component implements OnInit {
               Math.sin(deltaLambda / 2) * Math.sin(deltaLambda / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-    return R * c; // Distance in meters
+    return R * c;
   }
 
-  // Check-In Action simulation
+  // Check-In Action simulation (Personal)
   simulateCheckIn(): void {
     const todayStr = this.formatDate(new Date());
     
@@ -446,7 +729,6 @@ export class Member1Component implements OnInit {
       return;
     }
 
-    // 1. Geofence Verification
     if (this.settings.geofenceEnabled) {
       const distance = this.calculateDistance(
         this.settings.mockUserLat, this.settings.mockUserLng,
@@ -454,28 +736,25 @@ export class Member1Component implements OnInit {
       );
       
       if (distance > this.settings.geofenceRadius) {
-        this.checkInMessage = `Check-In Failed! You are outside the campus boundary. Distance: ${Math.round(distance)}m (Allowed: ${this.settings.geofenceRadius}m)`;
+        this.checkInMessage = `Check-In Failed! Outside campus boundary. Distance: ${Math.round(distance)}m (Max: ${this.settings.geofenceRadius}m)`;
         this.checkInMessageType = 'error';
         return;
       }
     }
 
-    // 2. IP Subnet Verification
     if (this.settings.ipEnabled) {
       if (!this.settings.mockUserIp.startsWith(this.settings.campusSubnet)) {
-        this.checkInMessage = `Check-In Failed! Connected to untrusted network IP: ${this.settings.mockUserIp} (Expected subnet: ${this.settings.campusSubnet}.x)`;
+        this.checkInMessage = `Check-In Failed! IP: ${this.settings.mockUserIp} (Expected: ${this.settings.campusSubnet}.x)`;
         this.checkInMessageType = 'error';
         return;
       }
     }
 
-    // 3. Time Evaluation for Late Status
     const now = new Date();
     const hh = String(now.getHours()).padStart(2, '0');
     const mm = String(now.getMinutes()).padStart(2, '0');
     const currentTimeStr = `${hh}:${mm}`;
 
-    // Parse shift start time and grace period
     const [startH, startM] = this.settings.shiftStartTime.split(':').map(Number);
     const limitMinutes = startH * 60 + startM + this.settings.gracePeriod;
     const currentMinutes = now.getHours() * 60 + now.getMinutes();
@@ -485,11 +764,10 @@ export class Member1Component implements OnInit {
 
     if (currentMinutes > limitMinutes) {
       status = 'Late';
-      notes = `Late check-in at ${currentTimeStr} (Grace limit: ${this.settings.shiftStartTime} + ${this.settings.gracePeriod} mins)`;
+      notes = `Late check-in at ${currentTimeStr} (Shift starts: ${this.settings.shiftStartTime} + ${this.settings.gracePeriod}m grace)`;
     }
 
-    // Save record
-    this.attendanceRecords[todayStr] = {
+    const newRec: AttendanceRecord = {
       status,
       checkIn: currentTimeStr,
       ip: this.settings.mockUserIp,
@@ -498,24 +776,28 @@ export class Member1Component implements OnInit {
       notes
     };
 
-    this.checkInMessage = `Check-in successful! Logged as ${status} at ${currentTimeStr}.`;
+    this.attendanceRecords[todayStr] = newRec;
+    this.groupAttendanceRecords[`a1_${todayStr}`] = { ...newRec };
+
+    this.checkInMessage = `Check-in successful! Status: ${status} at ${currentTimeStr}.`;
     this.checkInMessageType = 'success';
     
     this.saveRecords();
+    this.saveGroupRecords();
   }
 
-  // Check-Out Action simulation
+  // Check-Out Action simulation (Personal)
   simulateCheckOut(): void {
     const todayStr = this.formatDate(new Date());
 
     if (!this.isTodayCheckedIn) {
-      this.checkInMessage = 'You must check in first before checking out!';
+      this.checkInMessage = 'You must check in first!';
       this.checkInMessageType = 'error';
       return;
     }
 
     if (this.isTodayCheckedOut) {
-      this.checkInMessage = 'You have already checked out for today!';
+      this.checkInMessage = 'Already checked out for today!';
       this.checkInMessageType = 'info';
       return;
     }
@@ -527,19 +809,23 @@ export class Member1Component implements OnInit {
 
     const record = this.attendanceRecords[todayStr];
     record.checkOut = currentTimeStr;
-    record.notes += `, checked out at ${currentTimeStr}.`;
+    record.notes += `, checked out at ${currentTimeStr}`;
+
+    this.groupAttendanceRecords[`a1_${todayStr}`].checkOut = currentTimeStr;
+    this.groupAttendanceRecords[`a1_${todayStr}`].notes += `, checked out at ${currentTimeStr}`;
 
     this.checkInMessage = `Check-out successful! Logged at ${currentTimeStr}.`;
     this.checkInMessageType = 'success';
 
     this.saveRecords();
+    this.saveGroupRecords();
   }
 
-  // Quick preset simulation to check in at exactly 8:52 AM (On-time)
+  // Quick preset check-in
   simulateOnTimeCheckIn(): void {
     const todayStr = this.formatDate(new Date());
     
-    this.attendanceRecords[todayStr] = {
+    const newRec: AttendanceRecord = {
       status: 'Present',
       checkIn: '08:52',
       checkOut: '17:02',
@@ -549,57 +835,115 @@ export class Member1Component implements OnInit {
       notes: 'Simulated On-Time check-in'
     };
 
-    this.checkInMessage = 'Simulated on-time check-in successfully!';
+    this.attendanceRecords[todayStr] = newRec;
+    this.groupAttendanceRecords[`a1_${todayStr}`] = { ...newRec };
+
+    this.checkInMessage = 'Simulated on-time check-in!';
     this.checkInMessageType = 'success';
     this.saveRecords();
+    this.saveGroupRecords();
   }
 
-  // Quick preset simulation to check in at exactly 9:25 AM (Late)
   simulateLateCheckIn(): void {
     const todayStr = this.formatDate(new Date());
     
-    this.attendanceRecords[todayStr] = {
+    const newRec: AttendanceRecord = {
       status: 'Late',
       checkIn: '09:25',
       checkOut: '17:05',
       ip: this.settings.mockUserIp,
       latitude: 20.3503,
       longitude: 85.8033,
-      notes: 'Simulated Late check-in (grace exceeded)'
+      notes: 'Simulated Late check-in'
     };
 
-    this.checkInMessage = 'Simulated late check-in successfully!';
+    this.attendanceRecords[todayStr] = newRec;
+    this.groupAttendanceRecords[`a1_${todayStr}`] = { ...newRec };
+
+    this.checkInMessage = 'Simulated late check-in!';
     this.checkInMessageType = 'success';
     this.saveRecords();
+    this.saveGroupRecords();
+  }
+
+  // Admin Group Commands
+  markAllGroupPresent(): void {
+    const groupMembers = this.members.filter(m => m.group === this.selectedGroup);
+    groupMembers.forEach(m => {
+      const key = `${m.id}_${this.groupSelectedDate}`;
+      const rec = this.groupAttendanceRecords[key];
+      // Only set if unmarked or absent
+      if (!rec || rec.status === 'Unmarked' || rec.status === 'Absent') {
+        this.setGroupMemberStatus(m.id, 'Present');
+      }
+    });
+    this.calculateGroupStats();
+  }
+
+  markAllGroupAbsent(): void {
+    const groupMembers = this.members.filter(m => m.group === this.selectedGroup);
+    groupMembers.forEach(m => {
+      const key = `${m.id}_${this.groupSelectedDate}`;
+      const rec = this.groupAttendanceRecords[key];
+      if (!rec || rec.status === 'Unmarked') {
+        this.setGroupMemberStatus(m.id, 'Absent');
+      }
+    });
+    this.calculateGroupStats();
+  }
+
+  resetGroupAttendance(): void {
+    if (confirm(`Reset all logged attendance for ${this.selectedGroup} on ${this.groupSelectedDate}?`)) {
+      const groupMembers = this.members.filter(m => m.group === this.selectedGroup);
+      groupMembers.forEach(m => {
+        this.setGroupMemberStatus(m.id, 'Unmarked');
+      });
+      this.calculateGroupStats();
+    }
+  }
+
+  // Get filtered group members
+  getFilteredGroupMembers(): Member[] {
+    let list = this.members.filter(m => m.group === this.selectedGroup);
+    
+    if (this.groupSearchQuery) {
+      const q = this.groupSearchQuery.toLowerCase().trim();
+      list = list.filter(m => m.name.toLowerCase().includes(q));
+    }
+    
+    return list;
+  }
+
+  // Check status of a group member for table display
+  getGroupMemberStatus(memberId: string): 'Present' | 'Absent' | 'Late' | 'Leave' | 'Unmarked' {
+    const key = `${memberId}_${this.groupSelectedDate}`;
+    const rec = this.groupAttendanceRecords[key];
+    return rec ? rec.status : 'Unmarked';
+  }
+
+  getGroupMemberTime(memberId: string): string {
+    const key = `${memberId}_${this.groupSelectedDate}`;
+    const rec = this.groupAttendanceRecords[key];
+    return rec && rec.checkIn ? `${rec.checkIn} - ${rec.checkOut || '--:--'}` : '--:--';
   }
 
   // Clear / Reset All Data
   resetAllData(): void {
-    const confirmReset = confirm('Are you sure you want to delete all attendance history and restore default settings? This cannot be undone.');
-    if (confirmReset) {
+    if (confirm('Are you sure you want to delete all personal and group attendance history?')) {
       localStorage.removeItem(this.STORAGE_RECORDS_KEY);
+      localStorage.removeItem(this.STORAGE_GROUP_RECORDS_KEY);
       localStorage.removeItem(this.STORAGE_SETTINGS_KEY);
       this.attendanceRecords = {};
-      this.settings = {
-        targetPercentage: 85,
-        shiftStartTime: '09:00',
-        shiftEndTime: '17:00',
-        gracePeriod: 15,
-        geofenceEnabled: true,
-        campusLat: 20.3503,
-        campusLng: 85.8033,
-        geofenceRadius: 150,
-        mockUserLat: 20.3501,
-        mockUserLng: 85.8031,
-        ipEnabled: true,
-        campusSubnet: '192.168.1',
-        mockUserIp: '192.168.1.45',
-        emailAlerts: true,
-        lowAttendanceWarning: true
-      };
+      this.groupAttendanceRecords = {};
       
       this.seedDemoData();
-      this.checkInMessage = 'All attendance records and settings have been reset.';
+      this.seedGroupDemoData();
+      this.calculateStats();
+      this.calculateGroupStats();
+      this.calculateGroupComparison();
+      this.checkTodayStatus();
+
+      this.checkInMessage = 'All records and settings have been reset.';
       this.checkInMessageType = 'info';
     }
   }
@@ -637,15 +981,52 @@ export class Member1Component implements OnInit {
     document.body.removeChild(link);
   }
 
-  // Get sorted list of recent logs
+  // Export Group Attendance Report
+  exportGroupToCSV(): void {
+    const groupMembers = this.members.filter(m => m.group === this.selectedGroup);
+    let csvContent = 'data:text/csv;charset=utf-8,';
+    csvContent += `Attendance Report for ${this.selectedGroup} on ${this.groupSelectedDate}\n`;
+    csvContent += 'Member Name,Status,Check-In,Check-Out,IP Address,System Notes\n';
+
+    groupMembers.forEach(m => {
+      const key = `${m.id}_${this.groupSelectedDate}`;
+      const rec = this.groupAttendanceRecords[key] || { status: 'Unmarked' };
+      const checkIn = rec.checkIn || '--:--';
+      const checkOut = rec.checkOut || '--:--';
+      const ip = rec.ip || 'N/A';
+      const notes = rec.notes ? `"${rec.notes.replace(/"/g, '""')}"` : 'N/A';
+
+      csvContent += `"${m.name}",${rec.status},${checkIn},${checkOut},${ip},${notes}\n`;
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', `Group_Attendance_${this.selectedGroup.replace(' ', '_')}_${this.groupSelectedDate}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  // Get sorted list of recent personal logs
   getRecentLogs(): Array<{ date: string; record: AttendanceRecord }> {
     return Object.keys(this.attendanceRecords)
-      .sort((a, b) => b.localeCompare(a)) // Sort descending (most recent first)
-      .slice(0, 10) // Take top 10 logs
+      .sort((a, b) => b.localeCompare(a))
+      .slice(0, 10)
       .map(key => ({
         date: key,
         record: this.attendanceRecords[key]
       }));
   }
+
+  // Helper to extract initials from name
+  getInitials(name: string): string {
+    const parts = name.split(' ');
+    if (parts.length >= 2) {
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+    return name.slice(0, 2).toUpperCase();
+  }
 }
+
 
