@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,10 +6,36 @@ import { Router } from '@angular/router';
   templateUrl: './member4.component.html',
   styleUrls: ['./member4.component.css']
 })
-export class Member4Component {
- constructor(private router: Router) {}
+export class Member4Component implements OnInit {
+
+  userName: string = 'Lipsa Panda';
+  role: string = 'Frontend Developer | Angular Specialist';
+  projects: number = 12;
+  experience: string = '1.5 Years';
+
+  skills: string[] = [
+    'Angular', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3',
+    'RxJS', 'NgRx', 'Bootstrap', 'Tailwind CSS', 'Git & GitHub',
+    'Responsive Design', 'UI/UX'
+  ];
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    // You can load more data here if needed
+  }
 
   goBackToGroup() {
-    this.router.navigate(['grp-f']);
+    this.router.navigate(['/grp-f']);
+  }
+
+  scrollTo(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
   }
 }

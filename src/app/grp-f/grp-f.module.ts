@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { GrpFRoutingModule } from './grp-f-routing.module';
+
 import { GrpFComponent } from './grp-f/grp-f.component';
 import { Member1Component } from './member1/member1.component';
 import { Member2Component } from './member2/member2.component';
@@ -11,7 +15,7 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
-import { GrpFRoutingModule } from './grp-f-routing.module';
+
 
 
 
@@ -28,9 +32,12 @@ import { GrpFRoutingModule } from './grp-f-routing.module';
     Member8Component,
     Member9Component,
     Member10Component
+  
+  
   ],
   imports: [
     CommonModule,
+    FormsModule,
     GrpFRoutingModule
   ]
 })
