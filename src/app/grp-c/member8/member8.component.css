@@ -185,3 +185,17 @@ li{
 .dark-mode .project-card h3{
   color:white;
 }
+.attendance-btn{
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:12px 20px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:16px;
+  margin-top:20px;
+}
+
+.attendance-btn:hover{
+  transform:translateY(-2px);
+}

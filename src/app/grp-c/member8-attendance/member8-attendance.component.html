@@ -1,87 +1,208 @@
-<div class="attendance-container">
+<div class="container">
 
-  <h1>Attendance Management System</h1>
+  <div class="sidebar">
 
-  <div class="content">
+    <h2>Team Tree</h2>
 
-    <!-- Left Panel -->
-    <div class="tree-panel">
+    <div *ngFor="let team of teams">
 
-      <h2>Teams</h2>
+      <div
+        class="team-header"
+        (click)="toggleTeam(team)">
 
-      <ul>
-        <li>
-          <strong>Team A</strong>
-          <ul>
-            <li>Member 1</li>
-            <li>Member 2</li>
-          </ul>
-        </li>
+        {{ team.expanded ? '▼' : '►' }}
+        {{ team.name }}
 
-        <li>
-          <strong>Team B</strong>
-          <ul>
-            <li>Member 1</li>
-            <li>Member 2</li>
-          </ul>
-        </li>
+      </div>
 
-        <li>
-          <strong>Team C</strong>
-          <ul>
-            <li>Safaq</li>
-            <li>Hrushikesh</li>
-          </ul>
-        </li>
-      </ul>
+      <div *ngIf="team.expanded">
 
-    </div>
+        <div
+          class="member"
+          *ngFor="let member of team.members">
 
-    <!-- Right Panel -->
-    <div class="table-panel">
+          {{ member }}
 
-      <h2>Attendance Table</h2>
+        </div>
 
-      <table>
-
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Regd No</th>
-            <th>05-Jun</th>
-            <th>06-Jun</th>
-            <th>07-Jun</th>
-          </tr>
-        </thead>
-
-        <tbody>
-
-          <tr>
-            <td>Safaq</td>
-            <td>220123</td>
-            <td>✔</td>
-            <td>✔</td>
-            <td>☐</td>
-          </tr>
-
-          <tr>
-            <td>Rahul</td>
-            <td>220124</td>
-            <td>✔</td>
-            <td>☐</td>
-            <td>✔</td>
-          </tr>
-
-        </tbody>
-
-      </table>
-
-      <button class="lock-btn">
-        Lock Attendance
-      </button>
+      </div>
 
     </div>
 
   </div>
 
+  <div class="content">
+
+    <div class="cards">
+
+      <div class="card" (click)="showAllStudents()">
+        <h2>{{ totalStudents }}</h2>
+        <p>Total Students</p>
+      </div>
+
+      <div class="card" (click)="showPresentStudents()">
+        <h2>{{ presentCount }}</h2>
+        <p>Present Today</p>
+      </div>
+
+      <div class="card" (click)="showAbsentStudents()">
+        <h2>{{ absentCount }}</h2>
+        <p>Absent Today</p>
+      </div>
+
+      <div class="card">
+        <h2>{{ attendanceRate }}%</h2>
+        <p>Attendance Rate</p>
+      </div>
+
+    </div>
+
+   <button class="lock-btn" *ngIf="isAdmin"(click)="toggleLock()">
+    {{ attendanceLocked ? '🔓 Unlock Attendance' : '🔒 Lock Attendance' }}
+  </button>
+    <button class="save-btn" (click)="saveAttendance()">💾 Save Attendance </button>
+
+       <div class="add-student">
+
+      <input #nameInput type="text" placeholder="Student Name">
+       
+      <select #teamInput class="team-select">
+        <option value="Team A">Team A</option>
+        <option value="Team B">Team B</option>
+         <option value="Team C">Team C</option>
+         <option value="Team D">Team D</option>
+         <option value="Team E">Team E</option>
+         <option value="Team F">Team F</option>
+         <option value="Team G">Team G</option>
+      </select>
+
+    <button (click)="newStudentName=nameInput.value; newStudentTeam=teamInput.value; addStudent()">
+
+      Add Student
+    </button>
+</div>
+    <div class="filter-section">
+
+  <input
+    type="text"
+    placeholder="Search student..."
+    [value]="searchText"
+    (input)="searchText = $any($event.target).value">
+
+  <select
+    class="team-filter"
+    [value]="selectedTeam"
+    (change)="selectedTeam = $any($event.target).value">
+
+    <option value="All">All Teams</option>
+    <option value="Team A">Team A</option>
+    <option value="Team B">Team B</option>
+    <option value="Team C">Team C</option>
+    <option value="Team D">Team D</option>
+    <option value="Team E">Team E</option>
+    <option value="Team F">Team F</option>
+    <option value="Team G">Team G</option>
+
+  </select>
+
+  <div class="date-picker">
+
+    <label>Select Date:</label>
+
+    <input
+      type="date"
+      [value]="selectedDate"
+      [max]="today"
+      (change)="selectedDate = $any($event.target).value">
+
+  </div>
+
+</div>
+
+<table class="attendance-table">
+
+      <tr>
+        <th>Name</th>
+        <th>Team</th>
+        <th>Attendance %</th>
+        <th>Attendance</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+
+      <tr *ngFor="let student of filteredStudents">
+
+        <td class="student-link" (click)="viewStudent(student)">{{student.name}}</td>
+
+        <td>{{ student.team }}</td>
+        <td><span [class.good]="getAttendancePercentage(student)>=75"
+                  [class.average]="getAttendancePercentage(student)>=50 && getAttendancePercentage(student)<75"
+                  [class.poor]="getAttendancePercentage(student)<50">
+                  {{ getAttendancePercentage(student) }}%
+                </span>
+        </td>
+        <td>
+        <input
+         type="checkbox"
+          [checked]="getAttendance(student)"
+          [disabled]="attendanceLocked || !isTodaySelected"
+           (change)="toggleAttendance(student)">
+        </td>
+
+        <td>
+
+          <span *ngIf="getAttendance(student)">
+            ✅ Present
+          </span>
+
+          <span *ngIf="!getAttendance(student)">
+            ❌ Absent
+          </span>
+
+        </td>
+        <td>
+          <button class="delete-btn" (click)="deleteStudent(student)">Delete</button>
+        </td>
+
+      </tr>
+
+    </table>
+    <div class="no-data" *ngIf="filteredStudents.length === 0">No student found.</div>
+    <button class="lock-btn" (click)="exportCSV()">📥 Export CSV</button>
+  </div>
+   <div
+ class="popup-overlay"
+ *ngIf="selectedStudent">
+
+ <div class="popup">
+
+  <h2>
+   Student Profile
+  </h2>
+
+  <p>
+   Name:
+   {{selectedStudent.name}}
+  </p>
+
+  <p>
+   Team:
+   {{selectedStudent.team}}
+  </p>
+
+  <p>
+   Attendance:
+   {{getAttendancePercentage(selectedStudent)}}%
+  </p>
+
+  <button
+   (click)="closePopup()">
+
+   Close
+
+  </button>
+
+ </div>
+
+</div>
 </div>

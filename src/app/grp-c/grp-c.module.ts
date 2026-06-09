@@ -9,11 +9,11 @@ import { Member5Component } from './member5/member5.component';
 import { Member6Component } from './member6/member6.component';
 import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
+import { Member8AttendanceComponent } from './member8-attendance/member8-attendance.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
-
+import { FormsModule } from '@angular/forms';
 import { GrpCRoutingModule } from './grp-c-routing.module';
-import { Member8AttendanceComponent } from './member8-attendance/member8-attendance.component';
 
 
 
@@ -31,10 +31,12 @@ import { Member8AttendanceComponent } from './member8-attendance/member8-attenda
     Member9Component,
     Member10Component,
     Member8AttendanceComponent
+   
   ],
   imports: [
     CommonModule,
-    GrpCRoutingModule
+    GrpCRoutingModule,
+    FormsModule
   ]
 })
 export class GrpCModule { }

@@ -52,9 +52,11 @@ const routes: Routes = [
     path: 'member8',
     component: Member8Component
   },
+
   {
-  path: 'member8-attendance',
+  path:'member8-attendance',
   component: Member8AttendanceComponent
+
   },
   {
     path: 'member9',
