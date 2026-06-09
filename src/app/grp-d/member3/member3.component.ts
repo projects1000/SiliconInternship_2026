@@ -7,9 +7,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./member3.component.css']
 })
 export class Member3Component {
- constructor(private router: Router) {}
+  // Your existing state variable
+  showAttendance: boolean = false;
 
+  constructor(private router: Router) {}
+
+  /**
+   * Navigates back to the parent group page
+   */
   goBackToGroup() {
     this.router.navigate(['grp-d']);
+  }
+
+  /**
+   * NEW: Navigates to the dedicated Attendance Matrix page
+   */
+  openMatrix() {
+    this.router.navigate(['grp-d/member3/attendance-matrix']);
   }
 }

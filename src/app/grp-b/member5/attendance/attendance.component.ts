@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.css']
 })
-export class AttendanceComponent {
+export class Member5AttendanceComponent {
 
   attendanceDate = '';
 
