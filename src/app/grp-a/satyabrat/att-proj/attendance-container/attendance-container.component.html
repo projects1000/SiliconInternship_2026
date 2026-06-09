@@ -1,0 +1,21 @@
+<div class="app-wrapper" [class.dark-theme]="isDarkMode">
+  
+  <mat-toolbar class="app-header">
+    <span>Attendance Management System</span>
+    <span class="spacer" style="flex: 1 1 auto;"></span>
+    <button mat-icon-button (click)="toggleTheme()">
+      <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav mode="side" opened class="left-panel">
+      <app-tree></app-tree>
+    </mat-sidenav>
+    
+    <mat-sidenav-content class="right-panel">
+      <app-search></app-search>
+      <app-table></app-table>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

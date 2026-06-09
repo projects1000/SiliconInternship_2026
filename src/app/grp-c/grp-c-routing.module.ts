@@ -15,6 +15,11 @@ import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { Member8AttendanceComponent } from './member8-attendance/member8-attendance.component';
 
+import { Member4attmngComponent } from './member4/member4attmng/member4attmng.component';
+
+import { Member3AttendanceComponent } from './member3/member3-attendance/member3-attendance.component';
+
+
 const routes: Routes = [
   {
     path: '',
@@ -65,7 +70,15 @@ const routes: Routes = [
   {
     path: 'member10',
     component: Member10Component
-  }
+  },
+
+  {
+  path: 'member4/member4attmng',
+  component: Member4attmngComponent
+},
+
+  { path: 'member3-attendance', component: Member3AttendanceComponent }
+
 ];
 
 @NgModule({
