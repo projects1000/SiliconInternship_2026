@@ -47,7 +47,7 @@ export class Member1Component implements OnInit {
     phone: '+91 70081 23456',
     college: 'Silicon University, Bhubaneswar',
     course: 'B.Tech / Computer Science & Engineering',
-    year: '3rd Year (Batch of 2026)',
+    year: '1st Year (Batch of 2026)',
     github: 'https://github.com/soyngsruti',
     linkedin: 'https://linkedin.com/in/soyngsruti',
     skills: ['Angular', 'TypeScript', 'HTML5 & CSS3', 'JavaScript (ES6+)', 'RxJS', 'Git & GitHub', 'Figma (UI/UX)', 'Responsive Web Design'],
