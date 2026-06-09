@@ -18,12 +18,14 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    AttendanceDashboardComponent
+    AttendanceDashboardComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

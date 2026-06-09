@@ -1,0 +1,44 @@
+.tree-container {
+  background: transparent !important; 
+  padding: 10px 0;
+}
+
+.team-tree {
+  background: transparent !important;
+}
+
+.team-node {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 12px 8px; 
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.team-node:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.member-node {
+  display: flex;
+  align-items: center;
+  padding: 8px 8px 8px 40px;
+  font-size: 0.95rem;
+}
+
+.team-icon {
+  margin-right: 12px;
+  color: #3b82f6; 
+}
+
+.member-icon {
+  margin-right: 12px;
+  color: #94a3b8;
+  transform: scale(0.9);
+}
+
+.team-tree-invisible {
+  display: none;
+}
