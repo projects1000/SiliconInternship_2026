@@ -23,6 +23,12 @@ import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { GrpFRoutingModule } from './grp-f-routing.module';
 import { AttendanceComponent } from './member5/attendance/attendance.component';
+import { AttendanceProjectComponent } from './member3/attendance-project/attendance-project.component';
+import { HeaderComponent } from './member3/attendance-project/header/header.component';
+import { TeamTreeComponent } from './member3/attendance-project/team-tree/team-tree.component';
+import { AttendanceTableComponent } from './member3/attendance-project/attendance-table/attendance-table.component';
+import { SummaryCardsComponent } from './member3/attendance-project/summary-cards/summary-cards.component';
+import { ReportsComponent } from './member3/attendance-project/reports/reports.component';
 
 
 
@@ -39,7 +45,13 @@ import { AttendanceComponent } from './member5/attendance/attendance.component';
     Member8Component,
     Member9Component,
     Member10Component,
-    AttendanceComponent
+    AttendanceComponent,
+    AttendanceProjectComponent,
+    HeaderComponent,
+    TeamTreeComponent,
+    AttendanceTableComponent,
+    SummaryCardsComponent,
+    ReportsComponent
   ],
   imports: [
   CommonModule,
