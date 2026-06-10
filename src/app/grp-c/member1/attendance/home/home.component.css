@@ -1,0 +1,276 @@
+.attendance-container {
+padding: 20px;
+background: #f5f7fb;
+min-height: 100vh;
+box-sizing: border-box;
+}
+
+/* ==================================
+HEADER
+================================== */
+
+.page-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 20px;
+flex-wrap: wrap;
+gap: 15px;
+}
+
+.page-header h1 {
+margin: 0;
+font-size: 28px;
+font-weight: 600;
+color: #1f2937;
+}
+
+.page-header p {
+margin: 4px 0 0;
+color: #6b7280;
+}
+
+.header-buttons {
+display: flex;
+gap: 10px;
+}
+
+/* ==================================
+STATUS CARDS
+================================== */
+
+.status-cards {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 15px;
+margin-bottom: 20px;
+}
+
+.status-card {
+padding: 10px;
+text-align: center;
+}
+
+.status-card h3 {
+margin: 0;
+font-size: 14px;
+color: #6b7280;
+}
+
+.status-card p {
+margin-top: 8px;
+font-size: 18px;
+font-weight: 600;
+color: #111827;
+}
+
+/* ==================================
+MAIN LAYOUT
+================================== */
+
+.main-layout {
+display: grid;
+grid-template-columns: 350px 1fr;
+gap: 20px;
+}
+
+/* ==================================
+LEFT PANEL
+================================== */
+
+.left-panel {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.panel-card {
+border-radius: 14px;
+}
+
+.full-width {
+width: 100%;
+}
+
+mat-calendar {
+width: 100%;
+}
+
+/* ==================================
+TREE
+================================== */
+
+.team-node,
+.member-node {
+display: flex;
+align-items: center;
+gap: 8px;
+cursor: pointer;
+padding: 8px;
+border-radius: 8px;
+transition: 0.2s;
+}
+
+.team-node:hover,
+.member-node:hover {
+background: rgba(63, 81, 181, 0.08);
+}
+
+.team-node {
+font-weight: 600;
+}
+
+.member-node {
+font-size: 14px;
+}
+
+.mat-tree-node {
+min-height: 40px;
+}
+
+/* ==================================
+RIGHT PANEL
+================================== */
+
+.right-panel {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.history-card,
+.table-card {
+border-radius: 14px;
+}
+
+.history-controls {
+display: flex;
+gap: 15px;
+flex-wrap: wrap;
+}
+
+.history-controls mat-form-field {
+min-width: 220px;
+}
+
+.history-tags {
+margin-top: 15px;
+}
+
+.history-tags mat-chip {
+margin: 4px;
+}
+
+/* ==================================
+TABLE
+================================== */
+
+.table-wrapper {
+overflow-x: auto;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+}
+
+.mat-mdc-header-row {
+background: #eef2ff;
+}
+
+.mat-mdc-header-cell {
+font-weight: 600;
+color: #374151;
+}
+
+.mat-mdc-cell,
+.mat-mdc-header-cell {
+padding: 12px;
+}
+
+.mat-mdc-row:hover {
+background: #fafafa;
+}
+
+td strong {
+color: #111827;
+}
+
+td small {
+color: #6b7280;
+}
+
+/* ==================================
+SCROLLBAR
+================================== */
+
+.table-wrapper::-webkit-scrollbar {
+height: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+background: #cbd5e1;
+border-radius: 20px;
+}
+
+/* ==================================
+MATERIAL CARD IMPROVEMENTS
+================================== */
+
+mat-card {
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06) !important;
+}
+
+mat-card-title {
+display: flex;
+align-items: center;
+gap: 8px;
+color: #1f2937;
+margin-bottom: 15px;
+}
+
+/* ==================================
+RESPONSIVE
+================================== */
+
+@media (max-width: 1200px) {
+
+.main-layout {
+grid-template-columns: 300px 1fr;
+}
+
+}
+
+@media (max-width: 992px) {
+
+.main-layout {
+grid-template-columns: 1fr;
+}
+
+.status-cards {
+grid-template-columns: 1fr;
+}
+
+.left-panel {
+order: 1;
+}
+
+.right-panel {
+order: 2;
+}
+
+}
+
+@media (max-width: 768px) {
+
+.page-header {
+flex-direction: column;
+align-items: flex-start;
+}
+
+.header-buttons {
+width: 100%;
+flex-wrap: wrap;
+}
+
+}
