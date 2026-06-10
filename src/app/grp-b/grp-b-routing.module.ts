@@ -11,7 +11,11 @@ import { Member5Component } from './member5/member5.component';
 import { Member6Component } from './member6/member6.component';
 import { Member1AttendanceComponent } from './member1/attendance/attendance.component';
 import { AttendanceComponent as Member2AttendanceComponent } from './member2/attendance/attendance.component';
+
+import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-attendance.component';
+
 import { Member5AttendanceComponent } from './member5/attendance/attendance.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -29,9 +33,8 @@ const routes: Routes = [
   // },
   {
     path: 'member2/attendance',
-    component: Member2AttendanceComponent
-  }
-  ,
+    component: Member2AttendanceComponent,
+  },
   {
     path: 'member1',
     component: Member1Component,
@@ -50,7 +53,7 @@ const routes: Routes = [
   },
   {
     path: 'member3/attendance',
-    component: Member3AttendanceComponent
+    component: Member3AttendanceComponent,
   },
   {
     path: 'member4',
@@ -67,6 +70,10 @@ const routes: Routes = [
   {
     path: 'member6',
     component: Member6Component,
+  },
+  {
+    path: 'member6/attendance',
+    component: Memb6AttendanceComponent,
   },
 ];
 

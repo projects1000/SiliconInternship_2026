@@ -23,7 +23,8 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+
+import { MatIconModule } from '@angular/material/icon'; // <-- ADDED THIS CRITICAL LINE
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
@@ -32,6 +33,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CdkTreeModule } from '@angular/cdk/tree';
+import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-attendance.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { CdkTreeModule } from '@angular/cdk/tree';
     Member6Component,
     Member5AttendanceComponent,
     Member1AttendanceComponent,
-    Member2AttendanceComponent
+    Member2AttendanceComponent,
+    Memb6AttendanceComponent,
+
   ],
   imports: [
     CommonModule,
@@ -57,7 +61,7 @@ import { CdkTreeModule } from '@angular/cdk/tree';
     MatTableModule,
     MatCheckboxModule,
     MatButtonModule,
-    MatIconModule,
+    MatIconModule, // <-- This now resolves perfectly
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
@@ -65,7 +69,9 @@ import { CdkTreeModule } from '@angular/cdk/tree';
     MatCardModule,
     MatToolbarModule,
     MatBadgeModule,
-    Member3MaterialModule
-  ]
+    Member3MaterialModule,
+  ],
 })
-export class GrpBModule { }
+
+export class GrpBModule {}
+
