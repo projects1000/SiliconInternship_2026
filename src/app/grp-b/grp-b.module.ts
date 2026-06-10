@@ -11,20 +11,22 @@ import { Member3MaterialModule } from './member3/member3-material.module';
 import { Member4Component } from './member4/member4.component';
 import { Member5Component } from './member5/member5.component';
 import { Member6Component } from './member6/member6.component';
-import { GrpBRoutingModule } from './grp-b-routing.module';
 
+import { Member5AttendanceComponent } from './member5/attendance/attendance.component';
 import { Member1AttendanceComponent } from './member1/attendance/attendance.component';
+import { AttendanceComponent as Member2AttendanceComponent } from './member2/attendance/attendance.component';
+
+import { GrpBRoutingModule } from './grp-b-routing.module';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon'; // <-- ADDED THIS CRITICAL LINE
 
+import { MatIconModule } from '@angular/material/icon'; // <-- ADDED THIS CRITICAL LINE
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { AttendanceComponent as Member2AttendanceComponent } from './member2/attendance/attendance.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -43,9 +45,11 @@ import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-atten
     Member4Component,
     Member5Component,
     Member6Component,
+    Member5AttendanceComponent,
     Member1AttendanceComponent,
     Member2AttendanceComponent,
     Memb6AttendanceComponent,
+
   ],
   imports: [
     CommonModule,
@@ -68,4 +72,6 @@ import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-atten
     Member3MaterialModule,
   ],
 })
+
 export class GrpBModule {}
+

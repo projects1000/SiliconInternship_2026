@@ -1,9 +1,79 @@
-<div class="member-page">
+<div class="portfolio-container">
+  
+  <!-- Minimalist Header -->
+  <header class="portfolio-header">
+    <div class="logo-area">
+      <span class="logo-dot"></span>
+      <span class="logo-text">Priyanshu.</span>
+    </div>
+    
+    <!-- Preserving back button exactly as requested -->
+    <button (click)="goBackToGroup()" class="back-btn">
+      <span class="material-icons-round">arrow_back</span>
+      Go back to Group A
+    </button>
+  </header>
 
-  <h1>Member 7</h1>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="avatar-wrapper">
+        <img [src]="profile.avatar" [alt]="profile.name" class="profile-avatar">
+        <div class="avatar-glow"></div>
+      </div>
+      
+      <div class="hero-info">
+        <span class="greeting-badge">Portfolio</span>
+        <h1 class="profile-name">{{ profile.name }}</h1>
+        <h2 class="profile-title">{{ profile.title }}</h2>
+        <p class="profile-location">
+          <span class="material-icons-round">place</span>
+          {{ profile.location }}
+        </p>
+        
+        <p class="profile-bio">{{ profile.bio }}</p>
+        
+        <div class="social-links">
+          <a [href]="'mailto:' + profile.email" class="social-icon-btn" title="Email Me">
+            <span class="material-icons-round">email</span>
+          </a>
+          <a [href]="profile.github" target="_blank" class="social-icon-btn" title="GitHub">
+            <span class="material-icons-round">code</span>
+          </a>
+          <a [href]="profile.linkedin" target="_blank" class="social-icon-btn" title="LinkedIn">
+            <span class="material-icons-round">work</span>
+          </a>
+        </div>
 
-  <button (click)="goBackToGroup()">
-    Go back to Group A
-  </button>
+        <div class="portfolio-actions">
+          <button (click)="goToAttendance()" class="attendance-btn">
+            <span class="material-icons-round">assignment_turned_in</span>
+            Attendance Management System
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Minimalist Skills Section -->
+  <section class="skills-section">
+    <h3 class="section-title">
+      <span class="title-decor"></span>
+      Core Skills
+    </h3>
+    
+    <div class="skills-grid">
+      <div class="skill-card" *ngFor="let skill of skills">
+        <span class="material-icons-round skill-icon">{{ skill.icon }}</span>
+        <span class="skill-name">{{ skill.name }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="portfolio-footer">
+    <p class="footer-text">© 2026 Priyanshu Sekhar Badhei. All rights reserved.</p>
+  </footer>
 
 </div>
+
