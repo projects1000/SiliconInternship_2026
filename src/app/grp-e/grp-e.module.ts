@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { RouterModule } from '@angular/router';
 
 import { GrpEComponent } from './grp-e/grp-e.component';
 import { Member1Component } from './member1/member1.component';
@@ -21,8 +22,15 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { GrpERoutingModule } from './grp-e-routing.module';
-import { AttendanceComponent } from './member1/attendance/attendance.component';
+import { AttendanceComponent as Member1AttendanceComponent }
+from './member1/attendance/attendance.component';
 import { AttandanceComponent } from './member7/attandance/attandance.component';
+import { NavbarComponent } from './member8/navbar/navbar.component';
+import { HomeComponent } from './member8/home/home.component';
+import { ServicesComponent } from './member8/services/services.component';
+import { ProjectsComponent } from './member8/projects/projects.component';
+import { AttendanceComponent as Member8AttendanceComponent }
+from './member8/attendance/attendance.component';
 
 
 
@@ -38,11 +46,19 @@ import { AttandanceComponent } from './member7/attandance/attandance.component';
     Member7Component,
     Member8Component,
     Member9Component,
+
     AttandanceComponent,
-    
+
+    NavbarComponent,
+    HomeComponent,
+    ServicesComponent,
+    ProjectsComponent,
+    Member8AttendanceComponent
   ],
+
   imports: [
     CommonModule,
+    RouterModule,
     GrpERoutingModule,
     FormsModule,
     MatTreeModule,
@@ -53,7 +69,7 @@ import { AttandanceComponent } from './member7/attandance/attandance.component';
     MatSidenavModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    AttendanceComponent
+     Member1AttendanceComponent,
   ]
 })
 export class GrpEModule { }
