@@ -2,97 +2,427 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
+    font-family:'Poppins',sans-serif;
 }
 
-.page{
+body{
+    background:#0f172a;
+}
+
+/* ==========================
+   PORTFOLIO SECTION
+========================== */
+
+.portfolio-container{
     min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    padding:40px;
     background:linear-gradient(
         135deg,
-        #667eea,
-        #764ba2,
-        #ff6b6b
+        #0f172a,
+        #1e3a8a,
+        #7c3aed
     );
 }
 
-.profile-card{
-    width:420px;
-    padding:30px;
-    border-radius:25px;
+.hero-section{
     text-align:center;
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(15px);
-    box-shadow:0 8px 32px rgba(0,0,0,0.3);
-    transition:0.4s;
-}
-
-.profile-card:hover{
-    transform:translateY(-10px);
+    color:white;
+    padding:50px 20px;
 }
 
 .profile-image{
-    width:130px;
-    height:130px;
+    width:180px;
+    height:180px;
     margin:auto;
     border-radius:50%;
     background:white;
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:70px;
-    box-shadow:0 0 20px white;
+    font-size:90px;
+    box-shadow:0 0 40px rgba(255,255,255,0.8);
+    transition:0.4s;
 }
 
-h1{
-    margin-top:20px;
-    color:white;
-    font-size:32px;
+.profile-image:hover{
+    transform:scale(1.08);
 }
 
-h2{
-    color:#ffe66d;
+.hero-section h1{
+    font-size:50px;
+    margin-top:25px;
+}
+
+.hero-section h2{
+    color:#facc15;
     margin-top:10px;
-    margin-bottom:20px;
 }
 
-.info{
-    text-align:left;
-    margin-top:20px;
+.hero-text{
+    max-width:800px;
+    margin:20px auto;
+    line-height:1.8;
+    font-size:18px;
 }
 
-.info p{
-    background:white;
-    margin:12px 0;
-    padding:12px;
-    border-radius:12px;
-    font-size:17px;
-    font-weight:500;
-}
-
-.info span{
-    color:#764ba2;
-    font-weight:bold;
+.hero-buttons{
+    margin-top:25px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
 }
 
 .btn{
-    margin-top:25px;
-    padding:12px 30px;
     border:none;
-    border-radius:30px;
-    background:linear-gradient(
-        45deg,
-        #ff6b6b,
-        #feca57
-    );
-    color:white;
-    font-size:18px;
+    padding:14px 28px;
+    border-radius:40px;
     cursor:pointer;
+    font-size:16px;
+    font-weight:600;
     transition:0.3s;
 }
 
 .btn:hover{
-    transform:scale(1.1);
+    transform:translateY(-4px);
+}
+
+.contact-btn{
+    background:linear-gradient(
+        45deg,
+        #f97316,
+        #facc15
+    );
+    color:white;
+}
+
+.project-btn{
+    background:linear-gradient(
+        45deg,
+        #06b6d4,
+        #2563eb
+    );
+    color:white;
+}
+
+.section-card{
+    margin-top:35px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:20px;
+    padding:30px;
+    color:white;
+}
+
+.section-card h2{
+    margin-bottom:20px;
+    color:#facc15;
+}
+
+/* ==========================
+   INFO GRID
+========================== */
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.info-box{
+    background:rgba(255,255,255,0.1);
+    padding:20px;
+    border-radius:15px;
+}
+
+.info-box h4{
+    color:#60a5fa;
+    margin-bottom:10px;
+}
+
+/* ==========================
+   STATS
+========================== */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:20px;
+}
+
+.stat-card{
+    text-align:center;
+    background:rgba(255,255,255,0.1);
+    padding:25px;
+    border-radius:15px;
+}
+
+.stat-card h3{
+    font-size:35px;
+    color:#60a5fa;
+}
+
+.stat-card span{
+    color:#f1f5f9;
+}
+
+/* ==========================
+   SKILLS
+========================== */
+
+.skills-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.skill-chip{
+    background:#2563eb;
+    padding:10px 18px;
+    border-radius:30px;
+    color:white;
+    font-weight:600;
+}
+
+/* ==========================
+   EDUCATION
+========================== */
+
+.education-card{
+    background:rgba(255,255,255,0.1);
+    padding:20px;
+    border-radius:15px;
+}
+
+.education-card h3{
+    color:#60a5fa;
+}
+
+.education-card span{
+    color:#facc15;
+}
+
+/* ==========================
+   TIMELINE
+========================== */
+
+.timeline{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.timeline-item{
+    background:rgba(255,255,255,0.1);
+    padding:15px;
+    border-radius:10px;
+}
+
+/* ==========================
+   ACHIEVEMENTS
+========================== */
+
+.achievement-list{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.achievement-card{
+    background:rgba(255,255,255,0.1);
+    padding:18px;
+    border-radius:12px;
+}
+
+/* ==========================
+   CERTIFICATIONS
+========================== */
+
+.certification-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.cert-card{
+    background:rgba(255,255,255,0.1);
+    padding:18px;
+    border-radius:12px;
+}
+
+/* ==========================
+   PROJECTS
+========================== */
+
+.project-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.project-card{
+    background:rgba(255,255,255,0.1);
+    padding:20px;
+    border-radius:15px;
+}
+
+.project-card h3{
+    color:#60a5fa;
+    margin-bottom:10px;
+}
+
+/* ==========================
+   CONTACT
+========================== */
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.contact-card{
+    background:rgba(255,255,255,0.1);
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+}
+
+/* ==========================
+   BILLING MANAGEMENT
+========================== */
+
+.project-container{
+    padding:40px;
+    background:#f5f7fa;
+}
+
+.title{
+    text-align:center;
+    color:#1e3a8a;
+    margin-bottom:25px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.card h3{
+    margin-bottom:15px;
+    color:#1e3a8a;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#2563eb;
+    color:white;
+}
+
+th,
+td{
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-bottom:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.card button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:10px 16px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.card button:hover{
+    opacity:0.9;
+}
+
+.notification{
+    background:#dcfce7;
+    color:#166534;
+    padding:12px;
+    border-radius:8px;
+    margin-bottom:10px;
+}
+
+.total{
+    margin-top:15px;
+    color:#dc2626;
+}
+
+.clear-btn{
+    margin-top:15px;
+    background:#dc2626 !important;
+}
+
+/* ==========================
+   DASHBOARD
+========================== */
+
+.dashboard{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.box{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.box h4{
+    color:#1e3a8a;
+    margin-bottom:10px;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:768px){
+
+    .portfolio-container{
+        padding:20px;
+    }
+
+    .hero-section h1{
+        font-size:35px;
+    }
+
+    .profile-image{
+        width:140px;
+        height:140px;
+        font-size:70px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
 }
