@@ -16,6 +16,7 @@ import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 
 import { GrpCRoutingModule } from './grp-c-routing.module';
+import { AttendanceComponent } from './member9/attendance/attendance.component';
 import { Member4attmngComponent } from './member4/member4attmng/member4attmng.component';
 import { Member3AttendanceComponent } from './member3/member3-attendance/member3-attendance.component';
 import { ProductManagementComponent } from './member9/product-management/product-management.component';
@@ -32,6 +33,7 @@ import { ProductManagementComponent } from './member9/product-management/product
     Member8Component,
     Member9Component,
     Member10Component,
+    AttendanceComponent
     Member4attmngComponent,
     Member3AttendanceComponent,
     ProductManagementComponent

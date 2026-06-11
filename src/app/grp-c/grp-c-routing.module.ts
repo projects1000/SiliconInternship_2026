@@ -19,6 +19,8 @@ import { ProductManagementComponent } from './member9/product-management/product
 import { Member3AttendanceComponent } from './member3/member3-attendance/member3-attendance.component';
 
 
+import { AttendanceComponent } from './member9/attendance/attendance.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -58,6 +60,14 @@ const routes: Routes = [
     component: Member8Component
   },
   {
+    path: 'member9',
+    component: Member9Component
+  },
+
+  {
+    path: 'attendance',
+    component: AttendanceComponent
+  },
   path: 'member9',
   component: Member9Component
 },
