@@ -18,4 +18,9 @@ export class Member2Component {
     this.router.navigate(['grp-b/member2/attendance']);
   }
 
+  // ✅ Angular Routing — Navigate to Gaming PC Builder page
+  openGamingPcBuilder(): void {
+    this.router.navigate(['/grp-b/member2/gaming-pc-builder']);
+  }
+
 }
