@@ -12,6 +12,7 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
+import('./member1/member1.module').then(m => m.Member1Module)
 
 import { Member4attmngComponent } from './member4/member4attmng/member4attmng.component';
 
