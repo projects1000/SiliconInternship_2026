@@ -23,6 +23,7 @@ import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { GrpFRoutingModule } from './grp-f-routing.module';
 import { AttendanceComponent } from './member5/attendance/attendance.component';
+import { AttendanceTableComponent } from './member3/attendance-project/attendance-table/attendance-table.component';
 
 
 
@@ -39,7 +40,8 @@ import { AttendanceComponent } from './member5/attendance/attendance.component';
     Member8Component,
     Member9Component,
     Member10Component,
-    AttendanceComponent
+    AttendanceComponent,
+    AttendanceTableComponent
   ],
   imports: [
   CommonModule,
