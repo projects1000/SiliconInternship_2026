@@ -18,6 +18,20 @@ import { AttendanceComponent as Member2AttendanceComponent } from './member2/att
 
 import { GrpBRoutingModule } from './grp-b-routing.module';
 
+// ============================================================
+// Gaming PC Builder — Rohan Nayak (24BCSG13) — Grp-B Member2
+// ============================================================
+import { GamingPcBuilderComponent } from './member2/gaming-pc-builder/gaming-pc-builder.component';
+import { ProductCatalogComponent } from './member2/gaming-pc-builder/components/product-catalog/product-catalog.component';
+import { CustomerDetailsComponent } from './member2/gaming-pc-builder/components/customer-details/customer-details.component';
+import { BillSummaryComponent } from './member2/gaming-pc-builder/components/bill-summary/bill-summary.component';
+import { CategoryFilterComponent } from './member2/gaming-pc-builder/components/category-filter/category-filter.component';
+import { NotificationPanelComponent } from './member2/gaming-pc-builder/components/notification-panel/notification-panel.component';
+import { SavedBillsComponent } from './member2/gaming-pc-builder/components/saved-bills/saved-bills.component';
+
+// Toast Notifications
+import { ToastrModule } from 'ngx-toastr';
+
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatTableModule } from '@angular/material/table';
@@ -50,6 +64,14 @@ import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-atten
     Member2AttendanceComponent,
     Memb6AttendanceComponent,
 
+    // ✅ Gaming PC Builder Components — Rohan Nayak (24BCSG13)
+    GamingPcBuilderComponent,
+    ProductCatalogComponent,
+    CustomerDetailsComponent,
+    BillSummaryComponent,
+    CategoryFilterComponent,
+    NotificationPanelComponent,
+    SavedBillsComponent,
   ],
   imports: [
     CommonModule,
@@ -70,6 +92,9 @@ import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-atten
     MatToolbarModule,
     MatBadgeModule,
     Member3MaterialModule,
+
+    // ✅ Toast Notifications
+    ToastrModule,
   ],
 })
 
