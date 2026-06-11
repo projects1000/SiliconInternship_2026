@@ -1,0 +1,21 @@
+<section class="panel">
+  <h2>Customer Details</h2>
+
+  <label>
+    Customer Name
+    <input type="text" [(ngModel)]="name" placeholder="Enter customer name">
+  </label>
+
+  <label>
+    Mobile Number
+    <input type="tel" [(ngModel)]="mobile" placeholder="Enter mobile number">
+  </label>
+
+  <label>
+    Saved Address
+    <textarea rows="3" [(ngModel)]="address" placeholder="Enter saved address"></textarea>
+  </label>
+
+  <button type="button" (click)="saveCustomer()">Save Customer</button>
+</section>
+
