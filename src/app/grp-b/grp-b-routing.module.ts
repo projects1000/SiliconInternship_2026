@@ -16,6 +16,9 @@ import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-atten
 
 import { Member5AttendanceComponent } from './member5/attendance/attendance.component';
 
+import { BillingDashboardComponent as Member1BillingDashboardComponent } from './member1/billing-system/billing-dashboard/billing-dashboard.component';
+import { WhatsappDashboardComponent } from './member1/member1-whatsapp/whatsapp-dashboard/whatsapp-dashboard.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -42,6 +45,14 @@ const routes: Routes = [
   {
     path: 'member1/attendance',
     component: Member1AttendanceComponent,
+  },
+  {
+    path: 'member1/billing-dashboard',
+    component: Member1BillingDashboardComponent,
+  },
+  {
+    path: 'member1/whatsapp-dashboard',
+    component: WhatsappDashboardComponent,
   },
   {
     path: 'member2',

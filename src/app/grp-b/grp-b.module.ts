@@ -34,6 +34,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-attendance.component';
+import { BillingSystemModule as Member1BillingSystemModule } from './member1/billing-system/billing-system.module';
+import { Member1WhatsappModule } from './member1/member1-whatsapp/member1-whatsapp.module';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,6 @@ import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-atten
     Member1AttendanceComponent,
     Member2AttendanceComponent,
     Memb6AttendanceComponent,
-
   ],
   imports: [
     CommonModule,
@@ -70,8 +71,9 @@ import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-atten
     MatToolbarModule,
     MatBadgeModule,
     Member3MaterialModule,
+    Member1BillingSystemModule,
+    Member1WhatsappModule
   ],
 })
-
 export class GrpBModule {}
 
