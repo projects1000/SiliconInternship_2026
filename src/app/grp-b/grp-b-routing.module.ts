@@ -16,24 +16,22 @@ import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-atten
 
 import { Member5AttendanceComponent } from './member5/attendance/attendance.component';
 
+// ✅ Angular Routing — Gaming PC Builder (Rohan Nayak 24BCSG13)
+import { GamingPcBuilderComponent } from './member2/gaming-pc-builder/gaming-pc-builder.component';
+
 const routes: Routes = [
   {
     path: '',
     component: GrpBComponent,
   },
-  // {
-  //   path: 'member1',
-  //   component: Member1Component,
-  //   children: [
-  //     {
-  //       path: 'attendance',
-  //       component: Member1AttendanceComponent
-  //     }
-  //   ]
-  // },
   {
     path: 'member2/attendance',
     component: Member2AttendanceComponent,
+  },
+  // ✅ New Route: Gaming PC Builder
+  {
+    path: 'member2/gaming-pc-builder',
+    component: GamingPcBuilderComponent,
   },
   {
     path: 'member1',
@@ -81,4 +79,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class GrpBRoutingModule { }
+export class GrpBRoutingModule { }

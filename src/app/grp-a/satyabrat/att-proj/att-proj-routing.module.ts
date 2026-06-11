@@ -3,9 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AttendanceContainerComponent } from './attendance-container/attendance-container.component'; 
+import { ProductManagementComponent } from '../product-management/product-management.component';
+import { ProductLoginComponent } from '../product-management/components/login/product-login.component';
 
 const routes: Routes = [
-  { path: '', component: AttendanceContainerComponent }
+  { path: '', component: AttendanceContainerComponent },
+  { path: 'product-management', component: ProductManagementComponent },
+  { path: 'product-management/login', component: ProductLoginComponent }
 ];
 
 @NgModule({

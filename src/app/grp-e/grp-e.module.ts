@@ -31,6 +31,14 @@ import { ServicesComponent } from './member8/services/services.component';
 import { ProjectsComponent } from './member8/projects/projects.component';
 import { AttendanceComponent as Member8AttendanceComponent }
 from './member8/attendance/attendance.component';
+import { BillingHomeComponent } from './member8/billing/billing-home/billing-home.component';
+import { CustomerDetailsComponent } from './member8/billing/customer-details/customer-details.component';
+import { ProductListComponent } from './member8/billing/product-list/product-list.component';
+import { NotificationComponent } from './member8/billing/notification/notification.component';
+import { BillingCartComponent } from './member8/billing/billing-cart/billing-cart.component';
+
+
+
 
 
 
@@ -53,7 +61,16 @@ from './member8/attendance/attendance.component';
     HomeComponent,
     ServicesComponent,
     ProjectsComponent,
-    Member8AttendanceComponent
+    Member8AttendanceComponent,
+    BillingHomeComponent,
+    CustomerDetailsComponent,
+    ProductListComponent,
+    NotificationComponent,
+    BillingCartComponent,
+  
+
+
+
   ],
 
   imports: [

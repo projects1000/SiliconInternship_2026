@@ -179,3 +179,7 @@ button:hover {
     justify-content: center;
   }
 }
+
+.profile-content button {
+  margin-right: 12px;
+}

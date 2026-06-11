@@ -1,0 +1,300 @@
+.attendance-container {
+min-height: 100vh;
+padding: 24px;
+background: #f4f0ff;
+box-sizing: border-box;
+font-family: Roboto, sans-serif;
+}
+
+/* ==========================
+HEADER
+========================== */
+
+.page-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 24px;
+padding: 20px 24px;
+background: linear-gradient(
+135deg,
+#8b62d2,
+#8b5cf6
+);
+border-radius: 18px;
+color: white;
+}
+
+.page-header h1 {
+margin: 0;
+font-size: 28px;
+font-weight: 600;
+}
+
+.page-header p {
+margin-top: 6px;
+opacity: 0.9;
+}
+
+.header-buttons {
+display: flex;
+gap: 12px;
+}
+
+/* ==========================
+SUMMARY BAR
+========================== */
+
+.status-cards {
+display: flex;
+gap: 16px;
+margin-bottom: 24px;
+}
+
+.status-card {
+flex: 1;
+background: #ede9fe;
+border-radius: 14px;
+box-shadow: none !important;
+border: 1px solid #ddd6fe;
+text-align: center;
+padding: 12px;
+}
+
+.status-card h3 {
+margin: 0;
+color: #6d28d9;
+font-size: 14px;
+}
+
+.status-card p {
+margin-top: 8px;
+font-size: 18px;
+font-weight: 600;
+color: #312e81;
+}
+
+/* ==========================
+MAIN LAYOUT
+========================== */
+
+.main-layout {
+display: flex;
+gap: 24px;
+align-items: flex-start;
+}
+
+/* ==========================
+LEFT PANEL (TABLE)
+========================== */
+
+.right-panel {
+flex: 1;
+order: 1;
+}
+
+.table-card {
+background: white !important;
+border-radius: 20px !important;
+box-shadow:
+0 4px 20px rgba(124, 58, 237, 0.08) !important;
+border: none;
+}
+
+.table-card mat-card-title {
+color: #5b21b6;
+font-size: 22px;
+font-weight: 600;
+}
+
+/* ==========================
+RIGHT PANEL
+========================== */
+
+.left-panel {
+width: 350px;
+min-width: 350px;
+order: 2;
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+/* ==========================
+CARDS
+========================== */
+
+.panel-card {
+border-radius: 20px !important;
+box-shadow:
+0 4px 20px rgba(124, 58, 237, 0.08) !important;
+border: none;
+}
+
+.panel-card mat-card-title {
+color: #5b21b6;
+font-size: 18px;
+font-weight: 600;
+}
+
+/* ==========================
+CALENDAR
+========================== */
+
+.panel-card:first-child {
+background: white !important;
+}
+
+mat-calendar {
+width: 100%;
+}
+
+/* ==========================
+SEARCH
+========================== */
+
+.full-width {
+width: 100%;
+}
+
+.mat-mdc-form-field {
+width: 100%;
+}
+
+/* ==========================
+TREE
+========================== */
+
+.team-node,
+.member-node {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px;
+cursor: pointer;
+border-radius: 10px;
+transition: all 0.2s ease;
+}
+
+.team-node {
+font-weight: 600;
+color: #4c1d95;
+}
+
+.member-node {
+color: #374151;
+}
+
+.team-node:hover,
+.member-node:hover {
+background: #ede9fe;
+transform: translateX(4px);
+}
+
+.mat-tree-node {
+min-height: 44px;
+}
+
+/* ==========================
+TABLE
+========================== */
+
+.table-wrapper {
+overflow-x: auto;
+}
+
+table {
+width: 100%;
+}
+
+.mat-mdc-header-row {
+background: #8e65d6;
+}
+
+.mat-mdc-header-cell {
+color: white !important;
+font-weight: 600;
+font-size: 14px;
+}
+
+.mat-mdc-row:nth-child(even) {
+background: #faf8ff;
+}
+
+.mat-mdc-row:hover {
+background: #f3e8ff;
+}
+
+.mat-mdc-cell {
+color: #374151;
+}
+
+td strong {
+color: #111827;
+}
+
+td small {
+color: #6b7280;
+}
+
+/* ==========================
+SCROLLBAR
+========================== */
+
+.table-wrapper::-webkit-scrollbar {
+height: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+background: #ede9fe;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+background: #a78bfa;
+border-radius: 10px;
+}
+
+/* ==========================
+BUTTONS
+========================== */
+
+button.mat-mdc-raised-button {
+border-radius: 10px;
+}
+
+/* ==========================
+RESPONSIVE
+========================== */
+
+@media (max-width: 1100px) {
+
+.main-layout {
+flex-direction: column;
+}
+
+.left-panel {
+width: 100%;
+min-width: unset;
+order: 1;
+}
+
+.right-panel {
+order: 2;
+width: 100%;
+}
+
+}
+
+@media (max-width: 768px) {
+
+.page-header {
+flex-direction: column;
+align-items: flex-start;
+gap: 15px;
+}
+
+.status-cards {
+flex-direction: column;
+}
+
+}

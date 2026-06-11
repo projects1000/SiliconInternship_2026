@@ -53,4 +53,7 @@ export class Member6Component {
     // Adding the leading slash ensures it maps perfectly from the root URL
     this.router.navigate(['/grp-a/member6/attendance']);
   }
+  goToProductManagement() {
+    this.router.navigate(['/grp-a/member6/attendance/product-management']);
+  }
 }
