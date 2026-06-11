@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-member9',
@@ -10,14 +11,23 @@ export class Member9Component {
 
   name = 'Nirmit Nayak';
 
-  constructor(private location: Location) {}
+  constructor(
+    private location: Location,
+    private router: Router
+  ) {}
 
-  showMessage() {
-    alert('Thank you for visiting my profile!');
+  openDashboard() {
+
+    this.router.navigate(
+      ['/grp-f/member9/dashboard']
+    );
+
   }
 
   goBack() {
+
     this.location.back();
+
   }
 
 }

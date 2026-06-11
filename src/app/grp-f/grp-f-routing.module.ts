@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { GrpFComponent } from './grp-f/grp-f.component';
-
+import { DashboardComponent } from './member9/dashboard/dashboard.component';
 import { Member1Component } from './member1/member1.component';
 import { Member2Component } from './member2/member2.component';
 import { Member3Component } from './member3/member3.component';
@@ -55,6 +55,10 @@ const routes: Routes = [
     path: 'member9',
     component: Member9Component
   },
+  {
+  path: 'member9/dashboard',
+  component: DashboardComponent
+},
   {
     path: 'member10',
     component: Member10Component

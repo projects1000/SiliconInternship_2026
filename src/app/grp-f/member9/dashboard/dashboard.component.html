@@ -1,0 +1,288 @@
+<div class="dashboard-layout">
+
+  <div class="sidebar">
+
+    <h2>Attendance</h2>
+
+    <ul>
+
+      <li>🏠 Dashboard</li>
+
+      <li>📝 Attendance</li>
+
+      <li>📅 Calendar</li>
+
+      <li>📊 Reports</li>
+
+      <li>📄 PDF Report</li>
+
+      <li>📈 Excel Report</li>
+
+    </ul>
+
+  </div>
+
+  <div class="main-content">
+
+    <h1>Attendance Reports & Analytics</h1>
+
+    <p>Group F | Member 9</p>
+
+    <div class="cards">
+
+  <div class="card">
+
+    <h3>Total Students</h3>
+
+    <h1>{{totalStudents}}</h1>
+
+  </div>
+
+  <div class="card">
+
+    <h3>Present Today</h3>
+
+    <h1>{{presentToday}}</h1>
+
+  </div>
+
+  <div class="card">
+
+    <h3>Absent Today</h3>
+
+    <h1>{{absentToday}}</h1>
+
+  </div>
+
+  <div class="card">
+
+    <h3>Attendance %</h3>
+
+    <h1>{{attendancePercentage}}%</h1>
+
+  </div>
+  <div class="card">
+
+  <h3>Monthly Report</h3>
+
+  <h1>June</h1>
+
+</div>
+</div>
+<div class="filter-section">
+
+  <select [(ngModel)]="selectedGroup">
+
+    <option value="All">All Groups</option>
+
+    <option value="A">Group A</option>
+
+    <option value="B">Group B</option>
+
+    <option value="C">Group C</option>
+
+    <option value="D">Group D</option>
+
+    <option value="E">Group E</option>
+
+    <option value="F">Group F</option>
+
+    <option value="G">Group G</option>
+
+  </select>
+
+</div>
+<div class="search-box">
+
+  <input
+  type="text"
+
+  placeholder="Search Student"
+
+  [(ngModel)]="searchText">
+
+</div>
+<div class="table-container">
+
+<table>
+
+  <tr>
+
+    <th>Name</th>
+
+    <th>Group</th>
+
+    <th>Present Days</th>
+
+    <th>Attendance %</th>
+
+    <th>Status</th>
+
+    <th>Details</th>
+
+  </tr>
+
+  <tr
+  *ngFor="let s of filteredStudents">
+
+    <td>{{s.name}}</td>
+
+    <td>{{s.group}}</td>
+
+    <td>{{s.presentDays}}</td>
+
+    <td>{{s.attendance}}%</td>
+
+    <td>
+
+<select
+[(ngModel)]="s.status">
+
+<option>
+Present
+</option>
+
+<option>
+Absent
+</option>
+
+</select>
+
+</td>
+
+<td>
+
+  <button
+    class="view-btn"
+    (click)="showStudent(s)">
+
+    View
+
+  </button>
+
+</td>
+
+  </tr>
+
+</table>
+
+
+</div>
+<div *ngIf="filteredStudents.length === 0">
+
+  No student found
+
+</div>
+<div class="card">
+
+  <h3>Top Performer</h3>
+
+  <h1>98%</h1>
+
+</div>
+<div class="card">
+
+  <h3>Attendance Trend</h3>
+
+  <h1>↑ 5%</h1>
+
+</div>
+<div class="calendar-section">
+
+  <h2>Select Attendance Date</h2>
+
+  <input
+    type="date"
+    [(ngModel)]="selectedDate">
+
+  <p>
+
+    Selected Date :
+
+    {{ selectedDate }}
+
+  </p>
+
+  <button
+    class="save-btn"
+    (click)="saveAttendance()">
+
+    💾 Save Attendance
+
+  </button>
+
+</div>
+<div class="history-section">
+
+  <h2>Attendance History</h2>
+
+  <p>Total Records: {{ attendanceHistory.length }}</p>
+
+  <table>
+
+    <tr>
+      <th>Date</th>
+      <th>Present</th>
+      <th>Absent</th>
+      <th>Percentage</th>
+    </tr>
+
+    <ng-container *ngFor="let record of attendanceHistory">
+
+      <tr>
+
+        <td>{{ record.date }}</td>
+
+        <td>{{ record.present }}</td>
+
+        <td>{{ record.absent }}</td>
+
+        <td>{{ record.percentage }}%</td>
+
+      </tr>
+
+    </ng-container>
+
+  </table>
+
+</div>
+
+<div class="summary-card">
+
+  <h2>Monthly Summary</h2>
+
+  <p>Working Days : {{workingDays}}</p>
+
+  <p>Present Days : {{monthlyPresent}}</p>
+
+  <p>Absent Days : {{monthlyAbsent}}</p>
+
+  <p>Attendance : {{monthlyPercentage}}%</p>
+
+</div>
+<div class="download-section">
+
+  <button
+    class="pdf-btn"
+    (click)="downloadPDF()">
+
+    📄 Download PDF
+
+  </button>
+
+  <button
+  class="excel-btn"
+  (click)="downloadExcel()">
+
+  📊 Download Excel
+
+</button>
+
+</div>
+
+
+
+
+  </div>
+
+</div>

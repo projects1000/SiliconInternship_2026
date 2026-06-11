@@ -1,0 +1,403 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+.dashboard-layout{
+
+  min-height:100vh;
+
+  display:flex;
+
+  background:linear-gradient(
+  135deg,
+  #2b0000,
+  #7a0000,
+  #b30000
+  );
+}
+
+.sidebar{
+
+  width:250px;
+
+  padding:25px;
+
+  background:rgba(255,255,255,0.1);
+
+  backdrop-filter:blur(15px);
+
+  color:white;
+}
+
+.sidebar h2{
+
+  text-align:center;
+
+  margin-bottom:30px;
+}
+
+.sidebar ul{
+
+  list-style:none;
+}
+
+.sidebar li{
+
+  padding:15px;
+
+  margin-bottom:15px;
+
+  border-radius:10px;
+
+  background:rgba(255,255,255,0.1);
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.sidebar li:hover{
+
+  background:rgba(255,255,255,0.25);
+}
+
+.main-content{
+
+  flex:1;
+
+  padding:40px;
+
+  color:white;
+}
+.cards{
+
+  display:flex;
+
+  gap:20px;
+
+  flex-wrap:wrap;
+
+  margin-top:40px;
+}
+
+.card{
+
+  width:220px;
+
+  padding:25px;
+
+  border-radius:20px;
+
+  background:rgba(255,255,255,0.1);
+
+  backdrop-filter:blur(15px);
+
+  text-align:center;
+
+  box-shadow:0 8px 25px rgba(0,0,0,0.3);
+
+  transition:0.3s;
+}
+
+.card:hover{
+
+  transform:translateY(-5px);
+
+  background:rgba(255,255,255,0.2);
+}
+
+.card h3{
+
+  margin-bottom:15px;
+}
+
+.card h1{
+
+  color:#ffd700;
+}
+
+.search-box{
+
+  margin-top:40px;
+}
+
+.search-box input{
+
+  width:350px;
+
+  padding:12px;
+
+  border:none;
+
+  border-radius:10px;
+
+  font-size:16px;
+}
+
+.table-container{
+
+  margin-top:30px;
+
+  overflow-x:auto;
+
+  min-height:300px;
+}
+
+table{
+
+  width:100%;
+
+  border-collapse:collapse;
+
+  background:rgba(255,255,255,0.1);
+
+  backdrop-filter:blur(10px);
+  min-height:250px;
+
+}
+
+th{
+
+  background:rgba(255,255,255,0.2);
+
+  padding:15px;
+}
+
+td{
+
+  padding:15px;
+
+  text-align:center;
+}
+
+tr:hover{
+
+  background:rgba(255,255,255,0.1);
+}
+
+select{
+
+  padding:8px;
+
+  border:none;
+
+  border-radius:8px;
+
+  background:white;
+
+  font-weight:bold;
+}
+
+.view-btn{
+
+  padding:8px 15px;
+
+  border:none;
+
+  border-radius:8px;
+
+  background:#ffd700;
+
+  color:black;
+
+  font-weight:bold;
+
+  cursor:pointer;
+}
+
+.view-btn:hover{
+
+  transform:scale(1.05);
+}
+.calendar-section{
+
+  margin-top:40px;
+
+  padding:20px;
+
+  border-radius:20px;
+
+  background:rgba(255,255,255,0.1);
+
+  backdrop-filter:blur(15px);
+}
+
+.calendar-section h2{
+
+  margin-bottom:15px;
+}
+
+.save-btn{
+
+  background:#4caf50;
+
+  color:white;
+
+  border:none;
+
+  padding:12px 20px;
+
+  border-radius:10px;
+
+  cursor:pointer;
+
+  font-weight:bold;
+}
+
+.history-section{
+
+  margin-top:40px;
+
+  padding:20px;
+
+  border-radius:20px;
+
+  background:rgba(255,255,255,0.1);
+
+  backdrop-filter:blur(15px);
+}
+
+.summary-card{
+
+  margin-top:40px;
+
+  padding:25px;
+
+  border-radius:20px;
+
+  background:rgba(255,255,255,0.1);
+
+  backdrop-filter:blur(15px);
+}
+
+.history-section table {
+
+  color: white;
+
+}
+
+.history-section td {
+
+  color: white;
+
+  font-weight: bold;
+}
+
+.history-section table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.history-section th,
+.history-section td{
+
+  border:1px solid rgba(255,255,255,0.2);
+
+  padding:15px;
+
+  color:white;
+
+  font-weight:bold;
+
+  text-align:center;
+}
+
+.history-section tr{
+
+  background:rgba(255,255,255,0.08);
+}
+
+.filter-section{
+
+  margin-bottom:20px;
+}
+
+.filter-section select{
+
+  width:220px;
+
+  padding:12px;
+
+  border-radius:10px;
+
+  border:none;
+
+  font-weight:bold;
+}
+
+.dashboard-layout{
+
+  min-height:100vh;
+
+  background:
+  linear-gradient(
+  135deg,
+  #7f0000,
+  #b71c1c,
+  #d32f2f
+  );
+
+}
+
+.card{
+
+  background:
+  rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(15px);
+
+  border-radius:20px;
+
+  border:
+  1px solid rgba(255,255,255,0.15);
+
+}
+
+.history-section{
+
+  background:
+  rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(20px);
+
+  border-radius:20px;
+
+}
+
+.pdf-btn{
+
+  background:#e53935;
+
+  color:white;
+
+  padding:12px 20px;
+
+  border:none;
+
+  border-radius:10px;
+
+  cursor:pointer;
+
+  font-weight:bold;
+}
+
+.excel-btn{
+
+  background:#2e7d32;
+
+  color:white;
+
+  padding:12px 20px;
+
+  border:none;
+
+  border-radius:10px;
+
+  cursor:pointer;
+
+  font-weight:bold;
+
+  margin-left:15px;
+}

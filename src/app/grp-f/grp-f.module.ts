@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { GrpFComponent } from './grp-f/grp-f.component';
 import { Member1Component } from './member1/member1.component';
@@ -12,6 +13,9 @@ import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { GrpFRoutingModule } from './grp-f-routing.module';
+import { DashboardComponent } from './member9/dashboard/dashboard.component';
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 
 
@@ -27,11 +31,15 @@ import { GrpFRoutingModule } from './grp-f-routing.module';
     Member7Component,
     Member8Component,
     Member9Component,
-    Member10Component
+    Member10Component,
+    DashboardComponent
   ],
   imports: [
     CommonModule,
-    GrpFRoutingModule
-  ]
+    GrpFRoutingModule,
+    FormsModule,
+    MatDatepickerModule,
+    MatFormFieldModule
+]
 })
 export class GrpFModule { }
