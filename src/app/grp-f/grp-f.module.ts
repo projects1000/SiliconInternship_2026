@@ -29,6 +29,7 @@ import { TeamTreeComponent } from './member3/attendance-project/team-tree/team-t
 import { AttendanceTableComponent } from './member3/attendance-project/attendance-table/attendance-table.component';
 import { SummaryCardsComponent } from './member3/attendance-project/summary-cards/summary-cards.component';
 import { ReportsComponent } from './member3/attendance-project/reports/reports.component';
+import { AttendanceTableComponent } from './member3/attendance-project/attendance-table/attendance-table.component';
 
 
 
@@ -52,6 +53,7 @@ import { ReportsComponent } from './member3/attendance-project/reports/reports.c
     AttendanceTableComponent,
     SummaryCardsComponent,
     ReportsComponent
+    AttendanceTableComponent
   ],
   imports: [
   CommonModule,
