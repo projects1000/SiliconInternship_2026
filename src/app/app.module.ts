@@ -28,18 +28,19 @@ import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    // add your components here
-    NavBarComponent
-  ],
-
+  declarations: [AppComponent, NavBarComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 3500,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      progressBar: true,
+    }),
 
     MatIconModule,
     MatCardModule,
@@ -56,6 +57,6 @@ import { MatDividerModule } from '@angular/material/divider';
   ],
 
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

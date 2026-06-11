@@ -18,9 +18,6 @@ import { AttendanceComponent as Member2AttendanceComponent } from './member2/att
 
 import { GrpBRoutingModule } from './grp-b-routing.module';
 
-// ============================================================
-// Gaming PC Builder — Rohan Nayak (24BCSG13) — Grp-B Member2
-// ============================================================
 import { GamingPcBuilderComponent } from './member2/gaming-pc-builder/gaming-pc-builder.component';
 import { ProductCatalogComponent } from './member2/gaming-pc-builder/components/product-catalog/product-catalog.component';
 import { CustomerDetailsComponent } from './member2/gaming-pc-builder/components/customer-details/customer-details.component';
@@ -48,6 +45,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-attendance.component';
+import { BillingSystemModule as Member1BillingSystemModule } from './member1/billing-system/billing-system.module';
+import { Member1WhatsappModule } from './member1/member1-whatsapp/member1-whatsapp.module';
 
 @NgModule({
   declarations: [
@@ -92,11 +91,10 @@ import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-atten
     MatToolbarModule,
     MatBadgeModule,
     Member3MaterialModule,
-
-    // ✅ Toast Notifications
+    Member1BillingSystemModule,
+    Member1WhatsappModule,
     ToastrModule,
   ],
 })
-
 export class GrpBModule {}
 
