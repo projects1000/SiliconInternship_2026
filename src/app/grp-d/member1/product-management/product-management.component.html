@@ -1,0 +1,265 @@
+<div class="luxury-viewport-wrapper" [class.light-theme]="isLightMode" [ngStyle]="{'--accent-glow': activeBannerProduct?.accentColor}">
+  
+  <div class="custom-toast-container-layer">
+    <div *ngFor="let toast of toastQueue" class="live-toast-node">
+      <span class="toast-checkmark">✓</span>
+      <p class="toast-txt">{{ toast.message }}</p>
+    </div>
+  </div>
+
+  <div class="editorial-modal-blur-screen" *ngIf="showAuthInterceptModal">
+    <div class="editorial-modal-body-card auth-intercept-card">
+      <div class="modal-dismiss-strip">
+        <h3>SECURE VERIFICATION REQUESTED</h3>
+        <button class="modal-close-btn" (click)="showAuthInterceptModal = false">✕</button>
+      </div>
+      <p class="intercept-notice-text">Authentication is required to allocate inventory files to a customer ledger account index.</p>
+      <div class="terminal-auth-box">
+        <input type="email" placeholder="chandan@nike.com" [(ngModel)]="loginData.email" class="terminal-field">
+        <input type="password" placeholder="Passkey" [(ngModel)]="loginData.passphrase" class="terminal-field">
+        <button class="terminal-action-btn" [style.background]="activeBannerProduct?.accentColor" (click)="submitModalAuthGateway()">VERIFY PROFILE</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="editorial-modal-blur-screen" *ngIf="activeModalTab === 'brands'" (click)="closeModals()">
+    <div class="editorial-modal-body-card premium-brand-modal-card" (click)="$event.stopPropagation()">
+      <div class="modal-dismiss-strip">
+        <h3>HYPECORE AUTHENTICATED PARTNERS</h3>
+        <button class="modal-close-btn" (click)="closeModals()">✕</button>
+      </div>
+      <div class="brands-directory-showcase-grid">
+        <div class="premium-brand-node-card">
+          <div class="brand-hero-accent-strip" style="background: #ef4444;"></div>
+          <span class="brand-index-number">01 // PREMIUM</span>
+          <h4>NIKE JORDAN ARCHIVE</h4>
+          <p>FlightSpeed carbon fiber core alignments tailored specifically for structural explosion dynamics.</p>
+          <div class="brand-footer-pill">9 Active Stock Series</div>
+        </div>
+        <div class="premium-brand-node-card">
+          <div class="brand-hero-accent-strip" style="background: #10b981;"></div>
+          <span class="brand-index-number">02 // SPORT</span>
+          <h4>NIKE SPORT RUNNING</h4>
+          <p>Continuous pressurized inner cell variants built for hyper-responsive cross-country track speed ratios.</p>
+          <div class="brand-footer-pill">14 Active Stock Series</div>
+        </div>
+        <div class="premium-brand-node-card">
+          <div class="brand-hero-accent-strip" style="background: #6366f1;"></div>
+          <span class="brand-index-number">03 // LUXURY</span>
+          <h4>NIKE LIFESTYLE RETRO</h4>
+          <p>Classic flat panel silhouettes re-engineered with premium full grain cowhides and memory foams.</p>
+          <div class="brand-footer-pill">22 Active Stock Series</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="editorial-modal-blur-screen" *ngIf="activeModalTab === 'about'" (click)="closeModals()">
+    <div class="editorial-modal-body-card" (click)="$event.stopPropagation()">
+      <div class="modal-dismiss-strip">
+        <h3>SYSTEM ARCHITECTURE SPECIFICATION</h3>
+        <button class="modal-close-btn" (click)="closeModals()">✕</button>
+      </div>
+      <div class="about-content-scroller">
+        <h4>ENGINEERING THE FUTURE OF ATHLETICS // 2026</h4>
+        <p>Hypecore functions as an elite micro-distribution platform designed for rapid footwear verification and inventory ledgering. Built on modular single-viewport principles, our system links direct warehouse stocks with modern consumer-facing display interfaces.</p>
+      </div>
+    </div>
+  </div>
+
+  <aside class="premium-sidebar-column">
+    <div class="brand-header-zone">
+      <h2 class="sidebar-title">HYPE<span>CORE</span></h2>
+    </div>
+
+    <nav class="sidebar-nav-links">
+      <a class="nav-link-item active"><span class="lbl">Shop Archive</span></a>
+      <a class="nav-link-item" (click)="isBillingOpen = !isBillingOpen">
+        <span class="badge-count" [style.background]="activeBannerProduct?.accentColor">{{ selectedProducts.length }}</span>
+        <span class="lbl">Master Ledger</span>
+      </a>
+    </nav>
+
+    <div class="realtime-user-counter-card">
+      <div class="pulse-beacon-green"></div>
+      <div class="user-meta-stack">
+        <span class="counter-label">OPERATOR PLATFORM SYSTEMS</span>
+        <span class="counter-value">{{ systemGlobalUserMetrics.activeConnections }} Connected Terminals</span>
+      </div>
+    </div>
+
+    <div class="theme-switcher-rack">
+      <button class="theme-toggle-cta" (click)="toggleThemeStyleMode()">
+        SWITCH TO {{ isLightMode ? 'DARK MODE' : 'LIGHT MODE' }}
+      </button>
+    </div>
+
+    <div class="sidebar-auth-gate">
+      <ng-container *ngIf="!isUserLoggedIn; else authenticatedProfile">
+        <div class="terminal-auth-box">
+          <input type="email" placeholder="chandan@nike.com" [(ngModel)]="loginData.email" class="terminal-field">
+          <input type="password" placeholder="Passkey" [(ngModel)]="loginData.passphrase" class="terminal-field">
+          <button class="terminal-action-btn" [style.background]="activeBannerProduct?.accentColor" (click)="toggleAuthenticationGateway()">VERIFY PROFILE</button>
+        </div>
+      </ng-container>
+      <ng-template #authenticatedProfile>
+        <div class="operator-profile-card">
+          <div>
+            <p class="role">AUTHENTICATED OPERATOR</p>
+            <h4 class="name">{{ customerInfo.name }}</h4>
+          </div>
+          <button class="disconnect-icon-btn" (click)="toggleAuthenticationGateway()">✕</button>
+        </div>
+      </ng-template>
+    </div>
+  </aside>
+
+  <main class="primary-dashboard-stage">
+    
+    <header class="dashboard-top-navbar">
+      <div class="nav-left-meta">
+        <button class="nav-exit-circle" (click)="goBackToProfile()">←</button>
+        <span class="system-status-pill">LIVE ENGINE MATRIX // 2026</span>
+      </div>
+      
+      <nav class="center-editorial-links">
+        <a class="ed-link" (click)="closeModals()">Home</a>
+        <a class="ed-link" [class.active-link]="activeModalTab === 'brands'" (click)="openModalTab('brands')">Brands</a>
+        <a class="ed-link" [class.active-link]="activeModalTab === 'about'" (click)="openModalTab('about')">About</a>
+        <a class="ed-link" (click)="isBillingOpen = !isBillingOpen">Cart ({{ selectedProducts.length }})</a>
+      </nav>
+
+      <div class="nav-right-user">
+        <div class="avatar-frame"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Avatar User"></div>
+      </div>
+    </header>
+
+    <section class="asymmetric-3d-stage" *ngIf="activeBannerProduct">
+      <div class="left-asymmetric-panel" [ngStyle]="{'background': activeBannerProduct.bgGradient}">
+        <div class="watermark-backdrop-text">NIKE</div>
+        <div class="product-3d-scene-hull">
+          <img [src]="activeBannerProduct.image" [alt]="activeBannerProduct.name" class="sneaker-3d-asset">
+          <div class="dynamic-floor-shadow"></div>
+        </div>
+      </div>
+
+      <div class="right-editorial-panel">
+        <div class="editorial-header">
+          <span class="series-tag" [style.color]="activeBannerProduct.accentColor">{{ activeBannerProduct.category | uppercase }} EDITION</span>
+          <h1 class="product-heading-huge">{{ activeBannerProduct.name | uppercase }}</h1>
+          <p class="product-paragraph-description">{{ activeBannerProduct.description }}</p>
+        </div>
+
+        <div class="editorial-pricing-row">
+          <span class="currency-value">₹{{ activeBannerProduct.price | number }}</span>
+        </div>
+
+        <div class="size-selection-grid-zone">
+          <span class="grid-label">CHOOSE FOOTWEAR SIZE SPECIFICATION:</span>
+          <div class="interactive-size-flex-row">
+            <button 
+              *ngFor="let size of activeBannerProduct.sizes" 
+              class="luxury-size-node"
+              [class.active]="selectedBannerSize === size"
+              [style.borderColor]="selectedBannerSize === size ? activeBannerProduct.accentColor : 'rgba(255,255,255,0.1)'"
+              (click)="selectedBannerSize = size">
+              {{ size }}
+            </button>
+          </div>
+        </div>
+
+        <div class="cta-action-row-block">
+          <button class="luxury-add-to-rack-cta" [style.background]="activeBannerProduct.accentColor" (click)="handleProductAdded(activeBannerProduct)">
+            ADD TO RACK
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="realtime-metrics-footer-bar">
+      <div class="metric-data-cell">
+        <span class="m-title">OPERATOR ASSIGNED</span>
+        <span class="m-value">{{ customerInfo.name || 'UNAUTHENTICATED' }}</span>
+      </div>
+      <div class="metric-data-cell">
+        <span class="m-title">DELIVERY DESTINATION INDEX</span>
+        <span class="m-value truncate-text-element">{{ customerInfo.address || 'NO SPECIFIED LOCATION' }}</span>
+      </div>
+      <div class="metric-data-cell">
+        <span class="m-title">LEDGER RUNTIME STATUS</span>
+        <span class="m-value">{{ systemGlobalUserMetrics.totalOrdersProcessed }} Processed Files</span>
+      </div>
+      <div class="metric-data-cell highlighted-cell" [style.borderLeftColor]="activeBannerProduct?.accentColor">
+        <span class="m-title">TOTAL OVERALL LIABILITY</span>
+        <span class="m-value" [style.color]="activeBannerProduct?.accentColor">₹{{ grandTotal | number:'1.2-2' }}</span>
+      </div>
+    </footer>
+
+    <section class="horizontal-catalog-container">
+      <app-product-list 
+        [productsList]="allProducts" 
+        [activeProduct]="activeBannerProduct"
+        (onFocusFeature)="handleFeaturedProductChange($event)">
+      </app-product-list>
+    </section>
+  </main>
+
+  <div class="flyout-billing-panel-overlay" [class.panel-expanded]="isBillingOpen">
+    <div class="flyout-inner-card-scroller">
+      <div class="flyout-header">
+        <h3>OPERATIONAL INVENTORY BILLING RACK</h3>
+        <button class="close-overlay-btn" (click)="isBillingOpen = false">✕ CLOSE</button>
+      </div>
+
+      <div class="overlay-component-card custom-form-ledger-wrapper">
+        <h4>METADATA ASSIGNMENT</h4>
+        <div class="form-input-group-row">
+          <label>Operator Registered Name</label>
+          <input type="text" [(ngModel)]="customerInfo.name" placeholder="Name Entry">
+        </div>
+        <div class="form-input-group-row">
+          <label>Mobile Contact Verification</label>
+          <input type="text" [(ngModel)]="customerInfo.mobile" placeholder="+91 XXXXX XXXXX">
+        </div>
+        <div class="form-input-group-row">
+          <label>Physical Shipping Destination Address</label>
+          <textarea row="2" [(ngModel)]="customerInfo.address" placeholder="Specify Street details, Suite, Delivery Hub, State codes..."></textarea>
+        </div>
+      </div>
+
+      <div class="overlay-component-card itemized-product-ledger-rack">
+        <h4>ITEMIZED ACCOUNTING INDEX</h4>
+        <div *ngIf="selectedProducts.length === 0" class="empty-shelf-notice">No selected units present.</div>
+        <div *ngFor="let item of selectedProducts" class="itemized-row-node">
+          <div class="row-left">
+            <h5>{{ item.name }}</h5>
+            <p>Size: {{ item.displaySize }} // Qty: {{ item.qty }}</p>
+          </div>
+          <div class="row-right">
+            <span>₹{{ (item.price * item.qty) | number }}</span>
+            <button class="remove-item-btn" (click)="handleProductRemoved(item.cartUid)">✕</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="overlay-component-card itemized-bill-summary-sheet-totals">
+        <div class="calc-row"><span>Logistics Subtotal</span><span>₹{{ subTotal | number }}</span></div>
+        <div class="calc-row"><span>Central Tax Index (18% GST)</span><span>₹{{ gstAmount | number }}</span></div>
+        <div class="calc-row master-grand-liability-row">
+          <span>GRAND LIABILITY</span>
+          <span>₹{{ grandTotal | number }}</span>
+        </div>
+        
+        <button 
+          class="invoice-generation-download-cta-btn" 
+          *ngIf="selectedProducts.length > 0"
+          [style.background]="activeBannerProduct?.accentColor"
+          (click)="generateAndDownloadInvoiceReportFile()">
+          GENERATE & PRINT INVOICE SHEET
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
