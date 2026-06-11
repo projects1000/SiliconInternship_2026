@@ -33,7 +33,7 @@ import { ProductManagementComponent } from './member9/product-management/product
     Member8Component,
     Member9Component,
     Member10Component,
-    AttendanceComponent
+    AttendanceComponent,
     Member4attmngComponent,
     Member3AttendanceComponent,
     ProductManagementComponent
