@@ -78,6 +78,10 @@ export class BillingService {
     this.addNotification('Bill generated successfully');
   }
 
+  clearNotifications(): void {
+    this.notificationsSubject.next([]);
+  }
+
   calculateTotals(cart: BillingCartItem[] = this.cart): BillingTotals {
     const subTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
     const gst = subTotal * 0.18;
@@ -110,4 +114,3 @@ export class BillingService {
     return savedCart ? JSON.parse(savedCart) : [];
   }
 }
-

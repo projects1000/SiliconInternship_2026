@@ -3,17 +3,28 @@
     <div>
       <p class="eyebrow">Billing Section</p>
       <h1>Billing Home</h1>
-      <p class="subtitle">Save the customer first, then add products and generate the bill.</p>
+      <p class="subtitle">Select the saved customer to view billing activity.</p>
     </div>
 
-    <button class="cart-button" type="button" (click)="openCart.emit()">
-      <span class="cart-icon">🛒</span>
-      Cart
-      <strong>{{ totals.totalItems }}</strong>
-    </button>
+    <nav class="billing-nav">
+      <button class="cart-button" type="button" (click)="openCart.emit()">
+        Cart
+        <strong>{{ totals.totalItems }}</strong>
+      </button>
+
+      <button class="exit-button" type="button" (click)="exitBilling.emit()">
+        Exit
+      </button>
+    </nav>
   </header>
 
-  <section class="customer-summary" *ngIf="customer; else noCustomer">
+  <section
+    class="customer-summary"
+    *ngIf="customer; else noCustomer"
+    [class.active]="customerActivityOpen"
+    tabindex="0"
+    (click)="openCustomerActivity()"
+    (keydown.enter)="openCustomerActivity()">
     <div>
       <span>Customer Name</span>
       <strong>{{ customer.name }}</strong>
@@ -26,15 +37,24 @@
       <span>Saved Address</span>
       <strong>{{ customer.address }}</strong>
     </div>
+    <div class="open-hint">
+      <span>Status</span>
+      <strong>{{ customerActivityOpen ? 'Activity Open' : 'Click to View Activity' }}</strong>
+    </div>
   </section>
 
   <ng-template #noCustomer>
-    <section class="customer-summary empty">
-      Please save customer details to unlock product billing.
-    </section>
+    <app-customer-details
+      [customer]="customer"
+      (customerSaved)="saveCustomer($event)">
+    </app-customer-details>
   </ng-template>
 
-  <div class="billing-grid">
+  <section class="activity-hint" *ngIf="customer && !customerActivityOpen">
+    Your saved customer is ready. Click the customer card above to open products, bill activity, and cart actions.
+  </section>
+
+  <div class="billing-grid" *ngIf="customerActivityOpen">
     <app-customer-details
       [customer]="customer"
       (customerSaved)="saveCustomer($event)">
@@ -44,8 +64,7 @@
       [customerSaved]="!!customer"
       (productAdded)="addProduct($event)">
     </app-product-list>
-
-    <app-notification></app-notification>
   </div>
-</section>
 
+  <app-notification></app-notification>
+</section>

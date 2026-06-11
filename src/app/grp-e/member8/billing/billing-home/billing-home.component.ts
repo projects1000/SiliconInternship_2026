@@ -9,8 +9,10 @@ import { BillingService } from '../billing.service';
 })
 export class BillingHomeComponent implements OnInit {
   @Output() openCart = new EventEmitter<void>();
+  @Output() exitBilling = new EventEmitter<void>();
 
   customer: BillingCustomer | null = null;
+  customerActivityOpen = false;
   totals: BillingTotals = this.billingService.calculateTotals([]);
 
   constructor(private billingService: BillingService) {}
@@ -18,6 +20,10 @@ export class BillingHomeComponent implements OnInit {
   ngOnInit(): void {
     this.billingService.customer$.subscribe(customer => {
       this.customer = customer;
+
+      if (!customer) {
+        this.customerActivityOpen = false;
+      }
     });
 
     this.billingService.cart$.subscribe(cart => {
@@ -27,10 +33,16 @@ export class BillingHomeComponent implements OnInit {
 
   saveCustomer(customer: BillingCustomer): void {
     this.billingService.saveCustomer(customer);
+    this.customerActivityOpen = true;
+  }
+
+  openCustomerActivity(): void {
+    if (this.customer) {
+      this.customerActivityOpen = true;
+    }
   }
 
   addProduct(product: BillingProduct): void {
     this.billingService.addProduct(product);
   }
 }
-

@@ -1,13 +1,6 @@
-<section class="panel">
-  <h2>Notification</h2>
-
-  <div class="empty" *ngIf="messages.length === 0">
-    Notifications will appear here.
-  </div>
-
-  <div class="message" *ngFor="let message of messages">
+<div class="toast-container" *ngIf="messages.length > 0">
+  <div class="toast-message" *ngFor="let message of messages">
     <span>✓</span>
     {{ message }}
   </div>
-</section>
-
+</div>

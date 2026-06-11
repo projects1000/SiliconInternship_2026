@@ -19,7 +19,10 @@
 </div>
 
 <div *ngIf="currentSection === 'billing'">
-  <app-billing-home (openCart)="showSection('cart')"></app-billing-home>
+  <app-billing-home
+    (openCart)="showSection('cart')"
+    (exitBilling)="showSection('home')">
+  </app-billing-home>
 </div>
 
 <div *ngIf="currentSection === 'cart'">
