@@ -482,6 +482,7 @@ input{
 .card button:hover{
     opacity:0.9;
 }
+}
 
 .notification{
     background:#dcfce7;
@@ -501,3 +502,50 @@ input{
     background:#dc2626 !important;
 }
 
+/* ==========================
+   DASHBOARD
+
+.dashboard{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.box{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.box h4{
+    color:#1e3a8a;
+    margin-bottom:10px;
+}
+
+
+   RESPONSIVE
+
+@media(max-width:768px){
+
+    .portfolio-container{
+        padding:20px;
+    }
+
+    .hero-section h1{
+        font-size:35px;
+    }
+
+    .profile-image{
+        width:140px;
+        height:140px;
+        font-size:70px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+}
+    */
