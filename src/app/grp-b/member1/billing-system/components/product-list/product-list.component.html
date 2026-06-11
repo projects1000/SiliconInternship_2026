@@ -1,0 +1,44 @@
+<div class="child-box product-box">
+    <div class="card-header">
+        <span class="step-badge">01</span>
+        <h3>PRODUCT REGISTRY <small>(Child Component)</small></h3>
+    </div>
+
+    <div class="category-navbar">
+        <button *ngFor="let cat of categories" [class.active]="cat === selectedCategory" (click)="selectCategory(cat)">
+            {{ cat }}
+        </button>
+    </div>
+
+    <div class="products-grid">
+        <div class="product-card" *ngFor="let prod of filteredProducts"
+            [class.product-selected]="isProductInCart(prod)">
+
+            <div class="image-container">
+                <img [src]="prod.image" [alt]="prod.name" class="product-img">
+                <span class="category-tag">{{ prod.category }}</span>
+                <div class="selected-overlay" *ngIf="isProductInCart(prod)">
+                    <span class="check-mark">✓ Selected</span>
+                </div>
+            </div>
+
+            <div class="card-details">
+                <h4 class="product-name">{{ prod.name }}</h4>
+                <div class="card-footer-row">
+                    <span class="product-price">₹{{ prod.price }}</span>
+
+                    <button [class]="isProductInCart(prod) ? 'btn-remove' : 'btn-add'"
+                        (click)="toggleProductBillState(prod)">
+                        <span class="action-icon">{{ isProductInCart(prod) ? '−' : '+' }}</span>
+                        {{ isProductInCart(prod) ? 'Remove from Bill' : 'Add to Bill' }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="empty-state" *ngIf="filteredProducts.length === 0">
+        <div class="empty-icon">📦</div>
+        <p>No products cataloged under the <strong>{{ selectedCategory }}</strong> shelf yet.</p>
+    </div>
+</div>

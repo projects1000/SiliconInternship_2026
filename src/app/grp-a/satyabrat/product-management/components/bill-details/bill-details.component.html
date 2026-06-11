@@ -1,0 +1,92 @@
+<mat-card class="modern-card bill-card">
+  <mat-card-header>
+    <div class="header-icon-wrapper">
+      <mat-icon>receipt</mat-icon>
+    </div>
+    <mat-card-title>BILL SUMMARY</mat-card-title>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <div *ngIf="selectedItems.length === 0" class="empty-bill-state">
+      <mat-icon class="empty-icon">receipt</mat-icon>
+      <p>No products added. Click "Add" to start billing.</p>
+    </div>
+
+    <div class="bill-content-wrapper" *ngIf="selectedItems.length > 0">
+      <div class="bill-customer-header" *ngIf="customerName">
+        <div class="cust-info-block">
+          <mat-icon>account_circle</mat-icon>
+          <div class="cust-text">
+            <span class="cust-label">Billed To</span>
+            <span class="cust-val">{{ customerName }}</span>
+          </div>
+        </div>
+        <div class="cust-info-block" *ngIf="mobileNumber">
+          <mat-icon>phone</mat-icon>
+          <div class="cust-text">
+            <span class="cust-label">Mobile</span>
+            <span class="cust-val">{{ mobileNumber }}</span>
+          </div>
+        </div>
+        <div class="cust-info-block returning-badge-block" *ngIf="isReturningCustomer">
+          <span class="returning-badge">
+            <mat-icon>workspace_premium</mat-icon> Regular Customer (10% Off)
+          </span>
+        </div>
+      </div>
+
+      <table class="billing-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th class="text-center">Qty</th>
+            <th class="text-right">Price (₹)</th>
+            <th class="text-right">Total (₹)</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of selectedItems; let i = index">
+            <td class="item-name-cell">
+              <div class="cart-item-info">
+                <img [src]="item.image" [alt]="item.name" class="cart-item-img" />
+                <span class="item-name">{{ item.name }}</span>
+              </div>
+            </td>
+            <td class="text-center item-qty">{{ item.qty }}</td>
+            <td class="text-right">{{ item.price | number:'1.2-2' }}</td>
+            <td class="text-right item-total">₹{{ item.total | number:'1.2-2' }}</td>
+            <td class="text-center">
+              <button mat-icon-button color="warn" (click)="removeItem(i)" title="Remove item">
+                <mat-icon>delete_outline</mat-icon>
+              </button>
+            </td>
+          </tr>
+          <tr class="summary-row subtotal-row">
+            <td colspan="4" class="summary-label">Sub Total</td>
+            <td class="text-right summary-val">₹{{ subTotal | number:'1.2-2' }}</td>
+          </tr>
+          <tr class="summary-row discount-row" *ngIf="isReturningCustomer">
+            <td colspan="4" class="summary-label discount-label">Loyalty Discount (10%)</td>
+            <td class="text-right summary-val discount-val">-₹{{ discountAmount | number:'1.2-2' }}</td>
+          </tr>
+          <tr class="summary-row gst-row">
+            <td colspan="4" class="summary-label">GST (18%)</td>
+            <td class="text-right summary-val">₹{{ gstAmount | number:'1.2-2' }}</td>
+          </tr>
+          <tr class="summary-row grand-total-row">
+            <td colspan="4" class="summary-label grand-label">Grand Total</td>
+            <td class="text-right summary-val grand-val">₹{{ grandTotal | number:'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="bill-actions">
+        <button mat-raised-button color="warn" class="btn-generate full-width" (click)="generateBill()">
+          <mat-icon>receipt_long</mat-icon>
+          Generate & Save Bill
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

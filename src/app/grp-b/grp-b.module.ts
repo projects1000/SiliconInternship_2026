@@ -18,12 +18,24 @@ import { AttendanceComponent as Member2AttendanceComponent } from './member2/att
 
 import { GrpBRoutingModule } from './grp-b-routing.module';
 
+import { GamingPcBuilderComponent } from './member2/gaming-pc-builder/gaming-pc-builder.component';
+import { ProductCatalogComponent } from './member2/gaming-pc-builder/components/product-catalog/product-catalog.component';
+import { CustomerDetailsComponent } from './member2/gaming-pc-builder/components/customer-details/customer-details.component';
+import { BillSummaryComponent } from './member2/gaming-pc-builder/components/bill-summary/bill-summary.component';
+import { CategoryFilterComponent } from './member2/gaming-pc-builder/components/category-filter/category-filter.component';
+import { NotificationPanelComponent } from './member2/gaming-pc-builder/components/notification-panel/notification-panel.component';
+import { SavedBillsComponent } from './member2/gaming-pc-builder/components/saved-bills/saved-bills.component';
+
+// Toast Notifications
+import { ToastrModule } from 'ngx-toastr';
+
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+
+import { MatIconModule } from '@angular/material/icon'; // <-- ADDED THIS CRITICAL LINE
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
@@ -63,7 +75,7 @@ import { ChatWindowComponent } from './member5/chat-window/chat-window.component
     MatTableModule,
     MatCheckboxModule,
     MatButtonModule,
-    MatIconModule,
+    MatIconModule, // <-- This now resolves perfectly
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
@@ -71,7 +83,11 @@ import { ChatWindowComponent } from './member5/chat-window/chat-window.component
     MatCardModule,
     MatToolbarModule,
     MatBadgeModule,
-    Member3MaterialModule
-  ]
+    Member3MaterialModule,
+    Member1BillingSystemModule,
+    Member1WhatsappModule,
+    ToastrModule,
+  ],
 })
-export class GrpBModule { }
+export class GrpBModule {}
+

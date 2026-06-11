@@ -1,9 +1,143 @@
-<div class="member-page">
+<div class="profile-page">
 
-  <h1>Member 5</h1>
+  <!-- Header Card -->
 
-  <button (click)="goBackToGroup()">
-    Go back to Group D
+  <div class="profile-header-card">
+
+```
+<div class="profile-image-section">
+  <img
+    src="assets/profile.jpg"
+    alt="Sangita"
+    class="profile-image"
+  />
+</div>
+
+<div class="profile-info">
+
+  <span class="intern-badge">
+    Silicon Internship 2026
+  </span>
+
+  <h1>Sangita</h1>
+
+  <p class="role">
+    Master's Student • Frontend Developer
+  </p>
+
+  <p class="description">
+    Enthusiastic learner with a passion for Angular development,
+    UI/UX design, and building modern web applications.
+    Dedicated to continuous learning and creating user-friendly
+    digital experiences.
+  </p>
+
+  <button
+    class="back-btn"
+    (click)="goBackToGroup()"
+  >
+    ← Back to Group D
   </button>
+
+</div>
+```
+
+  </div>
+
+  <!-- About Me -->
+
+  <div class="section-card">
+    <h2>About Me</h2>
+
+```
+<p>
+  I am currently pursuing my Master's degree in Computer Science.
+  I enjoy frontend development, UI design, and solving real-world
+  problems through technology. I continuously work on improving my
+  technical and creative skills.
+</p>
+```
+
+  </div>
+
+  <!-- Skills -->
+
+  <div class="section-card">
+    <h2>Technical Skills</h2>
+
+```
+<div class="skills-container">
+  <span>Angular</span>
+  <span>Java</span>
+  <span>JavaScript</span>
+  <span>HTML</span>
+  <span>CSS</span>
+  <span>MongoDB</span>
+  <span>Git</span>
+  <span>UI/UX</span>
+</div>
+```
+
+  </div>
+
+  <!-- Education -->
+
+  <div class="section-card">
+    <h2>Education</h2>
+
+```
+<p>
+  Master's in Computer Science (2025-2027)
+</p>
+
+<p>
+  Focus Areas: Web Development, Software Engineering,
+  Database Management and UI/UX Design.
+</p>
+```
+
+  </div>
+
+  <!-- Projects -->
+
+  <div class="section-card">
+    <h2>Projects</h2>
+
+```
+<div class="project-box">
+  <h3>PondPhuwin Fan Application</h3>
+  <p>
+    Angular-based fan application featuring galleries,
+    profiles and fan content.
+  </p>
+</div>
+
+<div class="project-box">
+  <h3>StudyNest</h3>
+  <p>
+    Student productivity platform designed for study
+    planning and academic organization.
+  </p>
+</div>
+```
+
+  </div>
+
+  <!-- Interests -->
+
+  <div class="section-card">
+    <h2>Areas of Interest</h2>
+
+```
+<div class="skills-container">
+  <span>Frontend Development</span>
+  <span>UI Design</span>
+  <span>Web Development</span>
+  <span>Problem Solving</span>
+  <span>Software Engineering</span>
+</div>
+```
+
+  </div>
 
 </div>
