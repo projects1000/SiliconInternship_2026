@@ -68,6 +68,7 @@ const routes: Routes = [
     path: 'attendance',
     component: AttendanceComponent
   },
+  {
   path: 'member9',
   component: Member9Component
 },
