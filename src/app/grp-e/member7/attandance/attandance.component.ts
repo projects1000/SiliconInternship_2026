@@ -372,6 +372,7 @@ export class AttandanceComponent implements OnInit, OnDestroy {
   }
 
   exportToExcel() {
+    const todayStr = this.formatDateKey(new Date());
     const data = this.attendanceRecords.map((record) => {
       const row: any = {
         'Member ID': record.memberId,
@@ -379,7 +380,11 @@ export class AttandanceComponent implements OnInit, OnDestroy {
         'Team': record.teamName
       };
       this.dates.forEach((d) => {
-        row[d] = record.attendance[d] ? 'Present' : 'Absent';
+        if (d > todayStr) {
+          row[d] = '—';
+        } else {
+          row[d] = record.attendance[d] ? 'Present' : 'Absent';
+        }
       });
       return row;
     });
@@ -393,6 +398,7 @@ export class AttandanceComponent implements OnInit, OnDestroy {
   exportToPDF() {
     // Build table HTML from current data
     const allDates = this.dates;
+    const todayStr = this.formatDateKey(new Date());
 
     // Header row
     const headerCells = ['#', 'Member Name', 'Team', ...allDates.map(d => {
@@ -403,6 +409,9 @@ export class AttandanceComponent implements OnInit, OnDestroy {
     // Data rows
     const dataRows = this.filteredTableData.map((record, idx) => {
       const dateCells = allDates.map(d => {
+        if (d > todayStr) {
+          return `<td class="future">—</td>`;
+        }
         const isPresent = this.isRowChecked(record, d);
         return `<td class="${isPresent ? 'present' : 'absent'}">${isPresent ? '✔ P' : '✘ A'}</td>`;
       }).join('');
@@ -505,6 +514,11 @@ export class AttandanceComponent implements OnInit, OnDestroy {
             color: #991b1b;
             font-weight: 600;
           }
+          td.future {
+            background: #f3f4f6;
+            color: #9ca3af;
+            font-weight: 500;
+          }
           .summary {
             margin-top: 20px;
             font-size: 11px;
@@ -525,6 +539,7 @@ export class AttandanceComponent implements OnInit, OnDestroy {
           }
           .legend-box.p { background: #d1fae5; border: 1px solid #6ee7b7; }
           .legend-box.a { background: #fee2e2; border: 1px solid #fca5a5; }
+          .legend-box.f { background: #f3f4f6; border: 1px solid #d1d5db; }
           @media print {
             body { padding: 16px; }
             @page { margin: 12mm; size: A4 landscape; }
@@ -548,6 +563,7 @@ export class AttandanceComponent implements OnInit, OnDestroy {
         <div class="legend">
           <div class="legend-item"><div class="legend-box p"></div> Present (✔ P)</div>
           <div class="legend-item"><div class="legend-box a"></div> Absent (✘ A)</div>
+          <div class="legend-item"><div class="legend-box f"></div> Upcoming (—)</div>
         </div>
       </body>
       </html>
