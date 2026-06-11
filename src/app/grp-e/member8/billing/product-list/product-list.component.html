@@ -1,0 +1,28 @@
+<section class="panel">
+  <div class="panel-title">
+    <h2>Product List</h2>
+    <span *ngIf="!customerSaved">Save customer first</span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.name }}</td>
+        <td>₹{{ product.price }}</td>
+        <td>
+          <button type="button" [disabled]="!customerSaved" (click)="addProduct(product)">
+            Add
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+

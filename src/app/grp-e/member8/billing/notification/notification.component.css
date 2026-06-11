@@ -1,0 +1,44 @@
+.panel {
+  padding: 18px;
+  border: 1px solid #f0c8cd;
+  border-radius: 8px;
+  background: #fff;
+}
+
+h2 {
+  margin: 0 0 16px;
+  color: #b4232c;
+  font-size: 20px;
+}
+
+.empty {
+  padding: 13px;
+  border-radius: 7px;
+  color: #667085;
+  background: #f6f8fb;
+}
+
+.message {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 13px;
+  border: 1px solid #b7dfb6;
+  border-radius: 7px;
+  color: #207a35;
+  background: #eff9ed;
+  font-weight: 700;
+}
+
+.message span {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  background: #2f9e44;
+}
+

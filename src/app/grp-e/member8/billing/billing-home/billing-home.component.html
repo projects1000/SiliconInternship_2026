@@ -1,0 +1,51 @@
+<section class="billing-page">
+  <header class="billing-header">
+    <div>
+      <p class="eyebrow">Billing Section</p>
+      <h1>Billing Home</h1>
+      <p class="subtitle">Save the customer first, then add products and generate the bill.</p>
+    </div>
+
+    <button class="cart-button" type="button" (click)="openCart.emit()">
+      <span class="cart-icon">🛒</span>
+      Cart
+      <strong>{{ totals.totalItems }}</strong>
+    </button>
+  </header>
+
+  <section class="customer-summary" *ngIf="customer; else noCustomer">
+    <div>
+      <span>Customer Name</span>
+      <strong>{{ customer.name }}</strong>
+    </div>
+    <div>
+      <span>Mobile Number</span>
+      <strong>{{ customer.mobile }}</strong>
+    </div>
+    <div>
+      <span>Saved Address</span>
+      <strong>{{ customer.address }}</strong>
+    </div>
+  </section>
+
+  <ng-template #noCustomer>
+    <section class="customer-summary empty">
+      Please save customer details to unlock product billing.
+    </section>
+  </ng-template>
+
+  <div class="billing-grid">
+    <app-customer-details
+      [customer]="customer"
+      (customerSaved)="saveCustomer($event)">
+    </app-customer-details>
+
+    <app-product-list
+      [customerSaved]="!!customer"
+      (productAdded)="addProduct($event)">
+    </app-product-list>
+
+    <app-notification></app-notification>
+  </div>
+</section>
+

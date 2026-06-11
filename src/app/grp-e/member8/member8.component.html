@@ -17,3 +17,11 @@
 <div *ngIf="currentSection === 'attendance'">
   <app-attendance></app-attendance>
 </div>
+
+<div *ngIf="currentSection === 'billing'">
+  <app-billing-home (openCart)="showSection('cart')"></app-billing-home>
+</div>
+
+<div *ngIf="currentSection === 'cart'">
+  <app-billing-cart (backToBilling)="showSection('billing')"></app-billing-cart>
+</div>
