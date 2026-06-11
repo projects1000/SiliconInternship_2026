@@ -1,9 +1,31 @@
-<div class="member-page">
+<div class="profile-page-layout">
+  <header class="profile-header">
+    <button class="btn-back" (click)="goBackToGroup()">← Back to Group List</button>
+  </header>
 
-  <h1>Member 3</h1>
+  <main class="profile-content">
+    <div class="profile-card">
+      <img src="assets/titiksha.jpg" alt="Profile Picture" class="profile-avatar">
+      <div class="profile-details">
+        <h1>Titiksha Sahu</h1>
+        <p><strong>Intern ID:</strong> M3-2026</p>
+        <p><strong>Department:</strong> Development</p>
+      </div>
+    </div>
 
-  <button (click)="goBackToGroup()">
-    Go back to Group D
-  </button>
+    <div class="profile-actions">
+      <button class="action-btn" (click)="showAttendance = !showAttendance">
+        {{ showAttendance ? 'Hide Profile Details' : 'Show Profile Details' }}
+      </button>
 
+      <button class="nav-btn matrix-btn" (click)="openMatrix()">
+        View Attendance Matrix (Advanced)
+      </button>
+    </div>
+
+    <div *ngIf="showAttendance" class="details-section">
+      <h3>Additional Information</h3>
+      <p>Group D - Internship Program 2026</p>
+    </div>
+  </main>
 </div>

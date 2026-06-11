@@ -1,0 +1,68 @@
+<div class="tracker-wrapper">
+  
+  <header class="main-header">
+    <h2>📋 Interns Attendance Dashboard</h2>
+    <p>Silicon Internship 2026 - Group C Module</p>
+  </header>
+
+  <div class="control-panel">
+    <div class="date-picker-box">
+      <label for="attendanceDate">Select Date: </label>
+      <input 
+        type="date" 
+        id="attendanceDate" 
+        [(ngModel)]="selectedDate" 
+        (change)="onDateChange()" 
+        class="date-input">
+    </div>
+
+    <div class="group-tabs">
+      <button 
+        *ngFor="let g of groups" 
+        class="group-btn" 
+        [class.active]="selectedGroup === g"
+        (click)="onGroupChange(g)">
+        Team {{ g }}
+      </button>
+    </div>
+  </div>
+
+  <div class="attendance-card">
+    <div class="card-header">
+      <h3>Team {{ selectedGroup }} Members List</h3>
+      <span class="date-badge">📅 {{ selectedDate | date:'mediumDate' }}</span>
+    </div>
+    
+    <table class="attendance-table">
+      <thead>
+        <tr>
+          <th width="15%">Status</th>
+          <th width="85%">Intern Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let member of displayMembers">
+          <td>
+            <label class="checkbox-container">
+              <input type="checkbox" [(ngModel)]="member.isPresent">
+              <span class="checkmark"></span>
+            </label>
+          </td>
+          <td [class.marked-present]="member.isPresent">
+            {{ member.name }}
+            <span *ngIf="member.isPresent" class="present-text">(Present)</span>
+          </td>
+        </tr>
+        <tr *ngIf="displayMembers.length === 0">
+          <td colspan="2" class="empty-row">No members found.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="action-footer">
+      <button class="btn-clear" (click)="resetAttendance()">🗑️ Clear Data</button>
+      <button class="btn-save" (click)="saveAttendance()">💾 Save & Update</button>
+    </div>
+  </div>
+
+</div>

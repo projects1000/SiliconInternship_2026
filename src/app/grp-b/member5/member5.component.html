@@ -1,9 +1,48 @@
 <div class="member-page">
 
-  <h1>Member 5</h1>
+  <div class="profile-card">
 
-  <button (click)="goBackToGroup()">
-    Go back to Group B
-  </button>
+    <div class="image-section">
+      <img src="assets/images/omkar.jpg" alt="Omkar Sahoo" height="100px" width="50px">
+    </div>
+
+    <div class="content">
+
+      <span class="tag">From Silicon University</span>
+
+      <h1>Omkar Sahoo</h1>
+
+      <h2>Java Full Stack Developer</h2>
+
+      <p>
+        Passionate Full Stack Developer focused on creating modern web
+        applications using Java, Spring Boot, Angular and MySQL.
+        Dedicated to building innovative solutions and continuously
+        improving technical skills through real-world projects.
+      </p>
+
+      <div class="skills">
+        <span>c</span>
+        <span>Spring Boot</span>
+        <span>Angular</span>
+        <span>MySQL</span>
+        <span>Gitstatus</span>
+        <span>python</span>
+      </div>
+
+      <button
+      class="attendance-btn"
+      routerLink="/grp-b/member5/attendance">
+      📋 Attendance Management
+    </button>
+      
+
+      <button (click)="goBackToGroup()">
+        ← Back To Group B
+      </button>
+
+    </div>
+
+  </div>
 
 </div>

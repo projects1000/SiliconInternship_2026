@@ -1,33 +1,92 @@
-.member-page {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  font-family: Arial, sans-serif;
-  background: #f4f6f9;
+/* Container styling to match your profile layout */
+.profile-page-layout {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-  font-size: 32px;
-  margin-bottom: 20px;
-  color: #2a2a2a;
+.profile-header {
+  margin-bottom: 2rem;
 }
 
-button {
-  padding: 10px 18px;
-  border: none;
+/* Back Button Styling */
+.btn-back {
+  background: transparent;
+  border: 1px solid #4a90e2;
+  color: #4a90e2;
+  padding: 0.5rem 1rem;
   border-radius: 6px;
-
-  background: #2a5298;
-  color: white;
-
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.3s ease;
 }
 
-button:hover {
-  background: #1e3c72;
-  transform: scale(1.05);
+.btn-back:hover {
+  background: #4a90e2;
+  color: white;
+}
+
+/* Card Styling for Profile */
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #f0f0f0;
+}
+
+/* Action Button Container */
+.profile-actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+/* Standard Buttons */
+.action-btn {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Unique Styling for Matrix Button (The "Hero" button) */
+.matrix-btn {
+  background-color: #28a745; /* Distinct green color */
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+.matrix-btn:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+/* Details Section */
+.details-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-left: 5px solid #28a745;
+  border-radius: 4px;
 }

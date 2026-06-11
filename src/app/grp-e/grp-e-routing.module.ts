@@ -4,12 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { GrpEComponent } from './grp-e/grp-e.component';
 
 import { Member1Component } from './member1/member1.component';
+import { AttendanceComponent } from './member1/attendance/attendance.component';
 import { Member2Component } from './member2/member2.component';
 import { Member3Component } from './member3/member3.component';
 import { Member4Component } from './member4/member4.component';
 import { Member5Component } from './member5/member5.component';
 import { Member6Component } from './member6/member6.component';
 import { Member7Component } from './member7/member7.component';
+import { AttandanceComponent } from './member7/attandance/attandance.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 const routes: Routes = [
@@ -21,6 +23,10 @@ const routes: Routes = [
     path: 'member1',
     component: Member1Component
   },
+  {
+  path:'member1/attendance',
+  component: AttendanceComponent
+},
   {
     path: 'member2',
     component: Member2Component
@@ -45,6 +51,11 @@ const routes: Routes = [
     path: 'member7',
     component: Member7Component
   },
+  {
+    path: 'member7/attandance',
+    component: AttandanceComponent
+  },
+
   {
     path: 'member8',
     component: Member8Component

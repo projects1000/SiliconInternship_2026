@@ -1,33 +1,310 @@
-.member-page {
-  height: 100vh;
+/* ── Member 2 — Swagat Das — Profile Page ── */
+
+:host {
+  display: block;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.profile-wrapper {
+  min-height: 100vh;
+  background: #0b0f1a;
+  color: #e2eaff;
+  padding: 0 0 60px;
+}
+
+/* ── Hero ── */
+.hero-band {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 56px 48px 40px;
+  background: linear-gradient(135deg, #0f1422 0%, #111c35 100%);
+  border-bottom: 1px solid #1e2d50;
+}
+
+.avatar-ring {
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb, #06b6d4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 4px #0b0f1a, 0 0 0 6px #2563eb55;
+}
+
+.avatar-initials {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.grp-badge {
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #3b82f6;
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.name {
+  font-size: 38px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: #eef2ff;
+  letter-spacing: -0.5px;
+}
+
+.tagline {
+  font-size: 15px;
+  color: #7b90c4;
+  margin: 0;
+}
+
+/* ── Grid ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 36px 48px;
+}
+
+.card {
+  background: #0f1422;
+  border: 1px solid #1e2d50;
+  border-radius: 16px;
+  padding: 28px 28px 24px;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: #3b82f6;
+}
+
+.card h2 {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #3b82f6;
+  margin: 0 0 16px;
+}
+
+.card-icon {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  font-size: 18px;
+  color: #3b82f633;
+}
+
+/* About */
+.about-card p {
+  font-size: 14px;
+  line-height: 1.85;
+  color: #8fa3cc;
+  margin: 0;
+}
+
+/* Details */
+.detail-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 0;
+}
+
+.detail-list li {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-
-  font-family: Arial, sans-serif;
-  background: #f4f6f9;
+  font-size: 13px;
+  padding: 10px 0;
+  border-bottom: 1px solid #151e33;
 }
 
-h1 {
-  font-size: 32px;
-  margin-bottom: 20px;
-  color: #2a2a2a;
+.detail-list li:last-child {
+  border-bottom: none;
 }
 
-button {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 6px;
+.detail-label {
+  color: #4a6099;
+}
 
-  background: #2a5298;
-  color: white;
+.detail-val {
+  color: #c5d4f5;
+  font-weight: 500;
+}
 
+/* Chips */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  background: #141c30;
+  color: #6d8fd4;
+  border: 1px solid #1e2d50;
+  border-radius: 24px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.chip:hover {
+  background: #2563eb1a;
+  color: #93b4ff;
+  border-color: #2563eb;
+}
+
+.chip.alt {
+  background: #0a1520;
+  color: #22d3ee;
+  border-color: #0e2a36;
+}
+
+.chip.alt:hover {
+  background: #06b6d41a;
+  color: #67e8f9;
+  border-color: #06b6d4;
+}
+
+/* ── Connect bar ── */
+.connect-bar {
+  margin: 0 48px;
+  padding: 26px 32px;
+  background: #0f1422;
+  border: 1px solid #1e2d50;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.connect-label {
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #4a6099;
+  margin: 0;
+}
+
+.connect-links {
+  display: flex;
+  gap: 10px;
+}
+
+.connect-btn {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid #1e2d50;
+  color: #6d8fd4;
+  background: transparent;
+  transition: all 0.2s;
+}
+
+.connect-btn:hover {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
+/* ── Actions Section ── */
+.actions-section {
+  margin: 0 48px 20px;
+  display: flex;
+  gap: 16px;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 12px;
+  border: 1px solid transparent;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-button:hover {
-  background: #1e3c72;
-  transform: scale(1.05);
+.action-btn .icon {
+  font-size: 16px;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.secondary-btn {
+  background: #0f1422;
+  border-color: #1e2d50;
+  color: #6d8fd4;
+}
+
+.secondary-btn:hover {
+  background: #141c30;
+  border-color: #3b82f6;
+  color: #93b4ff;
+  transform: translateY(-2px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .hero-band {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 24px 32px;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+  }
+
+  .actions-section {
+    flex-direction: column;
+    margin: 0 20px 20px;
+  }
+
+  .action-btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .connect-bar {
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 20px;
+    text-align: center;
+  }
 }

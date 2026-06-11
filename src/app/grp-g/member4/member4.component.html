@@ -2,8 +2,55 @@
 
   <h1>Member 4</h1>
 
-  <button (click)="goBackToGroup()">
-    Go back to Group G
-  </button>
+  <div class="profile-card">
+
+    <div class="profile-image">
+      <img src="assets/amit_img.jpg" alt="Amit Kumar Yash">
+    </div>
+
+    <div class="profile-content">
+      <h2>Amit Kumar Yash</h2>
+      <p class="role">B.Tech CSE Student | Cloud & Full Stack Enthusiast</p>
+
+      <p class="about">
+        I am a Computer Science Engineering student at Silicon University, passionate about learning new technologies and creating impactful solutions. I enjoy working on challenging projects, exploring emerging trends in the tech industry, and continuously improving my technical and problem-solving skills.
+      </p>
+
+      <div class="skills">
+        <span>Java</span>
+        <span>React</span>
+        <span>AWS</span>
+        <span>Angular</span>
+        <span>Node.js</span>
+        <span>MySQL</span>
+        <span>MongoDB</span>
+        <span>Git</span>
+        <span>DevOps</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="member-buttons">
+    <button class="primary-button" (click)="goToAttendance()">
+      Open Attendance Panel
+    </button>
+    <button class="secondary-button" (click)="goBackToGroup()">
+      Go back to Group G
+    </button>
+    <a
+      href="https://github.com/amit-kr-yash"
+      target="_blank"
+      class="social-button github-button">
+      GitHub Profile
+    </a>
+
+    <a
+      href="https://www.linkedin.com/in/amit-kr-yash"
+      target="_blank"
+      class="social-button linkedin-button">
+      LinkedIn Profile
+    </a>
+  </div>
 
 </div>

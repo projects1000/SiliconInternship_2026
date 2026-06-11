@@ -1,33 +1,428 @@
+/* ── Page & Animated Background ── */
 .member-page {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 32px 20px;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
 
-  font-family: Arial, sans-serif;
-  background: #f4f6f9;
+  background: linear-gradient(
+    -45deg,
+    #09071d 0%,
+    #12195c 12%,
+    #5f37c8 26%,
+    #c53168 40%,
+    #c76800 54%,
+    #00b1c7 68%,
+    #4f8f00 82%,
+    #1b1b32 100%
+  );
+
+  /* larger moving area and quicker loop for more visible color changes */
+  background-size: 300% 300%;
+  animation: gradientShift 12s ease infinite;
+
+  position: relative;
+  overflow: hidden;
 }
 
-h1 {
-  font-size: 32px;
-  margin-bottom: 20px;
-  color: #2a2a2a;
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.7;
+  mix-blend-mode: screen;
 }
 
-button {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 6px;
-
-  background: #2a5298;
-  color: white;
-
-  cursor: pointer;
-  transition: 0.2s;
+.orb-1 {
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(circle, #d14f4f, transparent 70%);
+  top: -80px;
+  left: -60px;
 }
 
-button:hover {
-  background: #1e3c72;
-  transform: scale(1.05);
+.orb-2 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, #6237d8, transparent 70%);
+  bottom: -120px;
+  right: -80px;
+  animation-delay: -3s;
+}
+
+.orb-3 {
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, #064412, transparent 70%);
+  top: 40%;
+  left: 55%;
+  animation-delay: -5s;
+}
+
+/* Make the blurred orbs slowly cycle hue for extra color variety */
+.bg-orb {
+  will-change: filter;
+  animation: orbHue 14s linear infinite;
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(20px, -24px) scale(1.06); }
+}
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  25% {
+    background-position: 50% 100%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  75% {
+    background-position: 50% 0%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ── 3D Glass Profile Shell ── */
+.profile-shell {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  padding: 36px 32px 32px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.2),
+    0 24px 48px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+    0 1px 0 rgba(255, 255, 255, 0.15) inset;
+  transform: perspective(900px) rotateX(2deg);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.profile-shell:hover {
+  transform: perspective(900px) rotateX(0deg) translateY(-6px);
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.25),
+    0 32px 64px rgba(124, 77, 255, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+}
+
+/* ── Profile Header ── */
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.avatar-ring {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.avatar-wrap {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(135deg, #ff6b6b, #7c4dff, #00e5ff, #38ef7d);
+  box-shadow:
+    0 0 30px rgba(124, 77, 255, 0.5),
+    0 8px 24px rgba(0, 0, 0, 0.3);
+  animation: floatOrb 8s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(20px, -24px) scale(1.06); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 30px rgba(124, 77, 255, 0.5), 0 8px 24px rgba(0, 0, 0, 0.3); }
+  50%       { box-shadow: 0 0 48px rgba(0, 229, 255, 0.55), 0 12px 32px rgba(0, 0, 0, 0.35); }
+}
+
+@keyframes orbHue {
+  0%   { filter: hue-rotate(0deg) saturate(1); }
+  25%  { filter: hue-rotate(90deg) saturate(1.05); }
+  50%  { filter: hue-rotate(180deg) saturate(1.08); }
+  75%  { filter: hue-rotate(270deg) saturate(1.03); }
+  100% { filter: hue-rotate(360deg) saturate(1); }
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #1a1a4e, #302b63);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgba(255, 255, 255, 0.15);
+}
+
+.avatar-initials {
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff, #b388ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
+.status-dot {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #38ef7d;
+  border: 3px solid rgba(20, 20, 50, 0.9);
+  box-shadow: 0 0 12px rgba(56, 239, 125, 0.7);
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: linear-gradient(135deg, rgba(124, 77, 255, 0.4), rgba(0, 229, 255, 0.3));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #e0e0ff;
+  margin-bottom: 10px;
+}
+
+.identity h1 {
+  margin: 0 0 6px;
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(90deg, #fff 0%, #b388ff 50%, #00e5ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 500;
+}
+
+/* ── Glass Panels ── */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.glass-panel:hover {
+  transform: translateX(4px);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.panel-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #b388ff;
+  margin-bottom: 10px;
+}
+
+.panel-label mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.bio-text {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+/* ── Skill Badges ── */
+.skill-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-badge {
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-badge:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.skill-angular { background: linear-gradient(135deg, rgba(221, 0, 49, 0.35), rgba(255, 107, 107, 0.25)); color: #ff8a80; }
+.skill-ts      { background: linear-gradient(135deg, rgba(0, 122, 204, 0.35), rgba(0, 229, 255, 0.2)); color: #80d8ff; }
+.skill-ui      { background: linear-gradient(135deg, rgba(124, 77, 255, 0.35), rgba(179, 136, 255, 0.2)); color: #ce93d8; }
+.skill-css     { background: linear-gradient(135deg, rgba(255, 152, 0, 0.35), rgba(255, 210, 0, 0.2)); color: #ffd54f; }
+.skill-git     { background: linear-gradient(135deg, rgba(56, 239, 125, 0.3), rgba(0, 200, 83, 0.2)); color: #69f0ae; }
+
+/* ── Contact Grid ── */
+.contact-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.contact-item mat-icon {
+  font-size: 22px;
+  width: 22px;
+  height: 22px;
+  color: #00e5ff;
+  flex-shrink: 0;
+}
+
+.contact-label {
+  display: block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 600;
+}
+
+.contact-value {
+  display: block;
+  font-size: 0.88rem;
+  color: rgba(8, 15, 31, 0.88);
+  font-weight: 600;
+}
+
+/* ── Action Buttons ── */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.attendance-btn {
+  background: linear-gradient(135deg, #7c4dff, #00e5ff) !important;
+  color: #fff !important;
+  border-radius: 14px !important;
+  padding: 10px 24px !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em;
+  border: none !important;
+  box-shadow:
+    0 4px 16px rgba(124, 77, 255, 0.4),
+    0 0 24px rgba(0, 229, 255, 0.2) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.attendance-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 8px 28px rgba(124, 77, 255, 0.55),
+    0 0 36px rgba(0, 229, 255, 0.35) !important;
+}
+
+.attendance-btn mat-icon {
+  margin-right: 6px;
+}
+
+.back-btn {
+  border-radius: 14px !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  font-weight: 600 !important;
+  transition: transform 0.25s ease, background 0.25s ease !important;
+}
+
+.back-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.back-btn mat-icon {
+  margin-right: 4px;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 560px) {
+  .profile-shell {
+    padding: 28px 20px 24px;
+    border-radius: 22px;
+    transform: none;
+  }
+
+  .profile-shell:hover {
+    transform: translateY(-4px);
+  }
+
+  .identity h1 {
+    font-size: 1.7rem;
+  }
+
+  .avatar-wrap {
+    width: 100px;
+    height: 100px;
+  }
+
+  .avatar-initials {
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .profile-shell {
+    max-width: 560px;
+    padding: 40px 36px 34px;
+  }
 }

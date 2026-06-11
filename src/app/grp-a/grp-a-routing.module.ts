@@ -28,6 +28,10 @@ const routes: Routes = [
     component: Member2Component
   },
   {
+    path: 'member2/attendance',
+    loadChildren: () => import('./member2/attendance/attendance.module').then(m => m.AttendanceModule)
+  },
+  {
     path: 'member3',
     component: Member3Component
   },
@@ -43,9 +47,17 @@ const routes: Routes = [
     path: 'member6',
     component: Member6Component
   },
+  { 
+    path: 'member6/attendance', 
+    loadChildren: () => import('./satyabrat/att-proj/att-proj.module').then(m => m.AttProjModule) 
+  },
   {
     path: 'member7',
     component: Member7Component
+  },
+  {
+    path: 'member7/attendance',
+    loadChildren: () => import('./member7/attendance/attendance.module').then(m => m.AttendanceModule)
   },
   {
     path: 'member8',

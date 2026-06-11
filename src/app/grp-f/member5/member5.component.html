@@ -1,9 +1,38 @@
 <div class="member-page">
+  <div class="profile-card">
+    <h1>Shrestha Mohanty</h1>
 
-  <h1>Member 5</h1>
+    <img src="https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-female-user-profile-vector-illustration-isolated-background-women-profile-sign-business-concept_157943-38866.jpg" class="profile-image" alt="Profile">
 
-  <button (click)="goBackToGroup()">
-    Go back to Group F
-  </button>
+    <div class="section-title">About Me</div>
+    <p>
+      Passionate Computer Science student interested in Full Stack Development,
+      Angular, Java and modern web technologies.
+    </p>
 
+    <div class="section-title">Skills</div>
+
+    <div class="skills">
+      <span class="skill-chip">HTML</span>
+      <span class="skill-chip">CSS</span>
+      <span class="skill-chip">JavaScript</span>
+      <span class="skill-chip">Angular</span>
+      <span class="skill-chip">Java</span>
+      <span class="skill-chip">Git</span>
+    </div>
+
+    <div class="section-title">Education</div>
+
+    <div class="education-card">
+      B.Tech in Computer Science Engineering
+    </div>
+
+    <button (click)="goBackToGroup()">Back to Group</button>
+  </div>
 </div>
+<button
+  routerLink="/grp-f/member5/attendance"
+  class="attendance-btn"
+>
+  Attendance Management System
+</button>
