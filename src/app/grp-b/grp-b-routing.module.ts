@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
+import { ChatWindowComponent } from './member5/chat-window/chat-window.component';
 import { GrpBComponent } from './grp-b/grp-b.component';
 import { AttendanceComponent as Member3AttendanceComponent } from './member3/attendance/attendance.component';
 import { Member1Component } from './member1/member1.component';
@@ -63,6 +63,10 @@ const routes: Routes = [
   {
     path: 'member5/attendance',
     component: Member5AttendanceComponent,
+  },
+  {
+    path: 'member5/chat-window',
+    component: ChatWindowComponent,
   },
   {
     path: 'member6',

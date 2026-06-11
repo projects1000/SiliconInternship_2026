@@ -32,6 +32,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CdkTreeModule } from '@angular/cdk/tree';
+import { ModiComponent } from './member5/modi/modi.component';
+import { MeloniComponent } from './member5/meloni/meloni.component';
+import { ChatWindowComponent } from './member5/chat-window/chat-window.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,10 @@ import { CdkTreeModule } from '@angular/cdk/tree';
     Member6Component,
     Member5AttendanceComponent,
     Member1AttendanceComponent,
-    Member2AttendanceComponent
+    Member2AttendanceComponent,
+    ModiComponent,
+    MeloniComponent,
+    ChatWindowComponent
   ],
   imports: [
     CommonModule,

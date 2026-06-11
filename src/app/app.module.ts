@@ -13,12 +13,13 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     NavBarComponent,
-    HomeComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
