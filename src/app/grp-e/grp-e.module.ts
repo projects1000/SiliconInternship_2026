@@ -37,6 +37,17 @@ import { ProductListComponent } from './member8/billing/product-list/product-lis
 import { NotificationComponent } from './member8/billing/notification/notification.component';
 import { BillingCartComponent } from './member8/billing/billing-cart/billing-cart.component';
 
+import { NitroBillingComponent } from './member7/nitro-billing/nitro-billing.component';
+import { ProductListComponent as Member7ProductListComponent } from './member7/nitro-billing/product-list/product-list.component';
+import { CustomerDetailsComponent as Member7CustomerDetailsComponent } from './member7/nitro-billing/customer-details/customer-details.component';
+import { BillDetailsComponent as Member7BillDetailsComponent } from './member7/nitro-billing/bill-details/bill-details.component';
+import { NotificationComponent as Member7NotificationComponent } from './member7/nitro-billing/notification/notification.component';
+
+import { ChatComponent as Member7ChatComponent } from './member7/chat/chat.component';
+import { UserAComponent as Member7UserAComponent } from './member7/chat/user-a/user-a.component';
+import { UserBComponent as Member7UserBComponent } from './member7/chat/user-b/user-b.component';
+import { ChatWindowComponent as Member7ChatWindowComponent } from './member7/chat/chat-window/chat-window.component';
+
 
 
 
@@ -67,10 +78,17 @@ import { BillingCartComponent } from './member8/billing/billing-cart/billing-car
     ProductListComponent,
     NotificationComponent,
     BillingCartComponent,
-  
 
+    NitroBillingComponent,
+    Member7ProductListComponent,
+    Member7CustomerDetailsComponent,
+    Member7BillDetailsComponent,
+    Member7NotificationComponent,
 
-
+    Member7ChatComponent,
+    Member7UserAComponent,
+    Member7UserBComponent,
+    Member7ChatWindowComponent,
   ],
 
   imports: [
