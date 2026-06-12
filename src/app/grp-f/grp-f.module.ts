@@ -25,6 +25,12 @@ import { Member10Component } from './member10/member10.component';
 import { GrpFRoutingModule } from './grp-f-routing.module';
 import { AttendanceComponent } from './member5/attendance/attendance.component';
 import { Member10AttendanceDashboardComponent } from './member10/member10-attendance-dashboard/member10-attendance-dashboard.component';
+import { BillingComponent } from './member10/billing/billing.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule }   from '@angular/material/tooltip';
+import { MatRippleModule }    from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -40,7 +46,8 @@ import { Member10AttendanceDashboardComponent } from './member10/member10-attend
     Member9Component,
     Member10Component,
     AttendanceComponent,
-    Member10AttendanceDashboardComponent
+    Member10AttendanceDashboardComponent,
+    BillingComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +61,12 @@ import { Member10AttendanceDashboardComponent } from './member10/member10-attend
     MatTreeModule,
     MatSidenavModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSnackBarModule,
+    MatTooltipModule,
+    MatRippleModule
   ]
 })
 export class GrpFModule { }
