@@ -1,42 +1,31 @@
-<div class="back-btn-container">
-  <a routerLink="/grp-d" class="back-btn">
-    <span class="arrow">←</span> Back to Group D Home
-  </a>
-</div>
+<div class="profile-page-layout">
+  <header class="profile-header">
+    <button class="btn-back" (click)="goBackToGroup()">← Back to Group List</button>
+  </header>
 
-<div class="profile-container">
-  <div class="profile-card">
-    
-    <div class="image-container">
-      <img src="assets/titiksha.jpg" alt="Titiksha Sahu" class="profile-img">
-    </div>
-
-    <div class="profile-details">
-      <h1 class="profile-name">Titiksha Sahu</h1>
-      <h2 class="profile-title">Java Full Stack Developer | Group D Member 3</h2>
-      
-      <div class="status-badge">
-        <span class="badge-dot"></span> Available for Opportunities
-      </div>
-
-      <p class="profile-bio">
-        Passionate about Java, Spring Boot, Angular and Data Structures. Interested in building scalable applications, learning modern web technologies, and continuously improving problem-solving skills.
-      </p>
-
-      <div class="skills-container">
-        <span class="skill-tag java">Java</span>
-        <span class="skill-tag spring">Spring Boot</span>
-        <span class="skill-tag angular">Angular</span>
-        <span class="skill-tag mysql">MySQL</span>
-        <span class="skill-tag git">Git</span>
-        <span class="skill-tag dsa">DSA</span>
-      </div>
-
-      <div class="links-container">
-        <a href="https://github.com" target="_blank" class="social-btn github-btn">GitHub</a>
-        <a href="https://linkedin.com" target="_blank" class="social-btn linkedin-btn">LinkedIn</a>
+  <main class="profile-content">
+    <div class="profile-card">
+      <img src="assets/titiksha.jpg" alt="Profile Picture" class="profile-avatar">
+      <div class="profile-details">
+        <h1>Titiksha Sahu</h1>
+        <p><strong>Intern ID:</strong> M3-2026</p>
+        <p><strong>Department:</strong> Development</p>
       </div>
     </div>
 
-  </div>
+    <div class="profile-actions">
+      <button class="action-btn" (click)="showAttendance = !showAttendance">
+        {{ showAttendance ? 'Hide Profile Details' : 'Show Profile Details' }}
+      </button>
+
+      <button class="nav-btn matrix-btn" (click)="openMatrix()">
+        View Attendance Matrix (Advanced)
+      </button>
+    </div>
+
+    <div *ngIf="showAttendance" class="details-section">
+      <h3>Additional Information</h3>
+      <p>Group D - Internship Program 2026</p>
+    </div>
+  </main>
 </div>

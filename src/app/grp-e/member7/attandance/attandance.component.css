@@ -1,0 +1,1126 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght=0,400..900;1,400..900&display=swap');
+
+:host {
+  display: block;
+  background-color: #121212;
+  min-height: 100vh;
+  font-family: 'Outfit', sans-serif;
+  color: #FAF6F0;
+}
+
+/* Master Page Styling */
+.swayam-page-container {
+  --ink: #1a1918;
+  --cream: #FAF6F0;
+  --yellow: #F3B323;
+  --dark-bg: #121212;
+  --glass-card: rgba(26, 25, 24, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --emerald: #10B981;
+  --red: #EF4444;
+
+  min-height: 100vh;
+  background: radial-gradient(circle at 10% 20%, rgba(30, 30, 30, 1) 0%, rgba(18, 18, 18, 1) 90%);
+  color: var(--cream);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Dynamic Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(243, 179, 35, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--yellow);
+}
+
+/* Glassmorphic Header */
+.swayam-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(26, 25, 24, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 30px;
+  padding: 16px 36px;
+  margin-bottom: 24px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+.brand-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-group h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  margin: 0;
+  color: var(--cream);
+}
+
+.logo-group h2 span {
+  font-weight: 300;
+  font-style: italic;
+  color: var(--yellow);
+  margin-left: 4px;
+}
+
+.logo-group .asterisk {
+  font-size: 24px;
+  color: var(--yellow);
+  animation: rotateAsterisk 12s linear infinite;
+  display: inline-block;
+  line-height: 1;
+}
+
+.edition-sub {
+  font-family: monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: rgba(250, 246, 240, 0.4);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+@keyframes rotateAsterisk {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Header Buttons styling */
+.back-btn-portfolio {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: var(--cream) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 20px !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.05em !important;
+  padding: 0 18px !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+.back-btn-portfolio:hover {
+  background: var(--cream) !important;
+  color: var(--ink) !important;
+  transform: translateY(-2px);
+}
+
+.action-btn {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: var(--cream) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 20px !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.05em !important;
+  padding: 0 16px !important;
+  transition: all 0.3s ease !important;
+}
+
+.excel-btn:hover {
+  background: rgba(16, 185, 129, 0.15) !important;
+  border-color: var(--emerald) !important;
+  color: var(--emerald) !important;
+  transform: translateY(-2px);
+}
+
+.pdf-btn:hover {
+  background: rgba(239, 68, 68, 0.15) !important;
+  border-color: var(--red) !important;
+  color: var(--red) !important;
+  transform: translateY(-2px);
+}
+
+.submit-btn {
+  background: var(--yellow) !important;
+  color: var(--ink) !important;
+  font-weight: 800 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.05em !important;
+  border-radius: 20px !important;
+  box-shadow: 0 8px 20px rgba(243, 179, 35, 0.2) !important;
+  transition: all 0.3s ease !important;
+}
+
+.submit-btn:hover:not([disabled]) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(243, 179, 35, 0.4) !important;
+}
+
+.lock-toggle-btn {
+  border-radius: 20px !important;
+  font-weight: 800 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.05em !important;
+  transition: all 0.3s ease !important;
+}
+
+.lock-toggle-btn:hover {
+  transform: translateY(-2px);
+}
+
+.status-badge {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+}
+
+.status-badge.editable {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--emerald);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.status-badge.locked {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--red);
+  border-color: rgba(239, 68, 68, 0.2);
+  animation: pulseLocked 2s infinite ease-in-out;
+}
+
+@keyframes pulseLocked {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Sidenav Container Workspace */
+.attendance-workspace {
+  background: transparent !important;
+  flex: 1;
+  border-radius: 30px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  min-height: calc(100vh - 170px);
+}
+
+/* Sidenav (Left Panel) */
+.side-control-panel {
+  width: 350px;
+  background: rgba(20, 20, 20, 0.9) !important;
+  border-right: 1px solid var(--glass-border) !important;
+}
+
+.sidebar-wrapper {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+/* Control Cards in Sidebar */
+.control-card {
+  background: var(--glass-card);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.02);
+}
+
+.control-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--yellow);
+  margin-top: 0;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.control-card h3 mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+/* Inputs & Selections styling */
+.glass-input,
+.glass-select {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 10px 14px;
+  color: var(--cream);
+  font-size: 12px;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.glass-input:focus,
+.glass-select:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--yellow);
+  box-shadow: 0 0 12px rgba(243, 179, 35, 0.15);
+}
+
+.glass-select option {
+  background: #1e1e1e;
+  color: var(--cream);
+}
+
+.input-glow-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.clear-search {
+  position: absolute;
+  right: 10px;
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  color: rgba(250, 246, 240, 0.4);
+  transition: color 0.3s ease;
+}
+
+.clear-search:hover {
+  color: var(--yellow);
+}
+
+/* Material Calendar Styling Override */
+.calendar-glow-container {
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::ng-deep .mat-calendar {
+  background: transparent !important;
+  font-family: 'Outfit', sans-serif !important;
+  color: #FAF6F0 !important;
+}
+
+/* Month/Year period button heading */
+::ng-deep .mat-calendar-period-button,
+::ng-deep .mat-calendar-period-button span,
+::ng-deep .mat-mdc-button.mat-calendar-period-button,
+::ng-deep button.mat-calendar-period-button {
+  color: #FAF6F0 !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+}
+
+/* Navigation prev/next arrows */
+::ng-deep .mat-calendar-previous-button,
+::ng-deep .mat-calendar-next-button,
+::ng-deep .mat-calendar-previous-button mat-icon,
+::ng-deep .mat-calendar-next-button mat-icon {
+  color: #FAF6F0 !important;
+}
+
+/* Calendar header row (the bar with month/year + arrows) */
+::ng-deep .mat-calendar-header {
+  color: #FAF6F0 !important;
+  background: transparent !important;
+}
+
+/* Day-of-week header labels (Mon, Tue, …) */
+::ng-deep .mat-calendar-table-header th,
+::ng-deep .mat-calendar-table-header-divider,
+::ng-deep .mat-calendar-body-label,
+::ng-deep .mat-calendar-table th {
+  color: rgba(250, 246, 240, 0.6) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+}
+
+/* Date numbers inside cells */
+::ng-deep .mat-calendar-body-cell-content,
+::ng-deep .mat-calendar-body-cell span {
+  color: #FAF6F0 !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease;
+}
+
+/* Hover state */
+::ng-deep .mat-calendar-body-cell-content:hover {
+  background: rgba(243, 179, 35, 0.25) !important;
+  color: #F3B323 !important;
+}
+
+/* Selected date */
+::ng-deep .mat-calendar-body-selected {
+  background-color: #F3B323 !important;
+  color: #1a1918 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 0 14px rgba(243, 179, 35, 0.5) !important;
+}
+
+/* Today's date ring */
+::ng-deep .mat-calendar-body-today:not(.mat-calendar-body-selected) {
+  border-color: #F3B323 !important;
+}
+
+/* Arrow SVG fill */
+::ng-deep .mat-calendar-arrow {
+  fill: #FAF6F0 !important;
+}
+
+/* Disabled dates */
+::ng-deep .mat-calendar-body-disabled .mat-calendar-body-cell-content {
+  color: rgba(250, 246, 240, 0.25) !important;
+}
+
+.date-readout {
+  margin-top: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.glow-text-yellow {
+  color: var(--yellow);
+  text-shadow: 0 0 10px rgba(243, 179, 35, 0.3);
+}
+
+/* CRUD Form Widget */
+.crud-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.add-member-btn {
+  background: var(--cream) !important;
+  color: var(--ink) !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.05em !important;
+  border-radius: 10px !important;
+  transition: all 0.3s ease !important;
+}
+
+.add-member-btn:hover:not([disabled]) {
+  background: var(--yellow) !important;
+  color: var(--ink) !important;
+}
+
+/* Teams Directory Tree */
+.widget-tree {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 280px;
+}
+
+.tree-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.tree-header h3 {
+  margin-bottom: 0;
+}
+
+.reset-filter-btn {
+  background: transparent;
+  border: none;
+  color: var(--yellow);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.reset-filter-btn:hover {
+  background: rgba(243, 179, 35, 0.1);
+}
+
+.tree-scroll-container {
+  flex: 1;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.glass-tree {
+  background: transparent !important;
+}
+
+.node-spacer-btn {
+  width: 24px !important;
+}
+
+.node-toggle-btn {
+  color: rgba(250, 246, 240, 0.5) !important;
+}
+
+.tree-leaf-item,
+.tree-parent-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
+  width: 100%;
+}
+
+.tree-leaf-item {
+  color: rgba(250, 246, 240, 0.85);
+}
+
+.tree-leaf-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--cream);
+}
+
+.tree-leaf-item.active-leaf {
+  background: rgba(243, 179, 35, 0.1) !important;
+  color: var(--yellow) !important;
+  border: 1px solid rgba(243, 179, 35, 0.2);
+}
+
+.tree-parent-item {
+  color: var(--cream);
+}
+
+.tree-parent-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tree-parent-item.active-parent {
+  background: rgba(243, 179, 35, 0.15) !important;
+  color: var(--yellow) !important;
+  border: 1px solid rgba(243, 179, 35, 0.3);
+}
+
+.leaf-avatar {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  color: rgba(250, 246, 240, 0.4);
+}
+
+.parent-group-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: var(--yellow);
+}
+
+.nested-subtree-outlet {
+  padding-left: 20px;
+}
+
+.tree-node-hidden {
+  display: none;
+}
+
+/* Right Side Content Panel */
+.main-matrix-content {
+  background: rgba(14, 14, 14, 0.95) !important;
+  color: #FAF6F0 !important;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Force all text inside mat-sidenav-content to be cream */
+::ng-deep mat-sidenav-content {
+  color: #FAF6F0 !important;
+}
+
+/* Force all text inside mat-sidenav to be cream */
+::ng-deep mat-sidenav {
+  color: #FAF6F0 !important;
+}
+
+/* Override Material's mat-table default text colors */
+::ng-deep .glass-matrix-table .mat-mdc-header-cell,
+::ng-deep .glass-matrix-table .mat-header-cell {
+  color: rgba(250, 246, 240, 0.85) !important;
+}
+
+::ng-deep .glass-matrix-table .mat-mdc-cell,
+::ng-deep .glass-matrix-table .mat-cell {
+  color: #FAF6F0 !important;
+}
+
+.matrix-card {
+  background: var(--glass-card);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+  color: #FAF6F0 !important;
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.card-header.border-bottom {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.header-icon {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--cream);
+}
+
+.header-icon.text-yellow {
+  color: var(--yellow);
+  box-shadow: 0 0 15px rgba(243, 179, 35, 0.1);
+}
+
+.card-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  margin: 0 0 4px;
+  color: var(--cream) !important;
+}
+
+.card-header .subtitle {
+  font-size: 11px;
+  color: rgba(250, 246, 240, 0.55) !important;
+  margin: 0;
+}
+
+/* History Lookup Section */
+.lookup-filters {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.filter-field label {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(250, 246, 240, 0.6);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.audit-results-block {
+  margin-top: 18px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.no-logs {
+  font-size: 12px;
+  color: rgba(250, 246, 240, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.logs-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.log-pill {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  color: var(--emerald);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.green-tick-small {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  color: var(--emerald);
+}
+
+/* Attendance Table Matrix Card */
+.table-matrix-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.table-scroll-container {
+  overflow-x: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.glass-matrix-table {
+  width: 100%;
+  background: transparent !important;
+  border-collapse: collapse;
+}
+
+/* Header Styles */
+.header-cell {
+  background: rgba(20, 20, 20, 0.85) !important;
+  color: rgba(250, 246, 240, 0.7) !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+  padding: 16px 20px !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.action-hdr {
+  text-align: center;
+  width: 70px;
+}
+
+.member-hdr {
+  min-width: 220px;
+}
+
+.date-hdr {
+  text-align: center;
+  min-width: 110px;
+}
+
+.date-header-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.day-label-txt {
+  font-size: 9px;
+  font-weight: 600;
+  color: rgba(250, 246, 240, 0.6) !important;
+}
+
+.date-label-txt {
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--yellow) !important;
+}
+
+.col-type-tag {
+  font-size: 8px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-top: 4px;
+}
+
+.editable-tag {
+  background: rgba(243, 179, 35, 0.1);
+  color: var(--yellow);
+}
+
+.readonly-tag {
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(250, 246, 240, 0.35);
+}
+
+/* Highlight Selected/Target Column */
+.highlighted-column {
+  background: rgba(243, 179, 35, 0.02) !important;
+  border-left: 1px solid rgba(243, 179, 35, 0.08);
+  border-right: 1px solid rgba(243, 179, 35, 0.08);
+}
+
+th.highlighted-column {
+  background: rgba(243, 179, 35, 0.08) !important;
+  border-bottom: 2px solid var(--yellow) !important;
+}
+
+/* Cell Styles */
+.cell {
+  color: var(--cream) !important;
+  font-size: 13px !important;
+  padding: 14px 20px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+.action-cell {
+  text-align: center;
+}
+
+.delete-member-btn {
+  color: rgba(250, 246, 240, 0.4) !important;
+  transition: all 0.2s ease !important;
+}
+
+.delete-member-btn:hover:not([disabled]) {
+  color: var(--red) !important;
+  background: rgba(239, 68, 68, 0.08) !important;
+}
+
+.member-identity-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--cream) !important;
+}
+
+.member-name-text {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--cream) !important;
+}
+
+.member-team-badge {
+  font-size: 9px;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 2px 8px;
+  border-radius: 6px;
+  width: fit-content;
+  color: rgba(250, 246, 240, 0.6) !important;
+}
+
+.date-cell {
+  text-align: center;
+}
+
+.cell-action-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+}
+
+/* ─── Checkbox: full MDC + legacy override ─────────────────────────── */
+
+/* MDC CSS variables — work on Angular Material 15, 16, 17+ */
+::ng-deep .custom-mat-checkbox {
+  --mdc-checkbox-unselected-icon-color: rgba(250, 246, 240, 0.7);
+  --mdc-checkbox-unselected-hover-icon-color: #FAF6F0;
+  --mdc-checkbox-unselected-focus-icon-color: #FAF6F0;
+  --mdc-checkbox-unselected-pressed-icon-color: #FAF6F0;
+  --mdc-checkbox-selected-icon-color: #10B981;
+  --mdc-checkbox-selected-hover-icon-color: #10B981;
+  --mdc-checkbox-selected-focus-icon-color: #10B981;
+  --mdc-checkbox-selected-pressed-icon-color: #10B981;
+  --mdc-checkbox-selected-checkmark-color: #ffffff;
+  --mdc-checkbox-selected-focus-state-layer-color: #10B981;
+  --mdc-checkbox-selected-hover-state-layer-color: #10B981;
+  --mdc-checkbox-selected-pressed-state-layer-color: #10B981;
+  --mdc-checkbox-unselected-hover-state-layer-color: rgba(250, 246, 240, 0.1);
+  --mat-checkbox-label-text-color: #FAF6F0;
+}
+
+/* MDC: unchecked box border */
+::ng-deep .custom-mat-checkbox .mdc-checkbox__background {
+  border-color: rgba(250, 246, 240, 0.6) !important;
+  border-width: 2px !important;
+  border-radius: 4px !important;
+}
+
+/* MDC: checked box fill */
+::ng-deep .custom-mat-checkbox .mdc-checkbox--selected .mdc-checkbox__background,
+::ng-deep .custom-mat-checkbox.mat-mdc-checkbox-checked .mdc-checkbox__background {
+  background-color: #10B981 !important;
+  border-color: #10B981 !important;
+}
+
+/* MDC: checkmark stroke */
+::ng-deep .custom-mat-checkbox .mdc-checkbox__checkmark {
+  color: #ffffff !important;
+}
+::ng-deep .custom-mat-checkbox .mdc-checkbox__checkmark-path {
+  stroke: #ffffff !important;
+}
+
+/* Legacy (Angular Material < 15) fallback */
+::ng-deep .custom-mat-checkbox .mat-checkbox-frame {
+  border-color: rgba(250, 246, 240, 0.6) !important;
+  border-width: 2px !important;
+  border-radius: 4px !important;
+}
+::ng-deep .custom-mat-checkbox.mat-checkbox-checked .mat-checkbox-background {
+  background-color: #10B981 !important;
+}
+::ng-deep .custom-mat-checkbox .mat-checkbox-checkmark-path {
+  stroke: #ffffff !important;
+}
+
+/* Rule 3: Green Tick representation of checked attendance */
+.attendance-present-tick {
+  color: var(--emerald);
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  animation: tickPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes tickPop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Table Hover Row */
+::ng-deep .mat-row:hover {
+  background: rgba(255, 255, 255, 0.015) !important;
+}
+
+/* Empty State Overlay */
+.empty-state-overlay {
+  padding: 60px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: rgba(250, 246, 240, 0.4);
+}
+
+.empty-state-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+
+.empty-state-overlay h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  margin: 0 0 6px;
+  color: var(--cream);
+}
+
+.empty-state-overlay p {
+  font-size: 12px;
+  margin: 0;
+}
+
+/* ----------------------------------------------------
+   PRINT MEDIA STYLESHEET
+   Supports high-quality export to PDF via browser printing
+   ---------------------------------------------------- */
+@media print {
+
+  body,
+  :host {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .swayam-page-container {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+  }
+
+  /* Hide headers, footers, buttons, and sidebar */
+  .swayam-header,
+  .side-control-panel,
+  .audit-lookup-card,
+  .delete-member-btn,
+  .col-type-tag,
+  .reset-filter-btn {
+    display: none !important;
+  }
+
+  /* Make Main content full width */
+  .attendance-workspace {
+    border: none !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    overflow: visible !important;
+  }
+
+  mat-sidenav-container {
+    background: #ffffff !important;
+  }
+
+  .main-matrix-content {
+    background: #ffffff !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  .table-matrix-card {
+    border: none !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .card-header {
+    border-bottom: 2px solid #333333 !important;
+    color: #000000 !important;
+    margin-bottom: 20px !important;
+  }
+
+  .card-header h3 {
+    font-size: 20px !important;
+    color: #000000 !important;
+  }
+
+  .card-header .subtitle {
+    color: #666666 !important;
+  }
+
+  .header-icon {
+    border-color: #333333 !important;
+    color: #000000 !important;
+  }
+
+  /* Matrix Table Styling for Print */
+  .table-scroll-container {
+    border: none !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+  }
+
+  .glass-matrix-table {
+    border: 1px solid #333333 !important;
+  }
+
+  .header-cell {
+    background: #f0f0f0 !important;
+    color: #000000 !important;
+    border-bottom: 1px solid #333333 !important;
+    padding: 10px !important;
+  }
+
+  .cell {
+    color: #000000 !important;
+    border-bottom: 1px solid #cccccc !important;
+    padding: 10px !important;
+  }
+
+  .member-name-text {
+    color: #000000 !important;
+  }
+
+  .member-team-badge {
+    background: #f0f0f0 !important;
+    border: 1px solid #cccccc !important;
+    color: #333333 !important;
+  }
+
+  .highlighted-column {
+    background: transparent !important;
+    border: none !important;
+  }
+
+  th.highlighted-column {
+    border-bottom: 1px solid #333333 !important;
+  }
+
+  /* Render ticked checkboxes clearly in black & white */
+  ::ng-deep .custom-mat-checkbox .mat-checkbox-frame {
+    border-color: #000000 !important;
+  }
+
+  ::ng-deep .custom-mat-checkbox.mat-checkbox-checked .mat-checkbox-background {
+    background-color: #000000 !important;
+  }
+
+  .attendance-present-tick {
+    color: #000000 !important;
+  }
+}

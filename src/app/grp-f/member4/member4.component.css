@@ -47,6 +47,7 @@ body{
     );
 
     -webkit-background-clip:text;
+    background-clip:text;
     -webkit-text-fill-color:transparent;
 }
 
@@ -113,6 +114,7 @@ body{
     );
 
     -webkit-background-clip:text;
+    background-clip:text;
     -webkit-text-fill-color:transparent;
 }
 
@@ -130,17 +132,20 @@ body{
     max-width:650px;
 }
 
-.btn-group{
-    display:flex;
-    gap:15px;
-    margin-top:35px;
+.btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 35px;
+    flex-wrap: wrap;   /* allows buttons to move to next line */
+    align-items: stretch;
 }
 
 .primary-btn{
     border:none;
-    padding:15px 30px;
+    padding:10px 30px;
     border-radius:40px;
-
+    font-size:15px;
+    font-weight:600;
     background:linear-gradient(
       135deg,
       #06b6d4,
@@ -155,8 +160,11 @@ body{
     border:1px solid #22d3ee;
     background:transparent;
     color:#22d3ee;
+    font-size:10px;
+    font-weight:600;
+    text-align:center;
 
-    padding:15px 30px;
+    padding:10px 30px;
     border-radius:40px;
 
     cursor:pointer;
@@ -413,4 +421,206 @@ body{
     .nav-links{
         gap:15px;
     }
+}
+/* ====================== ATTENDANCE DEMO SECTION ====================== */
+
+.project-section {
+    padding: 80px 5%;
+    background: #f8fafc;
+    text-align: center;
+}
+
+.project-section .section-title {
+    margin-bottom: 15px;
+}
+
+.project-section h3 {
+    font-size: 1.8rem;
+    color: #1e293b;
+    margin-bottom: 40px;
+    font-weight: 500;
+}
+
+.attendance-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+}
+
+/* Make attendance dashboard fit nicely inside portfolio */
+.attendance-dashboard {
+    height: auto;
+    min-height: 680px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Optional: Reduce header padding for better fit */
+.dashboard-header {
+    padding: 14px 24px;
+}
+
+/* Make sidebar a bit more compact inside portfolio */
+.side-tree-panel {
+    width: 320px;
+    padding: 16px;
+}
+
+/* Ensure table looks good */
+.structural-matrix-table {
+    box-shadow: none;
+    border: 1px solid #e2e8f0;
+}
+.project-section {
+    padding: 80px 5%;
+    background: #f8fafc;
+    text-align: center;
+}
+
+
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+button {
+  padding: 12px 22px;
+  font-size: 15px;
+  font-weight: 600;
+
+  color: #ffffff;
+  background: linear-gradient(135deg, #dca884, #ce7777);
+
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  box-shadow: 0 6px 18px rgba(239, 68, 68, 0.35);
+
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  letter-spacing: 0.4px;
+}
+
+/* Hover effect */
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgb(101, 101, 159);
+}
+
+/* Click effect */
+button:active {
+  transform: scale(0.96);
+}
+
+/* Shine animation */
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(-25deg);
+}
+
+button:hover::before {
+  animation: shine 0.8s ease forwards;
+}
+
+@keyframes shine {
+  100% {
+    left: 130%;
+  }
+} 
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  color: white;
+  transition: 0.3s ease;
+  display: inline-block;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* GitHub Button */
+.social-btn.github {
+  background: linear-gradient(135deg, #24292e, #444c56);
+}
+
+.social-btn.github:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(36, 41, 46, 0.4);
+}
+
+/* LinkedIn Button */
+.social-btn.linkedin {
+  background: linear-gradient(135deg, #0077b5, #00a0dc);
+}
+
+.social-btn.linkedin:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 119, 181, 0.4);
+}
+.attendance-btn,
+.pm-btn {
+  width: 220px;
+  height: 120px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  padding: 15px;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+
+  white-space: normal;
+  word-wrap: break-word;
+  line-height: 1.2;
+
+  transition: all 0.3s ease;
+}
+
+.attendance-btn {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+}
+
+.pm-btn {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  color: white;
+}
+
+.attendance-btn:hover,
+.pm-btn:hover {
+  transform: translateY(-5px);
+}
+.button-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
 }

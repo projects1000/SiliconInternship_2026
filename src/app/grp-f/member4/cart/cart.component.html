@@ -1,0 +1,133 @@
+<div class="cart-container">
+  <div class="page-header">
+    <h1>🛒 Shopping Cart</h1>
+    <p class="header-subtitle">{{ cart.totalItems }} items in your cart</p>
+  </div>
+
+  <div class="cart-content" *ngIf="cart.items.length > 0; else emptyCart">
+    <div class="cart-items-section">
+      <div class="cart-header">
+        <span>Product</span>
+        <span>Price</span>
+        <span>Quantity</span>
+        <span>Total</span>
+        <span></span>
+      </div>
+
+      <div class="cart-items">
+        <div 
+          *ngFor="let item of cart.items" 
+          class="cart-item">
+          
+          <div class="item-image">
+            <img [src]="item.product.image" [alt]="item.product.name">
+          </div>
+
+          <div class="item-details">
+            <h3>{{ item.product.name }}</h3>
+            <p class="item-specs">
+              <span *ngIf="item.selectedColor" class="spec">Color: {{ item.selectedColor }}</span>
+              <span *ngIf="item.selectedSize" class="spec">Size: {{ item.selectedSize }}</span>
+            </p>
+          </div>
+
+          <div class="item-price">
+            ₹{{ item.product.price | number }}
+          </div>
+
+          <div class="item-quantity">
+            <button 
+              class="qty-btn"
+              (click)="updateQuantity(item.product.id, item.quantity - 1, item.selectedSize, item.selectedColor)">
+              −
+            </button>
+            <input 
+              type="number" 
+              [(ngModel)]="item.quantity"
+              (change)="updateQuantity(item.product.id, item.quantity, item.selectedSize, item.selectedColor)"
+              readonly
+              class="qty-input">
+            <button 
+              class="qty-btn"
+              (click)="updateQuantity(item.product.id, item.quantity + 1, item.selectedSize, item.selectedColor)">
+              +
+            </button>
+          </div>
+
+          <div class="item-total">
+            ₹{{ (item.product.price * item.quantity) | number }}
+          </div>
+
+          <button 
+            class="remove-btn"
+            (click)="removeItem(item.product.id, item.selectedSize, item.selectedColor)"
+            title="Remove">
+            ✕
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-summary">
+      <div class="summary-card">
+        <h2>Order Summary</h2>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span>₹{{ getSubtotal() | number }}</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Tax (18%)</span>
+          <span>₹{{ tax | number }}</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Delivery Charges</span>
+          <span *ngIf="getSubtotal() >= 499" class="free">FREE</span>
+          <span *ngIf="getSubtotal() < 499">₹{{ deliveryCharge }}</span>
+        </div>
+
+        <hr class="divider">
+
+        <div class="summary-row total">
+          <span>Total Amount</span>
+          <span>₹{{ getTotal() | number }}</span>
+        </div>
+
+        <div class="promo-code">
+          <input type="text" placeholder="Enter promo code">
+          <button (click)="applyCoupon()">Apply</button>
+        </div>
+
+        <button class="checkout-btn" (click)="proceedToCheckout()">
+          Proceed to Checkout
+        </button>
+
+        <button class="continue-shopping-btn" (click)="continueShopping()">
+          Continue Shopping
+        </button>
+
+        <div class="benefits">
+          <p>✓ Free returns for 7 days</p>
+          <p>✓ Secure payment gateway</p>
+          <p>✓ Real-time order tracking</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EMPTY CART STATE -->
+  <ng-template #emptyCart>
+    <div class="empty-cart">
+      <div class="empty-illustration">
+        🛒
+      </div>
+      <h2>Your cart is empty</h2>
+      <p>Add some products to get started!</p>
+      <button class="start-shopping-btn" (click)="continueShopping()">
+        Start Shopping
+      </button>
+    </div>
+  </ng-template>
+</div>

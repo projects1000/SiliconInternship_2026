@@ -1,180 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayush Guharay - Java Full Stack Developer</title>
-    <style>
-        /* Modern CSS Reset & Variables */
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --bg-color: #f8fafc;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --card-bg: #ffffff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        /* Profile Container */
-        .profile-container {
-            background: var(--card-bg);
-            max-width: 800px;
-            width: 100%;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-            border-top: 6px solid var(--primary-color);
-        }
-
-        /* Header Section */
-        .profile-header {
-            text-align: center;
-            padding: 40px 20px 20px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .avatar {
-            width: 120px;
-            height: 120px;
-            background-color: #e2e8f0;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            border: 4px solid white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-        /* This ensures your photo fills the circle perfectly! */
-        .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        h1 {
-            font-size: 2.2rem;
-            color: var(--text-main);
-            margin-bottom: 5px;
-        }
-
-        .title {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .group-badge {
-            display: inline-block;
-            background-color: #f1f5f9;
-            color: var(--text-muted);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        /* Content Section */
-        .profile-content {
-            padding: 40px;
-        }
-
-        .section-title {
-            font-size: 1.3rem;
-            color: var(--text-main);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .section-title::after {
-            content: "";
-            flex: 1;
-            height: 2px;
-            background-color: #f1f5f9;
-        }
-
-        .description {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            margin-bottom: 35px;
-            text-align: justify;
-        }
-
-        /* Skills/Tools Grid */
-        .tools-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .tool-tag {
-            background-color: white;
-            color: var(--secondary-color);
-            border: 1px solid #bfdbfe;
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-
-        .tool-tag:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-            border-color: var(--primary-color);
-        }
-
-        /* Footer */
-        .profile-footer {
-            background-color: #f8fafc;
-            padding: 20px;
-            text-align: center;
-            border-top: 1px solid #e2e8f0;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 600px) {
-            .profile-content {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
+<div class="profile-wrapper">
     <div class="profile-container">
         
         <header class="profile-header">
@@ -203,6 +27,12 @@
                 <span class="tool-tag">Git</span>
             </div>
 
+            <div class="action-section">
+                <button routerLink="../member3-attendance" class="btn-attendance">
+                    📅 Go to Attendance Tracker
+                </button>
+            </div>
+
         </main>
 
         <footer class="profile-footer">
@@ -210,6 +40,4 @@
         </footer>
 
     </div>
-
-</body>
-</html>
+</div>

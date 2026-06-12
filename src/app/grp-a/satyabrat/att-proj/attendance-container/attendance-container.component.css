@@ -1,0 +1,82 @@
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: linear-gradient(135deg, #dbeafe 0%, #ffffff 100%);
+  color: #1e293b;
+  transition: all 0.4s ease;
+}
+
+.app-wrapper.dark-theme {
+  background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 80%, #000000 100%);
+  color: #f8fafc;
+}
+
+.app-header {
+  background-color: transparent !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0 32px;
+}
+
+.dark-theme .app-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spacer { flex: 1 1 auto; }
+
+
+.sidenav-container {
+  flex: 1;
+  background: transparent; 
+}
+
+.left-panel {
+  width: 320px;
+  background: transparent;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 24px; 
+}
+
+.dark-theme .left-panel {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.right-panel {
+  padding: 40px; 
+}
+
+
+::ng-deep .dark-theme .mat-tree {
+  background: transparent !important;
+  color: white !important;
+}
+
+::ng-deep .dark-theme .mat-tree-node,
+::ng-deep .dark-theme .team-node,
+::ng-deep .dark-theme .mat-icon {
+  color: #e2e8f0 !important;
+}
+
+::ng-deep .dark-theme .table-container {
+  background: rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+::ng-deep .dark-theme .mat-mdc-table {
+  background: transparent !important;
+  color: white !important;
+}
+
+::ng-deep .dark-theme .mat-mdc-header-cell {
+  color: #93c5fd !important; 
+}
+
+::ng-deep .dark-theme .mat-mdc-cell {
+  color: #f1f5f9 !important;
+}
+
+::ng-deep .dark-theme .app-header,
+::ng-deep .dark-theme .app-header span {
+  color: #ffffff !important;
+}

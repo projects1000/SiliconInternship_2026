@@ -1,0 +1,155 @@
+<p>attendance works!</p>
+<div class="page">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div>
+      <h1>Attendance Pro Dashboard</h1>
+      <p>Team F • Silicon Internship 2026</p>
+    </div>
+
+    <div class="actions">
+      <button (click)="save()" class="btn primary">Save</button>
+      <button (click)="lock()" class="btn danger">Lock</button>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <input
+        type="text"
+        placeholder="Search member..."
+        [(ngModel)]="search"
+        (input)="filter()" />
+
+      <select [(ngModel)]="selectedTeam" (change)="filter()">
+        <option value="">All Teams</option>
+        <option *ngFor="let t of teams">{{ t }}</option>
+      </select>
+
+      <div class="calendar-box">
+        <label>Select Date</label>
+        
+        <div class="calendar-header">
+          <button (click)="previousMonth()" class="nav-btn">←</button>
+          <h3>{{ currentMonth }} {{ currentYear }}</h3>
+          <button (click)="nextMonth()" class="nav-btn">→</button>
+        </div>
+
+        <div class="calendar-weekdays">
+          <div class="weekday">Sun</div>
+          <div class="weekday">Mon</div>
+          <div class="weekday">Tue</div>
+          <div class="weekday">Wed</div>
+          <div class="weekday">Thu</div>
+          <div class="weekday">Fri</div>
+          <div class="weekday">Sat</div>
+        </div>
+
+        <div class="calendar-grid">
+          <button 
+            *ngFor="let day of calendarDays"
+            [ngClass]="getDateClass(day)"
+            (click)="selectDate(day)"
+            class="calendar-day">
+            {{ day ? day.getDate() : '' }}
+          </button>
+        </div>
+
+        <div class="selected-date-display">
+          Selected: {{ selectedDate }}
+        </div>
+      </div>
+
+      <div class="stats">
+        <div>
+          <h3>{{ members.length }}</h3>
+          <p>Total Members</p>
+        </div>
+        <div>
+          <h3>{{ teams.length }}</h3>
+          <p>Teams</p>
+        </div>
+      </div>
+
+      <button (click)="openAddMemberForm()" class="btn primary add-member-btn">+ Add Member</button>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="content">
+
+      <div class="grid">
+
+        <div
+          class="card"
+          *ngFor="let m of filtered">
+
+          <h3>{{ m.name }}</h3>
+          <p>{{ m.team }}</p>
+
+          <!-- Show attendance details if search is active -->
+          <div *ngIf="search && isSearchMatch(m)" class="attendance-details">
+            <div class="attendance-info">
+              <span class="date-label">Date: {{ selectedDate }}</span>
+              <span 
+                class="status-badge"
+                [class.present]="isPresent(m)"
+                [class.absent]="!isPresent(m)">
+                {{ isPresent(m) ? '✓ Present' : '✗ Absent' }}
+              </span>
+            </div>
+          </div>
+
+          <button
+            class="att-btn"
+            [class.active]="isPresent(m)"
+            (click)="toggle(m)">
+
+            {{ isPresent(m) ? 'Present' : 'Absent' }}
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- ADD MEMBER MODAL -->
+  <div class="modal" *ngIf="showAddMemberForm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Add New Member</h2>
+        <button (click)="closeAddMemberForm()" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Member Name</label>
+          <input 
+            type="text" 
+            [(ngModel)]="newMemberName" 
+            placeholder="Enter member name"
+            class="form-input" />
+        </div>
+        <div class="form-group">
+          <label>Team</label>
+          <select [(ngModel)]="newMemberTeam" class="form-input">
+            <option value="">Select Team</option>
+            <option *ngFor="let t of teams">{{ t }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button (click)="closeAddMemberForm()" class="btn secondary">Cancel</button>
+        <button (click)="addNewMember()" class="btn primary">Add Member</button>
+      </div>
+    </div>
+  </div>
+
+</div>

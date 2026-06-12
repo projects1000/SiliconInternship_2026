@@ -1,0 +1,184 @@
+<div class="products-page">
+
+  <!-- LEFT SIDEBAR FILTER -->
+  <div class="sidebar">
+
+    <div class="filter-header">
+      <h2>Filters</h2>
+      <button class="clear-btn" (click)="clearFilters()">Clear All</button>
+    </div>
+
+    <!-- FILTER TOP BAR -->
+<div class="filter-topbar">
+
+  <!-- PRICE RANGE -->
+  <div class="filter-item price-filter">
+
+    <label>💰 Price</label>
+
+    <input
+      type="number"
+      [(ngModel)]="priceRange.min"
+      placeholder="Min"
+      class="input-box">
+
+    <span>-</span>
+
+    <input
+      type="number"
+      [(ngModel)]="priceRange.max"
+      placeholder="Max"
+      class="input-box">
+
+    <button class="apply-btn" (click)="filterByPrice()">
+      Apply
+    </button>
+
+  </div>
+
+  <!-- SORT -->
+  <div class="filter-item">
+
+    <label>Sort</label>
+
+    <select
+      [(ngModel)]="sortBy"
+      (change)="onSortChange()"
+      class="select-box">
+
+      <option value="featured">⭐ Featured</option>
+      <option value="price-low">💸 Low → High</option>
+      <option value="price-high">💰 High → Low</option>
+      <option value="rating">🔥 Top Rated</option>
+      <option value="newest">🆕 New</option>
+
+    </select>
+
+  </div>
+
+  <!-- QUICK FILTER CHIPS -->
+  <div class="filter-chips">
+
+    <button (click)="clearFilters()" class="chip">All</button>
+    <button (click)="filterCategory('Dress')" class="chip">👗 Dress</button>
+    <button (click)="filterCategory('Footwear')" class="chip">👟 Shoes</button>
+    <button (click)="filterCategory('Mobile')" class="chip">📱 Mobile</button>
+    <button (click)="filterCategory('Accessories')" class="chip">⌚ Accessories</button>
+
+  </div>
+
+</div>
+  </div>
+
+  <!-- RIGHT PRODUCT SECTION -->
+  <main class="product-section">
+
+    <!-- HEADER BAR -->
+    <div class="results-bar">
+
+      <div>
+        <h2>
+          {{
+            selectedCategory
+              ? selectedCategory + ' Collection'
+              : searchQuery
+                ? 'Results for "' + searchQuery + '"'
+                : 'All Products'
+          }}
+        </h2>
+
+        <p>{{ filteredProducts.length }} items found</p>
+      </div>
+
+      <div class="view-toggle">
+        <button>🔲 Grid</button>
+        <button>📃 List</button>
+      </div>
+
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <div class="product-grid">
+
+      <div
+        class="product-card"
+        *ngFor="let product of filteredProducts"
+        (click)="viewProductDetails(product)">
+
+        <!-- IMAGE SECTION -->
+        <div class="image-wrapper">
+
+          <img
+            [src]="product.image"
+            [alt]="product.name"
+            loading="lazy">
+
+          
+
+          <div class="hover-actions">
+            <button title="Wishlist">❤️</button>
+            <button title="Quick View">👁</button>
+          </div>
+
+        </div>
+
+        <!-- INFO SECTION -->
+        <div class="info">
+
+          <h3 class="name">
+            {{ product.name }}
+          </h3>
+
+          <p class="desc">
+            {{ product.description | slice:0:70 }}...
+          </p>
+
+          <div class="rating">
+            ⭐⭐⭐⭐☆ ({{ product.reviews }})
+          </div>
+
+          <div class="price-row">
+
+            <span class="price">
+              ₹{{ product.price }}
+            </span>
+
+            <span class="old-price" *ngIf="product.originalPrice">
+              ₹{{ product.originalPrice }}
+            </span>
+
+          </div>
+
+          <div class="stock-status">
+            <span *ngIf="product.stock > 0" class="in">
+              ✔ In Stock
+            </span>
+
+            <span *ngIf="product.stock <= 0" class="out">
+              ✖ Out of Stock
+            </span>
+          </div>
+
+          <button
+            class="cart-btn"
+            (click)="addToCart(product); $event.stopPropagation()">
+
+            🛒 Add to Cart
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- EMPTY STATE -->
+    <div *ngIf="filteredProducts.length === 0" class="empty-state">
+      <h3>No Products Found</h3>
+      <p>Try changing filters or search keywords</p>
+    </div>
+
+  </main>
+
+</div>

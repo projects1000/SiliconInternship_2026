@@ -1,0 +1,143 @@
+.table-container {
+  background: rgba(255, 255, 255, 0.8); 
+  border-radius: 12px;
+  padding: 30px; 
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.tracker-heading {
+  margin-top: 0;
+  margin-bottom: 24px; 
+  color: #1e293b;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.table-header {
+  display: flex;
+  align-items: center;
+  gap: 20px; 
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+
+.control-field {
+  width: 240px;
+  margin-bottom: -1.25em; 
+}
+
+.search-field {
+  flex: 1; 
+  min-width: 200px;
+}
+
+.lock-btn {
+  height: 56px; 
+  padding: 0 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+
+.attendance-table {
+  width: 100%;
+  background: transparent;
+}
+
+.status-present { color: #2e7d32; }
+.status-absent { color: #d32f2f; }
+.locked-icon { color: #94a3b8; }
+.unlocked-icon { color: #3b82f6; }
+
+:host-context(.dark-theme) .table-container,
+.dark-theme .table-container {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+::ng-deep .dark-theme .tracker-heading,
+::ng-deep .dark-theme .mat-mdc-header-cell,
+::ng-deep .dark-theme .mat-mdc-cell,
+::ng-deep .dark-theme strong,
+::ng-deep .dark-theme p {
+  color: #f8fafc !important; 
+}
+
+::ng-deep .dark-theme .mat-mdc-form-field-label,
+::ng-deep .dark-theme .mdc-floating-label,
+::ng-deep .dark-theme .mat-mdc-input-element,
+::ng-deep .dark-theme .mat-icon {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important; 
+}
+
+::ng-deep .dark-theme input::placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+::ng-deep .dark-theme .mdc-text-field--outlined .mdc-notched-outline__leading,
+::ng-deep .dark-theme .mdc-text-field--outlined .mdc-notched-outline__notch,
+::ng-deep .dark-theme .mdc-text-field--outlined .mdc-notched-outline__trailing {
+  border-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+::ng-deep .dark-theme .mdc-text-field--outlined:hover .mdc-notched-outline__leading,
+::ng-deep .dark-theme .mdc-text-field--outlined:hover .mdc-notched-outline__notch,
+::ng-deep .dark-theme .mdc-text-field--outlined:hover .mdc-notched-outline__trailing {
+  border-color: #ffffff !important;
+}
+
+::ng-deep .dark-theme .mat-mdc-checkbox .mdc-label {
+  color: #f8fafc !important;
+}
+.table-container {
+  border-radius: 24px !important; 
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+
+::ng-deep .mat-mdc-form-field .mdc-text-field--outlined {
+  border-radius: 12px !important;
+}
+
+
+:host-context(.dark-theme) .table-container {
+  background: rgba(30, 41, 59, 0.9) !important; 
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:host-context(.dark-theme) .tracker-heading,
+:host-context(.dark-theme) .mat-mdc-form-field-label,
+:host-context(.dark-theme) .mat-mdc-input-element,
+:host-context(.dark-theme) .mat-icon {
+  color: #ffffff !important; 
+}
+
+:host-context(.dark-theme) .mat-datepicker-toggle,
+:host-context(.dark-theme) .mat-mdc-icon-button {
+  color: #ffffff !important;
+}
+
+::ng-deep :host-context(.dark-theme) .mdc-notched-outline__leading,
+::ng-deep :host-context(.dark-theme) .mdc-notched-outline__notch,
+::ng-deep :host-context(.dark-theme) .mdc-notched-outline__trailing {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+
+.tracker-heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b; 
+}
+
+:host-context(.dark-theme) .tracker-heading {
+  color: #ffffff !important;
+}
+

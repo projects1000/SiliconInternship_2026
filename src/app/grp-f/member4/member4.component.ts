@@ -9,33 +9,49 @@ import { Router } from '@angular/router';
 export class Member4Component implements OnInit {
 
   userName: string = 'Lipsa Panda';
+
   role: string = 'Frontend Developer | Angular Specialist';
+
   projects: number = 12;
+
   experience: string = '1.5 Years';
 
   skills: string[] = [
-    'Angular', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3',
-    'RxJS', 'NgRx', 'Bootstrap', 'Tailwind CSS', 'Git & GitHub',
-    'Responsive Design', 'UI/UX'
+    'Angular',
+    'TypeScript',
+    'JavaScript',
+    'HTML5',
+    'CSS3',
+    'RxJS',
+    'NgRx',
+    'Bootstrap',
+    'Tailwind CSS',
+    'Git & GitHub',
+    'Responsive Design',
+    'UI/UX'
   ];
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    // You can load more data here if needed
+    console.log('Member4 Portfolio Loaded');
   }
 
-  goBackToGroup() {
+  goBackToGroup(): void {
     this.router.navigate(['/grp-f']);
   }
 
-  scrollTo(sectionId: string) {
+  scrollTo(sectionId: string): void {
+
     const element = document.getElementById(sectionId);
+
     if (element) {
       element.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
     }
+
   }
+
 }

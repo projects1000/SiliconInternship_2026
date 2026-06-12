@@ -1,0 +1,63 @@
+<div class="dashboard-container">
+  <header class="tracker-header">
+    <button class="btn-back" (click)="saveAndExit()">← Save & Exit</button>
+    <h1>{{ selectedGroup.groupName }} - Attendance Matrix</h1>
+  </header>
+
+  <div class="group-selector">
+    <label>Select Group: </label>
+    <select [(ngModel)]="selectedGroup" (ngModelChange)="generateCalendar()">
+      <option *ngFor="let g of allGroups" [ngValue]="g">{{ g.groupName }}</option>
+    </select>
+  </div>
+
+  <div class="main-content">
+    <div class="calendar-wrapper">
+      <div class="calendar-header">
+        <button (click)="changeMonth(-1)">◀ Prev</button>
+        <h3>{{ selectedDate | date:'MMMM yyyy' }}</h3>
+        <button (click)="changeMonth(1)">Next ▶</button>
+      </div>
+      <div class="calendar-grid">
+        <button *ngFor="let day of daysInMonth" 
+                (click)="updateDate(day)"
+                [class.active]="day === selectedDate.getDate()">
+          {{ day }}
+        </button>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <div class="date-status">
+        <p>Selected: <strong>{{ selectedDateKey }}</strong></p>
+      </div>
+      <div class="actions">
+        <button class="btn-lock" (click)="toggleLock()">
+          {{ dayLocks[selectedDateKey] ? '🔒 Unlock Date' : '🔓 Lock Date' }}
+        </button>
+        <button class="btn-export" (click)="exportToCSV()">📄 Export to Excel</button>
+      </div>
+    </div>
+
+    <table class="attendance-table">
+      <thead>
+        <tr>
+          <th>Intern Name</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let m of selectedGroup.members">
+          <td>{{ m.name }}</td>
+          <td>
+            <button [disabled]="dayLocks[selectedDateKey]"
+                    (click)="toggleAttendance(m)"
+                    [ngClass]="m.attendanceMap[selectedDateKey] ? 'status-present' : 'status-absent'">
+              {{ m.attendanceMap[selectedDateKey] ? 'Present' : 'Absent' }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

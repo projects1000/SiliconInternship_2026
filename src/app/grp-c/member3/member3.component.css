@@ -1,0 +1,183 @@
+/* Center wrapper */
+.profile-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* Profile Container - Fixed with Solid White Background */
+.profile-container {
+    background-color: #ffffff; /* Solid White Card */
+    color: #1e293b; /* Dark text for clear reading */
+    max-width: 800px;
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); /* Stronger shadow for dark background */
+    overflow: hidden;
+    border-top: 6px solid #2563eb;
+}
+
+/* Header Section */
+.profile-header {
+    text-align: center;
+    padding: 40px 20px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    background-color: #ffffff;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    background-color: #e2e8f0;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    border: 4px solid white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+h1 {
+    font-size: 2.2rem;
+    color: #1e293b;
+    margin-bottom: 5px;
+}
+
+.title {
+    font-size: 1.2rem;
+    color: #2563eb;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.group-badge {
+    display: inline-block;
+    background-color: #f1f5f9;
+    color: #64748b;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Content Section */
+.profile-content {
+    padding: 40px;
+    background-color: #ffffff;
+}
+
+.section-title {
+    font-size: 1.3rem;
+    color: #1e293b;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background-color: #f1f5f9;
+}
+
+.description {
+    color: #475569;
+    font-size: 1.05rem;
+    margin-bottom: 35px;
+    text-align: justify;
+    line-height: 1.6;
+}
+
+/* Skills/Tools Grid */
+.tools-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.tool-tag {
+    background-color: #ffffff;
+    color: #1e40af;
+    border: 1px solid #bfdbfe;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.tool-tag:hover {
+    background-color: #2563eb;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    border-color: #2563eb;
+}
+
+/* Action Section (Button) */
+.action-section {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-attendance {
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 12px 28px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.btn-attendance:hover {
+    background-color: #1e40af;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
+}
+
+/* Footer */
+.profile-footer {
+    background-color: #f8fafc;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #e2e8f0;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .profile-content {
+        padding: 25px;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+    .btn-attendance {
+        width: 100%;
+        justify-content: center;
+    }
+}

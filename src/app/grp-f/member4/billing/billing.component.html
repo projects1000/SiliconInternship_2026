@@ -1,0 +1,66 @@
+<div class="cart-container">
+
+  <div class="cart-header">
+    <h1>🛒 Shopping Cart</h1>
+    <p>Review your selected products before checkout</p>
+  </div>
+
+  <div
+    class="cart-item"
+    *ngFor="let p of ps.selectedProducts; let i=index">
+
+    <div class="product-info">
+
+      <div class="product-icon">
+        📦
+      </div>
+
+      <div>
+        <h3>{{p.name}}</h3>
+        <span class="price">₹{{p.price}}</span>
+      </div>
+
+    </div>
+
+    <button
+      class="remove-btn"
+      (click)="ps.removeFromCart(i)">
+
+      Remove
+
+    </button>
+
+  </div>
+
+  <div
+    *ngIf="ps.selectedProducts.length === 0"
+    class="empty-cart">
+
+    <h3>🛍️ Your Cart is Empty</h3>
+    <p>Add products to continue shopping</p>
+
+  </div>
+
+  <div
+    *ngIf="ps.selectedProducts.length > 0"
+    class="summary-section">
+
+    <div class="total-card">
+
+      <h2>Total Amount</h2>
+
+      <h1>₹{{ps.getTotal()}}</h1>
+
+      <button
+        class="checkout-btn"
+        (click)="checkout()">
+
+        Proceed to Checkout →
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

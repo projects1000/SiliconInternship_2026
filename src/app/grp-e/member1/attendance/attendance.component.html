@@ -1,0 +1,339 @@
+<div class="attendance-page">
+
+  <!-- HEADER -->
+
+  <div class="dashboard-header">
+
+    <div>
+
+      <h1>📋 Attendance Management Dashboard</h1>
+
+      <p>
+        Manage student attendance efficiently with search,
+        reports, filtering and attendance tracking.
+      </p>
+
+    </div>
+
+    <div class="header-actions">
+
+      <button class="lock-btn" (click)="lockAttendance()">
+
+        🔒 Lock Attendance
+
+      </button>
+
+      <button class="reset-btn" (click)="resetAttendance()">
+
+        🔄 Reset
+
+      </button>
+
+      <button class="export-btn" (click)="exportCSV()">
+
+        📥 Export CSV
+
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- ADD / UPDATE STUDENT -->
+
+  <div class="add-student-card">
+
+    <h2>
+
+      {{ editMode ? '✏️ Update Student' : '➕ Add New Student' }}
+
+    </h2>
+
+    <div class="form-grid">
+
+      <div>
+
+        <label>Registration Number</label>
+
+        <input type="text" placeholder="Enter Registration Number" [(ngModel)]="studentRegNo">
+
+      </div>
+
+      <div>
+
+        <label>Student Name</label>
+
+        <input type="text" placeholder="Enter Student Name" [(ngModel)]="studentName">
+
+      </div>
+
+      <div class="button-wrapper">
+
+        <button *ngIf="!editMode" class="add-btn" (click)="addStudent()">
+
+          ➕ Add Student
+
+        </button>
+
+        <button *ngIf="editMode" class="update-btn" (click)="updateStudent()">
+
+          ✏️ Update Student
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FILTERS -->
+
+  <div class="filter-section">
+
+    <div class="filter-card">
+
+      <label>🔍 Search Student</label>
+
+      <input type="text" placeholder="Search by Name or Registration No" [(ngModel)]="searchText">
+
+    </div>
+
+    <div class="filter-card">
+
+      <label>📅 Attendance Date</label>
+
+      <input type="date" [max]="today.toISOString().split('T')[0]">
+
+    </div>
+
+    <div class="filter-card">
+
+      <label>📆 Month Filter</label>
+
+      <select [(ngModel)]="selectedMonth">
+
+        <option>January</option>
+        <option>February</option>
+        <option>March</option>
+        <option>April</option>
+        <option>May</option>
+        <option>June</option>
+        <option>July</option>
+        <option>August</option>
+        <option>September</option>
+        <option>October</option>
+        <option>November</option>
+        <option>December</option>
+
+      </select>
+
+    </div>
+
+  </div>
+
+  <!-- SUMMARY -->
+
+  <div class="summary-container">
+
+    <div class="summary-card present-card">
+
+      <h2>{{presentCount}}</h2>
+
+      <p>Present Students</p>
+
+    </div>
+
+    <div class="summary-card absent-card">
+
+      <h2>{{absentCount}}</h2>
+
+      <p>Absent Students</p>
+
+    </div>
+
+    <div class="summary-card percentage-card">
+
+      <h2>{{attendancePercentage}}%</h2>
+
+      <p>Attendance Percentage</p>
+
+    </div>
+
+    <div class="summary-card info-card">
+
+      <h3>Last Updated</h3>
+
+      <p>{{lastUpdated}}</p>
+
+    </div>
+
+  </div>
+
+  <!-- TABLE -->
+
+  <div class="table-card">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>ID</th>
+
+          <th>REG NO</th>
+
+          <th>NAME</th>
+
+          <th>ATTENDANCE</th>
+
+          <th>STATUS</th>
+
+          <th>ACTIONS</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let student of filteredStudents">
+
+          <td>
+
+            {{student.id}}
+
+          </td>
+
+          <td>
+
+            {{student.regNo}}
+
+          </td>
+
+          <td>
+
+            {{student.name}}
+
+          </td>
+
+          <td>
+
+            <input type="checkbox" [(ngModel)]="student.present" [disabled]="attendanceLocked"
+              (change)="saveAttendance()">
+
+          </td>
+
+          <td>
+
+            <span *ngIf="student.present" class="status-present">
+
+              ✅ Present
+
+            </span>
+
+            <span *ngIf="!student.present" class="status-absent">
+
+              ❌ Absent
+
+            </span>
+
+          </td>
+
+          <td>
+
+            <button class="edit-btn" (click)="editStudent(student)" [disabled]="attendanceLocked">
+
+              ✏️ Edit
+
+            </button>
+
+            <button class="delete-btn" (click)="deleteStudent(student.id)" [disabled]="attendanceLocked">
+
+              🗑 Delete
+
+            </button>
+
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <!-- REPORT -->
+
+  <div class="report-section">
+
+    <div class="report-card">
+
+      <h2>📊 Attendance Report</h2>
+
+      <p>
+
+        Total Students :
+        <strong>{{students.length}}</strong>
+
+      </p>
+
+      <p>
+
+        Present :
+        <strong>{{presentCount}}</strong>
+
+      </p>
+
+      <p>
+
+        Absent :
+        <strong>{{absentCount}}</strong>
+
+      </p>
+
+      <p>
+
+        Attendance Percentage :
+        <strong>{{attendancePercentage}}%</strong>
+
+      </p>
+
+      <p>
+
+        Selected Month :
+        <strong>{{selectedMonth}}</strong>
+
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- NOTES -->
+
+  <div class="history-card">
+
+    <h2>📝 Attendance Rules</h2>
+
+    <ul>
+
+      <li>Attendance can only be marked for current dates.</li>
+
+      <li>Future dates are restricted.</li>
+
+      <li>Locked attendance cannot be modified.</li>
+
+      <li>All attendance data is stored in Local Storage.</li>
+
+      <li>CSV report can be exported anytime.</li>
+
+      <li>Add, Edit and Delete student records are supported.</li>
+
+    </ul>
+
+  </div>
+
+</div>
