@@ -1,0 +1,38 @@
+<mat-card class="modern-card notification-card">
+  <mat-card-header class="notification-header">
+    <div class="header-left">
+      <div class="header-icon-wrapper">
+        <mat-icon>notifications</mat-icon>
+      </div>
+      <mat-card-title>LIVE ALERTS</mat-card-title>
+    </div>
+    <button *ngIf="notifications.length > 0" mat-button color="warn" class="btn-clear" (click)="clearNotifications()">
+      <mat-icon>clear_all</mat-icon> Clear
+    </button>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <div *ngIf="notifications.length === 0" class="empty-state">
+      <mat-icon class="empty-icon">notifications_none</mat-icon>
+      <p>No new notifications.</p>
+    </div>
+
+    <div class="notifications-list" *ngIf="notifications.length > 0">
+      <div 
+        *ngFor="let note of notifications" 
+        class="alert-box" 
+        [class.alert-product]="note.type === 'product'"
+        [class.alert-customer]="note.type === 'customer'"
+        [class.alert-bill]="note.type === 'bill'"
+      >
+        <span class="alert-icon">
+          <mat-icon *ngIf="note.type === 'product'">check_circle</mat-icon>
+          <mat-icon *ngIf="note.type === 'customer'">account_circle</mat-icon>
+          <mat-icon *ngIf="note.type === 'bill'">receipt</mat-icon>
+        </span>
+        <span class="alert-text">{{ note.text }}</span>
+        <span class="alert-time">{{ note.timestamp | date:'shortTime' }}</span>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

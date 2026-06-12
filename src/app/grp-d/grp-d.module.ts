@@ -28,6 +28,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTreeModule } from '@angular/material/tree';
+import { ProductManagementComponent } from './member1/product-management/product-management.component';
+import { ProductListComponent } from './member1/product-list/product-list.component';
+import { CustomerDetailsComponent } from './member1/customer-details/customer-details.component';
+import { BillDetailsComponent } from './member1/bill-details/bill-details.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +51,11 @@ import { MatTreeModule } from '@angular/material/tree';
     Member10Component,
     Member11Component,
     AttendanceComponent,
-    AttendanceTrackerComponent
+    AttendanceTrackerComponent,
+    ProductManagementComponent,
+    ProductListComponent,
+    CustomerDetailsComponent,
+    BillDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -57,7 +68,9 @@ import { MatTreeModule } from '@angular/material/tree';
     MatInputModule,
     MatCardModule,
     MatSelectModule,
-    MatTreeModule
+    MatTreeModule,
+    MatSnackBarModule,
+    MatToolbarModule
   ]
 })
 export class GrpDModule { }

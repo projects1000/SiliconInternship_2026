@@ -11,5 +11,6 @@ export class Member10Component {
 
   goBackToGroup() {
     this.router.navigate(['grp-f']);
+    
   }
 }

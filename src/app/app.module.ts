@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +13,10 @@ import { ProductListComponent } from './product-management/product-list/product-
 import { CustomerComponent } from './product-management/customer/customer.component';
 import { BillingComponent } from './product-management/billing/billing.component';
 
-// Angular Material (ONLY keep if you are actually using them)
+// ngx-toastr
+import { ToastrModule } from 'ngx-toastr';
+
+// Angular Material
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,8 +29,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
-
-import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,15 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
+
+    // Toastr config
+    ToastrModule.forRoot({
+      timeOut: 3500,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      progressBar: true
+    }),
 
     // Material modules
     MatIconModule,
@@ -57,14 +67,7 @@ import { ToastrModule } from 'ngx-toastr';
     MatTableModule,
     MatSortModule,
     MatChipsModule,
-    MatDividerModule,
-
-    // Toastr
-    ToastrModule.forRoot({
-      timeOut: 3000,
-      positionClass: 'toast-top-right',
-      preventDuplicates: true
-    })
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
