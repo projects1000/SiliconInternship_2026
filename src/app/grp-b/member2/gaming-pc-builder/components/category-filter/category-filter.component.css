@@ -1,0 +1,69 @@
+/* ============================================================
+   category-filter.component.css
+   Gaming-styled category filter bar
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #a78bfa;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  min-width: 60px;
+}
+
+.filter-label svg {
+  color: #7c3aed;
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 7px 16px;
+  border-radius: 30px;
+  border: 1px solid rgba(124, 58, 237, 0.4);
+  background: rgba(15, 15, 35, 0.6);
+  color: #a78bfa;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.chip:hover {
+  border-color: #7c3aed;
+  background: rgba(124, 58, 237, 0.2);
+  color: #c4b5fd;
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.4);
+  transform: translateY(-2px);
+}
+
+.chip.active {
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  border-color: #a855f7;
+  color: #fff;
+  box-shadow: 0 0 16px rgba(124, 58, 237, 0.6);
+  font-weight: 600;
+}
