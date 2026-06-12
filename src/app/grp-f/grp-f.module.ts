@@ -22,6 +22,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { Member6ChatComponent } from './member6-chat/member6-chat.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     Member8Component,
     Member9Component,
     Member10Component,
-    Member6AttendanceComponent
+    Member6AttendanceComponent,
+    Member6ChatComponent
   ],
   imports: [
   CommonModule,
