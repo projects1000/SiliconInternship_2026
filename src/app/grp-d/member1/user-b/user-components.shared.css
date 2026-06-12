@@ -1,0 +1,154 @@
+.smartphone-frame {
+  width: 100%;
+  max-width: 350px;
+  height: 640px;
+  background: #0b141a;
+  border: 11px solid #2d3134;
+  border-radius: 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: 0 auto;
+  box-shadow: 0px 25px 50px -12px rgba(0,0,0,0.7);
+}
+.phone-notch {
+  width: 140px;
+  height: 20px;
+  background: #2d3134;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  z-index: 100;
+}
+.phone-statusbar {
+  padding: 6px 20px 4px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  color: #a0a5a8;
+  background: #111b21;
+  z-index: 90;
+  margin-top: 2px;
+}
+.chat-app-header {
+  background: #202c33;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #2a3942;
+}
+.contact-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.back-list-btn {
+  background: transparent;
+  border: none;
+  color: #00a884;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+}
+.avatar-ring {
+  width: 38px;
+  height: 38px;
+  background: #00a884;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+.violet-avatar { background: #6366f1; }
+.gray-avatar { background: #374151; }
+.contact-meta h4 { margin: 0; font-size: 0.95rem; color: #e9edef; font-weight: 500; }
+.status-indicator-dot { font-size: 0.7rem; display: flex; align-items: center; gap: 4px; }
+.status-indicator-dot.online { color: #00e676; }
+
+/* NOTIFICATION SLIDE OVERLAY */
+.push-notification-banner {
+  position: absolute;
+  top: 30px;
+  left: 10px;
+  right: 10px;
+  background: #1f2c34;
+  border: 1px solid #00a884;
+  border-radius: 14px;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  z-index: 200;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  animation: slideDown 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes slideDown { from { transform: translateY(-100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.notif-body h5 { margin: 0; font-size: 0.85rem; color: #fff; }
+.notif-body p { margin: 2px 0 0 0; font-size: 0.75rem; color: #a0a5a8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 200px; }
+
+/* CONTACT DIRECTORY SHEET */
+.contacts-directory-list { flex: 1; background: #111b21; padding: 10px 0; }
+.section-label { font-size: 0.75rem; color: #00a884; font-weight: bold; padding: 0 16px; margin: 5px 0 10px 0; letter-spacing: 0.5px; }
+.contact-row-item { display: flex; gap: 12px; padding: 12px 16px; cursor: pointer; border-bottom: 1px solid #222e35; transition: background 0.2s; }
+.contact-row-item:hover { background: #202c33; }
+.row-info { flex: 1; }
+.row-header { display: flex; justify-content: space-between; align-items: center; }
+.row-info h5 { margin: 0; font-size: 0.95rem; color: #e9edef; font-weight: 400; }
+.time-stamp { font-size: 0.7rem; color: #8696a0; }
+.preview-text { margin: 3px 0 0 0; font-size: 0.78rem; color: #8696a0; }
+
+/* VIEWPORT LOGS PIPELINE */
+.messages-viewport {
+  flex: 1;
+  background-image: radial-gradient(#2a3942 1px, transparent 1px);
+  background-size: 15px 15px;
+  background-color: #0b141a;
+  padding: 14px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.no-messages-alert { background: #182229; color: #ffe082; font-size: 0.7rem; text-align: center; padding: 6px 12px; border-radius: 8px; border: 1px solid #c6a700; margin: 10px auto; max-width: 85%; }
+.msg-outgoing, .msg-incoming { display: flex; width: 100%; }
+.msg-outgoing { justify-content: flex-end; }
+.msg-incoming { justify-content: flex-start; }
+.bubble-body { max-width: 80%; padding: 8px 10px 4px 10px; border-radius: 10px; position: relative; box-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+.msg-outgoing .bubble-body { background: #005c4b; color: #e9edef; border-top-right-radius: 0; }
+.msg-incoming .bubble-body { background: #202c33; color: #e9edef; border-top-left-radius: 0; }
+.bubble-body p { margin: 0; font-size: 0.85rem; line-height: 1.35; word-break: break-word; }
+
+/* MULTIMEDIA ELEMENT CONTAINER QUERY ATTACHMENTS */
+.image-attachment-wrapper img { width: 100%; max-width: 210px; border-radius: 6px; display: block; margin-bottom: 4px; }
+.img-overlay-caption { font-size: 0.68rem; color: #a0a5a8; font-style: italic; }
+.voice-attachment-memo { display: flex; align-items: center; gap: 8px; min-width: 160px; padding: 4px 0; }
+.voice-play-mock-btn { background: transparent; border: none; color: #00a884; font-size: 0.9rem; cursor: pointer; }
+.wave-animation { display: flex; gap: 2px; align-items: center; }
+.wave-animation .bar { width: 3px; height: 14px; background: #8696a0; border-radius: 2px; }
+.msg-outgoing .wave-animation .bar { background: #00a884; }
+.duration-tag { font-size: 0.7rem; color: #8696a0; margin-left: auto; }
+
+/* REALTIME TICK MARKS GRAPHICS */
+.metadata-line { display: flex; align-items: center; justify-content: flex-end; gap: 4px; font-size: 0.62rem; color: #8696a0; margin-top: 3px; text-align: right; }
+.check-ticks { font-weight: bold; font-size: 0.7rem; letter-spacing: -1px; }
+.read-blue { color: #53bdeb !important; }
+.delivered-gray { color: #8696a0 !important; }
+
+/* FOOTER ACTIONS WRAPPER */
+.phone-input-footer { background: #202c33; padding: 8px 10px; display: flex; align-items: center; gap: 6px; }
+.attach-media-btn { background: transparent; border: none; font-size: 1.1rem; cursor: pointer; color: #8696a0; padding: 4px; }
+.attach-media-btn:hover { color: #fff; }
+.phone-input-footer input { flex: 1; background: #2a3942; border: none; padding: 8px 14px; border-radius: 8px; color: #fff; outline: none; font-size: 0.85rem; }
+.action-submit-btn { background: transparent; border: none; color: #00a884; font-size: 1.1rem; cursor: pointer; font-weight: bold; }
+.animation-glow { box-shadow: 0 0 15px rgba(0, 168, 132, 0.1); }
+.color-variant-b { border-color: #3b3f42; }
+.color-variant-b .back-list-btn, .color-variant-b .action-submit-btn, .color-variant-b .voice-play-mock-btn { color: #6366f1; }
+.color-variant-b .push-notification-banner { border-color: #6366f1; }
+.color-variant-b .section-label { color: #6366f1; }
