@@ -14,6 +14,7 @@ import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { Member11Component } from './member11/member11.component';
 import { AttendanceComponent } from './member1/attendance/attendance.component';
+import { ProductManagementComponent } from './member1/product-management/product-management.component';
 
 // Import your new tracker component
 import { AttendanceTrackerComponent } from './member3/attendance-tracker/attendance-tracker.component';
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'member1/attendance',
     component: AttendanceComponent
+  },
+  {
+  path: 'member1/product-management',
+  component: ProductManagementComponent
   },
   {
     path: 'member2',

@@ -15,9 +15,11 @@ import { Member10Component } from './member10/member10.component';
 import('./member1/member1.module').then(m => m.Member1Module)
 
 import { Member4attmngComponent } from './member4/member4attmng/member4attmng.component';
-
+import { ProductManagementComponent } from './member9/product-management/product-management.component';
 import { Member3AttendanceComponent } from './member3/member3-attendance/member3-attendance.component';
 
+
+import { AttendanceComponent } from './member9/attendance/attendance.component';
 
 const routes: Routes = [
   {
@@ -61,17 +63,31 @@ const routes: Routes = [
     path: 'member9',
     component: Member9Component
   },
+
   {
-    path: 'member10',
-    component: Member10Component
+    path: 'attendance',
+    component: AttendanceComponent
   },
+  {
+  path: 'member9',
+  component: Member9Component
+},
+{
+  path: 'product-management',
+  component: ProductManagementComponent
+},
+{
+  path: 'member10',
+  component: Member10Component
+},
 
   {
   path: 'member4/member4attmng',
   component: Member4attmngComponent
 },
 
-  { path: 'member3-attendance', component: Member3AttendanceComponent }
+  { path: 'member3-attendance', component: Member3AttendanceComponent },
+
 
 ];
 
