@@ -1,19 +1,18 @@
-/// <reference types="jasmine" />
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Member6Component } from './member6.component';
+import { AttendanceComponent } from './attendance.component';
 
-describe('Member6Component', () => {
-  let component: Member6Component;
-  let fixture: ComponentFixture<Member6Component>;
+describe('AttendanceComponent', () => {
+  let component: AttendanceComponent;
+  let fixture: ComponentFixture<AttendanceComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ Member6Component ]
+      declarations: [ AttendanceComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Member6Component);
+    fixture = TestBed.createComponent(AttendanceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

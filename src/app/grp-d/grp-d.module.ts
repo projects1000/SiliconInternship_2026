@@ -16,6 +16,7 @@ import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { Member11Component } from './member11/member11.component';
 import { AttendanceComponent } from './member1/attendance/attendance.component';
+import { AttendanceComponent as AttendanceM6 } from './member6/attendance/attendance.component';
 import { AttendanceTrackerComponent } from './member3/attendance-tracker/attendance-tracker.component';
 
 // Routing & Material Modules
@@ -34,6 +35,9 @@ import { CustomerDetailsComponent } from './member1/customer-details/customer-de
 import { BillDetailsComponent } from './member1/bill-details/bill-details.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -51,6 +55,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     Member10Component,
     Member11Component,
     AttendanceComponent,
+    AttendanceM6,
     AttendanceTrackerComponent,
     ProductManagementComponent,
     ProductListComponent,
@@ -70,7 +75,20 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatSelectModule,
     MatTreeModule,
     MatSnackBarModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSidenavModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
+  exports: [
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatTreeModule,
+    MatSidenavModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class GrpDModule { }

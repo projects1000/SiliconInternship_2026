@@ -13,11 +13,14 @@ import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { Member11Component } from './member11/member11.component';
-import { AttendanceComponent } from './member1/attendance/attendance.component';
-import { ProductManagementComponent } from './member1/product-management/product-management.component';
 
-// Import your new tracker component
+// Existing imports
+import { AttendanceComponent as AttendanceComponent1 } from './member1/attendance/attendance.component';
+import { ProductManagementComponent } from './member1/product-management/product-management.component';
 import { AttendanceTrackerComponent } from './member3/attendance-tracker/attendance-tracker.component';
+
+// Import for Member 6 Attendance
+import { AttendanceComponent } from './member6/attendance/attendance.component';
 
 const routes: Routes = [
   {
@@ -30,11 +33,11 @@ const routes: Routes = [
   },
   {
     path: 'member1/attendance',
-    component: AttendanceComponent
+    component: AttendanceComponent1
   },
   {
-  path: 'member1/product-management',
-  component: ProductManagementComponent
+    path: 'member1/product-management',
+    component: ProductManagementComponent
   },
   {
     path: 'member2',
@@ -44,7 +47,6 @@ const routes: Routes = [
     path: 'member3',
     component: Member3Component
   },
-  // Add this new route for your matrix page
   {
     path: 'member3/attendance-matrix',
     component: AttendanceTrackerComponent
@@ -60,6 +62,11 @@ const routes: Routes = [
   {
     path: 'member6',
     component: Member6Component
+  },
+  // Added route for Member 6 Attendance
+  {
+    path: 'member6/attendance',
+    component: AttendanceComponent
   },
   {
     path: 'member7',

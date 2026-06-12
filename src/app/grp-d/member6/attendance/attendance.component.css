@@ -1,0 +1,95 @@
+/* 1. Pinterest-y Background: Golden Amber Gradient */
+.attendance-container {
+  height: 100vh;
+  display: flex;
+  background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 100%); /* Light Yellow to Amber */
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* 2. Sidebar: Soft Amber background with Purple accents */
+.sidenav {
+  width: 260px;
+  background: #ffffff; 
+  border-radius: 24px;
+  padding: 20px;
+  margin-right: 20px;
+  box-shadow: 0 10px 25px rgba(217, 119, 6, 0.2);
+}
+
+/* 3. Main Content: White card overlay for a clean Pinterest feed look */
+.content {
+  flex: 1;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* 4. Header Actions: Warm Amber bar */
+.header-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 25px;
+  padding: 20px;
+  background: #fffbeb;
+  border-radius: 20px;
+  border: 2px solid #fcd34d;
+}
+
+/* 5. Table Styling: Minimalist and clean */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #fef3c7;
+}
+
+th.mat-header-cell {
+  font-weight: 700;
+  color: #78350f; /* Deep Amber */
+  padding: 18px;
+  background-color: #fef3c7;
+}
+
+td.mat-cell {
+  padding: 16px;
+  color: #451a03;
+  border-bottom: 1px solid #fef3c7;
+}
+
+/* 6. Buttons: Vibrant Purple to match the Lilac requirement */
+.mat-mdc-button {
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  background-color: #7e22ce !important; /* Deep Purple */
+  color: white !important;
+}
+
+tr.mat-row:hover {
+  background-color: #fffbeb !important;
+}
+
+/* Tree Nodes: Soft Purple interaction */
+mat-tree-node {
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 12px;
+  color: #6b21a8;
+  transition: all 0.2s;
+}
+
+mat-tree-node:hover {
+  background-color: #f3e8ff;
+}
+
+/* Datepicker */
+::ng-deep .mat-mdc-form-field-outline {
+  background-color: #ffffff;
+  border-radius: 12px;
+}
