@@ -36,7 +36,7 @@ import { CustomerDetailsComponent } from './member8/billing/customer-details/cus
 import { ProductListComponent } from './member8/billing/product-list/product-list.component';
 import { NotificationComponent } from './member8/billing/notification/notification.component';
 import { BillingCartComponent } from './member8/billing/billing-cart/billing-cart.component';
-
+import { AttendanceComponent0001 } from './member2/attendence0001/attendence0001.component';
 import { NitroBillingComponent } from './member7/nitro-billing/nitro-billing.component';
 import { ProductListComponent as Member7ProductListComponent } from './member7/nitro-billing/product-list/product-list.component';
 import { CustomerDetailsComponent as Member7CustomerDetailsComponent } from './member7/nitro-billing/customer-details/customer-details.component';
@@ -67,6 +67,7 @@ import { ChatWindowComponent as Member7ChatWindowComponent } from './member7/cha
     Member9Component,
 
     AttandanceComponent,
+    AttendanceComponent0001,
 
     NavbarComponent,
     HomeComponent,
@@ -89,6 +90,7 @@ import { ChatWindowComponent as Member7ChatWindowComponent } from './member7/cha
     Member7UserAComponent,
     Member7UserBComponent,
     Member7ChatWindowComponent,
+
   ],
 
   imports: [
@@ -104,7 +106,7 @@ import { ChatWindowComponent as Member7ChatWindowComponent } from './member7/cha
     MatSidenavModule,
     MatDatepickerModule,
     MatNativeDateModule,
-     Member1AttendanceComponent,
+    Member1AttendanceComponent,
   ]
 })
 export class GrpEModule { }
