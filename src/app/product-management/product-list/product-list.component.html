@@ -1,0 +1,40 @@
+<div class="product-container">
+
+    <h2 class="section-title">
+        Product List
+    </h2>
+
+    <div
+        class="product-card"
+        *ngFor="let product of products">
+
+        <div class="product-info">
+
+            <h3>{{ product.name }}</h3>
+
+            <p>₹{{ product.price }}</p>
+
+        </div>
+
+        <div class="quantity-section">
+
+            <label>Qty</label>
+
+            <input
+                type="number"
+                min="1"
+                [(ngModel)]="product.quantity">
+
+        </div>
+
+        <button
+            class="add-btn"
+            (click)="addProduct(product)">
+
+            Add
+
+        </button>
+
+    </div>
+
+</div>

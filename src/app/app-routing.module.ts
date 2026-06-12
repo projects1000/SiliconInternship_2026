@@ -2,10 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
+import { ProductManagementComponent } from './product-management/product-management.component';
 
 const routes: Routes = [
   // Home page
   { path: '', component: HomeComponent },
+
+  // Product Management Page
+  {
+    path: 'product-management',
+    component: ProductManagementComponent
+  },
 
   // Lazy-loaded group modules
   {
@@ -44,12 +51,12 @@ const routes: Routes = [
       import('./grp-g/grp-g.module').then(m => m.GrpGModule)
   },
 
-  // fallback (optional but recommended)
-  // { path: '**', redirectTo: '' }
+  // Optional fallback route
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -1,0 +1,113 @@
+body{
+    background: #f5f7fb;
+}
+
+.main-title{
+    text-align: center;
+    margin: 25px 0;
+    color: #04142d;
+    font-size: 38px;
+    font-weight: bold;
+}
+
+/* Stats Section */
+
+.stats-container{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.stat-card{
+    width: 250px;
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.stat-card h3{
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.stat-card p{
+    font-size: 28px;
+    font-weight: bold;
+    color: #19b6a3;
+}
+
+/* Main Cards */
+
+.main-container{
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.card{
+    flex: 1;
+    min-width: 350px;
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* Colored Top Borders */
+
+.product-card{
+    border-top: 6px solid #4285f4;
+}
+
+.customer-card{
+    border-top: 6px solid #00c853;
+}
+
+.billing-card{
+    border-top: 6px solid #ff9800;
+}
+
+/* Generate Bill Button */
+
+.bill-btn{
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    background: linear-gradient(
+        135deg,
+        #04142d,
+        #0b2d63
+    );
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.bill-btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(4,20,45,0.3);
+}
+
+/* Responsive */
+
+@media(max-width: 1200px){
+
+    .main-container{
+        flex-direction: column;
+    }
+
+    .card{
+        width: 100%;
+    }
+}

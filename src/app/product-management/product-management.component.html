@@ -1,0 +1,54 @@
+<h1 class="main-title">
+    Product Management Dashboard
+</h1>
+
+<div class="stats-container">
+
+    <div class="stat-card">
+        <h3>Products</h3>
+        <p>{{ selectedProducts.length }}</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Customer</h3>
+        <p>{{ customer?.name || 'None' }}</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Total Amount</h3>
+        <p>₹{{ totalAmount }}</p>
+    </div>
+
+</div>
+
+<div class="main-container">
+
+    <div class="card product-card">
+        <app-product-list
+            (productAdded)="addProduct($event)">
+        </app-product-list>
+    </div>
+
+    <div class="card customer-card">
+        <app-customer
+            (customerSaved)="saveCustomer($event)">
+        </app-customer>
+    </div>
+
+    <div class="card billing-card">
+
+        <app-billing
+            [products]="selectedProducts"
+            [customer]="customer"
+            [totalAmount]="totalAmount">
+        </app-billing>
+
+        <button
+            class="bill-btn"
+            (click)="generateBill()">
+            Generate Bill
+        </button>
+
+    </div>
+
+</div>

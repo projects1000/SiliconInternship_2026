@@ -1,0 +1,65 @@
+.billing-container{
+    width: 100%;
+}
+
+.bill-title{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #04142d;
+}
+
+.customer-info{
+    padding: 12px;
+    background: #f4f7fb;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.bill-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bill-table thead{
+    background: #04142d;
+    color: white;
+}
+
+.bill-table th{
+    padding: 12px;
+}
+
+.bill-table td{
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.bill-table tbody tr:hover{
+    background: #f8fafc;
+}
+
+.empty-row{
+    text-align: center;
+    color: gray;
+}
+
+.total-section{
+    margin-top: 20px;
+    padding: 15px;
+
+    display: flex;
+    justify-content: space-between;
+
+    background: linear-gradient(
+        135deg,
+        #19f0d3,
+        #13c8b0
+    );
+
+    border-radius: 12px;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    color: #04142d;
+}

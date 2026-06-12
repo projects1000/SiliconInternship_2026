@@ -1,0 +1,59 @@
+<div class="billing-container">
+
+    <h2 class="bill-title">
+        Billing Summary
+    </h2>
+
+    <div class="customer-info">
+        <strong>Customer:</strong>
+        {{ customer?.name || 'Not Selected' }}
+    </div>
+
+    <table class="bill-table">
+
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let product of products">
+
+                <td>{{ product.name }}</td>
+
+                <td>{{ product.quantity }}</td>
+
+                <td>₹{{ product.price }}</td>
+
+                <td>₹{{ product.total }}</td>
+
+            </tr>
+
+            <tr *ngIf="products.length === 0">
+
+                <td colspan="4" class="empty-row">
+                    No Products Added
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <div class="total-section">
+
+        <span>Total Amount</span>
+
+        <span>
+            ₹{{ totalAmount }}
+        </span>
+
+    </div>
+
+</div>

@@ -1,0 +1,19 @@
+<div class="customer-container">
+
+  <h3>Customer Details</h3>
+
+  <input
+    type="text"
+    placeholder="Customer Name"
+    [(ngModel)]="customer.name">
+
+  <input
+    type="text"
+    placeholder="Mobile Number"
+    [(ngModel)]="customer.mobile">
+
+  <button (click)="saveCustomer()">
+    Save Customer
+  </button>
+
+</div>

@@ -7,9 +7,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./member6.component.css']
 })
 export class Member6Component {
- constructor(private router: Router) {}
+
+  constructor(private router: Router) {}
 
   goBackToGroup() {
-    this.router.navigate(['grp-d']);
+    this.router.navigate(['/grp-d']);
+  }
+
+  openProductManagement() {
+    this.router.navigate(['/product-management']);
   }
 }
