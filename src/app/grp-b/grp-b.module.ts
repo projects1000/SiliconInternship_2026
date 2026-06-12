@@ -25,6 +25,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AttendanceComponent as Member2AttendanceComponent } from './member2/attendance/attendance.component';
+import { ProductManagementComponent } from './member3/product-management/product-management.component';
+import { ProductListComponent } from './member3/product-management/product-list/product-list.component';
+import { CustomerDetailsComponent } from './member3/product-management/customer-details/customer-details.component';
+import { BillDetailsComponent } from './member3/product-management/bill-details/bill-details.component';
+import { NotificationComponent } from './member3/product-management/notification/notification.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -44,6 +49,11 @@ import { CdkTreeModule } from '@angular/cdk/tree';
     Member6Component,
     Member1AttendanceComponent,
     Member2AttendanceComponent,
+    ProductManagementComponent,
+    ProductListComponent,
+    CustomerDetailsComponent,
+    BillDetailsComponent,
+    NotificationComponent,
   ],
   imports: [
     CommonModule,

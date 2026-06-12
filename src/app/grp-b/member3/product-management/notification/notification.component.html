@@ -1,0 +1,39 @@
+<div class="activity-panel">
+  <div class="activity-panel__header">
+    <h2>Recent Activity &amp; Notifications</h2>
+    <span>{{ recentNotifications.length ? 'Live updates' : 'Waiting for actions' }}</span>
+  </div>
+
+  <div class="activity-grid" *ngIf="recentNotifications.length === 0">
+    <div class="activity-placeholder">
+      <mat-icon>add_shopping_cart</mat-icon>
+      <strong>Add a product</strong>
+      <p>Products appear here with toast feedback.</p>
+    </div>
+    <div class="activity-placeholder">
+      <mat-icon>person_add</mat-icon>
+      <strong>Save customer</strong>
+      <p>Customer save events are tracked here.</p>
+    </div>
+    <div class="activity-placeholder">
+      <mat-icon>receipt_long</mat-icon>
+      <strong>Generate bill</strong>
+      <p>Final bill generation is logged here.</p>
+    </div>
+  </div>
+
+  <div class="activity-grid activity-grid--live" *ngIf="recentNotifications.length > 0">
+    <article
+      class="activity-card"
+      *ngFor="let item of recentNotifications"
+      [ngClass]="getStatusClass(item.type)">
+      <div class="activity-card__icon">
+        <mat-icon>{{ getIcon(item.type) }}</mat-icon>
+      </div>
+      <div class="activity-card__content">
+        <strong>{{ item.message }}</strong>
+        <span>{{ item.timestamp | date: 'shortTime' }}</span>
+      </div>
+    </article>
+  </div>
+</div>

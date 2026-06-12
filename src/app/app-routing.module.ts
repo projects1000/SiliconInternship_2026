@@ -43,6 +43,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./grp-g/grp-g.module').then(m => m.GrpGModule)
   },
+  {
+    path: 'product-management',
+    redirectTo: 'grp-b/product-management',
+    pathMatch: 'full'
+  },
 
   // fallback (optional but recommended)
   { path: '**', redirectTo: '' }

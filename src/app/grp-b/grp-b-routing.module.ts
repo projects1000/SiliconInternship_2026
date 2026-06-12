@@ -11,6 +11,8 @@ import { Member5Component } from './member5/member5.component';
 import { Member6Component } from './member6/member6.component';
 import { Member1AttendanceComponent } from './member1/attendance/attendance.component';
 import { AttendanceComponent as Member2AttendanceComponent } from './member2/attendance/attendance.component';
+import { ProductManagementComponent } from './member3/product-management/product-management.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -50,6 +52,10 @@ const routes: Routes = [
   {
     path: 'member3/attendance',
     component: Member3AttendanceComponent
+  },
+  {
+    path: 'product-management',
+    component: ProductManagementComponent
   },
   {
     path: 'member4',
