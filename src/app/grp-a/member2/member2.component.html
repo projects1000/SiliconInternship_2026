@@ -2,7 +2,7 @@
 
   <div class="hero-band">
     <div class="avatar-ring">
-      <div class="avatar-initials">SD</div>
+      <img src="assets/swagat_profile.jpg" alt="Swagat Das" class="profile-img">
     </div>
     <div class="hero-text">
       <p class="grp-badge">Group 1 &middot; Member 2</p>
@@ -67,6 +67,19 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- Actions Section -->
+  <div class="actions-section">
+    <button (click)="goBackToGroup()" class="action-btn secondary-btn">
+      <span class="icon">←</span> Back to Group A
+    </button>
+    <button (click)="goToAttendance()" class="action-btn primary-btn">
+      <span class="icon">📊</span> Attendance Management System
+    </button>
+    <button (click)="goToHospital()" class="action-btn primary-btn btn-hospital">
+      <span class="icon">🏥</span> Hospital Management System
+    </button>
   </div>
 
   <div class="connect-bar">

@@ -11,5 +11,10 @@ export class Member10Component {
 
   goBackToGroup() {
     this.router.navigate(['grp-f']);
+    
+  }
+
+  goToBilling() {
+    this.router.navigate(['/member10/billing']);
   }
 }

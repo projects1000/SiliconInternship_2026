@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { GrpDComponent } from './grp-d/grp-d.component';
-
 import { Member1Component } from './member1/member1.component';
 import { Member2Component } from './member2/member2.component';
 import { Member3Component } from './member3/member3.component';
@@ -15,6 +14,11 @@ import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { Member11Component } from './member11/member11.component';
 import { AttendanceComponent } from './member1/attendance/attendance.component';
+import { ProductManagementComponent } from './member1/product-management/product-management.component';
+
+// Import your new tracker component
+import { AttendanceTrackerComponent } from './member3/attendance-tracker/attendance-tracker.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -29,12 +33,21 @@ const routes: Routes = [
     component: AttendanceComponent
   },
   {
+  path: 'member1/product-management',
+  component: ProductManagementComponent
+  },
+  {
     path: 'member2',
     component: Member2Component
   },
   {
     path: 'member3',
     component: Member3Component
+  },
+  // Add this new route for your matrix page
+  {
+    path: 'member3/attendance-matrix',
+    component: AttendanceTrackerComponent
   },
   {
     path: 'member4',

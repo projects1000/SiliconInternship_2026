@@ -1,5 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { GrpFComponent } from './grp-f/grp-f.component';
 import { Member1Component } from './member1/member1.component';
 import { Member2Component } from './member2/member2.component';
@@ -12,6 +23,7 @@ import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { GrpFRoutingModule } from './grp-f-routing.module';
+ sukanya-whatsapp-chat
 import { Member6AttendanceComponent } from './member6-attendance/member6-attendance.component';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -24,6 +36,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Member6ChatComponent } from './member6-chat/member6-chat.component';
 
+
+import { AttendanceComponent } from './member5/attendance/attendance.component';
+import { Member10AttendanceDashboardComponent } from './member10/member10-attendance-dashboard/member10-attendance-dashboard.component';
+import { BillingComponent } from './member10/billing/billing.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule }   from '@angular/material/tooltip';
+import { MatRippleModule }    from '@angular/material/core';
+ main
 
 @NgModule({
   declarations: [
@@ -38,6 +60,7 @@ import { Member6ChatComponent } from './member6-chat/member6-chat.component';
     Member8Component,
     Member9Component,
     Member10Component,
+ sukanya-whatsapp-chat
     Member6AttendanceComponent,
     Member6ChatComponent
   ],
@@ -55,5 +78,29 @@ import { Member6ChatComponent } from './member6-chat/member6-chat.component';
   MatCardModule
 ]
 
+    AttendanceComponent,
+    Member10AttendanceDashboardComponent,
+    BillingComponent
+  ],
+  imports: [
+    CommonModule,
+    GrpFRoutingModule,
+    RouterModule,
+    FormsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatTreeModule,
+    MatSidenavModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSnackBarModule,
+    MatTooltipModule,
+    MatRippleModule
+  ]
+ main
 })
 export class GrpFModule { }

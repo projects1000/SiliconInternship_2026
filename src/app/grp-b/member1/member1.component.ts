@@ -47,6 +47,12 @@ export class Member1Component implements OnInit {
     // Navigates to your group B attendance sub-route path context setup
     this.router.navigate(['grp-b/member1/attendance']);
   }
+  navigateToBillingDashboard() {
+    this.router.navigate(['grp-b/member1/billing-dashboard']);
+  }
+  navigateToWhatsappDashboard(){
+    this.router.navigate(['grp-b/member1/whatsapp-dashboard']);
+  }
 
   goBackToGroup() {
     this.router.navigate(['grp-b']);

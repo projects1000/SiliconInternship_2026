@@ -8,6 +8,7 @@ import { Member2Component } from './member2/member2.component';
 import { Member3Component } from './member3/member3.component';
 import { Member4Component } from './member4/member4.component';
 import { Member5Component } from './member5/member5.component';
+import { AttendanceComponent } from './member5/attendance/attendance.component';
 import { Member6Component } from './member6/member6.component';
 import { Member6AttendanceComponent } from './member6-attendance/member6-attendance.component';
 import { Member6ChatComponent } from './member6-chat/member6-chat.component';
@@ -16,6 +17,9 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
+import { Member10AttendanceDashboardComponent } from './member10/member10-attendance-dashboard/member10-attendance-dashboard.component';
+import { BillingComponent } from './member10/billing/billing.component';
+
 
 const routes: Routes = [
   {
@@ -43,6 +47,7 @@ const routes: Routes = [
     component: Member5Component
   },
   {
+ sukanya-whatsapp-chat
   path: 'member6',
   component: Member6Component
 },
@@ -54,6 +59,16 @@ const routes: Routes = [
   path: 'member6-attendance',
   component: Member6AttendanceComponent
 },
+
+     path: 'member5/attendance',
+     component: AttendanceComponent
+},
+  {
+    path: 'member6',
+    component: Member6Component
+  },
+  
+ main
   {
     path: 'member7',
     component: Member7Component
@@ -69,7 +84,13 @@ const routes: Routes = [
   {
     path: 'member10',
     component: Member10Component
-  }
+  },
+  {
+  path: 'member10/attendance-dashboard',
+  component: Member10AttendanceDashboardComponent
+},
+ { path: 'member10/billing', 
+   component: BillingComponent  }
 ];
 
 @NgModule({
