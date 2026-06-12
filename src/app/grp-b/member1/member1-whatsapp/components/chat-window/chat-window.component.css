@@ -1,0 +1,196 @@
+/* grp-b/member1/member1-whatsapp/components/chat-window/chat-window.component.css */
+
+.chat-window-box {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 25px;
+    transition: all 0.3s ease;
+}
+
+.chat-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+}
+
+.chat-header-row h3 {
+    margin: 0;
+    font-size: 15px;
+    color: var(--text-main);
+}
+
+.chat-header-row h3 small {
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.btn-clear {
+    background: #e53e3e;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+.btn-clear:hover:not([disabled]) {
+    background: #c53030;
+}
+
+.btn-clear:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.chat-logs-screen {
+    height: 320px;
+    overflow-y: auto;
+    background-color: var(--bg-chat-wallpaper);
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease;
+}
+
+.bubble-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.bubble-wrapper.left {
+    justify-content: flex-start;
+}
+
+.bubble-wrapper.right {
+    justify-content: flex-end;
+}
+
+.chat-bubble {
+    max-width: 70%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   THEME DEPENDENT BUBBLE COLOR SCHEMES
+   ========================================================================== */
+
+/* USER A (Left / Gents) - Light Theme Default */
+.bubble-wrapper.left .chat-bubble {
+    background-color: #ffffff;
+    color: #111b21;
+    /* Crisp near-black text */
+    border-top-left-radius: 2px;
+}
+
+.bubble-wrapper.left .bubble-sender {
+    color: #2b6cb0;
+    /* Distinct blue name for Gents */
+}
+
+/* USER B (Right / Mayur) - Light Theme Default */
+.bubble-wrapper.right .chat-bubble {
+    background-color: #d9fdd3;
+    /* Soft WhatsApp Green */
+    color: #111b21;
+    /* Dark text for clean readability */
+    border-top-right-radius: 2px;
+}
+
+.bubble-wrapper.right .bubble-sender {
+    color: #6b46c1;
+    /* Distinct purple name for Mayur */
+}
+
+/* ==========================================================================
+   DARK THEME SPECIFIC OVERRIDES (Using :host-context)
+   ========================================================================== */
+
+/* USER A (Left / Gents) - Dark Theme Mode */
+:host-context(.dark-theme) .bubble-wrapper.left .chat-bubble {
+    background-color: #202c33;
+    /* Classic WhatsApp Dark Gray Bubble */
+    color: #e9edef;
+    /* Crisp off-white text */
+}
+
+:host-context(.dark-theme) .bubble-wrapper.left .bubble-sender {
+    color: #63b3ed;
+    /* Brighter blue name for contrast */
+}
+
+/* USER B (Right / Mayur) - Dark Theme Mode */
+:host-context(.dark-theme) .bubble-wrapper.right .chat-bubble {
+    background-color: #005c4b;
+    /* Classic WhatsApp Dark Green Bubble */
+    color: #e9edef;
+    /* Crisp off-white text */
+}
+
+:host-context(.dark-theme) .bubble-wrapper.right .bubble-sender {
+    color: #b794f4;
+    /* Softened violet name for contrast */
+}
+
+/* ==========================================================================
+   BUBBLE INTERNAL TYPOGRAPHY
+   ========================================================================== */
+
+.bubble-sender {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.bubble-text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.bubble-time {
+    display: block;
+    text-align: right;
+    font-size: 10px;
+    opacity: 0.6;
+    margin-top: 4px;
+}
+
+.no-chats {
+    text-align: center;
+    margin: auto;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-style: italic;
+}
+
+.chat-metrics-footer {
+    display: flex;
+    justify-content: space-between;
+    background: var(--bg-app);
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}

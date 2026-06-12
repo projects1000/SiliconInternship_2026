@@ -12,4 +12,10 @@ export class Member9Component {
   goBackToGroup() {
     this.router.navigate(['grp-g']);
   }
+
+  takeAttendance() {
+    alert('Attendance feature will be implemented soon!');
+    console.log('Take Attendance button clicked');
+    // TODO: Implement attendance management system
+  }
 }

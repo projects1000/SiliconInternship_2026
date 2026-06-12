@@ -1,0 +1,415 @@
+<div class="attendance-page">
+
+  <header class="hero-header">
+    <div class="hero-glow"></div>
+    <mat-toolbar class="hero-toolbar">
+      <button mat-icon-button class="glass-btn" (click)="goBack()" aria-label="Go back to Member 3 profile">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <div class="hero-text">
+        <span class="hero-eyebrow">Member 3 · Analytics Hub</span>
+        <h1>Attendance Dashboard</h1>
+        <p>Track, visualize &amp; export daily attendance</p>
+      </div>
+      <span class="toolbar-spacer"></span>
+      <mat-chip-set>
+        <mat-chip [class]="isLocked() ? 'chip-locked' : 'chip-open'">
+          <mat-icon matChipAvatar>{{ isLocked() ? 'lock' : 'lock_open' }}</mat-icon>
+          {{ isLocked() ? 'Locked' : 'Editable' }}
+        </mat-chip>
+      </mat-chip-set>
+    </mat-toolbar>
+  </header>
+
+  <div class="page-content">
+
+    <section class="dashboard-top">
+      <div class="stat-cards">
+        <div class="glass-card stat-card card-total anim-fade-up" style="--delay:0ms">
+          <div class="stat-icon-wrap"><mat-icon>groups</mat-icon></div>
+          <div class="stat-body">
+            <span class="stat-label">Total Members</span>
+            <span class="stat-value">{{ summary.total }}</span>
+          </div>
+        </div>
+        <div class="glass-card stat-card gradient-present anim-fade-up" style="--delay:80ms">
+          <div class="stat-icon-wrap"><mat-icon>check_circle</mat-icon></div>
+          <div class="stat-body">
+            <span class="stat-label">Present</span>
+            <span class="stat-value">{{ summary.present }}</span>
+          </div>
+        </div>
+        <div class="glass-card stat-card gradient-absent anim-fade-up" style="--delay:160ms">
+          <div class="stat-icon-wrap"><mat-icon>cancel</mat-icon></div>
+          <div class="stat-body">
+            <span class="stat-label">Absent</span>
+            <span class="stat-value">{{ summary.absent }}</span>
+          </div>
+        </div>
+        <div class="glass-card stat-card gradient-late anim-fade-up" style="--delay:240ms">
+          <div class="stat-icon-wrap"><mat-icon>schedule</mat-icon></div>
+          <div class="stat-body">
+            <span class="stat-label">Late</span>
+            <span class="stat-value">{{ summary.late }}</span>
+          </div>
+        </div>
+        <div class="glass-card stat-card gradient-streak anim-fade-up" style="--delay:320ms">
+          <div class="stat-icon-wrap"><mat-icon>local_fire_department</mat-icon></div>
+          <div class="stat-body">
+            <span class="stat-label">Streak (≥80%)</span>
+            <span class="stat-value">{{ streakDays }}<small> days</small></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card circular-widget anim-fade-up" style="--delay:120ms">
+        <div class="widget-header">
+          <mat-icon>donut_large</mat-icon>
+          <span>Today's Attendance</span>
+        </div>
+        <div class="circular-progress" role="img" [attr.aria-label]="'Today attendance ' + summary.percentage + ' percent'">
+          <svg viewBox="0 0 120 120">
+            <circle class="progress-bg" cx="60" cy="60" r="54"></circle>
+            <circle class="progress-ring" cx="60" cy="60" r="54" [style.strokeDashoffset]="circularDashOffset"></circle>
+          </svg>
+          <div class="progress-center">
+            <span class="progress-value">{{ summary.percentage }}%</span>
+            <span class="progress-label">Present</span>
+          </div>
+        </div>
+        <mat-progress-bar mode="determinate" [value]="summary.percentage" class="widget-bar"></mat-progress-bar>
+      </div>
+    </section>
+
+    <section class="analytics-row">
+      <div class="glass-card chart-card anim-fade-up" style="--delay:0ms">
+        <div class="section-header">
+          <mat-icon>trending_up</mat-icon>
+          <div>
+            <h2>Attendance Trend</h2>
+            <p>Daily attendance % over the selected month</p>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas #trendChart aria-label="Attendance trend chart"></canvas>
+        </div>
+      </div>
+
+      <div class="glass-card champion-card anim-fade-up" style="--delay:100ms">
+        <div class="champion-badge">🏆</div>
+        <h2>Attendance Champions</h2>
+
+        <div *ngIf="topPerformers.length === 0" class="champion-empty">
+          <mat-icon>emoji_events</mat-icon>
+          <p>No champions yet for this month. Mark attendance to unlock rankings.</p>
+        </div>
+
+        <div *ngIf="topPerformers.length > 0" class="champion-list">
+          <div class="champion-name-list">
+            <span *ngFor="let champ of topPerformers" class="champion-name-item">
+              👑 {{ champ.name }}
+            </span>
+          </div>
+          <div class="champion-stats">
+            <div class="champion-stat">
+              <mat-icon>percent</mat-icon>
+              <span class="champion-value">{{ topPerformers[0].percentage }}%</span>
+              <span class="champion-label">Attendance</span>
+            </div>
+            <div class="champion-stat">
+              <mat-icon>whatshot</mat-icon>
+              <span class="champion-value">{{ topPerformers[0].streak }}</span>
+              <span class="champion-label">Day Streak</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-title">
+        <mat-icon>analytics</mat-icon>
+        <h2>Monthly Analytics</h2>
+      </div>
+      <div class="monthly-grid">
+        <div class="glass-card monthly-card gradient-percent anim-fade-up" style="--delay:0ms">
+          <mat-icon>insights</mat-icon>
+          <span class="monthly-label">Total Attendance</span>
+          <span class="monthly-value">{{ monthlyStats.totalPercentage }}%</span>
+        </div>
+        <div class="glass-card monthly-card gradient-present anim-fade-up" style="--delay:60ms">
+          <mat-icon>event_available</mat-icon>
+          <span class="monthly-label">Present Days</span>
+          <span class="monthly-value">{{ monthlyStats.presentDays }}</span>
+        </div>
+        <div class="glass-card monthly-card gradient-absent anim-fade-up" style="--delay:120ms">
+          <mat-icon>event_busy</mat-icon>
+          <span class="monthly-label">Absent Days</span>
+          <span class="monthly-value">{{ monthlyStats.absentDays }}</span>
+        </div>
+        <div class="glass-card monthly-card gradient-late anim-fade-up" style="--delay:180ms">
+          <mat-icon>more_time</mat-icon>
+          <span class="monthly-label">Late Days</span>
+          <span class="monthly-value">{{ monthlyStats.lateDays }}</span>
+        </div>
+        <div class="glass-card monthly-card card-info anim-fade-up" style="--delay:240ms">
+          <mat-icon>calendar_month</mat-icon>
+          <span class="monthly-label">Days Tracked</span>
+          <span class="monthly-value">{{ monthlyAnalytics.daysTracked }}</span>
+        </div>
+        <div class="glass-card monthly-card card-info anim-fade-up" style="--delay:300ms">
+          <mat-icon>emoji_events</mat-icon>
+          <span class="monthly-label">Best Day</span>
+          <span class="monthly-value small">{{ formatDateKeyDisplay(monthlyAnalytics.bestDay) }}</span>
+          <span class="monthly-sub">{{ monthlyAnalytics.bestDayPercentage }}%</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="glass-card heatmap-card anim-fade-up" style="--delay:0ms">
+      <div class="section-header">
+        <mat-icon>grid_view</mat-icon>
+        <div>
+          <h2>Attendance Heatmap</h2>
+          <p>GitHub-style daily overview for the selected month</p>
+        </div>
+      </div>
+      <div class="heatmap-legend">
+        <span><i class="dot present"></i> Present</span>
+        <span><i class="dot late"></i> Late</span>
+        <span><i class="dot absent"></i> Absent</span>
+        <span><i class="dot none"></i> No data</span>
+      </div>
+      <div class="heatmap-grid">
+        <div
+          *ngFor="let cell of heatmapCells"
+          class="heatmap-cell"
+          [ngClass]="getHeatmapClass(cell.status)"
+          [attr.title]="cell.label"
+          [attr.aria-label]="cell.label">
+          <span class="heatmap-day">{{ cell.day }}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Management -->
+    <mat-card class="glass-card student-mgmt-card anim-fade-up" style="--delay:0ms">
+      <mat-card-content>
+        <div class="section-header compact">
+          <mat-icon>manage_accounts</mat-icon>
+          <h2>Student Management</h2>
+        </div>
+
+        <div class="student-form-row">
+          <mat-form-field appearance="outline" class="control-field glass-field">
+            <mat-label>Student Name</mat-label>
+            <input matInput [(ngModel)]="newStudentName" placeholder="Full name">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="control-field glass-field">
+            <mat-label>Registration Number</mat-label>
+            <input matInput [(ngModel)]="newStudentReg" placeholder="e.g. REG066">
+          </mat-form-field>
+          <button mat-raised-button color="primary" class="action-btn" (click)="addStudent()">
+            <mat-icon>person_add</mat-icon> Add Student
+          </button>
+          <label class="excel-upload action-btn" mat-stroked-button>
+            <mat-icon>upload_file</mat-icon> Import Excel
+            <input type="file" accept=".xlsx,.xls" (change)="onExcelSelected($event)" hidden>
+          </label>
+        </div>
+
+        <div class="student-list" *ngIf="students.length > 0">
+          <div class="student-list-item" *ngFor="let student of students">
+            <ng-container *ngIf="editingReg !== student.registrationNumber; else editBlock">
+              <div class="student-info">
+                <strong>{{ student.name }}</strong>
+                <span>{{ student.registrationNumber }}</span>
+                <span class="student-pct" [ngClass]="getPercentageBadgeClass(memberPercentages[student.registrationNumber] || 0)">
+                  {{ memberPercentages[student.registrationNumber] || 0 }}%
+                </span>
+              </div>
+              <div class="student-actions">
+                <button mat-icon-button (click)="startEditStudent(student)" aria-label="Edit student">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="deleteStudent(student.registrationNumber)" aria-label="Delete student">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </ng-container>
+            <ng-template #editBlock>
+              <div class="student-edit-row">
+                <mat-form-field appearance="outline" class="glass-field compact-field">
+                  <mat-label>Name</mat-label>
+                  <input matInput [(ngModel)]="editStudentName">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="glass-field compact-field">
+                  <mat-label>Reg. No.</mat-label>
+                  <input matInput [(ngModel)]="editStudentReg">
+                </mat-form-field>
+                <button mat-icon-button (click)="saveEditStudent()" aria-label="Save student">
+                  <mat-icon>check</mat-icon>
+                </button>
+                <button mat-icon-button (click)="cancelEditStudent()" aria-label="Cancel edit">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Controls -->
+    <mat-card class="glass-card controls-card controls-enhanced anim-fade-up" style="--delay:0ms">
+      <mat-card-content>
+        <div class="section-header compact">
+          <mat-icon>tune</mat-icon>
+          <h2>Controls</h2>
+        </div>
+
+        <div class="controls-row controls-large">
+          <mat-form-field appearance="outline" class="control-field glass-field date-field">
+            <mat-label>Select Date</mat-label>
+            <input
+              matInput
+              class="date-input-large"
+              [matDatepicker]="picker"
+              [(ngModel)]="selectedDate"
+              (dateChange)="onDateChange()"
+              aria-label="Select attendance date">
+            <mat-datepicker-toggle matIconSuffix [for]="picker" class="date-toggle-large"></mat-datepicker-toggle>
+            <mat-datepicker #picker panelClass="attendance-datepicker-panel"></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="control-field glass-field">
+            <mat-label>Filter Month</mat-label>
+            <mat-select [(ngModel)]="selectedMonth" (selectionChange)="applyMonthFilter()" aria-label="Filter by month">
+              <mat-option *ngFor="let month of monthOptions" [value]="month.value">{{ month.label }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="control-field search-field glass-field">
+            <mat-label>Search by name or registration</mat-label>
+            <input
+              matInput
+              class="search-input-large"
+              [(ngModel)]="searchText"
+              (ngModelChange)="onSearchChange()"
+              placeholder="Type a name or reg. number..."
+              aria-label="Search students">
+            <mat-icon matPrefix>search</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="actions-row">
+          <button mat-raised-button color="primary" class="action-btn" (click)="saveAttendance()" [disabled]="isLocked()">
+            <mat-icon>save</mat-icon> Save
+          </button>
+          <button mat-stroked-button class="action-btn btn-present" (click)="markAllPresent()" [disabled]="isLocked()">
+            <mat-icon>done_all</mat-icon> Mark All Present
+          </button>
+          <button mat-stroked-button class="action-btn btn-reset" (click)="resetAttendance()" [disabled]="isLocked()">
+            <mat-icon>restart_alt</mat-icon> Reset Date
+          </button>
+          <button mat-stroked-button class="action-btn" [class]="isLocked() ? 'btn-unlock' : 'btn-lock'" (click)="lockAttendance()">
+            <mat-icon>{{ isLocked() ? 'lock_open' : 'lock' }}</mat-icon>
+            {{ isLocked() ? 'Unlock Date' : 'Lock Date' }}
+          </button>
+          <button mat-stroked-button class="action-btn btn-export" (click)="exportCsv()">
+            <mat-icon>download</mat-icon> Export CSV
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Attendance Table -->
+    <mat-card class="glass-card table-card anim-fade-up" style="--delay:80ms">
+      <mat-card-header class="table-header-row">
+        <mat-card-title>
+          <mat-icon>fact_check</mat-icon>
+          Attendance for <span class="date-display">{{ formatDisplayDate() }}</span>
+        </mat-card-title>
+        <button mat-stroked-button class="sort-btn" (click)="toggleSortByPercentage()">
+          <mat-icon>sort</mat-icon>
+          {{ sortByPercentage ? 'Sorted by %' : 'Default order' }}
+        </button>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div *ngIf="dataSource.data.length === 0" class="empty-state">
+          <mat-icon>person_off</mat-icon>
+          <h3>No members found</h3>
+          <p>Try adjusting your search or select a different date.</p>
+        </div>
+
+        <div *ngIf="dataSource.data.length > 0" class="table-wrapper">
+          <table mat-table [dataSource]="dataSource" matSort class="attendance-table">
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="name">Member</th>
+              <td mat-cell *matCellDef="let record">
+                <div class="name-cell">
+                  <mat-icon>person</mat-icon>
+                  <div>
+                    <span class="member-name">{{ record.name }}</span>
+                    <span class="member-reg">{{ record.registrationNumber }}</span>
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="attendancePct">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="attendancePct">Attendance %</th>
+              <td mat-cell *matCellDef="let record">
+                <span class="pct-badge" [ngClass]="getPercentageBadgeClass(record.attendancePercentage)">
+                  {{ record.attendancePercentage }}%
+                </span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef>Status</th>
+              <td mat-cell *matCellDef="let record">
+                <mat-chip-set>
+                  <mat-chip [class]="getStatusColor(record.status)">
+                    <mat-icon matChipAvatar>{{ getStatusIcon(record.status) }}</mat-icon>
+                    {{ record.status }}
+                  </mat-chip>
+                </mat-chip-set>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>Actions</th>
+              <td mat-cell *matCellDef="let record">
+                <div class="action-buttons">
+                  <button mat-mini-fab class="action-present" (click)="setStatus(record, 'Present')" [disabled]="isLocked()" aria-label="Mark present">
+                    <mat-icon>check</mat-icon>
+                  </button>
+                  <button mat-mini-fab class="action-late" (click)="setStatus(record, 'Late')" [disabled]="isLocked()" aria-label="Mark late">
+                    <mat-icon>schedule</mat-icon>
+                  </button>
+                  <button mat-mini-fab class="action-absent" (click)="setStatus(record, 'Absent')" [disabled]="isLocked()" aria-label="Mark absent">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </div>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: displayedColumns;"
+              class="table-row"
+              [ngClass]="getRowClass(row.status)">
+            </tr>
+          </table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>

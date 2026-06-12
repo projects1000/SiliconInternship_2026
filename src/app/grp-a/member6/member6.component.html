@@ -56,9 +56,21 @@
             </div>
           </div>
         </section>
+        <section class="bento-item skills-card">
+          <div class="card-header">
+            <i class="icon">💡</i>
+            <h3>WORKS</h3>
+          </div>
+
+          <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+              <button class="skill-pill" style="cursor: pointer;" (click)="goToAttendance()">Take Attendance</button>
+              <button class="skill-pill" style="cursor: pointer;" (click)="goToProductManagement()">Product Management</button>
+          </div>
+        </section>
       </main>
     </div>
   </div>
+
 
   <button (click)="goBackToGroup()">Go back to Group A</button>
 </div>

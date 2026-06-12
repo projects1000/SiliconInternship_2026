@@ -1,9 +1,88 @@
-<div class="member-page">
+<div class="profile-container">
 
-  <h1>Member 9</h1>
+  <div class="glass-card">
 
-  <button (click)="goBackToGroup()">
-    Go back to Group F
-  </button>
+    <div class="left-section">
+
+      <img src="assets/images/profile.jpeg" class="profile-pic">
+
+      <h1>{{name}}</h1>
+
+      <h3>Group F | Member 9</h3>
+
+      <p class="role">
+        Full Stack Java Developer
+      </p>
+
+      <p class="quote">
+        "Passionate about building innovative web applications."
+      </p>
+
+    </div>
+
+    <div class="right-section">
+
+      <div class="info-box">
+
+        <p>🎓 Silicon University, Bhubaneswar</p>
+
+        <p>📍 Bhubaneswar, Odisha</p>
+
+        <p>💻 Java | C | Python | Angular | MySQL</p>
+
+        <p>🎵 Singing | Coding | Learning New Technologies</p>
+
+        
+
+        <p>📧 nirmitnayak1207@gmail.com</p>
+
+      </div>
+
+      <div class="skills">
+
+        <h3>Technical Skills</h3>
+
+        <p>Java</p>
+        <progress value="50" max="100"></progress>
+
+        <p>Angular</p>
+        <progress value="30" max="100"></progress>
+
+        <p>MySQL</p>
+        <progress value="70" max="100"></progress>
+
+        <p>C </p>
+        <progress value="70" max="100"></progress>
+
+        <p>Python</p>
+        <progress value="80" max="100"></progress>
+
+      </div>
+
+      <div class="social-icons">
+
+        <a href="https://github.com/nirmitnayak1207-eng" target="_blank">
+          <img src="assets/images/git.png">
+        </a>
+
+       
+
+        <a href="mailto:nirmitnayak1207@gmail.com">
+          <img src="assets/images/gmail.png">
+        </a>
+
+      </div>
+
+      <button (click)="showMessage()">
+        Contact Me
+      </button>
+
+      <button class="back-btn" (click)="goBack()">
+        ⬅ Back to Group F
+      </button>
+
+    </div>
+
+  </div>
 
 </div>
