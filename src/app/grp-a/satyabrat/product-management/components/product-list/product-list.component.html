@@ -31,11 +31,20 @@
             <mat-icon class="star-icon">star</mat-icon>
             {{ prod.rating }}
           </span>
+          <!-- Discount Badge -->
+          <span class="discount-badge" *ngIf="getDiscount(prod.name) > 0">
+            {{ getDiscount(prod.name) }}% OFF
+          </span>
         </div>
 
         <mat-card-content class="product-info">
           <span class="product-name">{{ prod.name }}</span>
-          <span class="product-price">₹{{ prod.price | number:'1.2-2' }}</span>
+          <!-- Show original + discounted price when discount is active -->
+          <span class="product-price" *ngIf="getDiscount(prod.name) === 0">₹{{ prod.price | number:'1.2-2' }}</span>
+          <span class="product-price-discounted" *ngIf="getDiscount(prod.name) > 0">
+            <span class="original-price">₹{{ prod.price | number:'1.2-2' }}</span>
+            <span class="new-price">₹{{ getDiscountedPrice(prod) | number:'1.2-2' }}</span>
+          </span>
         </mat-card-content>
 
         <div class="product-actions">

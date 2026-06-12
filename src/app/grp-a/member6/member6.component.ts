@@ -56,4 +56,7 @@ export class Member6Component {
   goToProductManagement() {
     this.router.navigate(['/grp-a/member6/attendance/product-management']);
   }
+  goToWhatsApp() {
+    this.router.navigate(['/grp-a/member6/attendance/whatsapp']);
+  }
 }
