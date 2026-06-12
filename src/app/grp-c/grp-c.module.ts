@@ -21,6 +21,9 @@ import { Member4attmngComponent } from './member4/member4attmng/member4attmng.co
 import { Member3AttendanceComponent } from './member3/member3-attendance/member3-attendance.component';
 import { ProductManagementComponent } from './member9/product-management/product-management.component';
 
+import { BillingSystemMember4Module } from './member4/billingsystem-member4/billing-system-member4.module';
+
+
 @NgModule({
   declarations: [
     GrpCComponent,
@@ -41,7 +44,8 @@ import { ProductManagementComponent } from './member9/product-management/product
   imports: [
     CommonModule,
     GrpCRoutingModule,
-    FormsModule
+    FormsModule,
+    BillingSystemMember4Module
   ]
 })
 export class GrpCModule { }

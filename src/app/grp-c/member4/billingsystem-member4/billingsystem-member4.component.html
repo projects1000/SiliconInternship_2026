@@ -1,0 +1,42 @@
+<div class="navbar">
+
+  <button (click)="activepage='products'" [class.active]="activepage==='products'">
+    Products List
+  </button>
+
+  <button (click)="activepage='register'" [class.active]="activepage==='register'">
+    Register Customer
+  </button>
+
+  <button (click)="activepage='bill'" [class.active]="activepage==='bill'">
+    Billing Section
+  </button>
+
+  <button (click)="activepage='settings'" [class.active]="activepage==='settings'">
+    Settings
+  </button>
+
+  <button (click)="activepage='notification'" [class.active]="activepage==='notification'">
+    Notifications
+  </button>
+
+</div>
+
+<div class="mainarea">
+
+  <div class="orders">
+    <h2>Orders</h2>
+    <p>No orders added yet</p>
+  </div>
+
+  <div class="pages">
+
+    <app-grp-cmember4products *ngIf="activepage==='products'"></app-grp-cmember4products>
+    <app-grp-cmember4register *ngIf="activepage==='register'"></app-grp-cmember4register>
+    <app-grp-cmember4bill *ngIf="activepage==='bill'"></app-grp-cmember4bill>
+    <app-grp-cmember4settings *ngIf="activepage==='settings'"></app-grp-cmember4settings>
+    <app-grp-cmember4notification *ngIf="activepage==='notification'"></app-grp-cmember4notification>
+
+  </div>
+
+</div>
