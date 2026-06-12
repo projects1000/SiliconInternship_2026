@@ -1,0 +1,6 @@
+<div class="toast-container" *ngIf="messages.length > 0">
+  <div class="toast-message" *ngFor="let message of messages">
+    <span>✓</span>
+    {{ message }}
+  </div>
+</div>

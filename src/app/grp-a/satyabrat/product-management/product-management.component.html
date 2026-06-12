@@ -1,0 +1,434 @@
+<div class="billing-system-container" [class.dark-theme]="isDarkMode">
+  <!-- Top Banner / Navigation -->
+  <header class="system-header">
+    <button mat-flat-button color="accent" class="btn-back" (click)="goBackToProfile()">
+      <mat-icon>arrow_back</mat-icon>
+      Profile
+    </button>
+    <h1 class="header-title">BILLING MANAGEMENT SYSTEM</h1>
+    <div class="header-actions" style="display: flex; align-items: center;">
+      <button mat-icon-button (click)="toggleTheme()" class="btn-theme-toggle" [title]="isDarkMode ? 'Light Mode' : 'Dark Mode'">
+        <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
+      <button mat-icon-button (click)="logout()" *ngIf="isLoggedIn" class="btn-logout" title="Logout" style="margin-left: 12px; color: #f87171;">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+  </header>
+
+  <!-- Store Hero Banner -->
+  <div class="store-hero-banner">
+    <div class="banner-overlay"></div>
+    <div class="banner-content">
+      <div class="store-badge">
+        <mat-icon>storefront</mat-icon>
+        <span>Premium Food & Grocery Store</span>
+      </div>
+      <h1 class="store-title">Welcome to Silicon FreshMart</h1>
+      <p class="store-subtitle">Browse fresh organic produce, quality ingredients, and essential household items. Fast billing and premium rewards at your fingertips.</p>
+      <div class="store-features">
+        <span class="feature-tag">
+          <mat-icon>verified</mat-icon> 100% Quality Guaranteed
+        </span>
+        <span class="feature-tag">
+          <mat-icon>bolt</mat-icon> Instant Billing
+        </span>
+        <span class="feature-tag">
+          <mat-icon>redeem</mat-icon> Customer Loyalty Discounts
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin View Mode Nav Tabs (Only visible to Admin) -->
+  <div class="admin-nav-bar animate-fade-in" *ngIf="isLoggedIn && isAdmin">
+    <div class="nav-bar-container">
+      <button class="nav-tab-btn" [class.active]="adminView === 'billing'" (click)="adminView = 'billing'">
+        <mat-icon>shopping_cart</mat-icon> Cashier Billing Console
+      </button>
+      <button class="nav-tab-btn" [class.active]="adminView === 'management'" (click)="adminView = 'management'">
+        <mat-icon>dashboard</mat-icon> Management Portal
+      </button>
+    </div>
+  </div>
+
+  <!-- If LOGGED IN & Billing Console: Show standard Dashboard Grid -->
+  <main class="dashboard-grid animate-fade-in" *ngIf="isLoggedIn && (!isAdmin || adminView === 'billing')">
+    <!-- Column 1: Product List -->
+    <div class="grid-col col-products-list">
+      <app-product-list (productAdded)="onProductAdded($event)"></app-product-list>
+    </div>
+
+    <!-- Column 2: Bill Details -->
+    <div class="grid-col">
+      <app-bill-details 
+        [selectedItems]="selectedItems" 
+        [customerName]="customerName" 
+        [mobileNumber]="mobileNumber"
+        [isReturningCustomer]="isReturningCustomer"
+        (billGenerated)="onBillGenerated($event)"
+        (itemRemoved)="onItemRemoved($event)"
+      ></app-bill-details>
+    </div>
+
+    <!-- Column 3: Notification Panel -->
+    <div class="grid-col">
+      <app-notification-panel></app-notification-panel>
+    </div>
+  </main>
+
+  <!-- If LOGGED IN & Management Portal: Show Admin Dashboard -->
+  <main class="management-portal animate-fade-in" *ngIf="isLoggedIn && isAdmin && adminView === 'management'">
+    <!-- Top Stats Row: KPI Cards -->
+    <div class="kpi-grid">
+      <!-- Card 1: All time Revenue -->
+      <mat-card class="dashboard-card card-kpi kpi-revenue">
+        <mat-card-content class="card-inner">
+          <div class="card-icon-wrapper icon-kpi-revenue">
+            <mat-icon>account_balance_wallet</mat-icon>
+          </div>
+          <div class="card-info">
+            <span class="card-label">All-Time Revenue</span>
+            <span class="card-value highlighted-revenue">₹{{ totalAllTimeRevenue | number:'1.2-2' }}</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Card 2: Average Order Value -->
+      <mat-card class="dashboard-card card-kpi kpi-aov">
+        <mat-card-content class="card-inner">
+          <div class="card-icon-wrapper icon-kpi-aov">
+            <mat-icon>insights</mat-icon>
+          </div>
+          <div class="card-info">
+            <span class="card-label">Average Order Value</span>
+            <span class="card-value highlighted-aov">₹{{ averageOrderValue | number:'1.2-2' }}</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Card 3: Total Orders -->
+      <mat-card class="dashboard-card card-kpi kpi-orders-count">
+        <mat-card-content class="card-inner">
+          <div class="card-icon-wrapper icon-kpi-orders">
+            <mat-icon>receipt</mat-icon>
+          </div>
+          <div class="card-info">
+            <span class="card-label">Total Invoices</span>
+            <span class="card-value highlighted-orders-count">{{ savedBills.length }} orders</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Card 4: Registered Users -->
+      <mat-card class="dashboard-card card-kpi kpi-users-count">
+        <mat-card-content class="card-inner">
+          <div class="card-icon-wrapper icon-kpi-users">
+            <mat-icon>people</mat-icon>
+          </div>
+          <div class="card-info">
+            <span class="card-label">Registered Users</span>
+            <span class="card-value highlighted-users-count">{{ registeredUsers.length }} accounts</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Management Portal Layout -->
+    <div class="management-grid">
+      <!-- Left Column: Users Directory (2/3 width) -->
+      <div class="mgt-col left-col">
+        <mat-card class="modern-card users-card">
+          <mat-card-header style="background: linear-gradient(135deg, var(--bg-app) 0%, var(--bg-bottom-dashboard) 100%); border-bottom: 1px solid var(--border-color); padding: 16px 20px;">
+            <div class="header-icon-wrapper purple-gradient" style="width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #a21caf 0%, #6366f1 100%); color: white; display: flex; align-items: center; justify-content: center; margin-right: 14px;">
+              <mat-icon>people_outline</mat-icon>
+            </div>
+            <mat-card-title style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary);">REGISTERED SYSTEM USERS</mat-card-title>
+          </mat-card-header>
+          
+          <mat-card-content style="padding: 24px;">
+            <div class="table-container mat-elevation-z1" style="margin-top: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color);">
+              <table mat-table [dataSource]="registeredUsers" class="users-table" style="width: 100%;">
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef style="padding: 16px 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;"> Full Name </th>
+                  <td mat-cell *matCellDef="let user" style="padding: 16px 20px; font-weight: 700; color: var(--text-primary);"> {{ user.name }} </td>
+                </ng-container>
+
+                <!-- Mobile Column -->
+                <ng-container matColumnDef="mobile">
+                  <th mat-header-cell *matHeaderCellDef style="padding: 16px 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;"> Mobile Number </th>
+                  <td mat-cell *matCellDef="let user" style="padding: 16px 20px; color: var(--text-secondary); font-family: monospace;"> {{ user.mobile }} </td>
+                </ng-container>
+
+                <!-- Role Column -->
+                <ng-container matColumnDef="role">
+                  <th mat-header-cell *matHeaderCellDef class="text-center" style="padding: 16px 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;"> System Role </th>
+                  <td mat-cell *matCellDef="let user" class="text-center" style="padding: 16px 20px;"> 
+                    <span class="role-badge" [class.badge-admin]="user.role === 'admin'" [class.badge-customer]="user.role !== 'admin'">
+                      {{ user.role === 'admin' ? 'Cashier / Admin' : 'Customer' }}
+                    </span>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="userDisplayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: userDisplayedColumns;"></tr>
+              </table>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Right Column: Top Products & Daily Metrics (1/3 width) -->
+      <div class="mgt-col right-col">
+        <!-- Today's Performance Metrics Card -->
+        <mat-card class="modern-card today-perf-card" style="margin-bottom: 24px; border: 1px solid var(--border-color);">
+          <mat-card-header style="background: linear-gradient(135deg, var(--bg-app) 0%, var(--bg-bottom-dashboard) 100%); border-bottom: 1px solid var(--border-color); padding: 16px 20px;">
+            <div class="header-icon-wrapper gold-gradient" style="width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #d97706 0%, #fbbf24 100%); color: white; display: flex; align-items: center; justify-content: center; margin-right: 14px;">
+              <mat-icon>query_stats</mat-icon>
+            </div>
+            <mat-card-title style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary);">TODAY'S METRICS</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="today-metrics-list" style="padding: 24px;">
+            <div class="metric-row">
+              <span class="metric-label">Daily Revenue</span>
+              <span class="metric-val text-revenue">₹{{ dailyRevenue | number:'1.2-2' }}</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-label">Orders Processed</span>
+              <span class="metric-val text-orders">{{ dailyOrderCount }} bills</span>
+            </div>
+            <div class="metric-row" style="border: none; padding-bottom: 0; margin-bottom: 0;">
+              <span class="metric-label">Unique Customers</span>
+              <span class="metric-val text-customers">{{ dailyCustomerCount }} served</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Top Selling Products Card -->
+        <mat-card class="modern-card top-selling-card" style="border: 1px solid var(--border-color);">
+          <mat-card-header style="background: linear-gradient(135deg, var(--bg-app) 0%, var(--bg-bottom-dashboard) 100%); border-bottom: 1px solid var(--border-color); padding: 16px 20px;">
+            <div class="header-icon-wrapper blue-gradient" style="width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #059669 0%, #34d399 100%); color: white; display: flex; align-items: center; justify-content: center; margin-right: 14px;">
+              <mat-icon>trending_up</mat-icon>
+            </div>
+            <mat-card-title style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary);">TOP SELLING PRODUCTS</mat-card-title>
+          </mat-card-header>
+          
+          <mat-card-content style="padding: 24px;">
+            <div class="empty-products-state" *ngIf="topSellingProducts.length === 0">
+              <mat-icon>trending_flat</mat-icon>
+              <p>No sales data available today.</p>
+            </div>
+            
+            <div class="top-products-list" *ngIf="topSellingProducts.length > 0">
+              <div class="top-product-item" *ngFor="let p of topSellingProducts; let idx = index">
+                <div class="product-rank-row">
+                  <span class="rank-badge">#{{ idx + 1 }}</span>
+                  <span class="product-title-name">{{ p.name }}</span>
+                  <span class="product-qty-sold">{{ p.qty }} sold</span>
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar-fill" [style.width.%]="(p.qty / topSellingProducts[0].qty) * 100"></div>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </main>
+
+  <!-- If NOT LOGGED IN: Show Catalog & Guest Checkout view -->
+  <main class="guest-grid animate-fade-in" *ngIf="!isLoggedIn">
+    <!-- Catalog (Product List) -->
+    <div class="grid-col">
+      <app-product-list (productAdded)="onProductAdded($event)"></app-product-list>
+    </div>
+
+    <!-- Guest Checkout Side Panel -->
+    <div class="grid-col">
+      <mat-card class="modern-card guest-cart-card">
+        <mat-card-header style="background: linear-gradient(135deg, var(--bg-app) 0%, var(--bg-bottom-dashboard) 100%); border-bottom: 1px solid var(--border-color); padding: 16px 20px;">
+          <div class="header-icon-wrapper" style="width: 40px; height: 40px; border-radius: 10px; background: rgba(59, 130, 246, 0.1); color: #3b82f6; display: flex; align-items: center; justify-content: center; margin-right: 14px;">
+            <mat-icon>shopping_cart</mat-icon>
+          </div>
+          <mat-card-title style="font-size: 1.1rem; font-weight: 800; letter-spacing: 0.5px; color: var(--text-primary);">ACTIVE CART</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content style="padding: 24px;">
+          <!-- Empty State -->
+          <div *ngIf="selectedItems.length === 0" class="empty-cart-state">
+            <mat-icon class="empty-icon">shopping_bag</mat-icon>
+            <p>Your shopping cart is empty.<br>Select items from the catalog on the left to start billing.</p>
+          </div>
+
+          <!-- Cart Table -->
+          <div *ngIf="selectedItems.length > 0" class="guest-cart-content">
+            <div class="guest-cart-items">
+              <div class="guest-cart-item" *ngFor="let item of selectedItems; let idx = index">
+                <img [src]="item.image" [alt]="item.name" class="guest-item-img" />
+                <div class="guest-item-info">
+                  <span class="guest-item-name">{{ item.name }}</span>
+                  <span class="guest-item-pricing">{{ item.qty }} × ₹{{ item.price | number:'1.2-2' }}</span>
+                </div>
+                <div class="guest-item-total" style="display: flex; align-items: center; gap: 8px;">
+                  <span>₹{{ item.total | number:'1.2-2' }}</span>
+                  <button mat-icon-button color="warn" (click)="onItemRemoved(idx)" title="Remove item" style="width: 32px; height: 32px; line-height: 32px; display: flex; align-items: center; justify-content: center;">
+                    <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin: 0;">delete_outline</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cart Summary Totals -->
+            <div class="cart-summary-totals">
+              <div class="total-row">
+                <span class="total-label">Sub Total</span>
+                <span class="total-val">₹{{ subTotal | number:'1.2-2' }}</span>
+              </div>
+              <div class="total-row items-count-row">
+                <span class="total-label">Total Items</span>
+                <span class="total-val">{{ totalProductsSelected }}</span>
+              </div>
+              <div class="info-alert">
+                <mat-icon>info</mat-icon>
+                <span>Taxes & loyalty discount will be calculated during checkout.</span>
+              </div>
+            </div>
+
+            <!-- Proceed Button -->
+            <div class="cart-actions" style="margin-top: 16px;">
+              <button mat-raised-button color="primary" class="btn-checkout full-width" (click)="goToLogin()">
+                <mat-icon>lock</mat-icon> Log In / Sign Up to Generate Bill
+              </button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </main>
+
+  <!-- Bottom Parent Component Dashboard - Only visible after login and in Billing Console view -->
+  <footer class="bottom-dashboard" *ngIf="isLoggedIn && (!isAdmin || adminView === 'billing')">
+    <!-- Active Customer Billing Stats -->
+    <div class="dashboard-section-header">
+      <h2>BILLING DASHBOARD</h2>
+    </div>
+    
+    <div class="dashboard-cards">
+      <!-- Card 1: Customer Name -->
+      <mat-card class="dashboard-card card-customer">
+        <mat-card-content class="card-inner">
+          <div class="card-icon-wrapper icon-customer">
+            <mat-icon>person</mat-icon>
+          </div>
+          <div class="card-info">
+            <span class="card-label">Customer Name</span>
+            <span class="card-value">
+              {{ customerName || 'N/A' }}
+              <span *ngIf="isReturningCustomer" class="badge-regular-customer">Regular</span>
+            </span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Card 2: Mobile Number -->
+      <mat-card class="dashboard-card card-mobile">
+        <mat-card-content class="card-inner">
+          <div class="card-icon-wrapper icon-mobile">
+            <mat-icon>phone</mat-icon>
+          </div>
+          <div class="card-info">
+            <span class="card-label">Mobile Number</span>
+            <span class="card-value">{{ mobileNumber || 'N/A' }}</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Card 3: Total Products Selected -->
+      <mat-card class="dashboard-card card-products">
+        <mat-card-content class="card-inner">
+          <div class="card-icon-wrapper icon-products">
+            <mat-icon>shopping_cart</mat-icon>
+          </div>
+          <div class="card-info">
+            <span class="card-label">Products Count</span>
+            <span class="card-value highlighted-number">{{ totalProductsSelected }}</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Card 4: Total Bill Amount -->
+      <mat-card class="dashboard-card card-amount">
+        <mat-card-content class="card-inner">
+          <div class="card-icon-wrapper icon-amount">
+            <mat-icon>currency_rupee</mat-icon>
+          </div>
+          <div class="card-info">
+            <span class="card-label">Total Bill Amount</span>
+            <span class="card-value highlighted-amount">₹{{ totalBillAmount | number:'1.2-2' }}</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Saved Bills / Transaction History Section -->
+    <div class="saved-bills-section" *ngIf="displayedSavedBills.length > 0">
+      <div class="dashboard-section-header" style="margin-top: 40px; border-top: 1px solid var(--border-color); padding-top: 32px;">
+        <h2>{{ isAdmin ? 'ALL CUSTOMER TRANSACTIONS' : 'MY TRANSACTION HISTORY' }}</h2>
+      </div>
+      
+      <div class="table-container mat-elevation-z2">
+        <table mat-table [dataSource]="displayedSavedBills" class="saved-bills-table">
+          <!-- Customer Name Column -->
+          <ng-container matColumnDef="customerName">
+            <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+            <td mat-cell *matCellDef="let bill" class="saved-customer-name"> {{ bill.customerName }} </td>
+          </ng-container>
+
+          <!-- Mobile Number Column -->
+          <ng-container matColumnDef="mobileNumber">
+            <th mat-header-cell *matHeaderCellDef> Mobile Number </th>
+            <td mat-cell *matCellDef="let bill" class="saved-mobile"> {{ bill.mobileNumber }} </td>
+          </ng-container>
+
+          <!-- Items Count Column -->
+          <ng-container matColumnDef="itemsCount">
+            <th mat-header-cell *matHeaderCellDef class="text-center"> Items Count </th>
+            <td mat-cell *matCellDef="let bill" class="text-center saved-items-count"> {{ bill.items.length }} items </td>
+          </ng-container>
+
+          <!-- Sub Total Column -->
+          <ng-container matColumnDef="subTotal">
+            <th mat-header-cell *matHeaderCellDef class="text-right"> Sub Total (₹) </th>
+            <td mat-cell *matCellDef="let bill" class="text-right"> {{ bill.subTotal | number:'1.2-2' }} </td>
+          </ng-container>
+
+          <!-- Discount Column -->
+          <ng-container matColumnDef="discountAmount">
+            <th mat-header-cell *matHeaderCellDef class="text-right"> Discount (₹) </th>
+            <td mat-cell *matCellDef="let bill" class="text-right saved-discount">
+              <span *ngIf="bill.discountAmount > 0" class="discount-val">-₹{{ bill.discountAmount | number:'1.2-2' }}</span>
+              <span *ngIf="bill.discountAmount === 0" class="discount-none">—</span>
+            </td>
+          </ng-container>
+
+          <!-- Grand Total Column -->
+          <ng-container matColumnDef="grandTotal">
+            <th mat-header-cell *matHeaderCellDef class="text-right"> Grand Total (₹) </th>
+            <td mat-cell *matCellDef="let bill" class="text-right saved-grand-total"> ₹{{ bill.grandTotal | number:'1.2-2' }} </td>
+          </ng-container>
+
+          <!-- Generated Time Column -->
+          <ng-container matColumnDef="timestamp">
+            <th mat-header-cell *matHeaderCellDef class="text-center"> Generated Time </th>
+            <td mat-cell *matCellDef="let bill" class="text-center saved-time"> {{ bill.timestamp | date:'medium' }} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </footer>
+</div>

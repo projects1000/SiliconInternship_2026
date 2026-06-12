@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,8 +24,7 @@ import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { GrpFRoutingModule } from './grp-f-routing.module';
 import { AttendanceComponent } from './member5/attendance/attendance.component';
-
-
+import { Member10AttendanceDashboardComponent } from './member10/member10-attendance-dashboard/member10-attendance-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -39,22 +39,22 @@ import { AttendanceComponent } from './member5/attendance/attendance.component';
     Member8Component,
     Member9Component,
     Member10Component,
-    AttendanceComponent
+    AttendanceComponent,
+    Member10AttendanceDashboardComponent
   ],
   imports: [
-  CommonModule,
-  GrpFRoutingModule,
-
-  FormsModule,
-
-  MatIconModule,
-  MatButtonModule,
-  MatCheckboxModule,
-  MatTableModule,
-  MatTreeModule,
-  MatSidenavModule,
-  MatDatepickerModule,
-  MatNativeDateModule
-]
+    CommonModule,
+    GrpFRoutingModule,
+    RouterModule,
+    FormsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatTreeModule,
+    MatSidenavModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ]
 })
 export class GrpFModule { }
