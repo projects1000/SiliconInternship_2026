@@ -1,0 +1,274 @@
+<div class="attendance-tracker-container">
+  <!-- Glowing background blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <!-- Main Glass Card -->
+  <div class="glass-card attendance-card animate-fade">
+    
+    <!-- Header Area -->
+    <header class="tracker-header">
+      <button class="back-btn" (click)="goBackToProfile()">
+        <span class="btn-icon">←</span> Back to Profile
+      </button>
+      
+      <div class="title-block">
+        <h1 class="tracker-title">Orbital Attendance Matrix</h1>
+        <p class="tracker-subtitle">High-fidelity schedule and presence manager for Roshan's profile</p>
+      </div>
+
+      <div class="date-badge">
+        <span class="icon">📅</span>
+        <span class="text">{{ selectedDateStr | date:'MMMM d, yyyy' }}</span>
+      </div>
+    </header>
+
+    <!-- Group Navigation Navbar -->
+    <nav class="team-nav">
+      <button 
+        *ngFor="let team of teams" 
+        class="team-nav-btn" 
+        [class.active]="team === selectedTeam"
+        (click)="selectTeam(team)">
+        👥 {{ team }}
+      </button>
+    </nav>
+
+    <!-- Top Stats / Controls Dashboard -->
+    <section class="dashboard-stats-grid">
+      <!-- Presence Gauge Card -->
+      <div class="stat-card gauge-card">
+        <div class="card-glow-bg purple-glow"></div>
+        <div class="gauge-content">
+          <div class="circle-progress-container">
+            <svg class="progress-ring" width="80" height="80">
+              <circle class="progress-ring-circle-bg" stroke="rgba(255,255,255,0.06)" stroke-width="6" fill="transparent" r="34" cx="40" cy="40"/>
+              <circle 
+                class="progress-ring-circle" 
+                stroke="url(#gradientPurple)" 
+                stroke-width="6" 
+                fill="transparent" 
+                r="34" 
+                cx="40" 
+                cy="40"
+                [attr.stroke-dasharray]="2 * 3.14159 * 34"
+                [attr.stroke-dashoffset]="2 * 3.14159 * 34 * (1 - (classDays[selectedDateStr] ? getGroupPercentage() / 100 : 0))"
+              />
+              <defs>
+                <linearGradient id="gradientPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#6366f1" />
+                  <stop offset="100%" stop-color="#d946ef" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="gauge-text">
+              <span class="value" *ngIf="classDays[selectedDateStr]">{{ getGroupPercentage() }}%</span>
+              <span class="value" *ngIf="!classDays[selectedDateStr]">N/A</span>
+            </div>
+          </div>
+          <div class="gauge-label">
+            <h4>Group Attendance</h4>
+            <p *ngIf="classDays[selectedDateStr]">Present on selected date</p>
+            <p *ngIf="!classDays[selectedDateStr]">No class scheduled today</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Size Card -->
+      <div class="stat-card count-card">
+        <div class="card-glow-bg blue-glow"></div>
+        <div class="stat-data">
+          <h3>{{ filteredMembers.length }}</h3>
+          <div class="stat-lbl">
+            <h4>Active Members</h4>
+            <p>Filtered in {{ selectedTeam }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Schedule status card -->
+      <div class="stat-card schedule-card" [class.no-class]="!classDays[selectedDateStr]">
+        <div class="card-glow-bg green-glow" [class.red-glow]="!classDays[selectedDateStr]"></div>
+        <div class="schedule-status-content">
+          <div class="status-indicator">
+            <span class="pulse-dot" [class.off]="!classDays[selectedDateStr]"></span>
+            <span class="status-text">{{ classDays[selectedDateStr] ? 'Class Scheduled' : 'No Class / Weekend' }}</span>
+          </div>
+          <div class="toggle-control">
+            <label class="switch">
+              <input type="checkbox" [checked]="classDays[selectedDateStr]" (change)="toggleClassDay()">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-label">Toggle Class Day</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Layout Grid -->
+    <div class="tracker-layout">
+      
+      <!-- LEFT COLUMN: Rollers and Search -->
+      <div class="roller-column">
+        <!-- Search bar -->
+        <div class="search-container">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            [(ngModel)]="searchQuery" 
+            (input)="applyFilters()" 
+            placeholder="Search member across groups..." 
+            class="search-input"
+          />
+          <button class="clear-search-btn" *ngIf="searchQuery" (click)="searchQuery = ''; applyFilters()">✕</button>
+        </div>
+
+        <!-- Date Roller (Horizontal Scroll Snap) -->
+        <div class="roller-section">
+          <h3 class="section-title">📅 Date Select Roller</h3>
+          <div class="date-roller-viewport">
+            <div 
+              *ngFor="let date of dateItems" 
+              [id]="'date-item-' + date.dateStr"
+              class="date-roller-item"
+              [class.active]="date.dateStr === selectedDateStr"
+              [class.no-class]="!classDays[date.dateStr]"
+              (click)="selectDate(date.dateStr)">
+              <span class="day-lbl">{{ date.dayName }}</span>
+              <span class="num-lbl">{{ date.dayNum }}</span>
+              <span class="dot-indicator" [class.is-class]="classDays[date.dateStr]"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Member Roller (Vertical Scroll Snap) -->
+        <div class="roller-section">
+          <h3 class="section-title">👤 Member Select Roller</h3>
+          <div class="member-roller-viewport">
+            <div class="roller-padding-top"></div>
+            <div 
+              *ngFor="let member of filteredMembers" 
+              [id]="'member-item-' + member.name.replace(' ', '-')"
+              class="member-roller-item"
+              [class.active]="selectedMember && member.name === selectedMember.name"
+              (click)="selectMember(member)">
+              <div class="member-avatar">
+                <span>{{ getInitials(member.name) }}</span>
+              </div>
+              <div class="member-details">
+                <span class="member-name">{{ member.name }}</span>
+                <span class="member-meta">Monthly Rate: {{ getMemberAttendanceRate(member.name) }}%</span>
+              </div>
+              
+              <!-- Quick toggle button in list -->
+              <button 
+                class="quick-toggle-btn"
+                [class.present]="attendanceData[member.name]?.[selectedDateStr]"
+                [class.absent]="!attendanceData[member.name]?.[selectedDateStr]"
+                [disabled]="!classDays[selectedDateStr]"
+                (click)="toggleAttendance(member.name); $event.stopPropagation()">
+                {{ classDays[selectedDateStr] ? (attendanceData[member.name]?.[selectedDateStr] ? 'Present' : 'Absent') : 'Off' }}
+              </button>
+              
+              <div class="selection-arrow">➜</div>
+            </div>
+            <div class="roller-padding-bottom"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Calendar Grid and Inspector -->
+      <div class="calendar-column">
+        
+        <!-- Calendar Grid -->
+        <div class="calendar-card">
+          <div class="calendar-header">
+            <h3>June 2026</h3>
+            <span class="calendar-legend">
+              <span class="legend-item"><span class="legend-dot present"></span> Present</span>
+              <span class="legend-item"><span class="legend-dot absent"></span> Absent</span>
+              <span class="legend-item"><span class="legend-dot holiday"></span> No Class</span>
+            </span>
+          </div>
+
+          <div class="calendar-days-header">
+            <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+          </div>
+
+          <div class="calendar-grid">
+            <div 
+              *ngFor="let cell of calendarCells" 
+              class="calendar-cell"
+              [class.empty]="!cell.dayNum"
+              [class.active-day]="cell.dateStr === selectedDateStr"
+              [class.class-day]="cell.dayNum && classDays[cell.dateStr]"
+              [class.no-class-day]="cell.dayNum && !classDays[cell.dateStr]"
+              [class.present]="cell.dayNum && selectedMember && classDays[cell.dateStr] && attendanceData[selectedMember.name]?.[cell.dateStr]"
+              [class.absent]="cell.dayNum && selectedMember && classDays[cell.dateStr] && !attendanceData[selectedMember.name]?.[cell.dateStr]"
+              (click)="cell.dayNum && selectDate(cell.dateStr)">
+              <span class="day-number" *ngIf="cell.dayNum">{{ cell.dayNum }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Selected Member Inspector Panel -->
+        <div class="inspector-card" *ngIf="selectedMember">
+          <div class="card-header">
+            <div class="avatar-large">
+              <span>{{ getInitials(selectedMember.name) }}</span>
+            </div>
+            <div class="meta">
+              <h3>{{ selectedMember.name }}</h3>
+              <p>{{ selectedMember.team }} • Group B</p>
+            </div>
+          </div>
+
+          <div class="inspector-details-grid">
+            <div class="metric-item">
+              <span class="lbl">Month Schedule</span>
+              <span class="val">June 2026</span>
+            </div>
+            <div class="metric-item">
+              <span class="lbl">Attendance Rate</span>
+              <span class="val rate-val" [style.color]="getMemberAttendanceRate(selectedMember.name) >= 75 ? '#10b981' : '#f59e0b'">
+                {{ getMemberAttendanceRate(selectedMember.name) }}%
+              </span>
+            </div>
+          </div>
+
+          <!-- Attendance toggle for the selected date -->
+          <div class="presence-toggle-section">
+            <div class="toggle-info">
+              <h4>Attendance for {{ selectedDateStr | date:'MMM d' }}</h4>
+              <p *ngIf="classDays[selectedDateStr]">Toggle switch to mark presence</p>
+              <p class="error-text" *ngIf="!classDays[selectedDateStr]">No Class Scheduled on this date</p>
+            </div>
+
+            <button 
+              class="attendance-status-btn"
+              [class.present]="attendanceData[selectedMember.name]?.[selectedDateStr]"
+              [class.absent]="!attendanceData[selectedMember.name]?.[selectedDateStr]"
+              [disabled]="!classDays[selectedDateStr]"
+              (click)="toggleAttendance(selectedMember.name)">
+              <span class="icon" *ngIf="classDays[selectedDateStr]">
+                {{ attendanceData[selectedMember.name]?.[selectedDateStr] ? '✓' : '✗' }}
+              </span>
+              <span class="text">
+                <span *ngIf="!classDays[selectedDateStr]">Holiday/No Class</span>
+                <span *ngIf="classDays[selectedDateStr] && attendanceData[selectedMember.name]?.[selectedDateStr]">Present</span>
+                <span *ngIf="classDays[selectedDateStr] && !attendanceData[selectedMember.name]?.[selectedDateStr]">Absent</span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div class="empty-state-card" *ngIf="!selectedMember">
+          <p>🔍 No members found matching your search. Try another query.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
