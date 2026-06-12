@@ -12,6 +12,8 @@ import { Member5Component } from './member5/member5.component';
 import { Member6Component } from './member6/member6.component';
 import { Member7Component } from './member7/member7.component';
 import { AttandanceComponent } from './member7/attandance/attandance.component';
+import { NitroBillingComponent } from './member7/nitro-billing/nitro-billing.component';
+import { ChatComponent as Member7ChatComponent } from './member7/chat/chat.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 const routes: Routes = [
@@ -54,6 +56,14 @@ const routes: Routes = [
   {
     path: 'member7/attandance',
     component: AttandanceComponent
+  },
+  {
+    path: 'member7/nitro-billing',
+    component: NitroBillingComponent
+  },
+  {
+    path: 'member7/chat',
+    component: Member7ChatComponent
   },
 
   {
