@@ -47,6 +47,9 @@ import { CdkTreeModule } from '@angular/cdk/tree';
 import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-attendance.component';
 import { BillingSystemModule as Member1BillingSystemModule } from './member1/billing-system/billing-system.module';
 import { Member1WhatsappModule } from './member1/member1-whatsapp/member1-whatsapp.module';
+import { User1Component } from './member5/user1/user1.component';
+import { User2Component } from './member5/user2/user2.component';
+import { ChatWindowComponent } from './member5/chat-window/chat-window.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +74,9 @@ import { Member1WhatsappModule } from './member1/member1-whatsapp/member1-whatsa
     CategoryFilterComponent,
     NotificationPanelComponent,
     SavedBillsComponent,
+    User1Component,
+    User2Component,
+    ChatWindowComponent,
   ],
   imports: [
     CommonModule,
