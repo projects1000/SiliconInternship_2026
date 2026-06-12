@@ -1,28 +1,28 @@
 <div class="member-container">
 
-  <!-- LEFT SIDEBAR -->
   <div class="member-sidebar">
 
-    <button (click)="goBack()">← Back to HOME</button>
+    <button [routerLink]="['/home']">← Back to HOME</button>
 
     <h3>Group D Members</h3>
 
-    <button (click)="goToMember1()">👑 Chandan Kumar Sahu</button>
-    <button (click)="goToMember2()">Sitikantha Dalal</button>
-    <button (click)="goToMember3()">Titiksha Sahu</button>
-    <button (click)="goToMember4()">Anjali Sahoo</button>
-    <button (click)="goToMember5()">Sushree Sangita Sethi</button>
-    <button (click)="goToMember6()">Mama Bisoi</button>
-    <button (click)="goToMember7()">Tanmay Sahu</button>
-    <button (click)="goToMember8()">Pratik Parag Pani</button>
-    <button (click)="goToMember9()">Ranit Kumar Das</button>
-    <button (click)="goToMember10()">Shobha Kumari</button>
-    <button (click)="goToMember11()">CS Vishal Rout</button>
+    <button [routerLink]="['/grp-d/member1']">👑 Chandan Kumar Sahu</button>
+    <button [routerLink]="['/grp-d/member2']">Sitikantha Dalal</button>
+    <button [routerLink]="['/grp-d/member3']">Titiksha Sahu</button>
+    <button [routerLink]="['/grp-d/member4']">Anjali Sahoo</button>
+    <button [routerLink]="['/grp-d/member5']">Sushree Sangita Sethi</button>
+    <button [routerLink]="['/grp-d/member6']">Mama Bisoi</button>
+    <button [routerLink]="['/grp-d/member7']">Tanmay Sahu</button>
+    <button [routerLink]="['/grp-d/member8']">Pratik Parag Pani</button>
+    <button [routerLink]="['/grp-d/member9']">Ranit Kumar Das</button>
+    <button [routerLink]="['/grp-d/member10']">Shobha Kumari</button>
+    <button [routerLink]="['/grp-d/member11']">CS Vishal Rout</button>
 
   </div>
 
-  <!-- MAIN CONTENT -->
   <div class="member-content">
+    
+    <router-outlet></router-outlet>
 
     <div class="hero-section">
       <h1>GROUP D</h1>
@@ -31,33 +31,27 @@
     </div>
 
     <div class="stats-container">
-
       <div class="stat-card">
         <h2>11</h2>
         <p>Team Members</p>
       </div>
-
       <div class="stat-card">
         <h2>1</h2>
         <p>Team Leader</p>
       </div>
-
       <div class="stat-card">
         <h2>Angular</h2>
         <p>Technology Stack</p>
       </div>
-
     </div>
 
     <div class="leader-card">
       <h2>👑 Chandan Kumar Sahu</h2>
       <p>Team Leader | Angular Developer</p>
-
-      <button (click)="goToMember1()">
+      <button [routerLink]="['/grp-d/member1']">
         View Profile
       </button>
     </div>
 
   </div>
-
 </div>

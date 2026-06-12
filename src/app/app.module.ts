@@ -28,7 +28,16 @@ import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
+<<<<<<< Updated upstream
   declarations: [AppComponent, NavBarComponent, HomeComponent],
+=======
+  declarations: [
+    AppComponent,
+    NavBarComponent,
+    HomeComponent,
+    
+  ],
+>>>>>>> Stashed changes
   imports: [
     BrowserModule,
     AppRoutingModule,

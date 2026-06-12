@@ -1,0 +1,67 @@
+.chat-hub-container {
+  display: grid;
+  grid-template-columns: 260px 1fr 260px;
+  gap: 25px;
+  height: 650px;
+  background: #0f172a;
+  padding: 25px;
+  border-radius: 24px;
+  border: 1px solid #334155;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.side-panel {
+  background: #1e293b;
+  padding: 25px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border: 1px solid #475569;
+}
+
+.message-grid {
+  background: #020617;
+  border-radius: 20px;
+  padding: 25px;
+  overflow-y: auto;
+  border: 1px solid #1e293b;
+  display: flex;
+  flex-direction: column;
+}
+
+/* User-specific Bubble Colors */
+.msg-bubble {
+  max-width: 70%;
+  padding: 12px 18px;
+  margin: 12px 0;
+  border-radius: 16px;
+  font-size: 0.95rem;
+}
+
+.Arjun { align-self: flex-start; background: #6366f1; color: white; }
+.Priya { align-self: flex-end; background: #0d9488; color: white; }
+
+/* Interactive Elements */
+textarea {
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: #f1f5f9;
+  padding: 15px;
+  border-radius: 12px;
+  height: 100px;
+  resize: none;
+}
+
+button {
+  background: #38bdf8;
+  color: #0f172a;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button:hover { transform: scale(1.02); background: #7dd3fc; }
