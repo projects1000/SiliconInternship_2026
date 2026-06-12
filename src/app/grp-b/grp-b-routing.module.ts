@@ -13,26 +13,29 @@ import { Member1AttendanceComponent } from './member1/attendance/attendance.comp
 import { AttendanceComponent as Member2AttendanceComponent } from './member2/attendance/attendance.component';
 import { ProductManagementComponent } from './member3/product-management/product-management.component';
 
+import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-attendance.component';
+
+import { Member5AttendanceComponent } from './member5/attendance/attendance.component';
+
+// ✅ Angular Routing — Gaming PC Builder (Rohan Nayak 24BCSG13)
+import { GamingPcBuilderComponent } from './member2/gaming-pc-builder/gaming-pc-builder.component';
+import { BillingDashboardComponent as Member1BillingDashboardComponent } from './member1/billing-system/billing-dashboard/billing-dashboard.component';
+import { WhatsappDashboardComponent } from './member1/member1-whatsapp/whatsapp-dashboard/whatsapp-dashboard.component';
+
 const routes: Routes = [
   {
     path: '',
     component: GrpBComponent,
   },
-  // {
-  //   path: 'member1',
-  //   component: Member1Component,
-  //   children: [
-  //     {
-  //       path: 'attendance',
-  //       component: Member1AttendanceComponent
-  //     }
-  //   ]
-  // },
   {
     path: 'member2/attendance',
-    component: Member2AttendanceComponent
-  }
-  ,
+    component: Member2AttendanceComponent,
+  },
+  // ✅ New Route: Gaming PC Builder
+  {
+    path: 'member2/gaming-pc-builder',
+    component: GamingPcBuilderComponent,
+  },
   {
     path: 'member1',
     component: Member1Component,
@@ -40,6 +43,14 @@ const routes: Routes = [
   {
     path: 'member1/attendance',
     component: Member1AttendanceComponent,
+  },
+  {
+    path: 'member1/billing-dashboard',
+    component: Member1BillingDashboardComponent,
+  },
+  {
+    path: 'member1/whatsapp-dashboard',
+    component: WhatsappDashboardComponent,
   },
   {
     path: 'member2',
@@ -51,7 +62,7 @@ const routes: Routes = [
   },
   {
     path: 'member3/attendance',
-    component: Member3AttendanceComponent
+    component: Member3AttendanceComponent,
   },
   {
     path: 'product-management',
@@ -66,8 +77,16 @@ const routes: Routes = [
     component: Member5Component,
   },
   {
+    path: 'member5/attendance',
+    component: Member5AttendanceComponent,
+  },
+  {
     path: 'member6',
     component: Member6Component,
+  },
+  {
+    path: 'member6/attendance',
+    component: Memb6AttendanceComponent,
   },
 ];
 
@@ -76,3 +95,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class GrpBRoutingModule { }
+

@@ -1,0 +1,82 @@
+<section class="cart-page">
+  <header class="cart-header">
+    <div>
+      <p class="eyebrow">Billing Cart</p>
+      <h1>Bill Details</h1>
+    </div>
+
+    <button class="back-button" type="button" (click)="backToBilling.emit()">
+      Back to Billing Home
+    </button>
+  </header>
+
+  <section class="customer-strip" *ngIf="customer">
+    <strong>{{ customer.name }}</strong>
+    <span>{{ customer.mobile }}</span>
+    <span>{{ customer.address }}</span>
+  </section>
+
+  <section class="order-confirmed" *ngIf="orderConfirmed">
+    Order is confirmed. Thank you for your purchase.
+  </section>
+
+  <section class="cart-panel">
+    <div class="empty-cart" *ngIf="cart.length === 0 && !orderConfirmed">
+      No products are added in cart.
+    </div>
+
+    <table *ngIf="cart.length > 0">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cart">
+          <td>{{ item.name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>₹{{ item.price }}</td>
+          <td>₹{{ item.price * item.quantity }}</td>
+          <td>
+            <button class="remove-button" type="button" (click)="removeItem(item.id)">
+              Remove
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="totals">
+      <div>
+        <span>Total Products</span>
+        <strong>{{ totals.totalItems }}</strong>
+      </div>
+      <div>
+        <span>Sub Total</span>
+        <strong>₹{{ totals.subTotal | number:'1.2-2' }}</strong>
+      </div>
+      <div>
+        <span>GST (18%)</span>
+        <strong>₹{{ totals.gst | number:'1.2-2' }}</strong>
+      </div>
+      <div class="grand-total">
+        <span>Grand Total</span>
+        <strong>₹{{ totals.grandTotal | number:'1.2-2' }}</strong>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="cancel-button" type="button" (click)="cancelOrder()">
+        Cancel
+      </button>
+      <button class="purchase-button" type="button" (click)="purchase()">
+        Purchase
+      </button>
+    </div>
+  </section>
+</section>
+

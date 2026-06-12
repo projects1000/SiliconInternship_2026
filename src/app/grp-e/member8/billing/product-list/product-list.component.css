@@ -1,0 +1,60 @@
+.panel {
+  padding: 18px;
+  border: 1px solid #bfd4ef;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+h2 {
+  margin: 0;
+  color: #0b5394;
+  font-size: 20px;
+}
+
+span {
+  color: #9b5d00;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #e6ebf3;
+  text-align: left;
+}
+
+th {
+  color: #344054;
+  background: #f1f5fb;
+}
+
+button {
+  min-width: 68px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: #2f9e44;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button:disabled {
+  background: #aab4c0;
+  cursor: not-allowed;
+}
+

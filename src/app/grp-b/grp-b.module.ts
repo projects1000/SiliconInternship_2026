@@ -11,23 +11,37 @@ import { Member3MaterialModule } from './member3/member3-material.module';
 import { Member4Component } from './member4/member4.component';
 import { Member5Component } from './member5/member5.component';
 import { Member6Component } from './member6/member6.component';
+
+import { Member5AttendanceComponent } from './member5/attendance/attendance.component';
+import { Member1AttendanceComponent } from './member1/attendance/attendance.component';
+import { AttendanceComponent as Member2AttendanceComponent } from './member2/attendance/attendance.component';
+
 import { GrpBRoutingModule } from './grp-b-routing.module';
 
-import { Member1AttendanceComponent } from './member1/attendance/attendance.component';
+import { GamingPcBuilderComponent } from './member2/gaming-pc-builder/gaming-pc-builder.component';
+import { ProductCatalogComponent } from './member2/gaming-pc-builder/components/product-catalog/product-catalog.component';
+import { CustomerDetailsComponent } from './member2/gaming-pc-builder/components/customer-details/customer-details.component';
+import { BillSummaryComponent } from './member2/gaming-pc-builder/components/bill-summary/bill-summary.component';
+import { CategoryFilterComponent } from './member2/gaming-pc-builder/components/category-filter/category-filter.component';
+import { NotificationPanelComponent } from './member2/gaming-pc-builder/components/notification-panel/notification-panel.component';
+import { SavedBillsComponent } from './member2/gaming-pc-builder/components/saved-bills/saved-bills.component';
+
+// Toast Notifications
+import { ToastrModule } from 'ngx-toastr';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 
+import { MatIconModule } from '@angular/material/icon'; // <-- ADDED THIS CRITICAL LINE
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { AttendanceComponent as Member2AttendanceComponent } from './member2/attendance/attendance.component';
+// Member3: Product Management components (aliasing to avoid name collisions)
 import { ProductManagementComponent } from './member3/product-management/product-management.component';
 import { ProductListComponent } from './member3/product-management/product-list/product-list.component';
-import { CustomerDetailsComponent } from './member3/product-management/customer-details/customer-details.component';
+import { CustomerDetailsComponent as ProductCustomerDetailsComponent } from './member3/product-management/customer-details/customer-details.component';
 import { BillDetailsComponent } from './member3/product-management/bill-details/bill-details.component';
 import { NotificationComponent } from './member3/product-management/notification/notification.component';
 import { MatInputModule } from '@angular/material/input';
@@ -36,6 +50,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CdkTreeModule } from '@angular/cdk/tree';
+import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-attendance.component';
+import { BillingSystemModule as Member1BillingSystemModule } from './member1/billing-system/billing-system.module';
+import { Member1WhatsappModule } from './member1/member1-whatsapp/member1-whatsapp.module';
 
 @NgModule({
   declarations: [
@@ -47,13 +64,26 @@ import { CdkTreeModule } from '@angular/cdk/tree';
     Member4Component,
     Member5Component,
     Member6Component,
+    Member5AttendanceComponent,
     Member1AttendanceComponent,
     Member2AttendanceComponent,
+    Memb6AttendanceComponent,
+
+    // Member3: Product Management
     ProductManagementComponent,
     ProductListComponent,
-    CustomerDetailsComponent,
+    ProductCustomerDetailsComponent,
     BillDetailsComponent,
     NotificationComponent,
+
+    // ✅ Gaming PC Builder Components — Rohan Nayak (24BCSG13)
+    GamingPcBuilderComponent,
+    ProductCatalogComponent,
+    CustomerDetailsComponent,
+    BillSummaryComponent,
+    CategoryFilterComponent,
+    NotificationPanelComponent,
+    SavedBillsComponent,
   ],
   imports: [
     CommonModule,
@@ -65,7 +95,7 @@ import { CdkTreeModule } from '@angular/cdk/tree';
     MatTableModule,
     MatCheckboxModule,
     MatButtonModule,
-    MatIconModule,
+    MatIconModule, // <-- This now resolves perfectly
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
@@ -73,7 +103,11 @@ import { CdkTreeModule } from '@angular/cdk/tree';
     MatCardModule,
     MatToolbarModule,
     MatBadgeModule,
-    Member3MaterialModule
-  ]
+    Member3MaterialModule,
+    Member1BillingSystemModule,
+    Member1WhatsappModule,
+    ToastrModule,
+  ],
 })
-export class GrpBModule { }
+export class GrpBModule {}
+
