@@ -20,6 +20,8 @@ import { Member3AttendanceComponent } from './member3/member3-attendance/member3
 
 
 import { AttendanceComponent } from './member9/attendance/attendance.component';
+import { BillingParentComponent } from './member3/billing-parent/billing-parent.component';
+import { ChatParentComponent } from './member3/chat-system/chat-parent/chat-parent.component';
 
 const routes: Routes = [
   {
@@ -80,6 +82,7 @@ const routes: Routes = [
   path: 'member10',
   component: Member10Component
 },
+{ path: 'member3-chat', component: ChatParentComponent },
 
   {
   path: 'member4/member4attmng',
@@ -87,6 +90,7 @@ const routes: Routes = [
 },
 
   { path: 'member3-attendance', component: Member3AttendanceComponent },
+  { path: 'member3-billing', component: BillingParentComponent },
 
 
 ];
