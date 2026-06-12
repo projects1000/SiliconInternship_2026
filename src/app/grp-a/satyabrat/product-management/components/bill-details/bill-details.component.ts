@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Observable, Subscription, combineLatest } from 'rxjs';
 import { BillingService } from '../../services/billing.service';
 
 export interface BillItem {
@@ -14,11 +15,18 @@ export interface BillItem {
   templateUrl: './bill-details.component.html',
   styleUrls: ['./bill-details.component.css']
 })
-export class BillDetailsComponent implements OnChanges {
-  @Input() selectedItems: BillItem[] = [];
-  @Input() customerName: string = '';
-  @Input() mobileNumber: string = '';
-  @Input() isReturningCustomer: boolean = false;
+export class BillDetailsComponent implements OnInit, OnDestroy {
+  @Input() selectedItems$!: Observable<BillItem[]>;
+  @Input() customerName$!: Observable<string>;
+  @Input() mobileNumber$!: Observable<string>;
+  @Input() isReturningCustomer$!: Observable<boolean>;
+
+  selectedItems: BillItem[] = [];
+  customerName: string = '';
+  mobileNumber: string = '';
+  isReturningCustomer: boolean = false;
+
+  private subscription = new Subscription();
   
   @Output() billGenerated = new EventEmitter<{
     customerName: string;
@@ -31,6 +39,8 @@ export class BillDetailsComponent implements OnChanges {
   }>();
 
   @Output() itemRemoved = new EventEmitter<number>();
+  @Output() itemIncreased = new EventEmitter<number>();
+  @Output() itemDecreased = new EventEmitter<number>();
 
   subTotal: number = 0;
   discountAmount: number = 0;
@@ -39,8 +49,25 @@ export class BillDetailsComponent implements OnChanges {
 
   constructor(private billingService: BillingService) {}
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.calculateTotals();
+  ngOnInit() {
+    this.subscription.add(
+      combineLatest([
+        this.selectedItems$,
+        this.customerName$,
+        this.mobileNumber$,
+        this.isReturningCustomer$
+      ]).subscribe(([items, name, mobile, isReturning]) => {
+        this.selectedItems = items;
+        this.customerName = name;
+        this.mobileNumber = mobile;
+        this.isReturningCustomer = isReturning;
+        this.calculateTotals();
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   generateBill() {
@@ -74,9 +101,17 @@ export class BillDetailsComponent implements OnChanges {
     this.itemRemoved.emit(index);
   }
 
+  increaseQuantity(index: number) {
+    this.itemIncreased.emit(index);
+  }
+
+  decreaseQuantity(index: number) {
+    this.itemDecreased.emit(index);
+  }
+
   private calculateTotals() {
     this.subTotal = this.selectedItems.reduce((sum, item) => sum + item.total, 0);
-    this.discountAmount = this.isReturningCustomer ? this.subTotal * 0.10 : 0;
+    this.discountAmount = 0; // Discount not given financially, only notification generated
     const taxableAmount = this.subTotal - this.discountAmount;
     this.gstAmount = taxableAmount * 0.18;
     this.grandTotal = taxableAmount + this.gstAmount;
