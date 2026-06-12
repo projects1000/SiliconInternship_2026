@@ -68,6 +68,18 @@
         <strong>₹{{ totals.grandTotal | number:'1.2-2' }}</strong>
       </div>
     </div>
+    <div class="receipt-section">
+      <br>
+  <button
+    class="purchase-button"
+    type="button"
+    (click)="printBill()">
+
+    Print Receipt
+
+  </button>
+
+</div>
 
     <div class="actions">
       <button class="cancel-button" type="button" (click)="cancelOrder()">
