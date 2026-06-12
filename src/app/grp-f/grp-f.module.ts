@@ -23,6 +23,20 @@ import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { GrpFRoutingModule } from './grp-f-routing.module';
+ sukanya-whatsapp-chat
+import { Member6AttendanceComponent } from './member6-attendance/member6-attendance.component';
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { Member6ChatComponent } from './member6-chat/member6-chat.component';
+
+
 import { AttendanceComponent } from './member5/attendance/attendance.component';
 import { Member10AttendanceDashboardComponent } from './member10/member10-attendance-dashboard/member10-attendance-dashboard.component';
 import { BillingComponent } from './member10/billing/billing.component';
@@ -31,6 +45,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule }   from '@angular/material/tooltip';
 import { MatRippleModule }    from '@angular/material/core';
+ main
 
 @NgModule({
   declarations: [
@@ -45,6 +60,24 @@ import { MatRippleModule }    from '@angular/material/core';
     Member8Component,
     Member9Component,
     Member10Component,
+ sukanya-whatsapp-chat
+    Member6AttendanceComponent,
+    Member6ChatComponent
+  ],
+  imports: [
+  CommonModule,
+  GrpFRoutingModule,
+  FormsModule,
+
+  MatButtonModule,
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatCardModule
+]
+
     AttendanceComponent,
     Member10AttendanceDashboardComponent,
     BillingComponent
@@ -68,5 +101,6 @@ import { MatRippleModule }    from '@angular/material/core';
     MatTooltipModule,
     MatRippleModule
   ]
+ main
 })
 export class GrpFModule { }
