@@ -8,7 +8,6 @@ import { Member2Component } from './member2/member2.component';
 import { Member3Component } from './member3/member3.component';
 import { Member4Component } from './member4/member4.component';
 import { Member5Component } from './member5/member5.component';
-import { Member5AttendanceComponent } from './member5/attendance/attendance.component';
 import { Member6Component } from './member6/member6.component';
 import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
@@ -47,10 +46,6 @@ const routes: Routes = [
   {
     path: 'member5',
     component: Member5Component
-  },
-  {
-    path: 'member5/attendance',
-    component: Member5AttendanceComponent
   },
   {
     path: 'member6',
