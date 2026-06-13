@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-chat-window',
+  selector: 'app-chat-member3',
   templateUrl: './chat-window.component.html',
   styleUrls: ['./chat-window.component.css']
 })

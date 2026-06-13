@@ -25,6 +25,9 @@ import { ProductManagementComponent as Member1Prod } from './member1/product-man
 import { ProductListComponent as Member1List } from './member1/product-list/product-list.component';
 import { CustomerDetailsComponent } from './member1/customer-details/customer-details.component';
 import { BillDetailsComponent } from './member1/bill-details/bill-details.component';
+import { UserAComponent } from './member1/user-a/user-a.component';
+import { UserBComponent } from './member1/user-b/user-b.component';
+import { ChatWindowComponent as Member1Chat } from './member1/chat-window/chat-window.component';
 
 // Member 3 Functionality
 import { AttendanceTrackerComponent } from './member3/attendance-tracker/attendance-tracker.component';
@@ -32,7 +35,7 @@ import { ProductManagementComponent as Member3Prod } from './member3/product-man
 import { ProductLisComponent as Member3List } from './member3/product-lis/product-lis.component';
 import { ProductFormComponent } from './member3/product-form/product-form.component';
 import { BillingComponent } from './member3/billing/billing.component';
-import { ChatWindowComponent } from './member3/chat-window/chat-window.component';
+import { ChatWindowComponent as Member3Chat } from './member3/chat-window/chat-window.component';
 
 // Angular Material Modules
 import { MatButtonModule } from '@angular/material/button';
@@ -65,12 +68,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     Member1List,
     CustomerDetailsComponent,
     BillDetailsComponent,
+    UserAComponent,
+    UserBComponent,
+    Member1Chat,
     AttendanceTrackerComponent,
     Member3Prod,
     Member3List,
     ProductFormComponent,
     BillingComponent,
-    ChatWindowComponent
+    Member3Chat
   ],
   imports: [
     CommonModule,

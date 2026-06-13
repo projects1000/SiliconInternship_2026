@@ -21,4 +21,8 @@ export class Member1Component {
   openProductManagement() {
     this.router.navigate(['/grp-d/member1/product-management']);
   }
+
+  openWhatsAppAssignment() {
+    this.router.navigate(['/grp-d/member1/whatsapp-chat']);
+  }
 }

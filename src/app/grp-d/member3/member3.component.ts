@@ -18,11 +18,10 @@ export class Member3Component {
   customer = { name: '', mobile: '' };
   toastMessage: string = '';
   showToast: boolean = false;
-  invoiceId: string = 'NITRO-' + Math.floor(Math.random() * 100000);
   discount: number = 0;
   couponCode: string = '';
+  invoiceId: string = 'NITRO-' + Math.floor(Math.random() * 100000);
 
-  // CORRECTED: Image paths now point directly to assets/
   plants = [
     { id: 1, name: 'Snake Plant', price: 299, image: 'assets/snake.jpg' },
     { id: 2, name: 'Aloe Vera', price: 199, image: 'assets/aloe.jpg' },
@@ -34,12 +33,16 @@ export class Member3Component {
 
   constructor(private router: Router) {}
 
-  // Navigation Logic
+  // --- ADDED THIS METHOD TO CONTROL VIEW ---
+  setView(view: 'profile' | 'shop' | 'billing' | 'attendance' | 'chat'): void {
+    this.activeView = view;
+  }
+  // ------------------------------------------
+
   navigateToGroupD(): void {
     this.router.navigate(['/grp-d']);
   }
 
-  // Logic Functions
   toggleChat(): void { 
     this.isChatVisible = !this.isChatVisible; 
   }

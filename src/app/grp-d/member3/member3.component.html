@@ -8,7 +8,7 @@
         <h1>Titiksha Sahu 👋</h1>
         <p><strong>💻 Java Full Stack Developer</strong></p>
         <span class="status-badge">Available for Opportunities</span>
-        <p class="bio">Passionate about Java, Spring Boot, Angular and Data Structures. Interested in building scalable applications and continuously improving problem-solving skills.</p>
+        <p class="bio">Passionate about Java, Spring Boot, Angular and Data Structures.</p>
         <div class="skills-grid">
           <span class="skill">Java</span>
           <span class="skill">Spring Boot</span>
@@ -28,12 +28,14 @@
         </div>
       </div>
 
-      <div *ngIf="activeView === 'chat'" class="glass-card full-screen-chat">
-        <div class="chat-header">
+      <div *ngIf="activeView === 'chat'" class="glass-card" style="display: flex; flex-direction: column; height: 650px; background: #0f172a;">
+        <div class="chat-header" style="display: flex; justify-content: space-between; padding: 15px; color: white;">
           <h2>🌐 Strategic Collaboration Hub</h2>
-          <button (click)="activeView = 'profile'">✕ Close</button>
+          <button (click)="activeView = 'profile'" style="background: transparent; color: white; border: 1px solid white; cursor: pointer;">✕ Close</button>
         </div>
-        <app-chat-window></app-chat-window>
+        <div style="flex-grow: 1; overflow: hidden; position: relative;">
+          <app-chat-member3 style="display: block; height: 100%;"></app-chat-member3>
+        </div>
       </div>
 
       <div *ngIf="activeView === 'attendance'" class="glass-card">
@@ -44,13 +46,11 @@
       <div *ngIf="activeView === 'shop'" class="glass-card shop-full-view">
         <div class="shop-header">
           <h2>🌿 Plant Paradise</h2>
-          <p class="tip-box">💡 Tip: {{ getDailyTip() }}</p>
           <div class="shop-actions">
             <button (click)="goBack()">Back</button>
             <button (click)="checkout()">🛒 Checkout ({{cart.length}})</button>
           </div>
         </div>
-
         <div class="plants-grid">
           <div *ngFor="let plant of plants" class="plant-card">
             <img [src]="plant.image" [alt]="plant.name">
@@ -59,10 +59,6 @@
             <button class="add-btn" (click)="addToCart(plant)">Add to Cart</button>
           </div>
         </div>
-        
-        <div class="sustainability-footer">
-          <span class="badge">{{ getSustainabilityLevel() }}</span>
-        </div>
       </div>
 
       <div *ngIf="activeView === 'billing'" class="glass-card">
@@ -70,14 +66,8 @@
         <input [(ngModel)]="customer.name" placeholder="Name">
         <input [(ngModel)]="customer.mobile" placeholder="Mobile">
         <button (click)="saveCustomer()">Save</button>
-        
         <input [(ngModel)]="couponCode" placeholder="Enter SAVE10">
         <button (click)="applyCoupon()">Apply</button>
-        
-        <div class="eco-box">
-          <p>🌱 Eco-Saver Impact: {{ getEcoScore() }} Sustainability Points</p>
-        </div>
-        
         <h3>Grand Total: ₹{{ getFinalTotal() }}</h3>
         <button (click)="generateBill()">Generate & Print</button>
         <button (click)="activeView = 'shop'">Back to Shop</button>
