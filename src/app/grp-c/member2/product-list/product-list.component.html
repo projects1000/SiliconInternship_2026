@@ -1,0 +1,59 @@
+<div class="collection-section">
+
+    <h2>🔥 Featured Anime Collection</h2>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+
+        <input type="text" placeholder="Search Anime Collection..." [(ngModel)]="searchText">
+
+    </div>
+
+    <!-- Category Filters -->
+    <div class="filter-section">
+
+        <button *ngFor="let category of categories" (click)="selectedCategory = category">
+
+            {{category}}
+
+        </button>
+
+    </div>
+
+    <div class="product-grid">
+
+    <div class="product-card"
+         *ngFor="let product of filteredProducts">
+
+        <span class="anime-badge">
+            {{product.category}}
+        </span>
+
+        <div class="featured-ribbon">
+            BEST SELLER
+        </div>
+
+        <img
+            [src]="product.image"
+            [alt]="product.name">
+
+        <div class="content">
+
+            <h3>{{product.name}}</h3>
+
+            <p class="price">
+                ₹{{product.price}}
+            </p>
+
+            <button
+                (click)="addProduct(product)">
+                Add To Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>

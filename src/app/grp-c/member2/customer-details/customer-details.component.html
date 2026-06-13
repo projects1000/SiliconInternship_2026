@@ -1,0 +1,33 @@
+<div class="customer-card">
+
+  <h2>Customer Details</h2>
+
+  <div>
+
+    <label>Name</label>
+
+    <input
+      type="text"
+      [(ngModel)]="customer.name">
+
+  </div>
+
+  <br>
+
+  <div>
+
+    <label>Mobile</label>
+
+    <input
+      type="text"
+      [(ngModel)]="customer.mobile">
+
+  </div>
+
+  <br>
+
+  <button (click)="saveCustomer()">
+    Save Customer
+  </button>
+
+</div>

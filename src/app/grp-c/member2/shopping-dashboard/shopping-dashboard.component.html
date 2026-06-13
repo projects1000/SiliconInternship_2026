@@ -1,0 +1,82 @@
+<div class="anime-store">
+
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+
+        <img src="assets/anime/banner.png" alt="Anime Banner">
+
+        <div class="overlay">
+
+            <h1>AnimeVerse Premium Store</h1>
+
+            <br>
+
+            <p>
+                Naruto • One Piece • JJK • AOT • Demon Slayer
+            </p>
+
+            <button class="back-btn" (click)="goBack()">
+                ← Back To Profile
+            </button>
+
+        </div>
+
+        <div class="cart-badge">
+            🛒 {{cartCount}}
+        </div>
+
+    </div>
+
+    <!-- ADD STATS GRID HERE -->
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <h2>{{5}}</h2>
+            <p>Anime Products</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2>{{selectedProducts.length}}</h2>
+            <p>Cart Items</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2>5</h2>
+            <p>Anime Universes</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2>★ 4.9</h2>
+            <p>Store Rating</p>
+
+        </div>
+
+    </div>
+
+    <!-- Product Section -->
+    <app-product-list (productAdded)="addProduct($event)">
+    </app-product-list>
+
+    <div class="bottom-section">
+
+        <app-customer-details (customerSaved)="saveCustomer($event)">
+        </app-customer-details>
+
+        <app-bill-details [products]="selectedProducts" [customer]="customer" [subtotal]="subtotal" [gst]="gst"
+            [grandTotal]="grandTotal" [invoiceNumber]="invoiceNumber" (invoiceGenerated)="handleInvoice($event)"
+            (increaseClicked)="increaseQuantity($event)" (decreaseClicked)="decreaseQuantity($event)"
+            (removeClicked)="removeProduct($event)">
+        </app-bill-details>
+
+    </div>
+
+    <app-notification></app-notification>
+
+</div>

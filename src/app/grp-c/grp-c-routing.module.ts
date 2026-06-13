@@ -14,6 +14,7 @@ import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { AttendanceDashboardComponent } from './member2/attendance-dashboard/attendance-dashboard.component';
+import { WhatsappChatComponent } from './member2/whatsapp-chat/whatsapp-chat.component';
 
 const routes: Routes = [
   {
@@ -30,7 +31,11 @@ const routes: Routes = [
   },
   {
     path: 'member2/attendance',
-    component: AttendanceDashboardComponent  
+    component: AttendanceDashboardComponent
+  },
+  {
+    path: 'member2/chat',
+    component: WhatsappChatComponent
   },
   {
     path: 'member3',
@@ -70,4 +75,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class GrpCRoutingModule {}
+export class GrpCRoutingModule { }

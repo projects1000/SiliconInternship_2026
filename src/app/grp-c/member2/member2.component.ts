@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class Member2Component {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   goBackToGroup() {
     this.router.navigate(['grp-c']);
@@ -17,4 +17,19 @@ export class Member2Component {
   openAttendanceDashboard() {
     this.router.navigate(['grp-c/member2/attendance']);
   }
+
+  showBillingDashboard = false;
+
+  openBillingDashboard() {
+    this.showBillingDashboard = true;
+  }
+
+  closeBillingDashboard() {
+    this.showBillingDashboard = false;
+  }
+
+  openChatApp() {
+    this.router.navigate(['grp-c/member2/chat']);
+  }
+
 }
