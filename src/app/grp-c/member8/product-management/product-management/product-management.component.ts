@@ -6,7 +6,7 @@ import { NotificationService } from '../services/notification.service';
   templateUrl: './product-management.component.html',
   styleUrls: ['./product-management.component.css']
 })
-export class ProductManagementComponent {
+export class member8ProductManagementComponent {
   constructor(
   private notificationService: NotificationService
 ) {}

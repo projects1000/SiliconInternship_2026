@@ -35,10 +35,8 @@ import { MatDividerModule } from '@angular/material/divider';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    MatSnackBarModule
-    FormsModule,
+    MatSnackBarModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3500,
       positionClass: 'toast-top-right',

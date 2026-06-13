@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductManagementRoutingModule } from './product-management-routing.module';
-import { ProductManagementComponent } from './product-management/product-management.component';
+import { member8ProductManagementComponent } from './product-management/product-management.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CustomerComponent } from './customer/customer.component';
 import { BillingComponent } from './billing/billing.component';
@@ -13,7 +13,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
-    ProductManagementComponent,
+    member8ProductManagementComponent,
     ProductListComponent,
     CustomerComponent,
     BillingComponent,
