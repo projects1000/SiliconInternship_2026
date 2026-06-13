@@ -1,0 +1,143 @@
+.attendance-page {
+  min-height: 100vh;
+  background: #eef4ff;
+  padding: 25px;
+  font-family: Arial, sans-serif;
+}
+
+.attendance-dashboard {
+  background: #294d8a;
+  color: white;
+  padding: 26px 25px;
+  min-height: 740px;
+}
+
+.dashboard-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.dashboard-top h1 {
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+.book-icon {
+  margin-right: 12px;
+}
+
+.top-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.save-btn,
+.lock-btn {
+  border: none;
+  color: white;
+  padding: 9px 17px;
+  border-radius: 7px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.save-btn {
+  background: #1ed832;
+}
+
+.lock-btn {
+  background: #ff2848;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.left-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+input {
+  width: 234px;
+  height: 35px;
+  border: none;
+  border-radius: 7px;
+  padding: 0 10px;
+  outline: none;
+}
+
+.add-student-box {
+  display: flex;
+  gap: 8px;
+}
+
+.add-btn {
+  height: 32px;
+  border: none;
+  border-radius: 7px;
+  padding: 0 17px;
+  background: #ff7920;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.date-input {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #45689f;
+  margin-top: 20px;
+}
+
+thead {
+  background: #6c86b0;
+}
+
+th {
+  height: 43px;
+  font-size: 15px;
+  text-align: center;
+}
+
+td {
+  height: 56px;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.attendance-cell {
+  color: #00ffc8;
+  font-size: 21px;
+}
+
+.attendance-cell input {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+}
+
+.delete-btn {
+  background: #e91545;
+  border: none;
+  border-radius: 7px;
+  color: #ff6b8a;
+  font-size: 27px;
+  width: 47px;
+  height: 33px;
+  cursor: pointer;
+}

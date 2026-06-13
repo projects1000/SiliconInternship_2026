@@ -1,0 +1,43 @@
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  min-height: 270px;
+  border: 2px solid #c8a7df;
+}
+
+h2 {
+  text-align: center;
+  font-size: 17px;
+  margin: 0 0 15px;
+}
+
+h2 span {
+  font-size: 14px;
+  color: #555;
+}
+
+label {
+  display: block;
+  margin: 14px 0 6px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  height: 36px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.save-btn {
+  display: block;
+  margin: 18px auto 0;
+  background: #6f35a5;
+  color: white;
+  border: none;
+  padding: 10px 26px;
+  border-radius: 5px;
+  cursor: pointer;
+}

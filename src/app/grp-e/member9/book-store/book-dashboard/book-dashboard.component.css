@@ -1,0 +1,64 @@
+.book-page {
+  min-height: 100vh;
+  padding: 20px;
+  background: #eef5ff;
+  font-family: Arial, sans-serif;
+}
+
+.book-page h1 {
+  background: #073b70;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 26px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.parent-box {
+  margin-top: 18px;
+  background: #dceeff;
+  padding: 18px;
+  border-radius: 8px;
+  border: 1px solid #b8d8f2;
+}
+
+.parent-box h2 {
+  text-align: center;
+  color: #073b70;
+  margin: 0 0 15px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.summary-card {
+  background: white;
+  padding: 18px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.summary-card .icon {
+  font-size: 30px;
+}
+
+.summary-card p {
+  margin: 8px 0;
+  font-weight: bold;
+}
+
+.summary-card h3 {
+  color: #0b559f;
+  margin: 0;
+}

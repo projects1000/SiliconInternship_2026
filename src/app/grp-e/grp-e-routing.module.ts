@@ -12,6 +12,8 @@ import { Member6Component } from './member6/member6.component';
 import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
+import { SubhalaxmiAttendanceComponent } from './member9/subhalaxmi-attendance/subhalaxmi-attendance.component';
+import { BookDashboardComponent } from './member9/book-store/book-dashboard/book-dashboard.component';
 const routes: Routes = [
   {
     path: '',
@@ -52,6 +54,14 @@ const routes: Routes = [
   {
     path: 'member9',
     component: Member9Component
+  },
+  {
+  path: 'member9/subhalaxmi-attendance',
+  component: SubhalaxmiAttendanceComponent
+  },
+  {
+    path: 'member9/book-store',
+    component: BookDashboardComponent
   }
 ];
 

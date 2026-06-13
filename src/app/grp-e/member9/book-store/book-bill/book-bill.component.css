@@ -1,0 +1,86 @@
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  min-height: 270px;
+  border: 2px solid #e8cf8a;
+}
+
+h2 {
+  text-align: center;
+  font-size: 17px;
+  margin: 0 0 15px;
+}
+
+h2 span {
+  font-size: 14px;
+  color: #555;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #f1f5fb;
+}
+
+th,
+td {
+  padding: 9px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  font-size: 14px;
+}
+
+.total-box {
+  margin-top: 14px;
+}
+
+.total-box p,
+.total-box h3 {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+.total-box h3 {
+  color: #b21f2d;
+}
+
+.print-btn {
+  width: 100%;
+  margin-top: 12px;
+  background: #073b70;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  #bill-print,
+  #bill-print * {
+    visibility: visible !important;
+  }
+
+  #bill-print {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+  }
+
+  .print-btn {
+    display: none !important;
+  }
+}

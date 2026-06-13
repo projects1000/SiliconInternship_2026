@@ -1,0 +1,19 @@
+<div class="book-list-section">
+  <h2>BOOK LIST </h2>
+
+  <div class="book-grid">
+    <div class="book-card" *ngFor="let book of books">
+      <img [src]="book.image" [alt]="book.name" />
+
+      <div class="book-info">
+        <h3>{{ book.name }}</h3>
+        <p>{{ book.author }}</p>
+        <strong>₹{{ book.price }}</strong>
+
+        <button (click)="addBook(book)">
+          Add Book
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

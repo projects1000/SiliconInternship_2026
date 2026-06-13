@@ -1,0 +1,36 @@
+<div class="card yellow-card bill-print" id="bill-print">
+  <h2> BILL DETAILS </h2>
+
+  <p><strong>Customer:</strong> {{ customer.name || 'Not Saved' }}</p>
+  <p><strong>Mobile:</strong> {{ customer.mobile || 'Not Saved' }}</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Book</th>
+        <th>Qty</th>
+        <th>Price (₹)</th>
+        <th>Total (₹)</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let book of selectedBooks">
+        <td>{{ book.name }}</td>
+        <td>{{ book.qty }}</td>
+        <td>{{ book.price }}</td>
+        <td>{{ book.total }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="total-box">
+    <p>Sub Total <strong>₹{{ subTotal }}</strong></p>
+    <p>GST (18%) <strong>₹{{ gstAmount }}</strong></p>
+    <h3>Grand Total <strong>₹{{ grandTotal }}</strong></h3>
+  </div>
+
+  <button class="print-btn" (click)="printBill()">
+    Print Bill
+  </button>
+</div>

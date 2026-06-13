@@ -1,0 +1,53 @@
+<div class="book-page">
+  <app-notification></app-notification>
+
+  <h1>BOOK BILLING MANAGEMENT SYSTEM</h1>
+
+  <app-book-list
+    (bookAdded)="addBook($event)">
+  </app-book-list>
+
+  <div class="details-grid">
+    <app-customer-details
+      (customerSaved)="saveCustomer($event)">
+    </app-customer-details>
+
+    <app-book-bill
+      [selectedBooks]="selectedBooks"
+      [customer]="customer"
+      [subTotal]="subTotal"
+      [gstAmount]="gstAmount"
+      [grandTotal]="grandTotal">
+    </app-book-bill>
+  </div>
+
+  <div class="parent-box">
+    <h2> Book Dashboard</h2>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="icon">👤</div>
+        <p>Customer Name</p>
+        <h3>{{ customer.name || 'Not Saved' }}</h3>
+      </div>
+
+      <div class="summary-card">
+        <div class="icon">📞</div>
+        <p>Mobile Number</p>
+        <h3>{{ customer.mobile || 'Not Saved' }}</h3>
+      </div>
+
+      <div class="summary-card">
+        <div class="icon">📚</div>
+        <p>Total Books Selected</p>
+        <h3>{{ totalBooks }}</h3>
+      </div>
+
+      <div class="summary-card">
+        <div class="icon">₹</div>
+        <p>Total Bill Amount</p>
+        <h3>₹{{ grandTotal }}</h3>
+      </div>
+    </div>
+  </div>
+</div>

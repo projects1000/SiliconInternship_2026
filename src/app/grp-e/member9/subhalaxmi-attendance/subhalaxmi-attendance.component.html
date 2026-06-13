@@ -1,0 +1,66 @@
+<div class="attendance-page">
+  <div class="attendance-dashboard">
+    <div class="dashboard-top">
+      <h1>
+        <span class="book-icon">📚</span>
+        Member 9 Attendance Dashboard
+      </h1>
+
+      <div class="top-buttons">
+        <button class="save-btn">💾 Save</button>
+        <button class="lock-btn">🔒 Lock</button>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="left-controls">
+        <input
+          type="text"
+          placeholder="Search Student..."
+          [(ngModel)]="searchText"
+        />
+
+        <div class="add-student-box">
+          <input
+            type="text"
+            placeholder="Enter Student Name"
+            [(ngModel)]="newStudent"
+          />
+
+          <button class="add-btn" (click)="addStudent()">
+            + Add Student
+          </button>
+        </div>
+      </div>
+
+      <input class="date-input" type="date" [(ngModel)]="selectedDate" />
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Attendance</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let student of filteredStudents; let i = index">
+          <td>{{ student.name }}</td>
+
+          <td class="attendance-cell">
+            <input type="checkbox" [(ngModel)]="student.present" />
+            <span *ngIf="student.present">✓</span>
+          </td>
+
+          <td>
+            <button class="delete-btn" (click)="deleteStudent(i)">
+              ×
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
