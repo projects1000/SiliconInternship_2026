@@ -22,6 +22,9 @@ export class CustomerDetailsComponent implements OnInit, OnDestroy {
   constructor(private billingService: BillingService) {}
 
   ngOnInit() {
+    this.customerName = this.billingService.customerName || '';
+    this.mobileNumber = this.billingService.mobileNumber || '';
+
     this.subscription = this.billingService.notifications$.subscribe(msg => {
       if (msg.type === 'bill') {
         this.customerName = '';

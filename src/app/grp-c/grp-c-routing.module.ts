@@ -12,14 +12,19 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
+import { Member8AttendanceComponent } from './member8-attendance/member8-attendance.component';
+import { Member4attmngComponent } from './member4/member4attmng/member4attmng.component';
+
+import { BillingsystemMember4Component } from './member4/billingsystem-member4/billingsystem-member4.component';
+
 import('./member1/member1.module').then(m => m.Member1Module)
 
-import { Member4attmngComponent } from './member4/member4attmng/member4attmng.component';
 import { ProductManagementComponent } from './member9/product-management/product-management.component';
 import { Member3AttendanceComponent } from './member3/member3-attendance/member3-attendance.component';
-
-
+import { member8ProductManagementComponent } from './member8/product-management/product-management/product-management.component';
 import { AttendanceComponent } from './member9/attendance/attendance.component';
+import { BillingParentComponent } from './member3/billing-parent/billing-parent.component';
+import { ChatParentComponent } from './member3/chat-system/chat-parent/chat-parent.component';
 
 const routes: Routes = [
   {
@@ -60,6 +65,14 @@ const routes: Routes = [
     component: Member8Component
   },
   {
+  path: 'member8-product-management',
+  component: member8ProductManagementComponent
+},
+  {
+    path: 'member8-attendance',
+    component: Member8AttendanceComponent
+  },
+  {
     path: 'member9',
     component: Member9Component
   },
@@ -80,6 +93,7 @@ const routes: Routes = [
   path: 'member10',
   component: Member10Component
 },
+{ path: 'member3-chat', component: ChatParentComponent },
 
   {
   path: 'member4/member4attmng',
@@ -87,6 +101,14 @@ const routes: Routes = [
 },
 
   { path: 'member3-attendance', component: Member3AttendanceComponent },
+
+{
+  path:'member4/billingsystem-member4',
+  component:BillingsystemMember4Component
+},
+
+  { path: 'member3-billing', component: BillingParentComponent },
+
 
 
 ];

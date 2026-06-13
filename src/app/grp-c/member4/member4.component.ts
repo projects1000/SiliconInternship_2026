@@ -17,4 +17,7 @@ export class Member4Component {
 goToAttendanceManagement() {
   this.router.navigate(['/grp-c/member4/member4attmng']);
 }
+goToBillingSystem(){
+  this.router.navigate(['/grp-c/member4/billingsystem-member4']);
+}
 }

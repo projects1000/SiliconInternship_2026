@@ -24,11 +24,13 @@
         [class.alert-product]="note.type === 'product'"
         [class.alert-customer]="note.type === 'customer'"
         [class.alert-bill]="note.type === 'bill'"
+        [class.alert-subscription]="note.type === 'subscription'"
       >
         <span class="alert-icon">
           <mat-icon *ngIf="note.type === 'product'">check_circle</mat-icon>
           <mat-icon *ngIf="note.type === 'customer'">account_circle</mat-icon>
           <mat-icon *ngIf="note.type === 'bill'">receipt</mat-icon>
+          <mat-icon *ngIf="note.type === 'subscription'">campaign</mat-icon>
         </span>
         <span class="alert-text">{{ note.text }}</span>
         <span class="alert-time">{{ note.timestamp | date:'shortTime' }}</span>

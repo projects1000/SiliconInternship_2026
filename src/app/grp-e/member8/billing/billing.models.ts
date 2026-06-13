@@ -1,4 +1,5 @@
 export interface BillingCustomer {
+  id: string;        // ✅ NEW UNIQUE ID
   name: string;
   mobile: string;
   address: string;
@@ -8,6 +9,7 @@ export interface BillingProduct {
   id: number;
   name: string;
   price: number;
+  quantity?: number;
 }
 
 export interface BillingCartItem extends BillingProduct {
@@ -20,4 +22,3 @@ export interface BillingTotals {
   grandTotal: number;
   totalItems: number;
 }
-

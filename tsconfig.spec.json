@@ -7,6 +7,11 @@
       "jasmine"
     ]
   },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "out-tsc"
+  ],
   "include": [
     "src/**/*.spec.ts",
     "src/**/*.d.ts"

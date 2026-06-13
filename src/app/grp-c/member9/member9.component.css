@@ -479,9 +479,10 @@ input{
 .contact-btn:hover{
     background:#0284c7;
     transform:translateY(-3px);
+}
+
 .card button:hover{
     opacity:0.9;
-}
 }
 
 .notification{
