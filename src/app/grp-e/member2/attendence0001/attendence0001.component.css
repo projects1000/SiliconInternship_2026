@@ -1,0 +1,60 @@
+.attendance-layout {
+  min-height: 100vh;
+}
+
+.left-panel {
+  width: 260px;
+  padding: 20px;
+  background: #f5f5f5;
+}
+
+.right-panel {
+  padding: 24px;
+}
+
+.toolbar,
+.filters,
+.summary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.toolbar {
+  justify-content: space-between;
+}
+
+.filters input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.attendance-table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.team-tree mat-icon {
+  margin-right: 8px;
+}
+
+.present-icon {
+  color: green;
+}
+
+.add-member-form {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.add-member-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

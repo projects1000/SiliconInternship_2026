@@ -6,7 +6,6 @@ import { GrpCmember4registerComponent } from './grp-cmember4register/grp-cmember
 import { GrpCmember4billComponent } from './grp-cmember4bill/grp-cmember4bill.component';
 import { GrpCmember4settingsComponent } from './grp-cmember4settings/grp-cmember4settings.component';
 import { GrpCmember4notificationComponent } from './grp-cmember4notification/grp-cmember4notification.component';
-import { AttendanceComponent } from "src/app/grp-e/member1/attendance/attendance.component";
 import { CoffeeComponent } from './grp-cmember4products/coffee/coffee.component';
 import { DrinksComponent } from './grp-cmember4products/drinks/drinks.component';
 import { PizzaComponent } from './grp-cmember4products/pizza/pizza.component';
@@ -33,13 +32,13 @@ import { FormsModule } from '@angular/forms';
         FriesComponent,
         SandwichComponent,
         PastaComponent,
-        CakeComponent,
+        CakeComponent
 
       
   ],
   imports: [
     CommonModule,
-    AttendanceComponent,
+    
     FormsModule
 ],
   exports: [
