@@ -1,0 +1,50 @@
+.user-card{
+    background:#202c33;
+    padding:20px;
+    border-radius:15px;
+}
+
+.top{
+    display:flex;
+    gap:15px;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+img{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#2a3942;
+    color:white;
+}
+
+button{
+    width:100%;
+    margin-top:12px;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#00a884;
+    color:white;
+    cursor:pointer;
+}
+.avatar{
+    width:55px;
+    height:55px;
+  
+    border-radius:50%;
+  
+    border:3px solid white;
+  
+    box-shadow:
+    0 0 10px white,
+    0 0 25px cyan;
+  }

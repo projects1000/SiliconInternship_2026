@@ -28,32 +28,16 @@ import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    NavBarComponent,
+    HomeComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot({
-      timeOut: 3500,
-      positionClass: 'toast-top-right',
-      preventDuplicates: true,
-      progressBar: true,
-    }),
-
-    MatIconModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatButtonModule,
-    MatTableModule,
-    MatSortModule,
-    MatChipsModule,
-    MatDividerModule
+    FormsModule
   ],
 
   providers: [],

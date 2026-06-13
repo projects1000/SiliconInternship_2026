@@ -44,9 +44,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CdkTreeModule } from '@angular/cdk/tree';
-import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-attendance.component';
-import { BillingSystemModule as Member1BillingSystemModule } from './member1/billing-system/billing-system.module';
-import { Member1WhatsappModule } from './member1/member1-whatsapp/member1-whatsapp.module';
+import { ModiComponent } from './member5/modi/modi.component';
+import { MeloniComponent } from './member5/meloni/meloni.component';
+import { ChatWindowComponent } from './member5/chat-window/chat-window.component';
 
 @NgModule({
   declarations: [
@@ -61,16 +61,9 @@ import { Member1WhatsappModule } from './member1/member1-whatsapp/member1-whatsa
     Member5AttendanceComponent,
     Member1AttendanceComponent,
     Member2AttendanceComponent,
-    Memb6AttendanceComponent,
-
-    // ✅ Gaming PC Builder Components — Rohan Nayak (24BCSG13)
-    GamingPcBuilderComponent,
-    ProductCatalogComponent,
-    CustomerDetailsComponent,
-    BillSummaryComponent,
-    CategoryFilterComponent,
-    NotificationPanelComponent,
-    SavedBillsComponent,
+    ModiComponent,
+    MeloniComponent,
+    ChatWindowComponent
   ],
   imports: [
     CommonModule,
