@@ -32,6 +32,9 @@ import { UserAnshumanComponent } from './member3/chat-system/user-anshuman/user-
 import { ChatWindowComponent } from './member3/chat-system/chat-window/chat-window.component';
 import { Member8AttendanceComponent } from './member8-attendance/member8-attendance.component';
 
+import { BillingSystemMember4Module } from './member4/billingsystem-member4/billing-system-member4.module';
+
+
 @NgModule({
   declarations: [
     GrpCComponent,
@@ -63,6 +66,9 @@ import { Member8AttendanceComponent } from './member8-attendance/member8-attenda
     CommonModule,
     GrpCRoutingModule,
     FormsModule,
+
+    BillingSystemMember4Module,
+
     ProductManagementModule
   ]
 })

@@ -14,7 +14,11 @@ import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { Member8AttendanceComponent } from './member8-attendance/member8-attendance.component';
 import { Member4attmngComponent } from './member4/member4attmng/member4attmng.component';
+
+import { BillingsystemMember4Component } from './member4/billingsystem-member4/billingsystem-member4.component';
+
 import('./member1/member1.module').then(m => m.Member1Module)
+
 import { ProductManagementComponent } from './member9/product-management/product-management.component';
 import { Member3AttendanceComponent } from './member3/member3-attendance/member3-attendance.component';
 import { member8ProductManagementComponent } from './member8/product-management/product-management/product-management.component';
@@ -97,7 +101,14 @@ const routes: Routes = [
 },
 
   { path: 'member3-attendance', component: Member3AttendanceComponent },
+
+{
+  path:'member4/billingsystem-member4',
+  component:BillingsystemMember4Component
+},
+
   { path: 'member3-billing', component: BillingParentComponent },
+
 
 
 ];
