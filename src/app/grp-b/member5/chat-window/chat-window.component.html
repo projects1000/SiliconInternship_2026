@@ -1,1 +1,62 @@
-<p>chat-window works!</p>
+<div class="chat-layout">
+
+    <!-- Left User -->
+    <div class="side-user">
+      <app-modi></app-modi>
+    </div>
+  
+    <!-- Center Chat -->
+    <div class="whatsapp">
+  
+      <div class="header">
+  
+        <div class="dp"><img src="assets/images/modimeloni.jpg" alt="Modi"></div>
+  
+        <div>
+          <h3>Private Chat</h3>
+          <span>2 Participants Online</span>
+        </div>
+  
+      </div>
+  
+      <div class="notification" *ngIf="notification">
+        {{notification}}
+      </div>
+  
+      <div class="chat-body">
+  
+        <div
+          *ngFor="let msg of messages"
+          [ngClass]="{
+            'right':msg.sender==='Modi',
+            'left':msg.sender==='Meloni'
+          }">
+  
+          <div class="bubble">
+  
+            <div class="name">
+              {{msg.sender}}
+            </div>
+  
+            <div>
+              {{msg.text}}
+            </div>
+  
+            <small>
+              {{msg.time | date:'hh:mm a'}}
+            </small>
+  
+          </div>
+  
+        </div>
+  
+      </div>
+  
+    </div>
+  
+    <!-- Right User -->
+    <div class="side-user">
+      <app-meloni></app-meloni>
+    </div>
+  
+  </div>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { User2Component } from './user2.component';
+import { MeloniComponent } from './meloni.component';
 
-describe('User2Component', () => {
-  let component: User2Component;
-  let fixture: ComponentFixture<User2Component>;
+describe('MeloniComponent', () => {
+  let component: MeloniComponent;
+  let fixture: ComponentFixture<MeloniComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ User2Component ]
+      declarations: [ MeloniComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(User2Component);
+    fixture = TestBed.createComponent(MeloniComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

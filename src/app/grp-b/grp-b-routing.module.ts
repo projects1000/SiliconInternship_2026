@@ -20,6 +20,7 @@ import { Member5AttendanceComponent } from './member5/attendance/attendance.comp
 import { GamingPcBuilderComponent } from './member2/gaming-pc-builder/gaming-pc-builder.component';
 import { BillingDashboardComponent as Member1BillingDashboardComponent } from './member1/billing-system/billing-dashboard/billing-dashboard.component';
 import { WhatsappDashboardComponent } from './member1/member1-whatsapp/whatsapp-dashboard/whatsapp-dashboard.component';
+import { ChatWindowComponent } from './member5/chat-window/chat-window.component';
 
 const routes: Routes = [
   {
@@ -74,6 +75,10 @@ const routes: Routes = [
   {
     path: 'member5/attendance',
     component: Member5AttendanceComponent,
+  },
+  {
+    path: 'member5/chat-window',
+    component: ChatWindowComponent,
   },
   {
     path: 'member6',
