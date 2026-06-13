@@ -38,12 +38,18 @@ import { BillDetailsComponent } from './member1/bill-details/bill-details.compon
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { CustomerComponent } from './member6/product-management/customer/customer.component';
 import { BillingComponent } from './member6/product-management/billing/billing.component';
+
+
+import { UserAComponent } from './member1/user-a/user-a.component';
+import { UserBComponent } from './member1/user-b/user-b.component';
+import { ChatWindowComponent } from './member1/chat-window/chat-window.component';
 
 
 
@@ -74,6 +80,7 @@ import { ProductList1Component } from './member6/product-management/product-list
     CustomerDetailsComponent,
     BillDetailsComponent,
 
+
     CustomerComponent,
     BillingComponent,
     
@@ -81,6 +88,11 @@ import { ProductList1Component } from './member6/product-management/product-list
     /* ✅ ADDED */
     ProductManagementM6Component,
       ProductList1Component
+
+    UserAComponent,
+    UserBComponent,
+    ChatWindowComponent
+
   ],
   imports: [
     CommonModule,

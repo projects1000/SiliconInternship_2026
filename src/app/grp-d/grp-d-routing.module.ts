@@ -18,6 +18,7 @@ import { Member11Component } from './member11/member11.component';
 import { AttendanceComponent } from './member1/attendance/attendance.component';
 import { ProductManagementComponent } from './member1/product-management/product-management.component';
 import { AttendanceTrackerComponent } from './member3/attendance-tracker/attendance-tracker.component';
+import { ChatWindowComponent } from './member1/chat-window/chat-window.component';
 
 // Import for Member 6 Attendance
 import { AttendanceComponent as AttendanceM6 } from './member6/attendance/attendance.component';
@@ -31,6 +32,7 @@ const routes: Routes = [
     path: 'member1',
     component: Member1Component
   },
+  // Each path below is flat, creating a full-page view transition!
   {
     path: 'member1/attendance',
     component: AttendanceComponent
@@ -38,6 +40,13 @@ const routes: Routes = [
   {
     path: 'member1/product-management',
     component: ProductManagementComponent
+
+
+  },
+  {
+    path: 'member1/whatsapp-chat', 
+    component: ChatWindowComponent
+
   },
   {
     path: 'member2',
