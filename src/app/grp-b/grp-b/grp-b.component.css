@@ -1,22 +1,50 @@
+/* ==========================================================================
+   DARK THEME CONFIGURATION (DEFAULT BASE STATE)
+   ========================================================================== */
 .member-container {
+  --bg-app: #0f172a;
+  /* Deep Slate 900 canvas background */
+  --bg-card: #1e293b;
+  /* Sleek Slate 800 dashboard containers */
+  --bg-footer: #111827;
+  /* Dense Gray 900 base alert footer */
+  --bg-mini-card: #0f172a;
+  /* Deep Slate 900 internal art badge background */
+  --border-color: #334155;
+  /* Muted Slate 700 custom boundary splits */
+  --text-main: #f8fafc;
+  /* High-contrast crisp off-white for headings */
+  --text-body: #e2e8f0;
+  /* Smooth Slate 200 primary paragraph text */
+  --text-muted: #94a3b8;
+  /* Accessible Slate 400 informational annotations */
+  --text-footer: #cbd5e1;
+  /* Slate 300 string lines for instructions */
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.5);
+  --sidebar-gradient: linear-gradient(180deg, #090d16, #111827);
+  /* Dark premium navbar */
+
   display: flex;
   height: 100vh;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-main);
 }
 
-/* LEFT SIDEBAR */
+/* ==========================================================================
+   LEFT SIDEBAR (Maintains structural operations exactly)
+   ========================================================================== */
 .member-sidebar {
   width: 220px;
-  background: linear-gradient(180deg, #1e3c72, #2a5298);
+  background: var(--sidebar-gradient);
   color: white;
-
   display: flex;
   flex-direction: column;
-
   padding: 15px;
   gap: 10px;
-
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.25);
+  z-index: 10;
 }
 
 .member-sidebar h3 {
@@ -26,47 +54,238 @@
   letter-spacing: 1px;
 }
 
-/* BUTTONS */
 .member-sidebar button {
   padding: 10px;
   border: none;
   border-radius: 6px;
-
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-
+  background: rgba(255, 255, 255, 0.06);
+  color: #e2e8f0;
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: left;
 }
 
 .member-sidebar button:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
   transform: translateX(4px);
 }
 
-/* BACK BUTTON SPECIAL STYLE */
 .member-sidebar button:first-child {
-  background: #ff4d4d;
+  background: #e53e3e;
+  color: white;
   font-weight: bold;
 }
 
 .member-sidebar button:first-child:hover {
-  background: #ff1a1a;
+  background: #c53030;
 }
 
-/* MAIN CONTENT AREA */
+/* ==========================================================================
+   MAIN CONTENT AREA ARCHITECTURE
+   ========================================================================== */
 .member-content {
   flex: 1;
+  background-color: var(--bg-app);
+  padding: 40px;
   display: flex;
   justify-content: center;
-  align-items: center;
-
-  background: #f4f6f9;
+  align-items: flex-start;
+  overflow-y: auto;
 }
 
-.member-content h1 {
-  font-size: 36px;
-  color: #2a2a2a;
-  letter-spacing: 2px;
+.dashboard-welcome-wrapper {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: fadeInLayout 0.35s ease-out;
+}
+
+/* Welcome Summary Card Banner block */
+.welcome-banner-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Accent top-line color bar directly matching left-nav color codes */
+.welcome-banner-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #1e3c72, #2a5298);
+}
+
+.group-badge {
+  background-color: var(--bg-app);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  margin-bottom: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.welcome-banner-card h1 {
+  margin: 0 0 8px 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+.welcome-banner-card p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-body);
+  line-height: 1.6;
+  max-width: 620px;
+}
+
+.banner-illustration {
+  font-size: 48px;
+  opacity: 0.85;
+  user-select: none;
+}
+
+/* Quick Metrics Statistics Columns layout row framework */
+.metrics-summary-row {
+  display: flex;
+  gap: 20px;
+}
+
+.metric-mini-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.metric-mini-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.card-art {
+  font-size: 24px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--bg-mini-card);
+  border: 1px solid var(--border-color);
+}
+
+/* Contextual color states left edge indicators */
+.metric-mini-card.blue-tint {
+  border-left: 4px solid #3182ce;
+}
+
+.metric-mini-card.green-tint {
+  border-left: 4px solid #48bb78;
+}
+
+.metric-mini-card.purple-tint {
+  border-left: 4px solid #805ad5;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card-details label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-details strong {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* Info Helper Alert Panel bottom frame footer blocks */
+.info-helper-footer {
+  background-color: var(--bg-footer);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid var(--border-color);
+}
+
+.info-badge {
+  background-color: var(--border-color);
+  color: var(--text-main);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  border: 1px solid var(--border-color);
+}
+
+.info-helper-footer p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-footer);
+  line-height: 1.5;
+}
+
+/* Subtle component drop animation on entrance */
+@keyframes fadeInLayout {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive collapse rule layout strategy adaptation adjustments */
+@media (max-width: 768px) {
+  .metrics-summary-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .welcome-banner-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .info-helper-footer {
+    flex-direction: column;
+    text-align: center;
+  }
 }

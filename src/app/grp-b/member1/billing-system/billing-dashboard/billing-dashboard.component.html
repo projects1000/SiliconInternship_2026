@@ -1,0 +1,66 @@
+<div class="billing-system-container" [class.dark-theme]="isDarkMode">
+
+    <div class="dashboard-header">
+        <h2 class="main-title">BILLING MANAGEMENT SYSTEM</h2>
+
+        <button class="theme-toggle-btn" (click)="toggleTheme()"
+            [title]="isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+            <span class="toggle-icon">{{ isDarkMode ? '☀️' : '🌙' }}</span>
+            <span class="toggle-text">{{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}</span>
+        </button>
+    </div>
+
+    <div class="grid-layout">
+        <app-product-list [cartItems]="cartItems" (productAdded)="onProductAdded($event)"
+            (productRemoved)="onProductRemoved($event)">
+        </app-product-list>
+
+        <div class="inner-grid">
+            <app-customer-details (customerSaved)="onCustomerSaved($event)"></app-customer-details>
+            <app-bill-details [cartItems]="cartItems" [subTotal]="subTotal" [gstAmount]="gstAmount"
+                [grandTotal]="grandTotal" [customer]="selectedCustomer">
+            </app-bill-details>
+        </div>
+    </div>
+
+    <div class="parent-dashboard-bar">
+        <div class="bar-header">
+            <span class="pulse-indicator"></span>
+            <h3>PARENT COMPONENT (Billing Dashboard States)</h3>
+        </div>
+
+        <div class="summary-cards">
+            <div class="card customer-card">
+                <span class="card-icon">👤</span>
+                <div class="card-info">
+                    <label>Customer Name</label>
+                    <strong>{{ selectedCustomer.name || 'N/A' }}</strong>
+                </div>
+            </div>
+
+            <div class="card mobile-card">
+                <span class="card-icon">📞</span>
+                <div class="card-info">
+                    <label>Mobile Number</label>
+                    <strong>{{ selectedCustomer.mobile || 'N/A' }}</strong>
+                </div>
+            </div>
+
+            <div class="card items-card">
+                <span class="card-icon">📦</span>
+                <div class="card-info">
+                    <label>Total Products Selected</label>
+                    <strong>{{ totalProductsSelected }} Items</strong>
+                </div>
+            </div>
+
+            <div class="card total-card">
+                <span class="card-icon">💵</span>
+                <div class="card-info">
+                    <label>Total Bill Amount</label>
+                    <strong class="amount-highlight">₹{{ grandTotal | number:'1.2-2' }}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,9 +1,47 @@
-<div class="member-page">
+<app-navbar
+  *ngIf="currentSection !== 'products' && currentSection !== 'cart'"
+  (navigate)="showSection($event)">
+</app-navbar>
 
-  <h1>Member 8</h1>
+<div *ngIf="currentSection === 'home'">
+  <app-home></app-home>
+</div>
 
-  <button (click)="goBackToGroup()">
-    Go back to Group E
-  </button>
+<div *ngIf="currentSection === 'services'">
+  <app-services></app-services>
+</div>
 
+<div *ngIf="currentSection === 'projects'">
+  <app-projects></app-projects>
+</div>
+
+<div *ngIf="currentSection === 'attendance'">
+  <app-attendance></app-attendance>
+</div>
+
+<div *ngIf="currentSection === 'billing'">
+  <app-billing-home
+    (openCart)="showSection('cart')"
+    (openProducts)="showSection('products')"
+    (exitBilling)="showSection('home')">
+  </app-billing-home>
+</div>
+
+<div *ngIf="currentSection === 'products'">
+
+  <app-product-list
+    [customerSaved]="true"
+    (productAdded)="addProduct($event)"
+    (openCart)="showSection('cart')"
+    (exitToHome)="showSection('home')">
+  </app-product-list>
+
+  <app-notification></app-notification>
+
+</div>
+
+<div *ngIf="currentSection === 'cart'">
+  <app-billing-cart
+    (backToBilling)="showSection('billing')">
+  </app-billing-cart>
 </div>
