@@ -1,8 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-// Components
+// Routing
+import { GrpDRoutingModule } from './grp-d-routing.module';
+
+// Layout & Members
 import { GrpDComponent } from './grp-d/grp-d.component';
 import { Member1Component } from './member1/member1.component';
 import { Member2Component } from './member2/member2.component';
@@ -15,11 +18,26 @@ import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { Member11Component } from './member11/member11.component';
-import { AttendanceComponent } from './member1/attendance/attendance.component';
-import { AttendanceTrackerComponent } from './member3/attendance-tracker/attendance-tracker.component';
 
-// Routing & Material Modules
-import { GrpDRoutingModule } from './grp-d-routing.module';
+// Member 1 Functionality
+import { AttendanceComponent } from './member1/attendance/attendance.component';
+import { ProductManagementComponent as Member1Prod } from './member1/product-management/product-management.component';
+import { ProductListComponent as Member1List } from './member1/product-list/product-list.component';
+import { CustomerDetailsComponent } from './member1/customer-details/customer-details.component';
+import { BillDetailsComponent } from './member1/bill-details/bill-details.component';
+import { UserAComponent } from './member1/user-a/user-a.component';
+import { UserBComponent } from './member1/user-b/user-b.component';
+import { ChatWindowComponent as Member1Chat } from './member1/chat-window/chat-window.component';
+
+// Member 3 Functionality
+import { AttendanceTrackerComponent } from './member3/attendance-tracker/attendance-tracker.component';
+import { ProductManagementComponent as Member3Prod } from './member3/product-management/product-management.component';
+import { ProductLisComponent as Member3List } from './member3/product-lis/product-lis.component';
+import { ProductFormComponent } from './member3/product-form/product-form.component';
+import { BillingComponent } from './member3/billing/billing.component';
+import { ChatWindowComponent as Member3Chat } from './member3/chat-window/chat-window.component';
+
+// Angular Material Modules
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
@@ -28,16 +46,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTreeModule } from '@angular/material/tree';
-import { ProductManagementComponent } from './member1/product-management/product-management.component';
-import { ProductListComponent } from './member1/product-list/product-list.component';
-import { CustomerDetailsComponent } from './member1/customer-details/customer-details.component';
-import { BillDetailsComponent } from './member1/bill-details/bill-details.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { UserAComponent } from './member1/user-a/user-a.component';
-import { UserBComponent } from './member1/user-b/user-b.component';
-import { ChatWindowComponent } from './member1/chat-window/chat-window.component';
-
 
 @NgModule({
   declarations: [
@@ -54,14 +64,19 @@ import { ChatWindowComponent } from './member1/chat-window/chat-window.component
     Member10Component,
     Member11Component,
     AttendanceComponent,
-    AttendanceTrackerComponent,
-    ProductManagementComponent,
-    ProductListComponent,
+    Member1Prod,
+    Member1List,
     CustomerDetailsComponent,
     BillDetailsComponent,
     UserAComponent,
     UserBComponent,
-    ChatWindowComponent
+    Member1Chat,
+    AttendanceTrackerComponent,
+    Member3Prod,
+    Member3List,
+    ProductFormComponent,
+    BillingComponent,
+    Member3Chat
   ],
   imports: [
     CommonModule,
@@ -77,6 +92,7 @@ import { ChatWindowComponent } from './member1/chat-window/chat-window.component
     MatTreeModule,
     MatSnackBarModule,
     MatToolbarModule
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class GrpDModule { }
