@@ -1,1 +1,107 @@
-<p>grp-cmember4settings works!</p>
+<div class="settings-page">
+
+  <div class="settings-card">
+
+    <h2>Restaurant Settings</h2>
+
+    <div class="form-group">
+      <label>Restaurant Name</label>
+      <input
+      type="text"
+      [(ngModel)]="settings.restaurantName"
+      placeholder="Enter restaurant name">
+    </div>
+
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input
+      type="text"
+      [(ngModel)]="settings.phoneNumber"
+      placeholder="Enter phone number">
+    </div>
+
+    <div class="form-group">
+      <label>Address</label>
+      <textarea
+      rows="3"
+      [(ngModel)]="settings.address"
+      placeholder="Enter address">
+      </textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Tax Percentage</label>
+      <input
+      type="number"
+      [(ngModel)]="settings.tax"
+      placeholder="Enter tax percentage">
+    </div>
+
+    <div class="form-group">
+      <label>Discount Percentage</label>
+      <input
+      type="number"
+      [(ngModel)]="settings.discount"
+      placeholder="Enter discount percentage">
+    </div>
+
+    <div class="form-group">
+      <label>Service Charge</label>
+      <input
+      type="number"
+      [(ngModel)]="settings.serviceCharge"
+      placeholder="Enter service charge">
+    </div>
+
+    <div class="form-group">
+      <label>Currency</label>
+
+      <select
+      [(ngModel)]="settings.currency">
+
+        <option>₹</option>
+        <option>$</option>
+        <option>€</option>
+        <option>£</option>
+
+      </select>
+    </div>
+
+    <div class="form-group">
+
+      <label>Enable Tips</label>
+
+      <input
+      type="checkbox"
+      [(ngModel)]="settings.enableTip"
+       placeholder="Enter restaurant name">
+
+    </div>
+
+    <div class="form-group">
+
+      <label>Theme</label>
+
+      <select
+      [(ngModel)]="settings.theme">
+
+        <option>Blue</option>
+        <option>Green</option>
+        <option>Purple</option>
+        <option>Dark</option>
+
+      </select>
+
+    </div>
+
+    <button
+    class="save-btn"
+    (click)="saveSettings()">
+
+      Save Settings
+
+    </button>
+
+  </div>
+
+</div>

@@ -1,1 +1,70 @@
-<p>grp-cmember4bill works!</p>
+<div class="bill-page">
+
+  <div class="bill-card" id="billArea">
+
+    <div class="bill-header">
+      <h2>ANUP CAFE</h2>
+      <p>Bhubaneswar, Odisha</p>
+      <p>Phone: 016786294925</p>
+    </div>
+
+    <hr>
+
+    <div class="customer-info">
+      <p><b>Customer:</b> {{ customerData.name || 'Walk-in Customer' }}</p>
+      <p><b>Phone:</b> {{ customerData.phone || 'N/A' }}</p>
+      <p><b>Date:</b> {{ today | date:'dd/MM/yyyy, h:mm a' }}</p>
+    </div>
+
+    <hr>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Rate</th>
+          <th>Amt</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of orders">
+          <td>{{ item.name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>${{ item.price.toFixed(2) }}</td>
+          <td>${{ (item.price * item.quantity).toFixed(2) }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <div class="bill-total">
+      <p>
+        <span>Subtotal</span>
+        <span>${{ getTotal().toFixed(2) }}</span>
+      </p>
+
+      <p>
+        <span>Tip</span>
+        <span>{{ customerData.tip || 'No Tip' }}</span>
+      </p>
+
+      <h3>
+        <span>Grand Total</span>
+        <span>${{ getGrandTotal().toFixed(2) }}</span>
+      </h3>
+    </div>
+
+    <hr>
+
+    <div class="bill-footer">
+      <p>Thank you for your order!</p>
+    </div>
+
+  </div>
+
+  <button class="print-btn" (click)="printBill()">Print Bill</button>
+
+</div>

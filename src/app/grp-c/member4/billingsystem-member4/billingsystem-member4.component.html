@@ -25,9 +25,50 @@
 <div class="mainarea">
 
   <div class="orders">
-    <h2>Orders</h2>
-    <p>No orders added yet</p>
+  <h2>Orders</h2>
+
+  <p *ngIf="orders.length === 0">No orders added yet</p>
+
+  <div class="order-item" *ngFor="let item of orders">
+
+    <img [src]="item.image" alt="img"[alt]="item.name">
+
+    <div class="order-details">
+      <h4>{{ item.name }}</h4>
+      <p class="price">${{ item.price.toFixed(2) }}</p>
+
+      <div class="order-actions">
+        <button (click)="decrease(item)">−</button>
+        <span>{{ item.quantity }}</span>
+        <button (click)="increase(item)">+</button>
+      </div>
+    </div>
+
   </div>
+  <div class="order-summary" *ngIf="orders.length > 0">
+
+  <div class="total-row">
+    <span>Total Amount</span>
+    <span>${{ getTotal().toFixed(2) }}</span>
+  </div>
+
+  <button
+  *ngIf="activepage==='products'"
+  class="done-btn"
+  (click)="activepage='register'">
+  Register Customer
+</button>
+
+
+<button
+  *ngIf="activepage==='register'"
+  class="done-btn"
+  (click)="activepage='bill'">
+  Generate Bill
+</button>
+
+</div>
+</div>
 
   <div class="pages">
 
@@ -38,5 +79,15 @@
     <app-grp-cmember4notification *ngIf="activepage==='notification'"></app-grp-cmember4notification>
 
   </div>
+<div class="toast-container">
+  <div
+    class="toast"
+    *ngFor="let note of notifications"
+    [class.success]="note.type === 'success'"
+    [class.error]="note.type === 'error'">
 
+    {{ note.message }}
+
+  </div>
+</div>
 </div>
