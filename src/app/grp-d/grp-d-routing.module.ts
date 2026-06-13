@@ -15,9 +15,8 @@ import { Member10Component } from './member10/member10.component';
 import { Member11Component } from './member11/member11.component';
 import { AttendanceComponent } from './member1/attendance/attendance.component';
 import { ProductManagementComponent } from './member1/product-management/product-management.component';
-
-// Import your new tracker component
 import { AttendanceTrackerComponent } from './member3/attendance-tracker/attendance-tracker.component';
+import { ChatWindowComponent } from './member1/chat-window/chat-window.component';
 
 const routes: Routes = [
   {
@@ -28,13 +27,18 @@ const routes: Routes = [
     path: 'member1',
     component: Member1Component
   },
+  // Each path below is flat, creating a full-page view transition!
   {
     path: 'member1/attendance',
     component: AttendanceComponent
   },
   {
-  path: 'member1/product-management',
-  component: ProductManagementComponent
+    path: 'member1/product-management',
+    component: ProductManagementComponent
+  },
+  {
+    path: 'member1/whatsapp-chat', 
+    component: ChatWindowComponent
   },
   {
     path: 'member2',
@@ -44,7 +48,6 @@ const routes: Routes = [
     path: 'member3',
     component: Member3Component
   },
-  // Add this new route for your matrix page
   {
     path: 'member3/attendance-matrix',
     component: AttendanceTrackerComponent
