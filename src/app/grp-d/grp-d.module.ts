@@ -35,9 +35,15 @@ import { CustomerDetailsComponent } from './member1/customer-details/customer-de
 import { BillDetailsComponent } from './member1/bill-details/bill-details.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+
+import { UserAComponent } from './member1/user-a/user-a.component';
+import { UserBComponent } from './member1/user-b/user-b.component';
+import { ChatWindowComponent } from './member1/chat-window/chat-window.component';
+
 
 
 @NgModule({
@@ -60,7 +66,10 @@ import { MatNativeDateModule } from '@angular/material/core';
     ProductManagementComponent,
     ProductListComponent,
     CustomerDetailsComponent,
-    BillDetailsComponent
+    BillDetailsComponent,
+    UserAComponent,
+    UserBComponent,
+    ChatWindowComponent
   ],
   imports: [
     CommonModule,
