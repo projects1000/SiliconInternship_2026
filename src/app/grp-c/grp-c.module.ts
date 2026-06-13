@@ -14,6 +14,9 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
+import { Member4attmngComponent } from './member4/member4attmng/member4attmng.component';
+import { Member3AttendanceComponent } from './member3/member3-attendance/member3-attendance.component';
+import { ProductManagementModule } from './member8/product-management/product-management.module';
 
 import { GrpCRoutingModule } from './grp-c-routing.module';
 import { AttendanceComponent } from './member9/attendance/attendance.component';
@@ -59,7 +62,8 @@ import { ChatWindowComponent } from './member3/chat-system/chat-window/chat-wind
   imports: [
     CommonModule,
     GrpCRoutingModule,
-    FormsModule
+    FormsModule,
+    ProductManagementModule
   ]
 })
 export class GrpCModule { }
