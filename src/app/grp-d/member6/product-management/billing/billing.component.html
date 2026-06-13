@@ -1,0 +1,17 @@
+<div class="bill-card" *ngIf="bill; else noBill">
+
+  <h2>Billing Details</h2>
+
+  <p><b>Customer Name:</b> {{ bill.customerName }}</p>
+  <p><b>Email:</b> {{ bill.email }}</p>
+  <p><b>Phone:</b> {{ bill.phone }}</p>
+
+  <hr>
+
+  <h3>Total Amount: ₹{{ bill.total }}</h3>
+
+</div>
+
+<ng-template #noBill>
+  <p>No bill generated yet</p>
+</ng-template>

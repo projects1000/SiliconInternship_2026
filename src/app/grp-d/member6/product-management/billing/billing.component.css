@@ -1,0 +1,77 @@
+.bill-card {
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+.bill-card h2 {
+  color: white;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.bill-card p {
+  font-size: 15px;
+  margin: 10px 0;
+  color: rgba(255, 255, 255, 0.95);
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 8px;
+}
+
+.bill-card h3 {
+  color: #ffe66d;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.bill-card hr {
+  margin: 15px 0;
+  border: 0;
+  border-top: 1px solid rgba(255,255,255,0.3);
+}
+
+/* No bill message */
+ng-template p,
+.no-bill {
+  text-align: center;
+  color: #ffffff;
+  font-size: 15px;
+}
+
+/* Confirm button */
+.confirm-btn {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px 15px;
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.confirm-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(46, 204, 113, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .bill-card {
+    width: 90%;
+    padding: 15px;
+  }
+}

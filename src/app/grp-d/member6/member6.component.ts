@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./member6.component.css']
 })
 export class Member6Component {
-  
+
   constructor(private router: Router) {}
 
   // Navigation to the Group page
@@ -15,10 +15,13 @@ export class Member6Component {
     this.router.navigate(['/grp-d']);
   }
 
-  // Navigation to the Attendance component
+  // Navigation to Attendance
   goToAttendance() {
-    // This route must be defined in your app-routing.module.ts or member6-routing.module.ts
-    // Based on your folder structure (grp-d/member6/attendance), use this path:
     this.router.navigate(['/grp-d/member6/attendance']);
+  }
+
+  // Navigation to Product Management
+  openProductManagement() {
+    this.router.navigate(['/grp-d/member6/product-management']);
   }
 }

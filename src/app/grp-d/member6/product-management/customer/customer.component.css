@@ -1,0 +1,48 @@
+.customer-card {
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  color: white;
+}
+
+.customer-card h3 {
+  color: white;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+}
+
+.form input {
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.15);
+  color: white;
+}
+
+.form input::placeholder {
+  color: rgba(255,255,255,0.8);
+}
+
+.form input:focus {
+  outline: none;
+  background: rgba(255,255,255,0.25);
+}
+
+.form button {
+  background: #1abc9c;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background: #16a085;
+}

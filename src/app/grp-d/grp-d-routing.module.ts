@@ -15,13 +15,13 @@ import { Member10Component } from './member10/member10.component';
 import { Member11Component } from './member11/member11.component';
 
 // Existing imports
-import { AttendanceComponent as AttendanceComponent1 } from './member1/attendance/attendance.component';
+import { AttendanceComponent } from './member1/attendance/attendance.component';
 import { ProductManagementComponent } from './member1/product-management/product-management.component';
 import { AttendanceTrackerComponent } from './member3/attendance-tracker/attendance-tracker.component';
 
 // Import for Member 6 Attendance
-import { AttendanceComponent } from './member6/attendance/attendance.component';
-
+import { AttendanceComponent as AttendanceM6 } from './member6/attendance/attendance.component';
+import { ProductManagementComponent as Member6ProductManagementComponent } from './member6/product-management/product-management.component';
 const routes: Routes = [
   {
     path: '',
@@ -33,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: 'member1/attendance',
-    component: AttendanceComponent1
+    component: AttendanceComponent
   },
   {
     path: 'member1/product-management',
@@ -66,7 +66,11 @@ const routes: Routes = [
   // Added route for Member 6 Attendance
   {
     path: 'member6/attendance',
-    component: AttendanceComponent
+    component: AttendanceM6
+  },
+  {
+    path: 'member6/product-management',
+    component: Member6ProductManagementComponent
   },
   {
     path: 'member7',

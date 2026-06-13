@@ -1,0 +1,72 @@
+.pm-container {
+  padding: 20px;
+  background: #f4f6f9;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.pm-header {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+}
+
+.pm-header h2 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.pm-header p {
+  margin-top: 5px;
+  color: #7f8c8d;
+}
+
+.pm-menu {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.pm-menu button {
+  background: #2c3e50;
+  color: white;
+  border-radius: 6px;
+  padding: 8px 16px;
+}
+
+.pm-menu button:hover {
+  background: #1abc9c;
+}
+
+.pm-content {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.fade {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 18px;
+  border-radius: 6px;
+  color: white;
+  z-index: 9999;
+  font-weight: 500;
+}
+
+.success { background: green; }
+.error { background: red; }
+.warning { background: orange; }
+.info { background: blue; }

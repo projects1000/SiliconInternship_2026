@@ -29,16 +29,27 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTreeModule } from '@angular/material/tree';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 import { ProductManagementComponent } from './member1/product-management/product-management.component';
 import { ProductListComponent } from './member1/product-list/product-list.component';
 import { CustomerDetailsComponent } from './member1/customer-details/customer-details.component';
 import { BillDetailsComponent } from './member1/bill-details/bill-details.component';
+
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
+import { CustomerComponent } from './member6/product-management/customer/customer.component';
+import { BillingComponent } from './member6/product-management/billing/billing.component';
+
+
+
+/* ✅ ADDED (FIX) */
+import { ProductManagementComponent as ProductManagementM6Component } from './member6/product-management/product-management.component';
+import { ProductList1Component } from './member6/product-management/product-list1/product-list1.component';
 
 @NgModule({
   declarations: [
@@ -57,10 +68,19 @@ import { MatNativeDateModule } from '@angular/material/core';
     AttendanceComponent,
     AttendanceM6,
     AttendanceTrackerComponent,
+
     ProductManagementComponent,
     ProductListComponent,
     CustomerDetailsComponent,
-    BillDetailsComponent
+    BillDetailsComponent,
+
+    CustomerComponent,
+    BillingComponent,
+    
+
+    /* ✅ ADDED */
+    ProductManagementM6Component,
+      ProductList1Component
   ],
   imports: [
     CommonModule,
@@ -78,7 +98,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatToolbarModule,
     MatSidenavModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatFormFieldModule
   ],
   exports: [
     MatButtonModule,

@@ -1,0 +1,28 @@
+<div class="customer-card">
+
+  <h3>Customer Details</h3>
+
+  <div class="form">
+
+    <input
+      placeholder="Customer Name"
+      [(ngModel)]="customer.name"
+    />
+
+    <input
+      placeholder="Email"
+      [(ngModel)]="customer.email"
+    />
+
+    <input
+      placeholder="Phone Number"
+      [(ngModel)]="customer.phone"
+    />
+
+    <button (click)="saveCustomer()">
+      Save Customer
+    </button>
+
+  </div>
+
+</div>

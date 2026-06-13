@@ -1,0 +1,36 @@
+<!-- TOAST -->
+<div *ngIf="toast" class="toast" [ngClass]="toast.type">
+  {{ toast.message }}
+</div>
+
+<div class="pm-container">
+
+  <div class="pm-header">
+    <h2>Product Management System</h2>
+    <p>Manage products, customers and billing efficiently</p>
+  </div>
+
+  <div class="pm-menu">
+    <button mat-button (click)="setView('product')">Products</button>
+    <button mat-button (click)="setView('customer')">Customer</button>
+    <button mat-button (click)="setView('billing')">Billing</button>
+  </div>
+
+  <div class="pm-content">
+
+    <div *ngIf="view === 'product'" class="fade">
+      <app-product-list1></app-product-list1>
+    </div>
+
+    <div *ngIf="view === 'customer'" class="fade">
+      <app-customer></app-customer>
+    </div>
+
+    <div *ngIf="view === 'billing'" class="fade">
+      <app-billing></app-billing>
+    </div>
+
+  </div>
+
+</div>
+
