@@ -10,20 +10,17 @@ export class Member9Component {
 
   constructor(private router: Router) {}
 
-  // Profile Details
   name = 'Sohan Mohanty';
   role = 'Frontend Angular Developer';
   college = 'Silicon University';
   email = 'sohan@gmail.com';
   phone = '+91 6789032112';
 
-  // Portfolio Stats
   projectsCompleted = 5;
   componentsCreated = 15;
   internshipMonths = 3;
   learningProgress = 100;
 
-  // Skills
   skills = [
     'Angular',
     'TypeScript',
@@ -37,7 +34,6 @@ export class Member9Component {
     'Responsive Design'
   ];
 
-  // Education
   education = [
     {
       degree: 'B.Tech',
@@ -46,7 +42,6 @@ export class Member9Component {
     }
   ];
 
-  // Certifications
   certifications = [
     'Angular Fundamentals',
     'Frontend Web Development',
@@ -55,7 +50,6 @@ export class Member9Component {
     'Responsive Web Design'
   ];
 
-  // Achievements
   achievements = [
     'Developed Attendance Management System',
     'Created Billing Management System',
@@ -64,17 +58,21 @@ export class Member9Component {
     'Built Responsive User Interfaces'
   ];
 
-  // Internship Tasks
   internshipTasks = [
     'Attendance Management',
     'Profile Dashboard',
     'Billing Management',
     'Angular Material Integration',
-    'Git Branch Management'
+    'Git Branch Management',
+    'WhatsApp Chat Application'
   ];
 
   openProject() {
     this.router.navigate(['/grp-c/product-management']);
+  }
+
+  openChatbot() {
+    this.router.navigate(['/grp-c/chatbot']);
   }
 
   contactMe() {
@@ -85,5 +83,4 @@ export class Member9Component {
       this.phone
     );
   }
-
 }
