@@ -38,6 +38,7 @@
 
   <section class="card">
     <h2>Skills</h2>
+
     <div class="skills">
 
       <span>Angular</span>
@@ -133,8 +134,18 @@
     <p>📧 safaqjamal11@gmail.com</p>
     <p>💻 github.com/safaq11</p>
   </section>
-   <button class="attendance-btn" (click)="openAttendance()">Attendance Management System</button>
-   <button class="product-btn" routerLink="/grp-c/member8-product-management">Product Management</button>
+   <button
+    class="attendance-btn"
+    (click)="openAttendance()">
+    Attendance Management System
+  </button>
+
+  <button
+    class="attendance-btn"
+    (click)="openProductManagement()">
+    Product Management System
+  </button>
+
 
   <div class="action-bar">
 
@@ -142,7 +153,6 @@
             (click)="goBackToGroup()">
       ← Back to Group C
     </button>
-    
 
   </div>
 

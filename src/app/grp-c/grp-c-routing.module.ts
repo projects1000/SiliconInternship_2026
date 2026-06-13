@@ -15,13 +15,9 @@ import { Member10Component } from './member10/member10.component';
 import { Member8AttendanceComponent } from './member8-attendance/member8-attendance.component';
 import { Member4attmngComponent } from './member4/member4attmng/member4attmng.component';
 import('./member1/member1.module').then(m => m.Member1Module)
-
-import { Member4attmngComponent } from './member4/member4attmng/member4attmng.component';
 import { ProductManagementComponent } from './member9/product-management/product-management.component';
 import { Member3AttendanceComponent } from './member3/member3-attendance/member3-attendance.component';
-import { ProductManagementComponent } from './member8/product-management/product-management/product-management.component';
-
-
+import { member8ProductManagementComponent } from './member8/product-management/product-management/product-management.component';
 import { AttendanceComponent } from './member9/attendance/attendance.component';
 import { BillingParentComponent } from './member3/billing-parent/billing-parent.component';
 import { ChatParentComponent } from './member3/chat-system/chat-parent/chat-parent.component';
@@ -66,7 +62,11 @@ const routes: Routes = [
   },
   {
   path: 'member8-product-management',
-  component: ProductManagementComponent
+  component: member8ProductManagementComponent
+},
+  {
+    path: 'member8-attendance',
+    component: Member8AttendanceComponent
   },
   {
     path: 'member9',
