@@ -20,6 +20,7 @@ import { AttendanceTrackerComponent } from './member3/attendance-tracker/attenda
 
 // Routing & Material Modules
 import { GrpDRoutingModule } from './grp-d-routing.module';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
@@ -28,16 +29,25 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTreeModule } from '@angular/material/tree';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
+// 🔥 FIXED MISSING MATERIAL MODULES
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
+// Member1 Components
 import { ProductManagementComponent } from './member1/product-management/product-management.component';
 import { ProductListComponent } from './member1/product-list/product-list.component';
 import { CustomerDetailsComponent } from './member1/customer-details/customer-details.component';
 import { BillDetailsComponent } from './member1/bill-details/bill-details.component';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatToolbarModule } from '@angular/material/toolbar';
+
+// Member1 Chat Components
 import { UserAComponent } from './member1/user-a/user-a.component';
 import { UserBComponent } from './member1/user-b/user-b.component';
 import { ChatWindowComponent } from './member1/chat-window/chat-window.component';
-
 
 @NgModule({
   declarations: [
@@ -55,18 +65,22 @@ import { ChatWindowComponent } from './member1/chat-window/chat-window.component
     Member11Component,
     AttendanceComponent,
     AttendanceTrackerComponent,
+
     ProductManagementComponent,
     ProductListComponent,
     CustomerDetailsComponent,
     BillDetailsComponent,
+
     UserAComponent,
     UserBComponent,
     ChatWindowComponent
   ],
+
   imports: [
     CommonModule,
     FormsModule,
     GrpDRoutingModule,
+
     MatButtonModule,
     MatIconModule,
     MatTableModule,
@@ -76,7 +90,13 @@ import { ChatWindowComponent } from './member1/chat-window/chat-window.component
     MatSelectModule,
     MatTreeModule,
     MatSnackBarModule,
-    MatToolbarModule
+    MatToolbarModule,
+
+    // 🔥 REQUIRED FIX (was causing Netlify errors)
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class GrpDModule { }
