@@ -14,11 +14,9 @@ import { Member8AttendanceComponent } from './member8-attendance/member8-attenda
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { GrpCRoutingModule } from './grp-c-routing.module';
-
 import { Member4attmngComponent } from './member4/member4attmng/member4attmng.component';
-
 import { Member3AttendanceComponent } from './member3/member3-attendance/member3-attendance.component';
-
+import { ProductManagementModule } from './member8/product-management/product-management.module';
 
 
 
@@ -43,7 +41,8 @@ import { Member3AttendanceComponent } from './member3/member3-attendance/member3
   imports: [
     CommonModule,
     GrpCRoutingModule,
-    FormsModule
+    FormsModule,
+    ProductManagementModule
   ]
 })
 export class GrpCModule { }

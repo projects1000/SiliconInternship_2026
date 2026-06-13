@@ -190,12 +190,32 @@ li{
   color:white;
   border:none;
   padding:12px 20px;
-  border-radius:10px;
+  border-radius:20px;
   cursor:pointer;
   font-size:16px;
+  font-weight: 600;
   margin-top:20px;
 }
 
 .attendance-btn:hover{
   transform:translateY(-2px);
+}
+.product-btn {
+  background: linear-gradient(
+    #5b21b6);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  margin-left: 15px;
+  transition: 0.3s;
+}
+
+.product-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
