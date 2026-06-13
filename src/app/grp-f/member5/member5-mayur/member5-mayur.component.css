@@ -1,0 +1,40 @@
+:host {
+  flex: 1;
+}
+
+.user-card {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+  text-align: center;
+  border-top: 5px solid #7b1fa2;
+}
+
+.user-card h3 {
+  color: #7b1fa2;
+  margin-bottom: 15px;
+}
+
+.user-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.send-btn {
+  width: 100%;
+  background: #7b1fa2;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.send-btn:hover {
+  background: #6a1b9a;
+}
