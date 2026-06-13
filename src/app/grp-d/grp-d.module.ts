@@ -15,27 +15,8 @@ import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { Member11Component } from './member11/member11.component';
-
 import { AttendanceComponent } from './member1/attendance/attendance.component';
-import { AttendanceComponent as AttendanceM6 } from './member6/attendance/attendance.component';
 import { AttendanceTrackerComponent } from './member3/attendance-tracker/attendance-tracker.component';
-
-// Member1 product system
-import { ProductManagementComponent } from './member1/product-management/product-management.component';
-import { ProductListComponent } from './member1/product-list/product-list.component';
-import { CustomerDetailsComponent } from './member1/customer-details/customer-details.component';
-import { BillDetailsComponent } from './member1/bill-details/bill-details.component';
-
-// Member6 product system
-import { CustomerComponent } from './member6/product-management/customer/customer.component';
-import { BillingComponent } from './member6/product-management/billing/billing.component';
-import { ProductManagementComponent as ProductManagementM6Component } from './member6/product-management/product-management.component';
-import { ProductList1Component } from './member6/product-management/product-list1/product-list1.component';
-
-// Member1 chat (FIXED ISSUE YOU HAD)
-import { UserAComponent } from './member1/user-a/user-a.component';
-import { UserBComponent } from './member1/user-b/user-b.component';
-import { ChatWindowComponent } from './member1/chat-window/chat-window.component';
 
 // Routing & Material Modules
 import { GrpDRoutingModule } from './grp-d-routing.module';
@@ -47,17 +28,20 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTreeModule } from '@angular/material/tree';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { ProductManagementComponent } from './member1/product-management/product-management.component';
+import { ProductListComponent } from './member1/product-list/product-list.component';
+import { CustomerDetailsComponent } from './member1/customer-details/customer-details.component';
+import { BillDetailsComponent } from './member1/bill-details/bill-details.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { UserAComponent } from './member1/user-a/user-a.component';
+import { UserBComponent } from './member1/user-b/user-b.component';
+import { ChatWindowComponent } from './member1/chat-window/chat-window.component';
+
 
 @NgModule({
   declarations: [
     GrpDComponent,
-
     Member1Component,
     Member2Component,
     Member3Component,
@@ -69,22 +53,12 @@ import { MatNativeDateModule } from '@angular/material/core';
     Member9Component,
     Member10Component,
     Member11Component,
-
     AttendanceComponent,
-    AttendanceM6,
     AttendanceTrackerComponent,
-
     ProductManagementComponent,
     ProductListComponent,
     CustomerDetailsComponent,
     BillDetailsComponent,
-
-    CustomerComponent,
-    BillingComponent,
-
-    ProductManagementM6Component,
-    ProductList1Component,
-
     UserAComponent,
     UserBComponent,
     ChatWindowComponent
@@ -93,7 +67,6 @@ import { MatNativeDateModule } from '@angular/material/core';
     CommonModule,
     FormsModule,
     GrpDRoutingModule,
-
     MatButtonModule,
     MatIconModule,
     MatTableModule,
@@ -103,21 +76,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSelectModule,
     MatTreeModule,
     MatSnackBarModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatFormFieldModule
-  ],
-  exports: [
-    MatButtonModule,
-    MatIconModule,
-    MatTableModule,
-    MatCheckboxModule,
-    MatTreeModule,
-    MatSidenavModule,
-    MatDatepickerModule,
-    MatNativeDateModule
+    MatToolbarModule
   ]
 })
 export class GrpDModule { }
