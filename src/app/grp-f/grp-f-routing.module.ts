@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
+import { AttendanceProjectComponent } from './member3/attendance-project/attendance-project.component';
+import { WhatsappChatComponent } from './member3/whatsapp-chat/whatsapp-chat.component';
 import { GrpFComponent } from './grp-f/grp-f.component';
 
 import { Member1Component } from './member1/member1.component';
@@ -14,6 +15,7 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
+import { BillingSystemComponent } from './member3/billing-system/billing-system.component';
 
 const routes: Routes = [
   {
@@ -32,6 +34,19 @@ const routes: Routes = [
     path: 'member3',
     component: Member3Component
   },
+  
+  {
+  path: 'member3/attendance-project',
+  component: AttendanceProjectComponent
+},
+{
+  path: 'member3/whatsapp-chat',
+  component: WhatsappChatComponent
+},
+{
+  path: 'member3/billing-system',
+  component: BillingSystemComponent
+},
   {
     path: 'member4',
     component: Member4Component

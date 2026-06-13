@@ -1,0 +1,18 @@
+<div class="user-card">
+
+  <h2>User A</h2>
+
+  <input
+    type="text"
+    placeholder="Type message..."
+    [(ngModel)]="message"
+    (input)="chatService.setTyping('User A')">
+
+  <button
+    (click)="sendMessage()">
+
+    Send
+
+  </button>
+
+</div>

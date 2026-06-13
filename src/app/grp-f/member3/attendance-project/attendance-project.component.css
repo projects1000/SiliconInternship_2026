@@ -17,6 +17,84 @@
   width:70%;
 }
 
+.add-member-card{
+
+  margin-top:20px;
+
+  background:white;
+
+  padding:20px;
+
+  border-radius:15px;
+
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+
+}
+
+.add-member-card h3{
+
+  color:#15356b;
+
+  margin-bottom:15px;
+
+  text-align:center;
+
+}
+
+.add-member-card input,
+.add-member-card select{
+
+  width:100%;
+
+  padding:12px;
+
+  margin-bottom:12px;
+
+  border:1px solid #dcdcdc;
+
+  border-radius:8px;
+
+  outline:none;
+
+  box-sizing:border-box;
+
+}
+
+.add-member-card input:focus,
+.add-member-card select:focus{
+
+  border-color:#15356b;
+
+}
+
+.add-member-card button{
+
+  width:100%;
+
+  padding:12px;
+
+  border:none;
+
+  border-radius:8px;
+
+  background:#15356b;
+
+  color:white;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+}
+
+.add-member-card button:hover{
+
+  background:#1f4d99;
+
+}
+
 @media(max-width:900px){
 
   .content-layout{

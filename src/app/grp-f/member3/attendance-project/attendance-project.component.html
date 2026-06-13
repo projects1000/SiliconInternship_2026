@@ -2,16 +2,62 @@
 
   <app-header></app-header>
 
-  <app-summary-cards></app-summary-cards>
+  <app-summary-cards
+    [totalStudents]="totalStudents"
+    [presentCount]="presentCount"
+    [absentCount]="absentCount"
+    [attendancePercentage]="attendancePercentage">
+  </app-summary-cards>
 
   <div class="content-layout">
 
     <div class="left-panel">
-      <app-team-tree></app-team-tree>
+
+      <app-team-tree
+        (groupSelected)="onGroupSelected($event)">
+      </app-team-tree>
+
+      <div class="add-member-card">
+
+        <h3>Add Member</h3>
+
+        <input
+          type="text"
+          placeholder="Enter Member Name"
+          [(ngModel)]="newMemberName">
+
+        <select
+          [(ngModel)]="selectedGroupForAdd">
+
+          <option>Group A</option>
+          <option>Group B</option>
+          <option>Group C</option>
+          <option>Group D</option>
+          <option>Group E</option>
+          <option>Group F</option>
+
+        </select>
+
+        <button
+          (click)="addMember()">
+
+          Add Member
+
+        </button>
+
+      </div>
+
     </div>
 
     <div class="right-panel">
-      <app-attendance-table></app-attendance-table>
+
+      <app-attendance-table
+        [selectedGroup]="selectedGroup"
+        (attendanceSaved)="onAttendanceSaved($event)">
+      </app-attendance-table>
+
+      <app-reports></app-reports>
+
     </div>
 
   </div>

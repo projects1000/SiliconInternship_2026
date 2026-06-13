@@ -1,0 +1,28 @@
+<div class="card">
+
+  <h2>
+    Product List
+  </h2>
+
+  <div
+    class="product-row"
+    *ngFor="let product of products">
+
+    <span>
+
+      {{product.name}}
+      -
+      ₹{{product.price}}
+
+    </span>
+
+    <button
+      (click)="addProduct(product)">
+
+      Add
+
+    </button>
+
+  </div>
+
+</div>

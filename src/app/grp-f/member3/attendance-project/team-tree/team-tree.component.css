@@ -1,102 +1,57 @@
-.sidebar{
+.sidebar {
 
-  background:white;
+  background: white;
 
-  border-radius:15px;
+  padding: 20px;
 
-  padding:20px;
+  border-radius: 15px;
 
-  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+  height: fit-content;
 }
 
-.sidebar h2{
+.sidebar h2 {
 
-  color:#15356b;
+  color: #15356b;
 
-  margin-bottom:20px;
+  margin-bottom: 20px;
+
+  text-align: center;
 }
 
-.student-count{
+.group-list {
 
-  margin-bottom:20px;
+  display: flex;
 
-  font-weight:bold;
+  flex-direction: column;
 
-  color:#444;
+  gap: 10px;
 }
 
-.add-section{
+.group-item {
 
-  display:flex;
+  padding: 14px;
 
-  flex-direction:column;
+  background: #f4f6fb;
 
-  gap:10px;
+  border-radius: 10px;
 
-  margin-bottom:20px;
+  cursor: pointer;
+
+  font-weight: bold;
+
+  transition: 0.3s;
 }
 
-.add-section input{
+.group-item:hover {
 
-  padding:10px;
-
-  border:1px solid #ccc;
-
-  border-radius:8px;
+  background: #dbe7ff;
 }
 
-.add-section button{
+.active {
 
-  background:#15356b;
+  background: #15356b;
 
-  color:white;
-
-  border:none;
-
-  padding:10px;
-
-  border-radius:8px;
-
-  cursor:pointer;
-}
-
-ul{
-
-  list-style:none;
-
-  padding:0;
-
-  margin:0;
-}
-
-li{
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  margin-bottom:10px;
-
-  padding:10px;
-
-  background:#f5f7fb;
-
-  border-radius:8px;
-}
-
-.delete-btn{
-
-  background:#dc3545;
-
-  color:white;
-
-  border:none;
-
-  padding:6px 10px;
-
-  border-radius:6px;
-
-  cursor:pointer;
+  color: white;
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-team-tree',
@@ -7,30 +7,23 @@ import { Component } from '@angular/core';
 })
 export class TeamTreeComponent {
 
-  newStudent = '';
+  @Output()
+  groupSelected = new EventEmitter<string>();
 
-  students = [
-    'Rupali Jena',
-    'Ankit Kumar',
-    'Priya Sharma',
-    'Rahul Das'
+  groups = [
+    'Group A',
+    'Group B',
+    'Group C',
+    'Group D',
+    'Group E',
+    'Group F'
   ];
 
-  addStudent() {
+  selectedGroup = 'Group A';
 
-    if(this.newStudent.trim()){
-
-      this.students.push(this.newStudent);
-
-      this.newStudent = '';
-    }
-
-  }
-
-  deleteStudent(index:number){
-
-    this.students.splice(index,1);
-
+  selectGroup(group: string) {
+    this.selectedGroup = group;
+    this.groupSelected.emit(group);
   }
 
 }

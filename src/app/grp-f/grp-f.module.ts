@@ -10,7 +10,12 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+import { GrpFRoutingModule } from './grp-f-routing.module';
+
 import { GrpFComponent } from './grp-f/grp-f.component';
+
 import { Member1Component } from './member1/member1.component';
 import { Member2Component } from './member2/member2.component';
 import { Member3Component } from './member3/member3.component';
@@ -21,21 +26,30 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
-import { GrpFRoutingModule } from './grp-f-routing.module';
+
 import { AttendanceComponent } from './member5/attendance/attendance.component';
+
 import { AttendanceProjectComponent } from './member3/attendance-project/attendance-project.component';
 import { HeaderComponent } from './member3/attendance-project/header/header.component';
 import { TeamTreeComponent } from './member3/attendance-project/team-tree/team-tree.component';
 import { AttendanceTableComponent } from './member3/attendance-project/attendance-table/attendance-table.component';
 import { SummaryCardsComponent } from './member3/attendance-project/summary-cards/summary-cards.component';
 import { ReportsComponent } from './member3/attendance-project/reports/reports.component';
-import { AttendanceTableComponent } from './member3/attendance-project/attendance-table/attendance-table.component';
 
+import { WhatsappChatComponent } from './member3/whatsapp-chat/whatsapp-chat.component';
+import { UserAComponent } from './member3/user-a/user-a.component';
+import { UserBComponent } from './member3/user-b/user-b.component';
+import { ChatWindowComponent } from './member3/chat-window/chat-window.component';
 
+import { BillingSystemComponent } from './member3/billing-system/billing-system.component';
+import { ProductListComponent } from './member3/product-list/product-list.component';
+import { CustomerComponent } from './member3/customer/customer.component';
+import { BillingComponent } from './member3/billing/billing.component';
 
 @NgModule({
   declarations: [
     GrpFComponent,
+
     Member1Component,
     Member2Component,
     Member3Component,
@@ -46,29 +60,40 @@ import { AttendanceTableComponent } from './member3/attendance-project/attendanc
     Member8Component,
     Member9Component,
     Member10Component,
+
     AttendanceComponent,
+
     AttendanceProjectComponent,
     HeaderComponent,
     TeamTreeComponent,
     AttendanceTableComponent,
     SummaryCardsComponent,
-    ReportsComponent
-    AttendanceTableComponent
+    ReportsComponent,
+
+    WhatsappChatComponent,
+    UserAComponent,
+    UserBComponent,
+    ChatWindowComponent,
+
+    BillingSystemComponent,
+    ProductListComponent,
+    CustomerComponent,
+    BillingComponent
   ],
   imports: [
-  CommonModule,
-  GrpFRoutingModule,
+    CommonModule,
+    FormsModule,
+    GrpFRoutingModule,
 
-  FormsModule,
-
-  MatIconModule,
-  MatButtonModule,
-  MatCheckboxModule,
-  MatTableModule,
-  MatTreeModule,
-  MatSidenavModule,
-  MatDatepickerModule,
-  MatNativeDateModule
-]
+    MatIconModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatTreeModule,
+    MatSidenavModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSnackBarModule
+  ]
 })
 export class GrpFModule { }

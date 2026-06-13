@@ -1,0 +1,85 @@
+<div class="card">
+
+  <h2>Bill Details</h2>
+
+  <p>
+    <strong>Bill No:</strong>
+    {{billNumber}}
+  </p>
+
+  <p *ngIf="billDate">
+    <strong>Date & Time:</strong>
+    {{billDate}}
+  </p>
+
+  <p>
+    <strong>Name:</strong>
+    {{customer?.name}}
+  </p>
+
+  <p>
+    <strong>Mobile:</strong>
+    {{customer?.mobile}}
+  </p>
+
+  <table *ngIf="products.length > 0">
+
+    <thead>
+
+      <tr>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let product of products">
+
+        <td>{{product.name}}</td>
+
+        <td>{{product.qty}}</td>
+
+        <td>₹{{product.price}}</td>
+
+        <td>
+          ₹{{product.price * product.qty}}
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <h3>
+
+    Grand Total:
+    ₹{{getTotal()}}
+
+  </h3>
+
+  <div class="button-section">
+
+    <button
+      class="generate-btn"
+      (click)="generateBill()">
+
+      Generate Bill
+
+    </button>
+
+    <button
+      class="clear-btn"
+      (click)="clearBill()">
+
+      Clear Bill
+
+    </button>
+
+  </div>
+
+</div>
