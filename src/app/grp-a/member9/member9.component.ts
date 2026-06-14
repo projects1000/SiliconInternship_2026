@@ -71,10 +71,29 @@ export class Member9Component {
       description: 'Two User WhatsApp Chat Application',
       stack: ['Angular', 'TypeScript'],
       gradient: 'linear-gradient(135deg,#6366f1,#8b5cf6)',
-      icon: '🏥',
+      icon: '📱',
       github: 'https://github.com',
       demo: '/grp-a/member9/whatsapp-chat-app',
     },
+    {
+      // BILLING PROJECT
+      title: 'Billing Management System',
+      description: 'Dynamic modular system with real-time cart math and RxJS service notifications.',
+      stack: ['Angular', 'RxJS'],
+      gradient: 'linear-gradient(135deg, #f59e0b, #d97706)', 
+      icon: '🛒',
+      github: 'https://github.com/Ronit-kumar-swain-07',
+      demo: '/grp-a/member9/product-management',
+    },
+    {
+      title: 'Attendance System',
+      description: 'Dynamic frosted-glass sync matrix featuring automated timelines, interactive organization trees, and strict entry freezing mechanisms.',
+      stack: ['Angular', ''],
+      gradient: 'linear-gradient(135deg, #2563eb, #c084fc)', 
+      icon: '📊',
+      github: 'https://github.com/Ronit-kumar-swain-07',
+      demo: '/grp-a/member9/attendance'
+    }
   ];
 
   achievements = [

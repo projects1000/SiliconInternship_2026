@@ -1,0 +1,36 @@
+<div class="card shadow-sm h-100 border-warning">
+    <div class="card-header bg-light text-warning fw-bold text-center">3. BILL DETAILS (Child)</div>
+    <div class="card-body p-0">
+        <table class="table mb-0">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Price (₹)</th>
+                    <th>Total (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of cartItems">
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.qty }}</td>
+                    <td>{{ item.product.price }}</td>
+                    <td>{{ item.total }}</td>
+                </tr>
+
+                <tr *ngIf="cartItems.length > 0">
+                    <td colspan="3" class="text-end fw-bold">Sub Total</td>
+                    <td>₹{{ subTotal }}</td>
+                </tr>
+                <tr *ngIf="cartItems.length > 0">
+                    <td colspan="3" class="text-end fw-bold">GST (18%)</td>
+                    <td>₹{{ gst.toFixed(2) }}</td>
+                </tr>
+                <tr *ngIf="cartItems.length > 0" class="table-light text-danger fw-bold">
+                    <td colspan="3" class="text-end">Grand Total</td>
+                    <td>₹{{ grandTotal.toFixed(2) }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
