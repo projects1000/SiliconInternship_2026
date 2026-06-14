@@ -12,4 +12,12 @@ export class Member2Component {
   goBackToGroup() {
     this.router.navigate(['grp-a']);
   }
+
+  goToAttendance() {
+    this.router.navigate(['grp-a/member2/attendance']);
+  }
+
+  goToHospital() {
+    this.router.navigate(['grp-a/member2/hospital']);
+  }
 }

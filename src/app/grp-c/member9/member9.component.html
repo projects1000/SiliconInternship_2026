@@ -1,9 +1,302 @@
-<div class="member-page">
+<div class="portfolio-container">
 
-  <h1>Member 9</h1>
+    <!-- HERO SECTION -->
+    <section class="hero-section">
 
-  <button (click)="goBackToGroup()">
-    Go back to Group C
-  </button>
+        <div class="hero-content">
+
+            <div class="profile-image">
+                👨‍💻
+            </div>
+
+            <h1>{{name}}</h1>
+
+            <h2>{{role}}</h2>
+
+            <p class="hero-text">
+                Passionate Frontend Angular Developer focused on building
+                modern, scalable and user-friendly web applications.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button
+                    class="btn contact-btn"
+                    (click)="contactMe()">
+                    Contact Me
+                </button>
+
+                <button
+                    class="btn project-btn"
+                    (click)="openProject()">
+                    Product Management
+                </button>
+
+                <button
+                    class="btn project-btn"
+                    (click)="openChatbot()">
+                    Chat Application
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section-card">
+
+        <h2>About Me</h2>
+
+        <p>
+            Hello! I'm Sohan Mohanty, a Frontend Angular Developer and
+            student at Silicon University. I enjoy creating responsive,
+            modern, and interactive web applications using Angular,
+            TypeScript, HTML and CSS.
+        </p>
+
+        <p>
+            My goal is to continuously improve my development skills and
+            contribute to real-world software projects.
+        </p>
+
+    </section>
+
+    <!-- PROFILE DETAILS -->
+    <section class="section-card">
+
+        <h2>Personal Information</h2>
+
+        <div class="info-grid">
+
+            <div class="info-box">
+                <h4>🎓 College</h4>
+                <p>{{college}}</p>
+            </div>
+
+            <div class="info-box">
+                <h4>📧 Email</h4>
+                <p>{{email}}</p>
+            </div>
+
+            <div class="info-box">
+                <h4>📱 Phone</h4>
+                <p>{{phone}}</p>
+            </div>
+
+            <div class="info-box">
+                <h4>💼 Role</h4>
+                <p>{{role}}</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- STATS -->
+    <section class="section-card">
+
+        <h2>Portfolio Statistics</h2>
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <h3>{{projectsCompleted}}+</h3>
+                <span>Projects</span>
+            </div>
+
+            <div class="stat-card">
+                <h3>{{componentsCreated}}+</h3>
+                <span>Components</span>
+            </div>
+
+            <div class="stat-card">
+                <h3>{{internshipMonths}}</h3>
+                <span>Months Internship</span>
+            </div>
+
+            <div class="stat-card">
+                <h3>{{learningProgress}}%</h3>
+                <span>Learning</span>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section-card">
+
+        <h2>Technical Skills</h2>
+
+        <div class="skills-grid">
+
+            <div
+                class="skill-chip"
+                *ngFor="let skill of skills">
+
+                {{skill}}
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="section-card">
+
+        <h2>Education</h2>
+
+        <div
+            class="education-card"
+            *ngFor="let edu of education">
+
+            <h3>{{edu.degree}}</h3>
+
+            <p>{{edu.institute}}</p>
+
+            <span>{{edu.year}}</span>
+
+        </div>
+
+    </section>
+
+    <!-- INTERNSHIP JOURNEY -->
+    <section class="section-card">
+
+        <h2>Internship Journey</h2>
+
+        <div class="timeline">
+
+            <div
+                class="timeline-item"
+                *ngFor="let task of internshipTasks">
+
+                ✅ {{task}}
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section class="section-card">
+
+        <h2>Achievements</h2>
+
+        <div class="achievement-list">
+
+            <div
+                class="achievement-card"
+                *ngFor="let achievement of achievements">
+
+                🏆 {{achievement}}
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="section-card">
+
+        <h2>Certifications</h2>
+
+        <div class="certification-grid">
+
+            <div
+                class="cert-card"
+                *ngFor="let cert of certifications">
+
+                📜 {{cert}}
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section-card">
+
+        <h2>Projects Showcase</h2>
+
+        <div class="project-grid">
+
+            <div class="project-card">
+
+                <h3>Attendance Management System</h3>
+
+                <p>
+                    Angular project with attendance records,
+                    search functionality and date filtering.
+                </p>
+
+            </div>
+
+            <div class="project-card">
+
+                <h3>Billing Management System</h3>
+
+                <p>
+                    Customer billing application with GST
+                    calculation and notifications.
+                </p>
+
+            </div>
+
+            <div class="project-card">
+
+                <h3>Profile Portfolio Dashboard</h3>
+
+                <p>
+                    Modern portfolio dashboard using Angular
+                    and responsive design principles.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section-card">
+
+        <h2>Contact Information</h2>
+
+        <div class="contact-grid">
+
+            <div class="contact-card">
+                📧 {{email}}
+            </div>
+
+            <div class="contact-card">
+                📱 {{phone}}
+            </div>
+
+            <div class="contact-card">
+                🎓 {{college}}
+            </div>
+
+        </div>
+
+        <p class="tagline">
+            Passionate Angular Developer | Frontend Enthusiast | Problem Solver
+        </p>
+
+        <button
+            class="attendance-btn"
+            (click)="openAttendance()">
+
+            📋 Open Attendance System
+
+        </button>
+
+    </section>
 
 </div>

@@ -1,9 +1,184 @@
-<div class="member-page">
+<div class="portfolio-container">
+  <div class="floating-shape shape1"></div>
+  <div class="floating-shape shape2"></div>
+  <div class="floating-shape shape3"></div>
+  <div class="floating-shape shape4"></div>
 
-  <h1>Member 1</h1>
+  <div class="utility-nav">
+    <button class="nav-back-btn" (click)="goBackToGroup()">
+      <mat-icon>arrow_back</mat-icon> Back to Group Dashboard
+    </button>
+  </div>
 
-  <button (click)="goBackToGroup()">
-    Go back to Group B
-  </button>
+  <section class="hero-section">
+    <div class="hero-left">
+      <h3 class="welcome-text">
+        Welcome To My Professional Space
+      </h3>
 
+      <h1 class="hero-title">
+        Hi, I'm <span class="gradient-text">Jagannath Padhi</span>
+      </h1>
+
+      <h2 class="typing-text">
+        <mat-icon class="inline-icon">code</mat-icon> {{ displayText }}<span class="cursor-blink">|</span>
+      </h2>
+
+      <p class="hero-description">
+        Passionate Full Stack Developer creating modern, scalable, high-performance, and visually stunning web
+        applications with cutting-edge technologies.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="btn attendance-btn" (click)="navigateToAttendance()">
+          <mat-icon>assignment_turned_in</mat-icon> Take Attendance Engine
+        </button>
+        <button class="btn billing-btn" (click)="navigateToBillingDashboard()">
+          <mat-icon>assignment_turned_in</mat-icon>View Billing Dashboard
+        </button>
+        <button class="btn whatsapp-btn" (click)="navigateToWhatsappDashboard()">
+          <mat-icon>assignment_turned_in</mat-icon>View WhatsApp Dashboard
+        </button>
+
+        <button class="btn primary-btn">
+          <mat-icon>visibility</mat-icon> View Projects
+        </button>
+
+        <button class="btn secondary-btn">
+          <mat-icon>mail</mat-icon> Contact Me
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="profile-container">
+        <div class="profile-glow"></div>
+        <img src="../../../assets/Team_B_Jagannath.jpg" alt="Jagannath Padhi Profile" class="profile-image">
+      </div>
+    </div>
+  </section>
+
+  <section class="glass-card section-card">
+    <h2 class="section-title">
+      <mat-icon class="title-icon">fingerprint</mat-icon> About Me
+    </h2>
+    <p class="about-content">
+      I am a passionate software developer who loves creating elegant solutions for complex problems. My comprehensive
+      engineering expertise includes Angular, React, Node.js, Java, Spring Boot, database structural indexing, and
+      cloud-native environments. I thrive on building beautifully responsive and interactive web interfaces that deliver
+      unparalleled user experiences.
+    </p>
+  </section>
+
+  <section>
+    <h2 class="section-title">
+      <mat-icon class="title-icon">psychology</mat-icon> Core Technical Arsenal
+    </h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon-wrapper"><mat-icon>layers</mat-icon></div>
+        <h3>Angular</h3>
+        <p>Frontend Architecture</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon-wrapper"><mat-icon>web</mat-icon></div>
+        <h3>React</h3>
+        <p>Modern Interactive UI</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon-wrapper"><mat-icon>dns</mat-icon></div>
+        <h3>Node JS</h3>
+        <p>Scalable Backend APIs</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon-wrapper"><mat-icon>terminal</mat-icon></div>
+        <h3>Java</h3>
+        <p>Enterprise Core Logic</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon-wrapper"><mat-icon>cloud_queue</mat-icon></div>
+        <h3>Spring Boot</h3>
+        <p>Distributed Microservices</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon-wrapper"><mat-icon>storage</mat-icon></div>
+        <h3>MongoDB</h3>
+        <p>NoSQL Document Layer</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">
+      <mat-icon class="title-icon">rocket_launch</mat-icon> Featured Deployments
+    </h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-image item-clone"></div>
+        <h3>LinkedIn Clone</h3>
+        <p>Professional networking platform engineered with live posts, streaming message vectors, and complex user
+          relationship schemas.</p>
+      </div>
+
+      <div class="project-card">
+        <div class="project-image item-weather"></div>
+        <h3>Weather Application</h3>
+        <p>Real-time geolocated climate forecasting matrix calling external asynchronous REST streaming APIs with
+          dynamic styling sets.</p>
+      </div>
+
+      <div class="project-card">
+        <div class="project-image item-shop"></div>
+        <h3>E-Commerce Store</h3>
+        <p>Comprehensive online commerce node equipped with dynamic shopping baskets, secure identity checkout
+          validation, and card processing gates.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">
+      <mat-icon class="title-icon">timeline</mat-icon> Professional Timeline
+    </h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Senior Software Developer</h3>
+          <span class="timeline-date">2024 - Present</span>
+          <p>Architecting robust enterprise distributed architectures, optimizing application loading parameters, and
+            leading frontend standardization paradigms.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Frontend Engineer</h3>
+          <span class="timeline-date">2023 - 2024</span>
+          <p>Built complex component libraries, dashboard management setups, and responsive view ports ensuring total
+            cross-browser rendering accuracy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <h2 class="section-title">
+      <mat-icon class="title-icon">maps_ugc</mat-icon> Let's Initiate Conversation
+    </h2>
+    <div class="contact-card">
+      <input type="text" placeholder="Your Name" class="form-field">
+      <input type="email" placeholder="Your Email Address" class="form-field">
+      <textarea rows="5" placeholder="Elaborate on your project objectives..." class="form-field"></textarea>
+      <button class="btn primary-btn submit-contact-btn">
+        <mat-icon>send</mat-icon> Transmit Message
+      </button>
+    </div>
+  </section>
 </div>

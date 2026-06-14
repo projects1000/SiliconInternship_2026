@@ -1,0 +1,61 @@
+<div class="container" [class.dark]="darkMode">
+  <div class="header">
+    <h1>WhatsApp Mini Clone</h1>
+    <p class="online-status">🟢 Both Users Online</p>
+
+    <button (click)="toggleDarkMode()">Dark Mode</button>
+  </div>
+
+  <div class="users">
+    <div class="user-card">
+      <h2>User A</h2>
+
+      <input
+        type="text"
+        placeholder="Type message..."
+        [(ngModel)]="userAMessage"
+      />
+
+      <button (click)="sendMessage('User A')">Send</button>
+    </div>
+
+    <div class="user-card">
+      <h2>User B</h2>
+
+      <input
+        type="text"
+        placeholder="Type message..."
+        [(ngModel)]="userBMessage"
+      />
+
+      <button (click)="sendMessage('User B')">Send</button>
+    </div>
+  </div>
+
+  <div class="chat-box">
+    <div
+      *ngFor="let msg of messages"
+      class="message"
+      [ngClass]="{
+        'user-a': msg.user === 'User A',
+        'user-b': msg.user === 'User B',
+      }"
+    >
+      <div class="message-header">
+        <div class="avatar">
+          {{ msg.user === "User A" ? "A" : "B" }}
+        </div>
+
+        <strong>{{ msg.user }}</strong>
+      </div>
+
+      <p>{{ msg.text }}</p>
+
+      <small>{{ msg.time }}</small>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button (click)="clearChat()">Clear Chat</button>
+  </div>
+</div>

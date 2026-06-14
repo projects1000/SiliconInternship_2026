@@ -1,9 +1,13 @@
-<div class="member-page">
+<app-navbar
+(pageChange)="navigate($event)">
+</app-navbar>
 
-  <h1>Member 5</h1>
+<app-home *ngIf="selectedPage === 'home'"></app-home>
 
-  <button (click)="goBackToGroup()">
-    Go back to Group D
-  </button>
+<app-profile *ngIf="selectedPage === 'profile'"></app-profile>
 
-</div>
+<app-attendance-s *ngIf="selectedPage === 'attendance'"></app-attendance-s>
+
+<app-billingdashboard *ngIf="selectedPage === 'billing'"></app-billingdashboard>
+
+<app-whatsapp *ngIf="selectedPage === 'whatsapp'"></app-whatsapp>

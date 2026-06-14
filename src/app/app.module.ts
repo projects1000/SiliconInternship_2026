@@ -12,7 +12,7 @@ import { HomeComponent } from './home/home.component';
   declarations: [
     AppComponent,
     NavBarComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

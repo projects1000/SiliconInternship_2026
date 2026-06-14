@@ -1,0 +1,42 @@
+<mat-card class="modern-card customer-card">
+  <mat-card-header>
+    <div class="header-icon-wrapper">
+      <mat-icon>person_add</mat-icon>
+    </div>
+    <mat-card-title>CUSTOMER DETAILS</mat-card-title>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <form (ngSubmit)="saveCustomer()" class="customer-form">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Customer Name</mat-label>
+        <input 
+          matInput
+          type="text" 
+          id="customerName" 
+          name="customerName" 
+          [(ngModel)]="customerName" 
+          required
+        />
+        <mat-icon matPrefix>person</mat-icon>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Mobile Number</mat-label>
+        <input 
+          matInput
+          type="tel" 
+          id="mobileNumber" 
+          name="mobileNumber" 
+          [(ngModel)]="mobileNumber" 
+          required
+        />
+        <mat-icon matPrefix>phone</mat-icon>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" class="btn-save full-width">
+        <mat-icon>save</mat-icon> Save Customer
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

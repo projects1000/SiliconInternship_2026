@@ -1,0 +1,115 @@
+<div class="bill-card">
+    <div class="print-area">
+        <h2>Bill Details</h2>
+
+        <p>
+            <strong>Invoice No:</strong>
+            {{invoiceNumber}}
+        </p>
+
+        <div *ngIf="customer">
+
+            <h3>Customer Information</h3>
+
+            <p><strong>Name:</strong> {{ customer.name }}</p>
+
+            <p><strong>Mobile:</strong> {{ customer.mobile }}</p>
+
+        </div>
+
+        <hr>
+
+        <h3>Selected Products</h3>
+
+        <div *ngIf="products.length === 0">
+            No Products Selected
+        </div>
+
+        <table *ngIf="products.length > 0">
+
+            <tr>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+
+            <tr *ngFor="let product of products">
+
+                <td>{{ product.name }}</td>
+
+                <td>
+
+                    <button class="qty-btn" (click)="decreaseQuantity(product)">
+                        -
+                    </button>
+
+                    {{ product.quantity }}
+
+                    <button class="qty-btn" (click)="increaseQuantity(product)">
+                        +
+                    </button>
+
+                </td>
+
+                <td>₹{{ product.price }}</td>
+
+                <td>₹{{ product.quantity * product.price }}</td>
+
+                <td>
+
+                    <button class="remove-btn" (click)="removeProduct(product)">
+
+                        Remove
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        </table>
+
+        <hr>
+
+        <h3>Bill Summary</h3>
+
+        <button class="generate-btn" (click)="generateInvoice()">
+            Generate Invoice
+        </button>
+
+        <button class="print-btn" (click)="printInvoice()">
+            Print Invoice
+        </button>
+    </div>
+    <div *ngIf="generatedInvoiceNumber" class="invoice-box"  id="invoice-section">
+
+        <h3>Invoice Generated</h3>
+
+        <p><strong>Invoice No:</strong> {{ generatedInvoiceNumber }}</p>
+
+        <p><strong>Date:</strong> {{ invoiceDate | date:'medium' }}</p>
+
+        <p><strong>Customer:</strong> {{ customer?.name }}</p>
+
+        <p><strong>Total:</strong> ₹{{ grandTotal.toFixed(2) }}</p>
+
+    </div>
+
+    <p>
+        <strong>Subtotal:</strong>
+        ₹{{ subtotal }}
+    </p>
+
+    <p>
+        <strong>GST (18%):</strong>
+        ₹{{ gst.toFixed(2) }}
+    </p>
+
+    <p>
+        <strong>Grand Total:</strong>
+        ₹{{ grandTotal.toFixed(2) }}
+    </p>
+
+</div>

@@ -1,0 +1,54 @@
+<div class="child-box bill-box">
+    <div class="card-header">
+        <span class="step-badge">03</span>
+        <h3>BILL DETAILS <small>(Child Component)</small></h3>
+    </div>
+
+    <div class="table-container">
+        <table class="billing-summary-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th class="text-center">Qty</th>
+                    <th class="text-right">Price</th>
+                    <th class="text-right">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of cartItems">
+                    <td class="product-name-cell">{{ item.product.name }}</td>
+                    <td class="text-center qty-badge-cell">
+                        <span class="qty-badge">{{ item.quantity }}</span>
+                    </td>
+                    <td class="text-right font-mono">₹{{ item.product.price | number:'1.2-2' }}</td>
+                    <td class="text-right font-mono font-semibold">₹{{ item.total | number:'1.2-2' }}</td>
+                </tr>
+                <tr *ngIf="cartItems.length === 0">
+                    <td colspan="4" class="empty-cart-message">
+                        🛒 Your cart is currently empty.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="calculation-footer">
+        <div class="calc-row">
+            <span class="calc-label">Sub Total</span>
+            <span class="calc-value">₹{{ subTotal | number:'1.2-2' }}</span>
+        </div>
+        <div class="calc-row">
+            <span class="calc-label">GST (18%)</span>
+            <span class="calc-value text-muted">+ ₹{{ gstAmount | number:'1.2-2' }}</span>
+        </div>
+        <div class="calc-row grand-total-row">
+            <span class="grand-label">Grand Total</span>
+            <span class="grand-price">₹{{ grandTotal | number:'1.2-2' }}</span>
+        </div>
+    </div>
+
+    <button class="btn-download" [disabled]="cartItems.length === 0" (click)="downloadBillPdf()">
+        <span class="btn-icon">📄</span>
+        <span>Download Invoice PDF</span>
+    </button>
+</div>

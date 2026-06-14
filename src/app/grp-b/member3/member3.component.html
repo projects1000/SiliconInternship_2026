@@ -1,9 +1,100 @@
 <div class="member-page">
 
-  <h1>Member 3</h1>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
 
-  <button (click)="goBackToGroup()">
-    Go back to Group B
-  </button>
+  <div class="profile-shell">
 
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <div class="avatar-ring">
+        <div class="avatar-wrap">
+          <div class="avatar-img">
+            <span class="avatar-initials">TRM
+            </span>
+          </div>
+        </div>
+        <span class="status-dot" title="Available"></span>
+      </div>
+
+      <div class="identity">
+        <span class="role-badge">Frontend Developer</span>
+        <h1>Tushar Ranjan Muduli</h1>
+        <p class="subtitle">Group B · Silicon Internship 2026</p>
+      </div>
+    </div>
+
+    <!-- Bio -->
+    <div class="glass-panel bio-panel">
+      <div class="panel-label">
+        <mat-icon>auto_stories</mat-icon>
+        About Me
+      </div>
+      <p class="bio-text">
+        Passionate about building beautiful, responsive web experiences with Angular and Material Design.
+        Focused on clean code, creative UI, and delivering demo-ready features for the internship team.
+      </p>
+    </div>
+
+    <!-- Skills -->
+    <div class="glass-panel skills-panel">
+      <div class="panel-label">
+        <mat-icon>bolt</mat-icon>
+        Skills
+      </div>
+      <div class="skill-badges">
+        <span class="skill-badge skill-angular">Angular</span>
+        <span class="skill-badge skill-ts">TypeScript</span>
+        <span class="skill-badge skill-ui">UI / UX</span>
+        <span class="skill-badge skill-css">CSS &amp; Animations</span>
+        <span class="skill-badge skill-git">Git</span>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="glass-panel contact-panel">
+      <div class="panel-label">
+        <mat-icon>contact_mail</mat-icon>
+        Contact
+      </div>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <mat-icon>email</mat-icon>
+          <div>
+            <span class="contact-label">Email</span>
+            <span class="contact-value">tusharmuduli749@gmail.com</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <mat-icon>location_on</mat-icon>
+          <div>
+            <span class="contact-label">Location</span>
+            <span class="contact-value">Gopalpur . Cuttack</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <mat-icon>school</mat-icon>
+          <div>
+            <span class="contact-label">Program</span>
+            <span class="contact-value">Internship Portal 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="action-buttons">
+      <button mat-raised-button class="attendance-btn" (click)="goToAttendance()">
+        <mat-icon>fact_check</mat-icon>
+        Attendance Dashboard
+      </button>
+
+      <button mat-stroked-button class="back-btn" (click)="goBackToGroup()">
+        <mat-icon>arrow_back</mat-icon>
+        Go back to Group B
+      </button>
+    </div>
+
+  </div>
 </div>

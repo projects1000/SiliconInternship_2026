@@ -1,0 +1,14 @@
+.notification{
+
+  background:#eef7ea;
+
+  border-left:6px solid #4caf50;
+
+  padding:12px;
+
+  margin-bottom:10px;
+
+  border-radius:8px;
+
+  font-weight:500;
+}
