@@ -13,64 +13,82 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 
-
 const routes: Routes = [
   {
     path: '',
-    component: GrpAComponent
+    component: GrpAComponent,
   },
   {
     path: 'member1',
-    component: Member1Component
+    component: Member1Component,
   },
   {
     path: 'member2',
-    component: Member2Component
+    component: Member2Component,
   },
   {
     path: 'member2/attendance',
-    loadChildren: () => import('./member2/attendance/attendance.module').then(m => m.AttendanceModule)
+    loadChildren: () =>
+      import('./member2/attendance/attendance.module').then(
+        (m) => m.AttendanceModule,
+      ),
+  },
+  {
+    path: 'member2/hospital',
+    loadChildren: () => import('./member2/hospital/hospital.module').then(m => m.HospitalModule)
   },
   {
     path: 'member3',
-    component: Member3Component
+    component: Member3Component,
   },
   {
     path: 'member4',
-    component: Member4Component
+    component: Member4Component,
   },
   {
     path: 'member5',
-    component: Member5Component
+    component: Member5Component,
   },
   {
     path: 'member6',
-    component: Member6Component
+    component: Member6Component,
   },
-  { 
-    path: 'member6/attendance', 
-    loadChildren: () => import('./satyabrat/att-proj/att-proj.module').then(m => m.AttProjModule) 
+  {
+    path: 'member6/attendance',
+    loadChildren: () =>
+      import('./satyabrat/att-proj/att-proj.module').then(
+        (m) => m.AttProjModule,
+      ),
   },
   {
     path: 'member7',
-    component: Member7Component
+    component: Member7Component,
   },
   {
     path: 'member7/attendance',
-    loadChildren: () => import('./member7/attendance/attendance.module').then(m => m.AttendanceModule)
+    loadChildren: () =>
+      import('./member7/attendance/attendance.module').then(
+        (m) => m.AttendanceModule,
+      ),
   },
   {
     path: 'member8',
-    component: Member8Component
+    component: Member8Component,
   },
   {
     path: 'member9',
-    component: Member9Component
-  }
+    component: Member9Component,
+  },
+  {
+  path: 'member9/whatsapp-chat-app',
+  loadChildren: () =>
+    import('./member9/whatsapp-chat-app/whatsapp-chat-app.module')
+      .then(m => m.WhatsappChatAppModule)
+}
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class GrpARoutingModule {}

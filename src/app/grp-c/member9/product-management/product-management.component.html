@@ -1,0 +1,149 @@
+<div class="project-container">
+
+    <button
+        class="back-btn"
+        routerLink="/grp-c/member9">
+
+        ← Back To Portfolio
+
+    </button>
+
+    <h1 class="title">
+    🛒 Billing Management System
+</h1>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <h3>Product List</h3>
+
+            <table>
+
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+
+                <tr *ngFor="let product of products">
+
+                    <td>{{product.name}}</td>
+
+                    <td>₹{{product.price}}</td>
+
+                    <td>
+                        <button
+                            (click)="addProduct(product)">
+                            Add
+                        </button>
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Customer Details</h3>
+
+            <input
+                type="text"
+                placeholder="Customer Name"
+                [(ngModel)]="customerName">
+
+            <input
+                type="text"
+                placeholder="Mobile Number"
+                [(ngModel)]="mobileNumber">
+
+            <button
+                (click)="saveCustomer()">
+
+                Save Customer
+
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Bill Details</h3>
+
+            <table>
+
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                </tr>
+
+                <tr *ngFor="let item of selectedProducts">
+
+                    <td>{{item.name}}</td>
+                    <td>₹{{item.price}}</td>
+
+                </tr>
+
+            </table>
+
+            <p><strong>Sub Total:</strong> ₹{{subtotal}}</p>
+
+            <p><strong>GST (18%):</strong> ₹{{gst}}</p>
+
+            <h3 class="total">
+                Grand Total ₹{{grandTotal}}
+            </h3>
+
+            <button
+                class="clear-btn"
+                (click)="clearBill()">
+
+                Clear Bill
+
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Notifications</h3>
+
+            <div
+                class="notification"
+                *ngFor="let msg of notifications">
+
+                {{msg}}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="dashboard">
+
+        <div class="box">
+            <h4>Customer Name</h4>
+            {{customerName}}
+        </div>
+
+        <div class="box">
+            <h4>Mobile Number</h4>
+            {{mobileNumber}}
+        </div>
+
+        <div class="box">
+            <h4>Total Products</h4>
+            {{selectedProducts.length}}
+        </div>
+
+        <div class="box">
+            <h4>Total Bill</h4>
+            ₹{{grandTotal}}
+        </div>
+
+    </div>
+
+</div>

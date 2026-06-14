@@ -1,0 +1,113 @@
+<div class="login-wrapper" [class.dark-theme]="isDarkMode">
+  <div class="login-background"></div>
+  
+  <div class="login-container animate-fade-in">
+    <!-- Header with logo -->
+    <div class="login-header">
+      <div class="logo-circle">
+        <mat-icon>receipt_long</mat-icon>
+      </div>
+      <h2 class="login-title">Silicon FreshMart</h2>
+      <p class="login-subtitle">Billing Management System</p>
+    </div>
+
+    <!-- Active Cart Summary Banner if they have items -->
+    <div class="cart-summary-banner" *ngIf="cartItemsCount > 0">
+      <mat-icon>shopping_bag</mat-icon>
+      <div class="cart-summary-text">
+        <span class="cart-summary-label">Items in Cart:</span>
+        <span class="cart-summary-val">{{ cartItemsCount }} items (₹{{ cartSubtotal | number:'1.2-2' }})</span>
+      </div>
+    </div>
+
+    <!-- Auth Tabs Header -->
+    <div class="auth-tabs">
+      <button type="button" class="tab-btn" [class.active]="activeTab === 'login'" (click)="activeTab = 'login'">
+        <mat-icon>login</mat-icon> Sign In
+      </button>
+      <button type="button" class="tab-btn" [class.active]="activeTab === 'signup'" (click)="activeTab = 'signup'">
+        <mat-icon>person_add</mat-icon> Sign Up
+      </button>
+    </div>
+
+    <!-- Login Form Card -->
+    <mat-card class="login-card mat-elevation-z8">
+      <mat-card-header>
+        <mat-card-title class="card-title">
+          {{ activeTab === 'login' ? 'Cashier & Customer Sign In' : 'New Customer Registration' }}
+        </mat-card-title>
+        <mat-card-subtitle class="card-subtitle">
+          {{ activeTab === 'login' ? 'Access your account or use demo credentials' : 'Register to automatically populate billing details' }}
+        </mat-card-subtitle>
+      </mat-card-header>
+      
+      <mat-card-content class="form-content">
+        <!-- Log In Form -->
+        <form (ngSubmit)="login()" *ngIf="activeTab === 'login'">
+          <!-- Username / Mobile -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Username or Mobile Number</mat-label>
+            <input matInput type="text" [(ngModel)]="username" name="username" required />
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+
+          <!-- Password -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password" required />
+            <button mat-icon-button matSuffix (click)="showPassword = !showPassword" type="button" [title]="showPassword ? 'Hide password' : 'Show password'">
+              <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+
+
+
+          <div class="login-actions">
+            <button mat-flat-button color="primary" type="submit" class="btn-login full-width">
+              <mat-icon>key</mat-icon> Sign In & Proceed
+            </button>
+          </div>
+        </form>
+
+        <!-- Sign Up Form -->
+        <form (ngSubmit)="signUp()" *ngIf="activeTab === 'signup'">
+          <!-- Full Name -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Full Name</mat-label>
+            <input matInput type="text" [(ngModel)]="signupName" name="signupName" required />
+            <mat-icon matSuffix>person_outline</mat-icon>
+          </mat-form-field>
+
+          <!-- Mobile Number -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Mobile Number (10 digits)</mat-label>
+            <input matInput type="tel" [(ngModel)]="signupMobile" name="signupMobile" required maxlength="10" />
+            <mat-icon matSuffix>phone</mat-icon>
+          </mat-form-field>
+
+          <!-- Password -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Choose Password</mat-label>
+            <input matInput [type]="showPassword ? 'text' : 'password'" [(ngModel)]="signupPassword" name="signupPassword" required />
+            <button mat-icon-button matSuffix (click)="showPassword = !showPassword" type="button" [title]="showPassword ? 'Hide password' : 'Show password'">
+              <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <div class="login-actions">
+            <button mat-flat-button color="primary" type="submit" class="btn-login full-width btn-signup">
+              <mat-icon>person_add</mat-icon> Register & Checkout
+            </button>
+          </div>
+        </form>
+
+        <!-- Back to Catalog -->
+        <div style="margin-top: 12px;">
+          <button mat-button type="button" class="btn-back-catalog full-width" (click)="backToCatalog()">
+            <mat-icon>arrow_back</mat-icon> Back to Product Catalog
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

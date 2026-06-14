@@ -1,0 +1,16 @@
+<div class="user-box purple-accent">
+    <div class="user-profile">
+        <div class="avatar">🧔🏻</div>
+        <div class="user-meta">
+            <h4>User B: Mayur</h4>
+            <span class="status-indicator">Logged in as Mayur</span>
+        </div>
+    </div>
+    <div class="input-area">
+        <label>Enter Message</label>
+        <div class="input-wrapper">
+            <input type="text" [(ngModel)]="messageText" placeholder="Type a message..." (keyup.enter)="onSend()">
+            <button class="btn-send" (click)="onSend()">🚀 Send</button>
+        </div>
+    </div>
+</div>

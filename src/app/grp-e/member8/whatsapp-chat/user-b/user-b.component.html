@@ -1,0 +1,23 @@
+<div class="user-panel">
+  <div class="user-header">
+    <div class="avatar avatar-b">P</div>
+    <div class="user-meta">
+      <h4>Priya</h4>
+      <span>Sending as Priya</span>
+    </div>
+  </div>
+
+  <div class="input-row">
+    <input
+      type="text"
+      [(ngModel)]="messageText"
+      (input)="onInputChange()"
+      (keydown.enter)="sendMessage()"
+      placeholder="Type a message as Priya..."
+      class="msg-input"
+    />
+    <button class="send-btn" [disabled]="!messageText.trim()" (click)="sendMessage()">
+      Send
+    </button>
+  </div>
+</div>

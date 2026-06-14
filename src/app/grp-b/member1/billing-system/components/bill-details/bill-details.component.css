@@ -1,0 +1,265 @@
+/* member1/billing-system/components/bill-details/bill-details.component.css */
+
+/* ==========================================================================
+   LIGHT MODE DESIGN TOKENS (DEFAULT STATE)
+   ========================================================================== */
+.bill-box {
+    --bg-card: #ffffff;
+    --bg-th: #f7fafc;
+    --bg-badge: #edf2f7;
+    --bg-footer: #f7fafc;
+    --border-color: #edf2f7;
+    --border-footer: #e2e8f0;
+    --text-main: #2d3748;
+    --text-muted: #718096;
+    --text-label: #4a5568;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border-top: 4px solid #dd6b20;
+    /* Dynamic Orange identifier matching blueprint */
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ==========================================================================
+   DARK THEME VARIABLE OVERRIDES
+   ========================================================================== */
+:host-context(.dark-theme) .bill-box {
+    --bg-card: #1e293b;
+    /* Slate 800 */
+    --bg-th: #0f172a;
+    /* Slate 900 */
+    --bg-badge: #334155;
+    /* Slate 700 */
+    --bg-footer: #111827;
+    /* Gray 900 */
+    --border-color: #334155;
+    /* Slate 700 */
+    --border-footer: #334155;
+    --text-main: #f1f5f9;
+    /* Slate 100 */
+    --text-muted: #94a3b8;
+    /* Slate 400 */
+    --text-label: #cbd5e0;
+    /* Gray 300 */
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Section Header styling */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+}
+
+.step-badge {
+    background: #feebc8;
+    color: #dd6b20;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+:host-context(.dark-theme) .step-badge {
+    background: #7b341e;
+    /* Darker amber accent to avoid harsh bright contrasts */
+    color: #fbd38d;
+}
+
+.card-header h3 {
+    margin: 0;
+    color: var(--text-main);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.card-header h3 small {
+    font-weight: 400;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* Table Layout Container styling */
+.table-container {
+    max-height: 280px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.billing-summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.billing-summary-table th {
+    background: var(--bg-th);
+    color: var(--text-label);
+    font-weight: 600;
+    padding: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.billing-summary-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-main);
+    vertical-align: middle;
+}
+
+.product-name-cell {
+    font-weight: 500;
+}
+
+/* Helpers alignment styling */
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.font-mono {
+    font-family: monospace;
+    font-size: 14px;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.qty-badge {
+    background: var(--bg-badge);
+    color: var(--text-main);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.empty-cart-message {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 30px !important;
+    font-style: italic;
+}
+
+/* Summary Math Panel styling */
+.calculation-footer {
+    background: var(--bg-footer);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid var(--border-footer);
+}
+
+.calc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.calc-label {
+    color: var(--text-muted);
+}
+
+.calc-value {
+    font-family: monospace;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.text-muted {
+    color: var(--text-muted);
+}
+
+/* Grand Total Row Breakdown styling */
+.grand-total-row {
+    border-top: 2px dashed var(--border-color);
+    padding-top: 12px;
+    margin-top: 4px;
+}
+
+.grand-label {
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: 15px;
+}
+
+.grand-price {
+    font-family: monospace;
+    font-size: 18px;
+    font-weight: 800;
+    color: #e53e3e;
+    /* Red highlighted amount total state remains vivid on light & dark background grids */
+}
+
+:host-context(.dark-theme) .grand-price {
+    color: #fc8181;
+    /* Softened bright red for comfortable readability in dark mode */
+}
+
+/* Call-to-action Action Print engine styling */
+.btn-download {
+    background: #dd6b20;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+    box-shadow: 0 4px 12px rgba(221, 107, 32, 0.25);
+    transition: all 0.2s ease;
+}
+
+.btn-download:hover:not([disabled]) {
+    background: #c05621;
+    box-shadow: 0 6px 20px rgba(221, 107, 32, 0.4);
+    transform: translateY(-1px);
+}
+
+.btn-download:active:not([disabled]) {
+    transform: translateY(1px);
+}
+
+.btn-download[disabled] {
+    background: #cbd5e0;
+    color: #a0aec0;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+:host-context(.dark-theme) .btn-download[disabled] {
+    background: #4a5568;
+    /* Slate gray placeholder state for disabled buttons in dark mode */
+    color: #718096;
+}
+
+.btn-icon {
+    font-size: 16px;
+}

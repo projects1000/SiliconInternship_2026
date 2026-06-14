@@ -1,0 +1,64 @@
+<mat-card class="modern-card product-card">
+  <mat-card-header>
+    <div class="header-icon-wrapper">
+      <mat-icon>storefront</mat-icon>
+    </div>
+    <mat-card-title>PRODUCT CATALOG</mat-card-title>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <!-- Search Bar -->
+    <mat-form-field appearance="outline" class="search-field full-width">
+      <mat-label>Search Products</mat-label>
+      <input 
+        matInput 
+        type="text" 
+        [(ngModel)]="searchText" 
+      />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <!-- Grid of Products -->
+    <div class="products-grid">
+      <mat-card *ngFor="let prod of filteredProducts" class="product-item-card mat-elevation-z1">
+        <!-- Image & Rating Badge Overlay -->
+        <div class="product-image-wrapper">
+          <img *ngIf="!prod.imgError" [src]="prod.image" [alt]="prod.name" class="product-img" (error)="prod.imgError = true" />
+          <div *ngIf="prod.imgError" class="fallback-img-placeholder">
+            <mat-icon class="fallback-icon">{{ getProductIcon(prod.name) }}</mat-icon>
+          </div>
+          <span class="rating-badge">
+            <mat-icon class="star-icon">star</mat-icon>
+            {{ prod.rating }}
+          </span>
+          <!-- Discount Badge -->
+          <span class="discount-badge" *ngIf="getDiscount(prod.name) > 0">
+            {{ getDiscount(prod.name) }}% OFF
+          </span>
+        </div>
+
+        <mat-card-content class="product-info">
+          <span class="product-name">{{ prod.name }}</span>
+          <!-- Show original + discounted price when discount is active -->
+          <span class="product-price" *ngIf="getDiscount(prod.name) === 0">₹{{ prod.price | number:'1.2-2' }}</span>
+          <span class="product-price-discounted" *ngIf="getDiscount(prod.name) > 0">
+            <span class="original-price">₹{{ prod.price | number:'1.2-2' }}</span>
+            <span class="new-price">₹{{ getDiscountedPrice(prod) | number:'1.2-2' }}</span>
+          </span>
+        </mat-card-content>
+
+        <div class="product-actions">
+          <button mat-flat-button color="primary" class="btn-add-cart" (click)="addProduct(prod)">
+            <mat-icon>add_shopping_cart</mat-icon> Add
+          </button>
+        </div>
+      </mat-card>
+    </div>
+
+    <!-- Empty State for Search -->
+    <div class="no-results" *ngIf="filteredProducts.length === 0">
+      <mat-icon>search_off</mat-icon>
+      <p>No products match "{{ searchText }}"</p>
+    </div>
+  </mat-card-content>
+</mat-card>

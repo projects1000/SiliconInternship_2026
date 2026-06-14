@@ -1,0 +1,276 @@
+
+<div class="billing-page">
+
+  <!-- ══ TOP NAV ══ -->
+  <nav class="top-nav">
+
+    <div class="nav-title">
+      <span class="nav-logo">🏪</span>
+      <span>Billing Management System</span>
+    </div>
+    <div class="nav-total">
+      <span class="nav-total-label">Total</span>
+      <span class="nav-total-val">₹{{ grandTotal }}</span>
+    </div>
+  </nav>
+
+  <!-- ══ SUMMARY STRIP ══ -->
+  <div class="summary-strip">
+    <div class="strip-item">
+      <span class="strip-icon">👤</span>
+      <div>
+        <p class="strip-label">Customer</p>
+        <p class="strip-val">{{ customerName || '—' }}</p>
+      </div>
+    </div>
+    <div class="strip-divider"></div>
+    <div class="strip-item">
+      <span class="strip-icon">📱</span>
+      <div>
+        <p class="strip-label">Mobile</p>
+        <p class="strip-val">{{ mobileNumber || '—' }}</p>
+      </div>
+    </div>
+    <div class="strip-divider"></div>
+    <div class="strip-item">
+      <span class="strip-icon">🛒</span>
+      <div>
+        <p class="strip-label">Items</p>
+        <p class="strip-val">{{ totalQty }}</p>
+      </div>
+    </div>
+    <div class="strip-divider"></div>
+    <div class="strip-item">
+      <span class="strip-icon">💰</span>
+      <div>
+        <p class="strip-label">Grand Total</p>
+        <p class="strip-val amber">₹{{ grandTotal }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TABS ══ -->
+  <div class="tab-bar">
+    <button class="tab-btn" [class.tab-active]="activeTab==='products'"
+            (click)="activeTab='products'">
+      <span>🛒</span> Products
+      <span class="tab-count" *ngIf="billItems.length > 0">{{ billItems.length }}</span>
+    </button>
+    <button class="tab-btn" [class.tab-active]="activeTab==='customer'"
+            (click)="activeTab='customer'">
+      <span>👤</span> Customer
+      <span class="tab-check" *ngIf="customerSaved">✓</span>
+    </button>
+    <button class="tab-btn" [class.tab-active]="activeTab==='bill'"
+            (click)="activeTab='bill'">
+      <span>🧾</span> Bill
+      <span class="tab-check green-check" *ngIf="billGenerated">✓</span>
+    </button>
+  </div>
+
+  <!-- ══ CONTENT ══ -->
+  <div class="content-area">
+
+    <!-- ──────── PRODUCTS TAB ──────── -->
+    <div class="tab-panel" *ngIf="activeTab==='products'">
+      <div class="panel-header">
+        <div>
+          <h2>Select Products</h2>
+          <p>Tap <strong>+ Add</strong> to add items to your bill</p>
+        </div>
+        <span class="panel-badge indigo-badge">{{ billItems.length }} item(s) selected</span>
+      </div>
+
+      <div class="product-grid">
+        <div class="product-card" *ngFor="let p of catalogue"
+             [class.in-cart]="getQty(p.name) > 0">
+          <div class="pc-top">
+            <div class="pc-emoji">{{ p.icon }}</div>
+            <div class="pc-info">
+              <p class="pc-name">{{ p.name }}</p>
+              <p class="pc-price">₹{{ p.price }} <span class="per-unit">/ unit</span></p>
+            </div>
+          </div>
+          <div class="pc-action">
+            <ng-container *ngIf="getQty(p.name) === 0">
+              <button class="btn-add-product" (click)="addToCart(p)">
+                <span>+</span> Add
+              </button>
+            </ng-container>
+            <ng-container *ngIf="getQty(p.name) > 0">
+              <div class="qty-stepper">
+                <button class="qs-btn qs-minus" (click)="decrement(getItem(p.name))">−</button>
+                <span class="qs-val">{{ getQty(p.name) }}</span>
+                <button class="qs-btn qs-plus"  (click)="increment(getItem(p.name))">+</button>
+              </div>
+            </ng-container>
+          </div>
+          <div class="in-cart-ribbon" *ngIf="getQty(p.name) > 0">In Cart</div>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <span class="footer-note" *ngIf="billItems.length === 0">
+          No products added yet
+        </span>
+        <button class="btn-primary" (click)="activeTab='customer'"
+                [disabled]="billItems.length === 0">
+          Next: Customer Details →
+        </button>
+      </div>
+    </div>
+
+    <!-- ──────── CUSTOMER TAB ──────── -->
+    <div class="tab-panel" *ngIf="activeTab==='customer'">
+      <div class="panel-header">
+        <div>
+          <h2>Customer Details</h2>
+          <p>Enter the customer's information</p>
+        </div>
+        <span class="panel-badge green-badge" *ngIf="customerSaved">✓ Saved</span>
+      </div>
+
+      <!-- SAVED VIEW -->
+      <div class="saved-card" *ngIf="customerSaved">
+        <div class="saved-avatar">{{ customerName.charAt(0).toUpperCase() }}</div>
+        <div class="saved-info">
+          <div class="saved-row">
+            <span class="saved-lbl">👤 Name</span>
+            <span class="saved-val">{{ customerName }}</span>
+          </div>
+          <div class="saved-row">
+            <span class="saved-lbl">📱 Mobile</span>
+            <span class="saved-val">{{ mobileNumber }}</span>
+          </div>
+        </div>
+        <div class="saved-btns">
+          <button class="btn-outline" (click)="editCustomer()">✏️ Edit</button>
+          <button class="btn-primary" (click)="activeTab='bill'">View Bill →</button>
+        </div>
+      </div>
+
+      <!-- FORM VIEW -->
+      <div class="customer-form" *ngIf="!customerSaved">
+        <div class="form-grid">
+          <div class="field">
+            <label class="field-label">👤 Customer Name</label>
+            <input class="field-input" [(ngModel)]="customerName"
+                   placeholder="e.g. Rahul Kumar" />
+          </div>
+          <div class="field">
+            <label class="field-label">📱 Mobile Number</label>
+            <input class="field-input" [(ngModel)]="mobileNumber"
+                   placeholder="e.g. 9876543210" maxlength="10" type="tel" />
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn-outline" (click)="activeTab='products'">← Back</button>
+          <button class="btn-save" (click)="saveCustomer()">💾 Save Customer</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────── BILL TAB ──────── -->
+    <div class="tab-panel" *ngIf="activeTab==='bill'">
+      <div class="panel-header">
+        <div>
+          <h2>Bill Summary</h2>
+          <p>Review items and generate bill</p>
+        </div>
+        <button class="btn-reset-sm" (click)="resetAll()">🔄 Reset All</button>
+      </div>
+
+      <!-- EMPTY -->
+      <div class="empty-bill" *ngIf="billItems.length === 0">
+        <div class="empty-icon">🛒</div>
+        <p>No products added yet</p>
+        <button class="btn-primary" (click)="activeTab='products'">← Add Products</button>
+      </div>
+
+      <!-- BILL CONTENT -->
+      <div class="bill-content" *ngIf="billItems.length > 0">
+
+        <!-- Customer chip -->
+        <div class="customer-chip" *ngIf="customerSaved">
+          <div class="chip-avatar">{{ customerName.charAt(0).toUpperCase() }}</div>
+          <span><strong>{{ customerName }}</strong> &nbsp;·&nbsp; {{ mobileNumber }}</span>
+          <span class="chip-edit" (click)="editCustomer()">edit</span>
+        </div>
+        <div class="no-customer-warn" *ngIf="!customerSaved">
+          ⚠️ Customer details not saved.
+          <span (click)="activeTab='customer'">Add now →</span>
+        </div>
+
+        <!-- Bill table -->
+        <div class="table-wrap">
+          <table class="bill-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Product</th>
+                <th>Rate</th>
+                <th>Qty</th>
+                <th>Amount</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of billItems; let i = index">
+                <td class="td-sr">{{ i + 1 }}</td>
+                <td class="td-name">{{ item.icon }} {{ item.name }}</td>
+                <td class="td-rate">₹{{ item.price }}</td>
+                <td class="td-qty">
+                  <div class="bill-stepper">
+                    <button (click)="decrement(item)">−</button>
+                    <span>{{ item.qty }}</span>
+                    <button (click)="increment(item)">+</button>
+                  </div>
+                </td>
+                <td class="td-amt">₹{{ item.price * item.qty }}</td>
+                <td>
+                  <button class="del-btn" (click)="removeItem(item)" title="Remove">✕</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Totals card -->
+        <div class="totals-card">
+          <div class="tot-row">
+            <span class="tot-label">Sub Total</span>
+            <span class="tot-val">₹{{ subTotal }}</span>
+          </div>
+          <div class="tot-row">
+            <span class="tot-label">GST @ 18%</span>
+            <span class="tot-val gst-val">₹{{ gstAmount }}</span>
+          </div>
+          <div class="tot-divider"></div>
+          <div class="tot-row grand-row">
+            <span class="grand-label">Grand Total</span>
+            <span class="grand-val">₹{{ grandTotal }}</span>
+          </div>
+        </div>
+
+        <!-- Generate / Success -->
+        <div class="bill-footer">
+          <button class="btn-generate" (click)="generateBill()" *ngIf="!billGenerated">
+            🖨️ Generate Bill
+          </button>
+          <div class="success-banner" *ngIf="billGenerated">
+            <span class="success-icon">✅</span>
+            <div>
+              <p class="success-title">Bill Generated Successfully!</p>
+              <p class="success-sub">
+                {{ customerName }} · ₹{{ grandTotal }} · {{ billItems.length }} item(s)
+              </p>
+            </div>
+            <button class="btn-new" (click)="resetAll()">New Bill</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
