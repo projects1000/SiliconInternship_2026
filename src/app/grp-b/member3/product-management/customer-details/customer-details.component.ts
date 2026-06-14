@@ -3,7 +3,7 @@ import { CustomerInfo } from '../models/billing.models';
 import { SharedTusharService } from '../services/shared-tushar.service';
 
 @Component({
-  selector: 'app-customer-details',
+  selector: 'app-pm-customer-details',
   templateUrl: './customer-details.component.html',
   styleUrls: ['./customer-details.component.css']
 })

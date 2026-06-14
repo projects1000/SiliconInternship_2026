@@ -40,10 +40,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 // Member3: Product Management components (aliasing to avoid name collisions)
 import { ProductManagementComponent } from './member3/product-management/product-management.component';
-import { ProductListComponent } from './member3/product-management/product-list/product-list.component';
+import { ProductListComponent as ProductListMgmtComponent } from './member3/product-management/product-list/product-list.component';
 import { CustomerDetailsComponent as ProductCustomerDetailsComponent } from './member3/product-management/customer-details/customer-details.component';
-import { BillDetailsComponent } from './member3/product-management/bill-details/bill-details.component';
-import { NotificationComponent } from './member3/product-management/notification/notification.component';
+import { BillDetailsComponent as BillDetailsMgmtComponent } from './member3/product-management/bill-details/bill-details.component';
+import { NotificationComponent as NotificationMgmtComponent } from './member3/product-management/notification/notification.component';
+import { ChattingComponent } from './member3/chatting/chatting.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -78,10 +79,11 @@ import { WorkflowComponent } from './member5/workflow/workflow.component';
 
     // Member3: Product Management
     ProductManagementComponent,
-    ProductListComponent,
+    ProductListMgmtComponent,
     ProductCustomerDetailsComponent,
-    BillDetailsComponent,
-    NotificationComponent,
+    BillDetailsMgmtComponent,
+    NotificationMgmtComponent,
+    ChattingComponent,
 
     // ✅ Gaming PC Builder Components — Rohan Nayak (24BCSG13)
     GamingPcBuilderComponent,

@@ -5,7 +5,7 @@ import { NotificationMessage } from '../models/billing.models';
 import { SharedTusharService } from '../services/shared-tushar.service';
 
 @Component({
-  selector: 'app-notification',
+  selector: 'app-pm-notification',
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.css']
 })

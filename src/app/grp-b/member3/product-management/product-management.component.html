@@ -19,6 +19,7 @@
         (click)="navigateSidebar(item)">
         <mat-icon>{{ item.icon }}</mat-icon>
         <span>{{ item.label }}</span>
+        <span class="pm-nav-badge" *ngIf="item.badge">{{ item.badge }}</span>
       </button>
     </nav>
 
@@ -87,24 +88,24 @@
       <ng-container *ngIf="activeView === 'catalog'">
         <section class="pm-workspace" aria-label="Product catalog and billing">
           <div class="pm-workspace__catalog">
-            <app-product-list (productAdded)="onProductAdded($event)"></app-product-list>
+            <app-pm-product-list (productAdded)="onProductAdded($event)"></app-pm-product-list>
           </div>
 
           <div class="pm-workspace__checkout">
-            <app-customer-details (customerSaved)="onCustomerSaved($event)"></app-customer-details>
-            <app-bill-details
+            <app-pm-customer-details (customerSaved)="onCustomerSaved($event)"></app-pm-customer-details>
+            <app-pm-bill-details
               [billItems]="billItems"
               [customer]="customerInfo"
               [billSummary]="billSummary"
               [showGst]="settings.showGstOnBill"
               (quantityChanged)="onQuantityChanged($event)"
               (itemRemoved)="onItemRemoved($event)">
-            </app-bill-details>
+            </app-pm-bill-details>
           </div>
         </section>
 
         <section id="activity-section" class="pm-activity" aria-label="Recent activity">
-          <app-notification></app-notification>
+          <app-pm-notification></app-pm-notification>
         </section>
       </ng-container>
 

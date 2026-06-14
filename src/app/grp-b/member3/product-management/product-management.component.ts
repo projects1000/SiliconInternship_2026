@@ -23,6 +23,7 @@ interface SidebarItem {
   view?: DashboardView;
   route?: string;
   action?: 'activity';
+  badge?: string;
 }
 
 @Component({
@@ -43,6 +44,7 @@ export class ProductManagementComponent {
     { label: 'Profile', icon: 'person', route: '/grp-b/member3' },
     { label: 'Attendance', icon: 'fact_check', route: '/grp-b/member3/attendance' },
     { label: 'Product Management', icon: 'inventory_2', view: 'catalog' },
+    { label: 'Chat', icon: 'chat', route: '/grp-b/member3/chatting', badge: 'New' },
     { label: 'Reports', icon: 'bar_chart', view: 'reports' },
     { label: 'Notifications', icon: 'notifications', action: 'activity' },
     { label: 'Settings', icon: 'settings', view: 'settings' }

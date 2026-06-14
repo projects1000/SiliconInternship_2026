@@ -10,7 +10,7 @@ import { CategoryFilter, Product } from '../models/billing.models';
 import { SharedTusharService } from '../services/shared-tushar.service';
 
 @Component({
-  selector: 'app-product-list',
+  selector: 'app-pm-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })

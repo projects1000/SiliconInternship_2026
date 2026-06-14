@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BillLineItem, BillSummary, CustomerInfo } from '../models/billing.models';
 
 @Component({
-  selector: 'app-bill-details',
+  selector: 'app-pm-bill-details',
   templateUrl: './bill-details.component.html',
   styleUrls: ['./bill-details.component.css']
 })

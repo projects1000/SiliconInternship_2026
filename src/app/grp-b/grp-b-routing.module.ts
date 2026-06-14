@@ -12,6 +12,7 @@ import { Member6Component } from './member6/member6.component';
 import { Member1AttendanceComponent } from './member1/attendance/attendance.component';
 import { AttendanceComponent as Member2AttendanceComponent } from './member2/attendance/attendance.component';
 import { ProductManagementComponent } from './member3/product-management/product-management.component';
+import { MEMBER3_CHAT_ROUTES } from './member3/member3.routes';
 
 import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-attendance.component';
 
@@ -69,6 +70,7 @@ const routes: Routes = [
     path: 'product-management',
     component: ProductManagementComponent
   },
+  ...MEMBER3_CHAT_ROUTES,
   {
     path: 'member4',
     component: Member4Component,
