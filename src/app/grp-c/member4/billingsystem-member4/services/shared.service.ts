@@ -124,4 +124,5 @@ clearNotifications() {
 getNotifications() {
   return this.notifications;
 }
+
 }

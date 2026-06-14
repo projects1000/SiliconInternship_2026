@@ -1,0 +1,104 @@
+.chat-box {
+  width: 450px;
+  height: 560px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,0,255,0.35);
+  border-radius: 30px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 35px rgba(255,0,255,0.25);
+  animation: floatIn 0.6s ease;
+}
+
+.chat-box h2 {
+  margin: 0;
+  padding: 18px;
+  text-align: center;
+  color: white;
+  background: linear-gradient(90deg, #ff00ff, #ec4899);
+  letter-spacing: 2px;
+}
+
+.messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.messages p {
+  padding: 12px 16px;
+  border-radius: 18px;
+  width: fit-content;
+  max-width: 75%;
+  margin-bottom: 14px;
+  animation: msgPop 0.3s ease;
+}
+
+.messages p.sent {
+  margin-left: auto;
+  background: #ff00ff;
+  color: white;
+  box-shadow: 0 0 18px #ff00ff;
+}
+
+.messages p.received {
+  margin-right: auto;
+  background: #00f5ff;
+  color: #020617;
+  box-shadow: 0 0 18px #00f5ff;
+}
+
+.input-area {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  background: rgba(255,255,255,0.08);
+}
+
+.input-area input {
+  flex: 1;
+  padding: 14px;
+  border: 1px solid #ff00ff;
+  border-radius: 30px;
+  outline: none;
+  background: #020617;
+  color: white;
+}
+
+.input-area button {
+  border: none;
+  border-radius: 30px;
+  padding: 14px 22px;
+  background: #ff00ff;
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.input-area button:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 20px #ff00ff;
+}
+
+@keyframes msgPop {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -20,4 +20,8 @@ goToAttendanceManagement() {
 goToBillingSystem(){
   this.router.navigate(['/grp-c/member4/billingsystem-member4']);
 }
+goToChatSystem(){
+  this.router.navigate(['/grp-c/member4/member4chatsystem']);
 }
+}
+

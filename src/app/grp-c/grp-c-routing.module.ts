@@ -29,6 +29,7 @@ import { member8ProductManagementComponent } from './member8/product-management/
 import { AttendanceComponent } from './member9/attendance/attendance.component';
 import { BillingParentComponent } from './member3/billing-parent/billing-parent.component';
 import { ChatParentComponent } from './member3/chat-system/chat-parent/chat-parent.component';
+import { Member4chatsystemComponent } from './member4/member4chatsystem/member4chatsystem.component';
 
 
 const routes: Routes = [
@@ -122,7 +123,10 @@ const routes: Routes = [
 
   { path: 'member3-billing', component: BillingParentComponent },
 
-
+{
+  path:'member4/member4chatsystem',
+  component:Member4chatsystemComponent
+}
 
 ];
 
