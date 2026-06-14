@@ -1,0 +1,164 @@
+.dashboard{
+  padding:20px;
+}
+
+.top-card{
+  background:#183d87;
+  color:white;
+  padding:20px;
+  border-radius:10px;
+}
+
+.top-card input{
+  margin-right:10px;
+  padding:8px;
+}
+
+.stats{
+  display:flex;
+  gap:15px;
+  margin-top:20px;
+}
+
+.card{
+  flex:1;
+  background:white;
+  text-align:center;
+  padding:15px;
+  border-radius:10px;
+  box-shadow:0 0 5px gray;
+}
+
+.content{
+  display:flex;
+  margin-top:20px;
+}
+
+.groups{
+  width:220px;
+}
+
+.groups button{
+  width:100%;
+  margin-bottom:8px;
+  padding:10px;
+  background:#183d87;
+  color:white;
+  border:none;
+  border-radius:5px;
+}
+
+.table-section{
+  flex:1;
+  margin-left:20px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th{
+  background:#183d87;
+  color:white;
+}
+
+th,td{
+  padding:10px;
+  border:1px solid #ddd;
+  text-align:center;
+}
+
+.summary{
+  display:flex;
+  justify-content:space-between;
+  margin-top:15px;
+}
+
+.save-btn{
+  width:100%;
+  margin-top:15px;
+  background:#183d87;
+  color:white;
+  padding:12px;
+  border:none;
+}
+.present-badge{
+  background:#d4edda;
+  color:green;
+  padding:5px 12px;
+  border-radius:20px;
+  font-weight:bold;
+}
+
+.absent-badge{
+  background:#f8d7da;
+  color:red;
+  padding:5px 12px;
+  border-radius:20px;
+  font-weight:bold;
+}
+
+.groups button:hover{
+  background:#0f2f6d;
+  cursor:pointer;
+}
+
+.save-btn:hover{
+  background:#0f2f6d;
+  cursor:pointer;
+}
+
+.card:hover{
+  transform:translateY(-3px);
+  transition:.3s;
+}
+
+table tr:hover{
+  background:#f5f8ff;
+}
+
+input[type="checkbox"]{
+  transform:scale(1.2);
+  cursor:pointer;
+}
+
+.search-box{
+  padding:10px;
+  border-radius:5px;
+  border:1px solid #ccc;
+}
+
+.add-member input{
+  width:100%;
+  padding:8px;
+  border-radius:5px;
+  border:1px solid #ccc;
+}
+
+.add-member button{
+  width:100%;
+  margin-top:10px;
+  padding:10px;
+  background:#183d87;
+  color:white;
+  border:none;
+  border-radius:5px;
+}
+
+.add-member button:hover{
+  background:#0f2f6d;
+}
+
+.delete-btn{
+  background:#dc3545;
+  color:white;
+  border:none;
+  padding:5px 10px;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.delete-btn:hover{
+  background:#b52a37;
+}

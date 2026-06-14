@@ -14,6 +14,9 @@ import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 
+import { AttendanceComponent } from './member7/attendance/attendance.component';
+import { ChatComponent } from './member7/chat/chat.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -46,6 +49,14 @@ const routes: Routes = [
   {
     path: 'member7',
     component: Member7Component
+  },
+  {
+    path: 'member7/attendance',
+    component: AttendanceComponent
+  },
+  {
+    path: 'member7/chat',
+    component: ChatComponent
   },
   {
     path: 'member8',
