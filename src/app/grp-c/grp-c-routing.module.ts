@@ -12,6 +12,10 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
+
+import { AttendanceDashboardComponent } from './member2/attendance-dashboard/attendance-dashboard.component';
+import { WhatsappChatComponent } from './member2/whatsapp-chat/whatsapp-chat.component';
+
 import { Member8AttendanceComponent } from './member8-attendance/member8-attendance.component';
 import { Member4attmngComponent } from './member4/member4attmng/member4attmng.component';
 
@@ -26,6 +30,7 @@ import { AttendanceComponent } from './member9/attendance/attendance.component';
 import { BillingParentComponent } from './member3/billing-parent/billing-parent.component';
 import { ChatParentComponent } from './member3/chat-system/chat-parent/chat-parent.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -39,6 +44,14 @@ const routes: Routes = [
   {
     path: 'member2',
     component: Member2Component
+  },
+  {
+    path: 'member2/attendance',
+    component: AttendanceDashboardComponent
+  },
+  {
+    path: 'member2/chat',
+    component: WhatsappChatComponent
   },
   {
     path: 'member3',

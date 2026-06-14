@@ -32,7 +32,28 @@ import { UserAnshumanComponent } from './member3/chat-system/user-anshuman/user-
 import { ChatWindowComponent } from './member3/chat-system/chat-window/chat-window.component';
 import { Member8AttendanceComponent } from './member8-attendance/member8-attendance.component';
 
+import { AttendanceDashboardComponent } from './member2/attendance-dashboard/attendance-dashboard.component';
+
+import { ShoppingDashboardComponent } from './member2/shopping-dashboard/shopping-dashboard.component';
+import { AnimeCollectionComponent } from './member2/anime-collection/anime-collection.component';
+import { CustomerManagementComponent } from './member2/customer-management/customer-management.component';
+import { InvoiceManagementComponent } from './member2/invoice-management/invoice-management.component';
+import { ToastNotificationComponent } from './member2/toast-notification/toast-notification.component';
+import { WhatsappChatComponent } from './member2/whatsapp-chat/whatsapp-chat.component';
+import { UserAComponent } from './member2/user-a/user-a.component';
+import { UserBComponent } from './member2/user-b/user-b.component';
+import { MessagingPanelComponent } from './member2/messaging-panel/messaging-panel.component';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
 import { BillingSystemMember4Module } from './member4/billingsystem-member4/billing-system-member4.module';
+
 
 
 @NgModule({
@@ -47,6 +68,18 @@ import { BillingSystemMember4Module } from './member4/billingsystem-member4/bill
     Member8Component,
     Member9Component,
     Member10Component,
+
+    AttendanceDashboardComponent,
+    ShoppingDashboardComponent,
+    AnimeCollectionComponent,
+    CustomerManagementComponent,
+    InvoiceManagementComponent,
+    ToastNotificationComponent,
+    WhatsappChatComponent,
+    UserAComponent,
+    UserBComponent,
+    MessagingPanelComponent,
+
     Member8AttendanceComponent,
     AttendanceComponent,
     Member4attmngComponent,
@@ -67,9 +100,18 @@ import { BillingSystemMember4Module } from './member4/billingsystem-member4/bill
     GrpCRoutingModule,
     FormsModule,
 
+    MatTreeModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatCardModule,
+
     BillingSystemMember4Module,
 
     ProductManagementModule
+
   ]
 })
 export class GrpCModule { }
