@@ -10,9 +10,18 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+<<<<<<< HEAD
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { GrpFRoutingModule } from './grp-f-routing.module';
+=======
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatRippleModule } from '@angular/material/core';
+>>>>>>> b84a771ebef0a3c2c011496eb1cceb62a05c5705
 
 import { GrpFComponent } from './grp-f/grp-f.component';
 
@@ -45,6 +54,12 @@ import { BillingSystemComponent } from './member3/billing-system/billing-system.
 import { ProductListComponent } from './member3/product-list/product-list.component';
 import { CustomerComponent } from './member3/customer/customer.component';
 import { BillingComponent } from './member3/billing/billing.component';
+import { Member6AttendanceComponent } from './member6-attendance/member6-attendance.component';
+import { Member6ChatComponent } from './member6-chat/member6-chat.component';
+import { AttendanceComponent } from './member5/attendance/attendance.component';
+import { Member10AttendanceDashboardComponent } from './member10/member10-attendance-dashboard/member10-attendance-dashboard.component';
+import { BillingComponent } from './member10/billing/billing.component';
+import { GrpFRoutingModule } from './grp-f-routing.module';
 
 @NgModule({
   declarations: [
@@ -78,6 +93,10 @@ import { BillingComponent } from './member3/billing/billing.component';
     BillingSystemComponent,
     ProductListComponent,
     CustomerComponent,
+    Member6AttendanceComponent,
+    Member6ChatComponent,
+    AttendanceComponent,
+    Member10AttendanceDashboardComponent,
     BillingComponent
   ],
   imports: [
@@ -85,6 +104,8 @@ import { BillingComponent } from './member3/billing/billing.component';
     FormsModule,
     GrpFRoutingModule,
 
+    GrpFRoutingModule,
+    FormsModule,
     MatIconModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -94,6 +115,12 @@ import { BillingComponent } from './member3/billing/billing.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSnackBarModule
+    MatCardModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSnackBarModule,
+    MatTooltipModule,
+    MatRippleModule
   ]
 })
 export class GrpFModule { }

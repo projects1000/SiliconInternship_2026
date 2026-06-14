@@ -1,0 +1,89 @@
+/* member1/billing-system/components/notification/notification.component.css */
+.toast-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 99999;
+    /* Ensure it stays on top of all modal or dashboard layers */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: none;
+    /* Allows clicking components behind container spacing */
+}
+
+.toast-card {
+    pointer-events: auto;
+    /* Re-enable clicks for toast elements */
+    min-width: 300px;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    padding: 14px 18px;
+    gap: 12px;
+    border-left: 5px solid #cbd5e0;
+    animation: slideIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    transition: all 0.2s ease;
+}
+
+/* Toast Varient Themes Matching the Diagram Blueprint States */
+.toast-card.success {
+    border-left-color: #48bb78;
+    background-color: #f0fff4;
+    color: #22543d;
+}
+
+.toast-card.warning {
+    border-left-color: #dd6b20;
+    background-color: #fffaf0;
+    color: #742a2a;
+}
+
+.toast-card.info {
+    border-left-color: #3182ce;
+    background-color: #ebf8ff;
+    color: #2b6cb0;
+}
+
+.toast-icon {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.toast-content {
+    flex-grow: 1;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    color: #a0aec0;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 8px;
+    line-height: 1;
+}
+
+.toast-close:hover {
+    color: #4a5568;
+}
+
+/* Entrance Slide-In Animation */
+@keyframes slideIn {
+    from {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

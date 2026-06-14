@@ -1,0 +1,76 @@
+/* Use shared styles across user-a and user-b */
+/* grp-b/member1/member1-whatsapp/components/user-a/user-a.component.css */
+.user-box {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    border-top: 5px solid #48bb78;
+    /* Green tint for Gents */
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    font-size: 32px;
+    background: var(--bg-app);
+    padding: 8px;
+    border-radius: 50px;
+}
+
+.user-meta h4 {
+    margin: 0;
+    font-size: 15px;
+    color: var(--text-main);
+}
+
+.status-indicator {
+    font-size: 11px;
+    color: #48bb78;
+    font-weight: 600;
+}
+
+.input-area label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.input-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.input-wrapper input {
+    flex-grow: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-app);
+    color: var(--text-main);
+    outline: none;
+}
+
+.btn-send {
+    background: #48bb78;
+    color: white;
+    border: none;
+    padding: 0 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn-send:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

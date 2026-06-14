@@ -1,0 +1,49 @@
+<div class="notification-page">
+
+  <div class="notification-card">
+
+    <div class="header">
+
+      <h2>Notifications</h2>
+
+      <button
+      class="clear-btn"
+      (click)="clearAll()">
+
+        Clear All
+
+      </button>
+
+    </div>
+
+    <div
+    class="empty"
+    *ngIf="notifications.length === 0">
+
+      No Notifications Yet
+
+    </div>
+
+    <div
+    class="notification-item"
+    *ngFor="let note of notifications">
+
+      <div class="icon">
+        ✅
+      </div>
+
+      <div class="content">
+
+        <h4>{{note.message}}</h4>
+
+        <p>
+          {{note.time | date:'dd MMM yyyy, h:mm a'}}
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
