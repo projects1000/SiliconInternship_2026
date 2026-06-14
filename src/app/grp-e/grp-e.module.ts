@@ -48,6 +48,7 @@ import { UserAComponent as Member7UserAComponent } from './member7/chat/user-a/u
 import { UserBComponent as Member7UserBComponent } from './member7/chat/user-b/user-b.component';
 import { ChatWindowComponent as Member7ChatWindowComponent } from './member7/chat/chat-window/chat-window.component';
 import { Billingmanagement0001Component } from './member2/billingmanagement0001/billingmanagement0001.component';
+import { Whatsappclone0001Component } from './member2/whatsappclone0001/whatsappclone0001.component';
 
 
 
@@ -92,6 +93,7 @@ import { Billingmanagement0001Component } from './member2/billingmanagement0001/
     Member7UserBComponent,
     Member7ChatWindowComponent,
     Billingmanagement0001Component,
+    Whatsappclone0001Component,
 
   ],
 
