@@ -31,6 +31,15 @@ import { Member10Component } from './member10/member10.component';
 import { Member6AttendanceComponent } from './member6-attendance/member6-attendance.component';
 import { Member6ChatComponent } from './member6-chat/member6-chat.component';
 import { AttendanceComponent } from './member5/attendance/attendance.component';
+import { AttendanceProjectComponent } from './member3/attendance-project/attendance-project.component';
+import { HeaderComponent } from './member3/attendance-project/header/header.component';
+import { TeamTreeComponent } from './member3/attendance-project/team-tree/team-tree.component';
+import { AttendanceTableComponent } from './member3/attendance-project/attendance-table/attendance-table.component';
+import { SummaryCardsComponent } from './member3/attendance-project/summary-cards/summary-cards.component';
+import { ReportsComponent } from './member3/attendance-project/reports/reports.component';
+import { AttendanceTableComponent } from './member3/attendance-project/attendance-table/attendance-table.component';
+
+
 import { Member10AttendanceDashboardComponent } from './member10/member10-attendance-dashboard/member10-attendance-dashboard.component';
 import { BillingComponent } from './member10/billing/billing.component';
 import { GrpFRoutingModule } from './grp-f-routing.module';
@@ -48,6 +57,14 @@ import { GrpFRoutingModule } from './grp-f-routing.module';
     Member8Component,
     Member9Component,
     Member10Component,
+    AttendanceComponent,
+    AttendanceProjectComponent,
+    HeaderComponent,
+    TeamTreeComponent,
+    AttendanceTableComponent,
+    SummaryCardsComponent,
+    ReportsComponent
+    AttendanceTableComponent
     Member6AttendanceComponent,
     Member6ChatComponent,
     AttendanceComponent,

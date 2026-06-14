@@ -1,0 +1,41 @@
+<div class="sidebar">
+
+  <h2>Students</h2>
+
+  <div class="student-count">
+
+    Total Students :
+    {{students.length}}
+
+  </div>
+
+  <div class="add-section">
+
+    <input
+      [(ngModel)]="newStudent"
+      placeholder="Enter Student Name"
+    >
+
+    <button (click)="addStudent()">
+      Add
+    </button>
+
+  </div>
+
+  <ul>
+
+    <li *ngFor="let student of students; let i=index">
+
+      <span>{{student}}</span>
+
+      <button
+      class="delete-btn"
+      (click)="deleteStudent(i)">
+      Delete
+      </button>
+
+    </li>
+
+  </ul>
+
+</div>

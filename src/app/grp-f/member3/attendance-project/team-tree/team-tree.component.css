@@ -1,0 +1,102 @@
+.sidebar{
+
+  background:white;
+
+  border-radius:15px;
+
+  padding:20px;
+
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.sidebar h2{
+
+  color:#15356b;
+
+  margin-bottom:20px;
+}
+
+.student-count{
+
+  margin-bottom:20px;
+
+  font-weight:bold;
+
+  color:#444;
+}
+
+.add-section{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+
+  margin-bottom:20px;
+}
+
+.add-section input{
+
+  padding:10px;
+
+  border:1px solid #ccc;
+
+  border-radius:8px;
+}
+
+.add-section button{
+
+  background:#15356b;
+
+  color:white;
+
+  border:none;
+
+  padding:10px;
+
+  border-radius:8px;
+
+  cursor:pointer;
+}
+
+ul{
+
+  list-style:none;
+
+  padding:0;
+
+  margin:0;
+}
+
+li{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:10px;
+
+  padding:10px;
+
+  background:#f5f7fb;
+
+  border-radius:8px;
+}
+
+.delete-btn{
+
+  background:#dc3545;
+
+  color:white;
+
+  border:none;
+
+  padding:6px 10px;
+
+  border-radius:6px;
+
+  cursor:pointer;
+}
