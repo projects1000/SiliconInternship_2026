@@ -7,9 +7,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./member3.component.css']
 })
 export class Member3Component {
- constructor(private router: Router) {}
+  constructor(private router: Router) {}
 
-  goBackToGroup() {
-    this.router.navigate(['grp-b']);
+  goBackToGroup(): void {
+    this.router.navigate(['/grp-b']);
+  }
+
+  goToAttendance(): void {
+    this.router.navigate(['/grp-b/member3/attendance']);
+  }
+
+  goToProductManagement(): void {
+    this.router.navigate(['/grp-b/product-management']);
   }
 }

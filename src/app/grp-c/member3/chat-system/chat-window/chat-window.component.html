@@ -1,0 +1,29 @@
+<style>
+  .chat-history { background: #ece5dd; border: 1px solid #cbd5e1; border-radius: 8px; height: 400px; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; }
+  .msg-bubble { max-width: 70%; padding: 10px; border-radius: 8px; position: relative; }
+  .msg-ayush { align-self: flex-start; background: #ffffff; border-top-left-radius: 0; }
+  .msg-anshuman { align-self: flex-end; background: #dcf8c6; border-top-right-radius: 0; }
+  .sender-name { font-weight: bold; font-size: 0.8rem; margin-bottom: 3px; }
+  .msg-ayush .sender-name { color: #075e54; }
+  .msg-anshuman .sender-name { color: #7c3aed; }
+  .timestamp { font-size: 0.7rem; color: #888; text-align: right; display: block; margin-top: 5px; }
+  .chat-footer { display: flex; justify-content: space-between; margin-top: 10px; font-weight: bold; }
+  .btn-clear { background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+</style>
+
+<div class="chat-history">
+  <div *ngFor="let msg of messages" class="msg-bubble" [ngClass]="{'msg-ayush': msg.sender === 'Ayush', 'msg-anshuman': msg.sender === 'Anshuman'}">
+    <div class="sender-name">{{ msg.sender }}</div>
+    <div>{{ msg.text }}</div>
+    <span class="timestamp">{{ msg.timestamp | date:'shortTime' }}</span>
+  </div>
+  
+  <div *ngIf="messages.length === 0" style="text-align: center; color: #888; margin-top: 50%;">
+    No messages yet. Start chatting!
+  </div>
+</div>
+
+<div class="chat-footer">
+  <span style="color: #64748b;">Total Messages: {{ messages.length }}</span>
+  <button class="btn-clear" (click)="clearChat()" *ngIf="messages.length > 0">Clear Chat</button>
+</div>

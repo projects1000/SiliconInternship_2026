@@ -1,0 +1,143 @@
+.panel {
+  padding: 18px;
+  border: 1px solid #bfd4ef;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+h2 {
+  margin: 0;
+  color: #0b5394;
+  font-size: 20px;
+}
+
+span {
+  color: #9b5d00;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid #e6ebf3;
+  text-align: center;
+  vertical-align: middle;
+}
+
+th {
+  color: #344054;
+  background: #f1f5fb;
+}
+
+tbody tr {
+  border-bottom: px solid #ddd;
+}
+
+button {
+  min-width: 68px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: #2f9e44;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button:disabled {
+  background: #aab4c0;
+  cursor: not-allowed;
+}
+
+.product-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.header-actions{
+  display:flex;
+  gap:10px;
+}
+
+.cart-btn,
+.exit-btn,
+.bill-btn{
+  padding:10px 18px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.qty{
+  margin:0 12px;
+  font-weight:600;
+}
+
+.bill-summary{
+  margin-top:25px;
+  padding:20px;
+  border:1px solid #ddd;
+  border-radius:10px;
+}
+
+.qty {
+  display: inline-block;
+  min-width: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
+td button {
+  margin: 0 6px;
+  padding: 6px 12px;
+}
+
+.not-found {
+  text-align: center;
+  color: red;
+  font-weight: bold;
+  padding: 20px;
+}
+
+.back-btn {
+  margin-top: 15px;
+  background: #0b5394;
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #08407a;
+}
+
+.not-found {
+  text-align: center;
+  padding: 25px;
+}
+
+.not-found p {
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}

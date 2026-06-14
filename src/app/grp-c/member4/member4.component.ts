@@ -12,4 +12,12 @@ export class Member4Component {
   goBackToGroup() {
     this.router.navigate(['grp-c']);
   }
+ 
+
+goToAttendanceManagement() {
+  this.router.navigate(['/grp-c/member4/member4attmng']);
+}
+goToBillingSystem(){
+  this.router.navigate(['/grp-c/member4/billingsystem-member4']);
+}
 }

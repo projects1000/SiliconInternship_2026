@@ -1,0 +1,12 @@
+<style>
+  .notify-box { padding: 15px; border-radius: 6px; font-weight: bold; text-align: center; transition: all 0.3s ease; }
+  .notify-box.success { background-color: #dcfce7; color: #16a34a; border: 1px solid #bbf7d0; }
+  .notify-box.empty { background-color: #f1f5f9; color: #94a3b8; border: 1px dashed #cbd5e1; }
+</style>
+
+<div class="notify-box success" *ngIf="message">
+  {{ message }}
+</div>
+<div class="notify-box empty" *ngIf="!message">
+  Waiting for actions...
+</div>

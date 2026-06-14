@@ -96,3 +96,36 @@ button:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 25px rgba(37,99,235,0.4);
 }
+.projects-section{
+    margin: 25px 0;
+    width: 100%;
+}
+
+.projects-section h2{
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.project-card{
+    background: #f5f7fa;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    border-color: #1976d2;
+}
+
+.project-card h3{
+    margin-bottom: 8px;
+    color: #1976d2;
+}
+
+.project-card p{
+    color: #555;
+}

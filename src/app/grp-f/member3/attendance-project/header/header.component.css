@@ -1,0 +1,39 @@
+.header-container{
+  background:#15356b;
+  color:white;
+  padding:25px;
+  border-radius:15px;
+  margin-bottom:20px;
+}
+
+.title-section h1{
+  margin:0;
+  font-size:32px;
+}
+
+.title-section p{
+  margin-top:5px;
+  opacity:0.8;
+}
+
+.controls{
+  margin-top:20px;
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.date-box,
+.search-box{
+  display:flex;
+  flex-direction:column;
+}
+
+.date-box input,
+.search-box input{
+  margin-top:8px;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  min-width:250px;
+}
