@@ -21,6 +21,11 @@ import { ProductManagementModule } from './member8/product-management/product-ma
 import { GrpCRoutingModule } from './grp-c-routing.module';
 import { AttendanceComponent } from './member9/attendance/attendance.component';
 import { ProductManagementComponent } from './member9/product-management/product-management.component';
+import { UserAComponent as Member9UserAComponent } from './member9/user-a/user-a.component';
+import { UserBComponent as Member9UserBComponent } from './member9/user-b/user-b.component';
+import { ChatWindowComponent as Member9ChatWindowComponent } from './member9/chat-window/chat-window.component';
+
+import { ChatbotComponent } from './member9/chatbot/chatbot.component';
 import { BillingParentComponent } from './member3/billing-parent/billing-parent.component';
 import { ProductListComponent } from './member3/billing-parent/product-list/product-list.component';
 import { CustomerDetailsComponent } from './member3/billing-parent/customer-details/customer-details.component';
@@ -85,6 +90,10 @@ import { BillingSystemMember4Module } from './member4/billingsystem-member4/bill
     Member4attmngComponent,
     Member3AttendanceComponent,
     ProductManagementComponent,
+   Member9UserAComponent,
+Member9UserBComponent,
+Member9ChatWindowComponent,
+    ChatbotComponent,
     BillingParentComponent,
     ProductListComponent,
     CustomerDetailsComponent,
