@@ -50,10 +50,6 @@ const routes: Routes = [
     component: Whatsappclone0001Component,
   },
   {
-    path: 'member3/attendance',
-    component: Member3Component
-  },
-  {
     path: 'member3',
     component: Member3Component,
   },
