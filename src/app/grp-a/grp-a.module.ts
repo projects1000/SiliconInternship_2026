@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { GrpAComponent } from './grp-a/grp-a.component';
 
@@ -30,6 +31,7 @@ import { GrpARoutingModule } from './grp-a-routing.module';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     GrpARoutingModule
   ]
 })

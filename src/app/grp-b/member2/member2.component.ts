@@ -7,9 +7,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./member2.component.css']
 })
 export class Member2Component {
- constructor(private router: Router) {}
 
-  goBackToGroup() {
+  constructor(private router: Router){}
+
+  goBackToGroup(){
     this.router.navigate(['grp-b']);
   }
+
+  openAttendance(){
+    this.router.navigate(['grp-b/member2/attendance']);
+  }
+
+  // ✅ Angular Routing — Navigate to Gaming PC Builder page
+  openGamingPcBuilder(): void {
+    this.router.navigate(['/grp-b/member2/gaming-pc-builder']);
+  }
+
 }

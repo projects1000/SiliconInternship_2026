@@ -1,0 +1,75 @@
+<div class="table-container mat-elevation-z2">
+  
+    
+  <h2 class="tracker-heading" style="color:white">Attendance Tracker</h2>
+
+  <div class="table-header">
+    <mat-form-field appearance="outline" class="control-field">
+      <mat-label>Select Date</mat-label>
+      <input matInput [matDatepicker]="picker" 
+             [value]="selectedDate" 
+             [max]="maxDate" 
+             (dateChange)="onDateChange($event)">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="control-field search-field">
+      <mat-label>Search Member</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search by name...">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <!-- Styled button to match input height -->
+    <button mat-flat-button color="warn" class="lock-btn"
+            [disabled]="isDayLocked || dataSource.data.length === 0" 
+            (click)="lockDay()">
+      <mat-icon>lock</mat-icon>
+      {{ isDayLocked ? 'Attendance Locked' : 'Lock Attendance' }}
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="attendance-table">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Member Name </th>
+      <td mat-cell *matCellDef="let element"> 
+        <strong>{{element.name}}</strong> 
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="attendance">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.locked || isDayLocked" class="attendance-status">
+          <mat-icon *ngIf="element.status" class="status-present">check_circle</mat-icon>
+          <mat-icon *ngIf="!element.status" class="status-absent">cancel</mat-icon>
+        </div>
+
+        <mat-checkbox *ngIf="!element.locked && !isDayLocked"
+            [checked]="element.status" 
+            (change)="toggleAttendance(element)"
+            color="primary">
+            {{ element.status ? 'Present' : 'Absent' }}
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lock">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon [class.locked-icon]="element.locked || isDayLocked" 
+                  [class.unlocked-icon]="!element.locked && !isDayLocked">
+          {{ (element.locked || isDayLocked) ? 'lock' : 'lock_open' }}
+        </mat-icon>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <div *ngIf="dataSource.data.length === 0" class="empty-state">
+    <p>No members found.</p>
+  </div>
+</div>

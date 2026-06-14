@@ -1,0 +1,106 @@
+<div class="container">
+
+  <h1>Attendance Management System</h1>
+    <div class="date-section">
+
+  <label for="attendanceDate">Select Date:</label>
+
+  <input
+    id="attendanceDate"
+    name="attendanceDate"
+    type="date"
+    title="Select attendance date"
+    [(ngModel)]="selectedDate">
+
+</div>
+  <div *ngFor="let group of groups">
+
+    <button
+      class="groupBtn"
+      (click)="toggleGroup(group)">
+
+      Group {{group.groupName}}
+
+    </button>
+
+   <div *ngIf="selectedGroup === group">
+
+    <!-- Add Student Section -->
+    <div class="add-student-section">
+
+        <input
+            type="text"
+            placeholder="Enter Student Name"
+            [(ngModel)]="newStudent">
+
+        <button (click)="addStudent()">
+            Add Student
+        </button>
+
+    </div>
+
+    <!-- Student List -->
+    <div class="student-list">
+
+        <div
+            *ngFor="let student of group.students"
+            class="student-row">
+
+            <span class="student-name">
+                {{ student }}
+            </span>
+
+            <div class="student-actions">
+                <label class="checkbox-label">Attendance
+                <input
+                    class="attendance-check"
+                    type="checkbox"
+                    [disabled]="isFutureDate()"
+                    [checked]="attendanceData[selectedDate]?.[student]"
+                    (change)="markAttendance(student, $event)">
+                </label>
+                <button
+                    class="delete-btn"
+                    (click)="deleteStudent(student)">
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+    <button
+  class="save-btn"
+  (click)="saveAttendance()">
+  Save Attendance
+</button>
+<div class="attendance-summary">
+
+    <h3>Attendance Summary</h3>
+
+    <p>
+        Total Students :
+        {{ selectedGroup?.students.length }}
+    </p>
+
+    <p>
+        Present :
+        {{ getPresentCount() }}
+    </p>
+
+    <p>
+        Absent :
+        {{ selectedGroup?.students.length - getPresentCount() }}
+    </p>
+
+    <p>
+        Attendance Percentage :
+        {{ getAttendancePercentage() }}%
+    </p>
+
+</div>
+
+</div>
+
+</div>

@@ -1,0 +1,19 @@
+<div class="search-container mat-elevation-z2">
+  <h3>Attendance Tracker</h3>
+  
+  <mat-form-field appearance="outline">
+    <mat-label>Select Member</mat-label>
+    <mat-select [(ngModel)]="selectedMemberId" (selectionChange)="generateReport()">
+      <mat-option *ngFor="let member of members" [value]="member.id">
+        {{member.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div *ngIf="report.length > 0">
+    <p><strong>Attendance Dates:</strong></p>
+    <ul>
+      <li *ngFor="let date of report">{{ date | date: 'mediumDate' }}</li>
+    </ul>
+  </div>
+</div>

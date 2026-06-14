@@ -49,4 +49,14 @@ export class Member6Component {
   goBackToGroup() {
     this.router.navigate(['grp-a']);
   }
+  goToAttendance() {
+    // Adding the leading slash ensures it maps perfectly from the root URL
+    this.router.navigate(['/grp-a/member6/attendance']);
+  }
+  goToProductManagement() {
+    this.router.navigate(['/grp-a/member6/attendance/product-management']);
+  }
+  goToWhatsApp() {
+    this.router.navigate(['/grp-a/member6/attendance/whatsapp']);
+  }
 }
