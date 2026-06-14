@@ -13,6 +13,7 @@ import { Member6Component } from './member6/member6.component';
 import { Member7Component } from './member7/member7.component';
 import { AttandanceComponent } from './member7/attandance/attandance.component';
 import { AttendanceComponent0001 } from './member2/attendence0001/attendence0001.component';
+import { Billingmanagement0001Component } from './member2/billingmanagement0001/billingmanagement0001.component';
 import { NitroBillingComponent } from './member7/nitro-billing/nitro-billing.component';
 import { ChatComponent as Member7ChatComponent } from './member7/chat/chat.component';
 import { Member8Component } from './member8/member8.component';
@@ -21,60 +22,64 @@ import { Member9Component } from './member9/member9.component';
 const routes: Routes = [
   {
     path: '',
-    component: GrpEComponent
+    component: GrpEComponent,
   },
   {
     path: 'member1',
-    component: Member1Component
+    component: Member1Component,
   },
   {
-  path:'member1/attendance',
-  component: AttendanceComponent
-},
+    path: 'member1/attendance',
+    component: AttendanceComponent,
+  },
   {
     path: 'member2',
-    component: Member2Component
+    component: Member2Component,
   },
   {
     path: 'member2/attendence0001',
-    component: AttendanceComponent0001
+    component: AttendanceComponent0001,
+  },
+  {
+    path: 'member2/billingmanagement0001',
+    component: Billingmanagement0001Component,
   },
   {
     path: 'member3',
-    component: Member3Component
+    component: Member3Component,
   },
   {
     path: 'member4',
-    component: Member4Component
+    component: Member4Component,
   },
   {
     path: 'member5',
-    component: Member5Component
+    component: Member5Component,
   },
   {
     path: 'member6',
-    component: Member6Component
+    component: Member6Component,
   },
   {
     path: 'member7',
-    component: Member7Component
+    component: Member7Component,
   },
   {
     path: 'member7/attandance',
-    component: AttandanceComponent
+    component: AttandanceComponent,
   },
   {
     path: 'member7/nitro-billing',
-    component: NitroBillingComponent
+    component: NitroBillingComponent,
   },
   {
     path: 'member7/chat',
-    component: Member7ChatComponent
+    component: Member7ChatComponent,
   },
 
   {
     path: 'member8',
-    component: Member8Component
+    component: Member8Component,
   },
   {
     path: 'member8/whatsapp-chat',
@@ -82,12 +87,12 @@ const routes: Routes = [
   },
   {
     path: 'member9',
-    component: Member9Component
+    component: Member9Component,
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class GrpERoutingModule {}
