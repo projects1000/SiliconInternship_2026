@@ -256,3 +256,134 @@ button:hover{
     }
 
 }
+/*NOTIFICATIONS*/
+.notification{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    background:rgba(255,255,255,0.1);
+    border-left:5px solid #22c55e;
+
+    padding:12px 15px;
+    margin-bottom:12px;
+
+    border-radius:10px;
+
+    color:white;
+
+    animation:slideIn .4s ease;
+}
+
+.notification .icon{
+    width:28px;
+    height:28px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#22c55e;
+    color:white;
+
+    font-size:14px;
+    font-weight:bold;
+}
+/* NOTIFICATIONS */
+
+.notification{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    background:rgba(255,255,255,0.1);
+
+    border-left:5px solid #22c55e;
+
+    padding:12px 15px;
+
+    margin-bottom:12px;
+
+    border-radius:10px;
+
+    color:white;
+
+    animation:slideIn .4s ease;
+}
+
+.notification .icon{
+
+    width:28px;
+    height:28px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#22c55e;
+
+    color:white;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    flex-shrink:0;
+}
+
+/* BUTTON SPACING */
+
+.card button{
+    margin-top:10px;
+    margin-right:10px;
+}
+
+/* BILL TOTAL */
+
+.total{
+    margin-top:20px;
+    margin-bottom:15px;
+    color:#f87171;
+    font-size:26px;
+    text-align:center;
+}
+
+/* TABLE HOVER */
+
+table tr:hover{
+    background:rgba(255,255,255,0.08);
+    transition:0.3s;
+}
+
+/* INPUT FOCUS */
+
+input:focus{
+    border:1px solid #60a5fa;
+    box-shadow:0 0 10px rgba(96,165,250,0.5);
+}
+
+/* DASHBOARD VALUE */
+
+.box{
+    color:white;
+    font-size:20px;
+    font-weight:600;
+}
+
+/* CARD TITLE */
+
+.card h3{
+    font-size:24px;
+    letter-spacing:1px;
+}
+
+/* SCROLLABLE NOTIFICATION AREA */
+
+.card:last-child{
+    max-height:450px;
+    overflow-y:auto;
+}
