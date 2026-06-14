@@ -1,0 +1,15 @@
+<div class="product-list-container">
+  <h3>1. Product List</h3>
+  
+  <div class="product-row header">
+    <span>Product</span>
+    <span>Price</span>
+    <span>Action</span>
+  </div>
+
+  <div *ngFor="let p of products" class="product-row">
+    <span>{{p.name}}</span>
+    <span>₹{{p.price}}</span>
+    <button (click)="add(p)">Add</button>
+  </div>
+</div>

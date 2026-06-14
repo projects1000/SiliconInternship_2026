@@ -1,0 +1,60 @@
+.customer-container {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #e1e4e8;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+h3 {
+  font-size: 1.1rem;
+  color: #2d3436;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #6c5ce7; /* Purple accent for Customer section */
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #636e72;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dfe6e9;
+  border-radius: 6px;
+  box-sizing: border-box; /* Ensures padding doesn't break layout */
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #6c5ce7;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+}
+
+.save-btn {
+  width: 100%;
+  background-color: #6c5ce7;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+}
+
+.save-btn:hover {
+  background-color: #5849d4;
+}

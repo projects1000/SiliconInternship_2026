@@ -1,0 +1,95 @@
+<div class="erp-layout">
+
+  <!-- TOP HEADER (UPGRADED PROFESSIONAL ERP STYLE) -->
+  <div class="erp-header">
+
+    <!-- BRAND -->
+    <div class="brand">
+      📊 ERP Attendance System
+      <span>Management Portal</span>
+    </div>
+
+    <!-- CALENDAR PANEL (IMPROVED UI) -->
+    <div class="calendar-panel">
+
+      
+
+      <input type="date"
+             [value]="selectedDate"
+             (change)="changeDate($event)" />
+
+     
+
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="erp-actions">
+
+      <button class="btn-lock" (click)="lockAttendance()">Lock Attendance</button>
+
+      <button class="btn-export" (click)="exportCSV()">Export</button>
+
+    </div>
+
+  </div>
+
+  <!-- BODY -->
+  <div class="erp-body">
+
+    <!-- LEFT PANEL -->
+    <div class="erp-sidebar">
+
+      <h3>Groups</h3>
+
+      <button *ngFor="let g of ['A','B','C','D','E','F','G']"
+              (click)="selectGroup(g)"
+              [class.active]="selectedGroup === g">
+        Group {{g}}
+      </button>
+
+    </div>
+
+    <!-- MAIN TABLE AREA -->
+    <div class="erp-content">
+
+      <div class="erp-card">
+
+        <h2>Group {{selectedGroup}} Attendance</h2>
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr *ngFor="let s of attendanceList; let i = index">
+
+              <td>{{s.name}}</td>
+
+              <td>
+                <button class="status"
+                        [class.present]="s.status === 'Present'"
+                        (click)="toggle(i)">
+                  {{s.status}}
+                </button>
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
