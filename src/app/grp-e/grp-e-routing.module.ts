@@ -16,6 +16,7 @@ import { AttendanceComponent0001 } from './member2/attendence0001/attendence0001
 import { NitroBillingComponent } from './member7/nitro-billing/nitro-billing.component';
 import { ChatComponent as Member7ChatComponent } from './member7/chat/chat.component';
 import { Member8Component } from './member8/member8.component';
+import { WhatsappChatComponent } from './member8/whatsapp-chat/whatsapp-chat.component';
 import { Member9Component } from './member9/member9.component';
 const routes: Routes = [
   {
@@ -74,6 +75,10 @@ const routes: Routes = [
   {
     path: 'member8',
     component: Member8Component
+  },
+  {
+    path: 'member8/whatsapp-chat',
+    component: WhatsappChatComponent
   },
   {
     path: 'member9',

@@ -48,6 +48,11 @@ import { UserAComponent as Member7UserAComponent } from './member7/chat/user-a/u
 import { UserBComponent as Member7UserBComponent } from './member7/chat/user-b/user-b.component';
 import { ChatWindowComponent as Member7ChatWindowComponent } from './member7/chat/chat-window/chat-window.component';
 
+import { WhatsappChatComponent } from './member8/whatsapp-chat/whatsapp-chat.component';
+import { WaUserAComponent } from './member8/whatsapp-chat/user-a/user-a.component';
+import { WaUserBComponent } from './member8/whatsapp-chat/user-b/user-b.component';
+import { WaChatWindowComponent } from './member8/whatsapp-chat/chat-window/chat-window.component';
+
 
 
 
@@ -90,6 +95,11 @@ import { ChatWindowComponent as Member7ChatWindowComponent } from './member7/cha
     Member7UserAComponent,
     Member7UserBComponent,
     Member7ChatWindowComponent,
+
+    WhatsappChatComponent,
+    WaUserAComponent,
+    WaUserBComponent,
+    WaChatWindowComponent,
 
   ],
 
