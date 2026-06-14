@@ -17,4 +17,12 @@ export class Member1Component {
   openAttendance() {
     this.router.navigate(['/grp-d/member1/attendance']);
   }
+
+  openProductManagement() {
+    this.router.navigate(['/grp-d/member1/product-management']);
+  }
+
+  openWhatsAppAssignment() {
+    this.router.navigate(['/grp-d/member1/whatsapp-chat']);
+  }
 }

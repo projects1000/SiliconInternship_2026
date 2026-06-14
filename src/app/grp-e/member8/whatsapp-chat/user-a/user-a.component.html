@@ -1,0 +1,23 @@
+<div class="user-panel">
+  <div class="user-header">
+    <div class="avatar avatar-a">A</div>
+    <div class="user-meta">
+      <h4>Aman</h4>
+      <span>Sending as Aman</span>
+    </div>
+  </div>
+
+  <div class="input-row">
+    <input
+      type="text"
+      [(ngModel)]="messageText"
+      (input)="onInputChange()"
+      (keydown.enter)="sendMessage()"
+      placeholder="Type a message as Aman..."
+      class="msg-input"
+    />
+    <button class="send-btn" [disabled]="!messageText.trim()" (click)="sendMessage()">
+      Send
+    </button>
+  </div>
+</div>

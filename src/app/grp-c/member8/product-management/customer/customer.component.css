@@ -1,0 +1,21 @@
+h2{
+  color:#111827;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:10px;
+  border:1px solid #d1d5db;
+}
+
+button{
+  width:100%;
+  background:#F59E0B;
+  color:white;
+  border:none;
+  padding:12px;
+  border-radius:10px;
+  cursor:pointer;
+}

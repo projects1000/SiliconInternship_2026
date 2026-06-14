@@ -1,0 +1,71 @@
+<div class="whatsapp-container">
+
+  <!-- Left Sidebar -->
+  <div class="sidebar">
+
+    <div class="sidebar-header">
+      <h2>Chats</h2>
+    </div>
+
+    <div
+      class="member"
+      *ngFor="let member of teamMembers"
+      (click)="selectUser(member)">
+
+      <div class="avatar">
+        {{ member.charAt(0) }}
+      </div>
+
+      <div class="member-info">
+        <h4>{{ member }}</h4>
+        <p>Online</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Chat Area -->
+  <div class="chat-area">
+
+    <div class="chat-header">
+      <div class="avatar">
+        {{ selectedUser.charAt(0) }}
+      </div>
+
+      <h3>{{ selectedUser }}</h3>
+    </div>
+
+    <div class="chat-body">
+
+      <div
+        *ngFor="let msg of messages"
+        [ngClass]="msg.sender === 'Sukanya' ? 'sent' : 'received'">
+
+        {{ msg.text }}
+
+        <div class="time">
+          {{ msg.time }}
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="chat-footer">
+
+      <input
+        type="text"
+        [(ngModel)]="newMessage"
+        placeholder="Type a message..."
+        (keyup.enter)="sendMessage()">
+
+      <button (click)="sendMessage()">
+        Send
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

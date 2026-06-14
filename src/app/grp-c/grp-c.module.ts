@@ -14,21 +14,56 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
-
-import { GrpCRoutingModule } from './grp-c-routing.module';
-
 import { Member4attmngComponent } from './member4/member4attmng/member4attmng.component';
 import { Member3AttendanceComponent } from './member3/member3-attendance/member3-attendance.component';
+import { ProductManagementModule } from './member8/product-management/product-management.module';
+
+import { GrpCRoutingModule } from './grp-c-routing.module';
+import { AttendanceComponent } from './member9/attendance/attendance.component';
 import { ProductManagementComponent } from './member9/product-management/product-management.component';
-import { UserAComponent } from './member9/user-a/user-a.component';
-import { UserBComponent } from './member9/user-b/user-b.component';
-import { ChatWindowComponent } from './member9/chat-window/chat-window.component';
+import { UserAComponent as Member9UserAComponent } from './member9/user-a/user-a.component';
+import { UserBComponent as Member9UserBComponent } from './member9/user-b/user-b.component';
+import { ChatWindowComponent as Member9ChatWindowComponent } from './member9/chat-window/chat-window.component';
+
 import { ChatbotComponent } from './member9/chatbot/chatbot.component';
+import { BillingParentComponent } from './member3/billing-parent/billing-parent.component';
+import { ProductListComponent } from './member3/billing-parent/product-list/product-list.component';
+import { CustomerDetailsComponent } from './member3/billing-parent/customer-details/customer-details.component';
+import { BillDetailsComponent } from './member3/billing-parent/bill-details/bill-details.component';
+import { NotificationComponent } from './member3/billing-parent/notification/notification.component';
+import { ChatParentComponent } from './member3/chat-system/chat-parent/chat-parent.component';
+import { UserAyushComponent } from './member3/chat-system/user-ayush/user-ayush.component';
+import { UserAnshumanComponent } from './member3/chat-system/user-anshuman/user-anshuman.component';
+import { ChatWindowComponent } from './member3/chat-system/chat-window/chat-window.component';
+import { Member8AttendanceComponent } from './member8-attendance/member8-attendance.component';
+
+import { AttendanceDashboardComponent } from './member2/attendance-dashboard/attendance-dashboard.component';
+
+import { ShoppingDashboardComponent } from './member2/shopping-dashboard/shopping-dashboard.component';
+import { AnimeCollectionComponent } from './member2/anime-collection/anime-collection.component';
+import { CustomerManagementComponent } from './member2/customer-management/customer-management.component';
+import { InvoiceManagementComponent } from './member2/invoice-management/invoice-management.component';
+import { ToastNotificationComponent } from './member2/toast-notification/toast-notification.component';
+import { WhatsappChatComponent } from './member2/whatsapp-chat/whatsapp-chat.component';
+import { UserAComponent } from './member2/user-a/user-a.component';
+import { UserBComponent } from './member2/user-b/user-b.component';
+import { MessagingPanelComponent } from './member2/messaging-panel/messaging-panel.component';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
+import { BillingSystemMember4Module } from './member4/billingsystem-member4/billing-system-member4.module';
+
+
 
 @NgModule({
   declarations: [
     GrpCComponent,
-    Member1Component,
     Member2Component,
     Member3Component,
     Member4Component,
@@ -38,18 +73,54 @@ import { ChatbotComponent } from './member9/chatbot/chatbot.component';
     Member8Component,
     Member9Component,
     Member10Component,
+
+    AttendanceDashboardComponent,
+    ShoppingDashboardComponent,
+    AnimeCollectionComponent,
+    CustomerManagementComponent,
+    InvoiceManagementComponent,
+    ToastNotificationComponent,
+    WhatsappChatComponent,
+    UserAComponent,
+    UserBComponent,
+    MessagingPanelComponent,
+
+    Member8AttendanceComponent,
+    AttendanceComponent,
     Member4attmngComponent,
     Member3AttendanceComponent,
     ProductManagementComponent,
-    UserAComponent,
-    UserBComponent,
-    ChatWindowComponent,
-    ChatbotComponent
+   Member9UserAComponent,
+Member9UserBComponent,
+Member9ChatWindowComponent,
+    ChatbotComponent,
+    BillingParentComponent,
+    ProductListComponent,
+    CustomerDetailsComponent,
+    BillDetailsComponent,
+    NotificationComponent,
+    ChatParentComponent,
+    UserAyushComponent,
+    UserAnshumanComponent,
+    ChatWindowComponent
   ],
   imports: [
     CommonModule,
     GrpCRoutingModule,
-    FormsModule
+    FormsModule,
+
+    MatTreeModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatCardModule,
+
+    BillingSystemMember4Module,
+
+    ProductManagementModule
+
   ]
 })
 export class GrpCModule { }

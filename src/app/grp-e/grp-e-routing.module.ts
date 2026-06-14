@@ -12,7 +12,11 @@ import { Member5Component } from './member5/member5.component';
 import { Member6Component } from './member6/member6.component';
 import { Member7Component } from './member7/member7.component';
 import { AttandanceComponent } from './member7/attandance/attandance.component';
+import { AttendanceComponent0001 } from './member2/attendence0001/attendence0001.component';
+import { NitroBillingComponent } from './member7/nitro-billing/nitro-billing.component';
+import { ChatComponent as Member7ChatComponent } from './member7/chat/chat.component';
 import { Member8Component } from './member8/member8.component';
+import { WhatsappChatComponent } from './member8/whatsapp-chat/whatsapp-chat.component';
 import { Member9Component } from './member9/member9.component';
 const routes: Routes = [
   {
@@ -30,6 +34,10 @@ const routes: Routes = [
   {
     path: 'member2',
     component: Member2Component
+  },
+  {
+    path: 'member2/attendence0001',
+    component: AttendanceComponent0001
   },
   {
     path: 'member3',
@@ -55,15 +63,27 @@ const routes: Routes = [
     path: 'member7/attandance',
     component: AttandanceComponent
   },
+  {
+    path: 'member7/nitro-billing',
+    component: NitroBillingComponent
+  },
+  {
+    path: 'member7/chat',
+    component: Member7ChatComponent
+  },
 
   {
     path: 'member8',
     component: Member8Component
   },
   {
+    path: 'member8/whatsapp-chat',
+    component: WhatsappChatComponent
+  },
+  {
     path: 'member9',
     component: Member9Component
-  }
+  },
 ];
 
 @NgModule({

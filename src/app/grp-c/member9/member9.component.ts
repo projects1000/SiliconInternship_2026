@@ -16,6 +16,11 @@ export class Member9Component {
   email = 'sohan@gmail.com';
   phone = '+91 6789032112';
 
+
+ openAttendance() {
+  this.router.navigate(['/grp-c/attendance']);
+}
+  // Portfolio Stats
   projectsCompleted = 5;
   componentsCreated = 15;
   internshipMonths = 3;

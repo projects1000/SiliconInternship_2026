@@ -1,0 +1,17 @@
+.plant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 24px;
+}
+
+.plant-card {
+  background: #1a1a2e; /* Matches dark theme */
+  color: #fff;
+  border-radius: 16px;
+  transition: 0.3s;
+}
+
+.plant-card:hover {
+  box-shadow: 0 8px 16px rgba(108, 99, 255, 0.3);
+}
