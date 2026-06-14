@@ -6,6 +6,7 @@ import { GrpEComponent } from './grp-e/grp-e.component';
 import { Member1Component } from './member1/member1.component';
 import { Member2Component } from './member2/member2.component';
 import { Member3Component } from './member3/member3.component';
+import { Member3AttendanceComponent } from './member3-attendance/member3-attendance.component';
 import { Member4Component } from './member4/member4.component';
 import { Member5Component } from './member5/member5.component';
 import { Member6Component } from './member6/member6.component';
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'member2',
     component: Member2Component
+  },
+  {
+    path: 'member3/attendance',
+    component: Member3AttendanceComponent
   },
   {
     path: 'member3',
