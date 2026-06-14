@@ -18,6 +18,8 @@ import { Member11Component } from './member11/member11.component';
 import { AttendanceComponent } from './member1/attendance/attendance.component';
 import { AttendanceTrackerComponent } from './member3/attendance-tracker/attendance-tracker.component';
 
+
+
 // Routing & Material Modules
 import { GrpDRoutingModule } from './grp-d-routing.module';
 import { MatButtonModule } from '@angular/material/button';
@@ -34,6 +36,15 @@ import { CustomerDetailsComponent } from './member1/customer-details/customer-de
 import { BillDetailsComponent } from './member1/bill-details/bill-details.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { AboutComponent } from './member5/about/about.component';
+import { NavbarComponent } from './member5/navbar/navbar.component';
+import { HomeComponent } from './member5/home/home.component';
+import { HeroComponent } from './member5/hero/hero.component';
+import { ProfileComponent } from './member5/profile/profile.component';
+import { AttendanceSComponent } from './member5/attendance-s/attendance-s.component';
+import { BillingdashboardComponent } from './member5/billingdashboard/billingdashboard.component';
+import { WhatsappComponent } from './member5/whatsapp/whatsapp.component';
+
 
 
 @NgModule({
@@ -55,7 +66,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     ProductManagementComponent,
     ProductListComponent,
     CustomerDetailsComponent,
-    BillDetailsComponent
+    BillDetailsComponent,
+    AboutComponent,
+    NavbarComponent,
+    HomeComponent,
+    HeroComponent,
+    ProfileComponent,
+    AttendanceSComponent,
+    BillingdashboardComponent,
+    WhatsappComponent
   ],
   imports: [
     CommonModule,

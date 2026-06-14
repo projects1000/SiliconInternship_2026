@@ -1,0 +1,99 @@
+<div class="chat-wrapper">
+
+    <!-- SANGITA SIDE -->
+    <div class="chat-panel">
+
+        <div class="chat-header" (click)="clearSenderNotification()">
+
+            <div class="user-info">
+                <span class="avatar">👩</span>
+                <div class="user-text">
+                    <span class="user-name">Sush</span>
+                    <span class="user-status">Online</span>
+                </div>
+            </div>
+
+            <span class="notification" *ngIf="senderNotification > 0">
+                {{senderNotification}}
+            </span>
+
+        </div>
+
+        <div class="messages-area">
+
+            <div class="msg-row" *ngFor="let msg of senderMessages" [ngClass]="msg.from === 'You' ? 'row-sent' : 'row-received'">
+
+                <div class="bubble" [ngClass]="msg.from === 'You' ? 'sent-message' : 'received-message'">
+                    <span class="msg-text">{{msg.text}}</span>
+                    <span class="msg-time">{{msg.time}}</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="message-input">
+
+            <input
+                type="text"
+                placeholder="Type message..."
+                [(ngModel)]="senderText"
+                (keyup.enter)="sendFromSender()">
+
+            <button (click)="sendFromSender()">
+                Send
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- CHANDAN SIDE -->
+    <div class="chat-panel">
+
+        <div class="chat-header" (click)="clearReceiverNotification()">
+
+            <div class="user-info">
+                <span class="avatar">👨</span>
+                <div class="user-text">
+                    <span class="user-name">san</span>
+                    <span class="user-status">Online</span>
+                </div>
+            </div>
+
+            <span class="notification" *ngIf="receiverNotification > 0">
+                {{receiverNotification}}
+            </span>
+
+        </div>
+
+        <div class="messages-area">
+
+            <div class="msg-row" *ngFor="let msg of receiverMessages" [ngClass]="msg.from === 'You' ? 'row-sent' : 'row-received'">
+
+                <div class="bubble" [ngClass]="msg.from === 'You' ? 'sent-message' : 'received-message'">
+                    <span class="msg-text">{{msg.text}}</span>
+                    <span class="msg-time">{{msg.time}}</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="message-input">
+
+            <input
+                type="text"
+                placeholder="Reply message..."
+                [(ngModel)]="receiverText"
+                (keyup.enter)="sendFromReceiver()">
+
+            <button (click)="sendFromReceiver()">
+                Reply
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
