@@ -1,0 +1,63 @@
+.attendance-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.stats-grid {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.card {
+  flex: 1;
+  padding: 15px;
+  border-radius: 6px;
+  text-align: center;
+  color: white;
+}
+
+.total { background-color: #34495e; }
+.present { background-color: #2ecc71; }
+.absent { background-color: #e74c3c; }
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.attendance-table th, .attendance-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.attendance-table th {
+  background-color: #f4f6f7;
+}
+
+.row-absent {
+  background-color: #fdf2f2;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.85em;
+}
+
+.badge-present { background-color: #d4edda; color: #155724; }
+.badge-absent { background-color: #f8d7da; color: #721c24; }
+
+button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-mark-absent { background-color: #ffc107; color: #000; }
+.btn-mark-present { background-color: #17a2b8; color: #fff; }

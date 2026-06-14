@@ -57,6 +57,10 @@ const routes: Routes = [
     component: Member7Component
   },
   {
+    path: 'member7-attendance',
+    component: Member7Component // Using Member7Component if your logic is baked inside your main folder files
+  },
+  {
     path: 'member8',
     component: Member8Component
   },

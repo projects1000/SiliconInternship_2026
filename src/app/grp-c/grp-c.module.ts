@@ -57,7 +57,8 @@ import { Member8AttendanceComponent } from './member8-attendance/member8-attenda
     ChatParentComponent,
     UserAyushComponent,
     UserAnshumanComponent,
-    ChatWindowComponent
+    ChatWindowComponent,
+    
   ],
   imports: [
     CommonModule,
