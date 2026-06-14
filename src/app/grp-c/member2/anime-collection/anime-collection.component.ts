@@ -9,11 +9,11 @@ export interface Product {
 }
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  selector: 'app-anime-collection',
+  templateUrl: './anime-collection.component.html',
+  styleUrls: ['./anime-collection.component.css']
 })
-export class ProductListComponent {
+export class AnimeCollectionComponent {
 
   @Output()
   productAdded = new EventEmitter<Product>();

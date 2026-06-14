@@ -3,11 +3,11 @@ import { NotificationService }
   from '../services/notification.service';
 
 @Component({
-  selector: 'app-notification',
-  templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.css']
+  selector: 'app-toast-notification',
+  templateUrl: './toast-notification.component.html',
+  styleUrls: ['./toast-notification.component.css']
 })
-export class NotificationComponent implements OnInit {
+export class ToastNotificationComponent implements OnInit {
 
   messages: string[] = [];
 

@@ -6,11 +6,11 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'app-bill-details',
-  templateUrl: './bill-details.component.html',
-  styleUrls: ['./bill-details.component.css']
+  selector: 'app-invoice-management',
+  templateUrl: './invoice-management.component.html',
+  styleUrls: ['./invoice-management.component.css']
 })
-export class BillDetailsComponent {
+export class InvoiceManagementComponent {
 
   @Input() products: any[] = [];
 

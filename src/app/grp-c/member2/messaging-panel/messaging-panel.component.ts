@@ -8,11 +8,11 @@ import { ChatService } from '../services/chat.service';
 import { NotificationService } from '../services/notification.service';
 
 @Component({
-  selector: 'app-chat-window',
-  templateUrl: './chat-window.component.html',
-  styleUrls: ['./chat-window.component.css']
+  selector: 'app-messaging-panel',
+  templateUrl: './messaging-panel.component.html',
+  styleUrls: ['./messaging-panel.component.css']
 })
-export class ChatWindowComponent implements OnInit {
+export class MessagingPanelComponent implements OnInit {
 
   @ViewChild('messageContainer')
   messageContainer!: ElementRef;

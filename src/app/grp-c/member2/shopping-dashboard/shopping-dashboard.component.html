@@ -61,22 +61,22 @@
     </div>
 
     <!-- Product Section -->
-    <app-product-list (productAdded)="addProduct($event)">
-    </app-product-list>
+    <app-anime-collection (productAdded)="addProduct($event)">
+    </app-anime-collection>
 
     <div class="bottom-section">
 
-        <app-customer-details (customerSaved)="saveCustomer($event)">
-        </app-customer-details>
+        <app-customer-management (customerSaved)="saveCustomer($event)">
+        </app-customer-management>
 
-        <app-bill-details [products]="selectedProducts" [customer]="customer" [subtotal]="subtotal" [gst]="gst"
+        <app-invoice-management [products]="selectedProducts" [customer]="customer" [subtotal]="subtotal" [gst]="gst"
             [grandTotal]="grandTotal" [invoiceNumber]="invoiceNumber" (invoiceGenerated)="handleInvoice($event)"
             (increaseClicked)="increaseQuantity($event)" (decreaseClicked)="decreaseQuantity($event)"
             (removeClicked)="removeProduct($event)">
-        </app-bill-details>
+        </app-invoice-management>
 
     </div>
 
-    <app-notification></app-notification>
+    <app-toast-notification></app-toast-notification>
 
 </div>

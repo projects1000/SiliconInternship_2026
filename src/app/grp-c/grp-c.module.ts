@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 import { GrpCComponent } from './grp-c/grp-c.component';
+
 import { Member1Component } from './member1/member1.component';
 import { Member2Component } from './member2/member2.component';
 import { Member3Component } from './member3/member3.component';
@@ -16,24 +19,23 @@ import { GrpCRoutingModule } from './grp-c-routing.module';
 
 import { AttendanceDashboardComponent } from './member2/attendance-dashboard/attendance-dashboard.component';
 
-import { FormsModule } from '@angular/forms';
-
-import { MatTreeModule } from '@angular/material/tree';
-import { MatTableModule } from '@angular/material/table';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatCardModule } from '@angular/material/card';
 import { ShoppingDashboardComponent } from './member2/shopping-dashboard/shopping-dashboard.component';
-import { ProductListComponent } from './member2/product-list/product-list.component';
-import { CustomerDetailsComponent } from './member2/customer-details/customer-details.component';
-import { BillDetailsComponent } from './member2/bill-details/bill-details.component';
-import { NotificationComponent } from './member2/notification/notification.component';
+import { AnimeCollectionComponent } from './member2/anime-collection/anime-collection.component';
+import { CustomerManagementComponent } from './member2/customer-management/customer-management.component';
+import { InvoiceManagementComponent } from './member2/invoice-management/invoice-management.component';
+import { ToastNotificationComponent } from './member2/toast-notification/toast-notification.component';
 import { WhatsappChatComponent } from './member2/whatsapp-chat/whatsapp-chat.component';
 import { UserAComponent } from './member2/user-a/user-a.component';
 import { UserBComponent } from './member2/user-b/user-b.component';
-import { ChatWindowComponent } from './member2/chat-window/chat-window.component';
+import { MessagingPanelComponent } from './member2/messaging-panel/messaging-panel.component';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 
@@ -52,14 +54,14 @@ import { ChatWindowComponent } from './member2/chat-window/chat-window.component
     Member10Component,
     AttendanceDashboardComponent,
     ShoppingDashboardComponent,
-    ProductListComponent,
-    CustomerDetailsComponent,
-    BillDetailsComponent,
-    NotificationComponent,
+    AnimeCollectionComponent,
+    CustomerManagementComponent,
+    InvoiceManagementComponent,
+    ToastNotificationComponent,
     WhatsappChatComponent,
     UserAComponent,
     UserBComponent,
-    ChatWindowComponent
+    MessagingPanelComponent
   ],
   imports: [
     CommonModule,
