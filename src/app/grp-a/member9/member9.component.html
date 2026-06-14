@@ -1,7 +1,258 @@
+<!-- profile.component.html -->
+<div class="portfolio-wrapper">
+
+  <!-- ── Animated background blobs ───────────────────────────────────────── -->
+
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+
+
+  <!-- 1. HERO SECTION -->
+
+
+  <section class="hero-section" id="hero">
+    <div class="hero-inner">
+
+      <!-- Avatar -->
+      <div class="avatar-wrap">
+        <div class="avatar-glow-ring">
+          <img [src]="avatarUrl" [alt]="fullName" class="avatar-img" (error)="$any($event.target).style.display='none'">
+          <span class="avatar-fallback">{{ avatarFallback }}</span>
+        </div>
+        <span class="status-dot" title="Available"></span>
+      </div>
+
+      <!-- Text block -->
+      <div class="hero-text">
+        <p class="hero-eyebrow">Welcome to my professional space</p>
+        <h1 class="hero-name">
+          Hi, I'm <span class="gradient-text">{{ fullName }}</span>
+        </h1>
+        <h2 class="hero-typing">
+          <span class="typing-icon">⌨</span>
+          {{ displayText }}<span class="cursor">|</span>
+        </h2>
+        <p class="hero-intro">{{ introduction }}</p>
+
+        <div class="hero-buttons">
+          <button class="btn btn-primary ripple" (click)="scrollTo('projects')">
+            <span>🚀</span> View Projects
+          </button>
+          <button class="btn btn-outline ripple" (click)="scrollTo('contact')">
+            <span>✉</span> Contact Me
+          </button>
+          <!-- <button class="btn btn-ghost ripple">
+            <span>⬇</span> Download CV
+          </button> -->
+        </div>
+
+        <!-- Social quick links -->
+        <div class="hero-socials">
+          <a *ngFor="let s of socialLinks" [href]="s.url" target="_blank" class="soc-pill"
+            [style.--soc-color]="s.color">
+            {{ s.icon }} {{ s.label }}
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2. About  -->
+
+
+  <section class="bento-grid section-gap" id="about">
+
+    <!-- Profile info card -->
+    <div class="glass-card profile-card">
+      <div class="card-header-row">
+        <span class="card-icon">🪪</span>
+        <h3 class="card-title">Profile</h3>
+      </div>
+      <ul class="profile-list">
+        <li *ngFor="let item of profileInfo" class="profile-row">
+          <span class="prof-icon">{{ item.icon }}</span>
+          <div class="prof-details">
+            <span class="prof-label">{{ item.label }}</span>
+            <span class="prof-value">{{ item.value }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- About me card -->
+    <div class="glass-card about-card">
+      <div class="card-header-row">
+        <span class="card-icon">👤</span>
+        <h3 class="card-title">About Me</h3>
+      </div>
+      <p class="about-text">{{ aboutText }}</p>
+      <div class="about-tags">
+        <span class="tag">Problem Solver</span>
+        <span class="tag">AI/ML Enthusiast</span>
+        <span class="tag">Data Structures</span>
+        <span class="tag">Fast Learner</span>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- 3. SKILLS SECTION -->
+
+
+
+  <section class="section-gap" id="skills">
+    <h2 class="section-title">
+      <span class="section-icon">⚡</span> Technical Arsenal
+    </h2>
+
+    <div class="skills-bento">
+      <div *ngFor="let cat of skillCategories" class="glass-card skill-cat-card">
+        <div class="card-header-row">
+          <span class="card-icon">{{ cat.icon }}</span>
+          <h3 class="card-title">{{ cat.category }}</h3>
+        </div>
+        <div class="skill-pills">
+          <span *ngFor="let skill of cat.skills" class="skill-pill">
+            <span class="skill-pill-icon">{{ skill.icon }}</span>
+            {{ skill.name }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- 4. EXPERIENCE TIMELINE   -->
+
+  <section class="section-gap" id="experience">
+    <h2 class="section-title">
+      <span class="section-icon">📅</span> Timeline
+    </h2>
+
+    <div class="timeline">
+      <div *ngFor="let exp of experiences; let last = last" class="tl-item" [class.tl-current]="exp.current">
+        <div class="tl-spine" [class.tl-last]="last"></div>
+        <div class="tl-dot" [class.tl-dot-active]="exp.current">
+          <span *ngIf="exp.current" class="tl-pulse"></span>
+        </div>
+        <div class="glass-card tl-card">
+          <div class="tl-header">
+            <div>
+              <h3 class="tl-role">{{ exp.role }}</h3>
+              <p class="tl-company">{{ exp.company }}</p>
+            </div>
+            <span class="tl-badge" [class.tl-badge-current]="exp.current">
+              {{ exp.current ? '● Now' : exp.duration }}
+            </span>
+          </div>
+          <p class="tl-duration" *ngIf="exp.current">{{ exp.duration }}</p>
+          <p class="tl-desc">{{ exp.description }}</p>
+          <a [href]="exp.certificate" target="_blank" class="btn btn-primary btn-sm">
+            📜 Show Credential
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 5. PROJECTS   -->
+
+  <section class="section-gap" id="projects">
+    <h2 class="section-title">
+      <span class="section-icon">🚀</span> Projects
+    </h2>
+
+    <div class="projects-grid">
+      <div *ngFor="let proj of projects" class="project-card glass-card">
+        <div class="proj-banner" [style.background]="proj.gradient">
+          <span class="proj-banner-icon">{{ proj.icon }}</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">{{ proj.title }}</h3>
+          <p class="proj-desc">{{ proj.description }}</p>
+          <div class="proj-stack">
+            <span *ngFor="let t of proj.stack" class="proj-tag">{{ t }}</span>
+          </div>
+          <div class="proj-actions">
+            <a [href]="proj.github" target="_blank" class="btn btn-sm btn-outline">
+              🐙 GitHub
+            </a>
+            <a [href]="proj.demo" class="btn btn-sm btn-primary">
+              🔗 Live Demo
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- 7. CONTACT SECTION-->
+
+
+  <section class="section-gap" id="contact">
+    <h2 class="section-title">
+      <span class="section-icon">✉</span> Get In Touch
+    </h2>
+
+    <div class="contact-wrap">
+      <div class="glass-card contact-card">
+        <p class="contact-subtitle">Have a project in mind? Let's build something great together.</p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" placeholder="John Doe" [(ngModel)]="contactName">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-input" placeholder="john@email.com" [(ngModel)]="contactEmail">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-input form-textarea" rows="5" placeholder="Tell me about your project objectives..."
+            [(ngModel)]="contactMessage"></textarea>
+        </div>
+
+        <button class="btn btn-primary btn-full ripple" (click)="onSendMessage()">
+          <span>📨</span> Send Message
+        </button>
+      </div>
+
+      <!-- Social links beside contact -->
+      <div class="social-panel">
+        <h3 class="social-panel-title">Connect with me</h3>
+        <div class="social-links-list">
+          <a *ngFor="let s of socialLinks" [href]="s.url" target="_blank" class="social-link-card glass-card"
+            [style.--soc-color]="s.color">
+            <span class="soc-icon">{{ s.icon }}</span>
+            <span class="soc-label">{{ s.label }}</span>
+            <span class="soc-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ──────────────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <p>© <span class="gradient-text">{{ fullName }}</span> 24BCSH03 </p>
+  </footer>
+
+</div>
+
 <div class="member-page">
 
-  <h1>Member 9</h1>
-  <h1>Ronit Kumar Swain</h1>
   <button (click)="goBackToGroup()">
     Go back to Group A
   </button>

@@ -18,6 +18,9 @@ import { Member5AttendanceComponent } from './member5/attendance/attendance.comp
 
 // ✅ Angular Routing — Gaming PC Builder (Rohan Nayak 24BCSG13)
 import { GamingPcBuilderComponent } from './member2/gaming-pc-builder/gaming-pc-builder.component';
+import { BillingDashboardComponent as Member1BillingDashboardComponent } from './member1/billing-system/billing-dashboard/billing-dashboard.component';
+import { WhatsappDashboardComponent } from './member1/member1-whatsapp/whatsapp-dashboard/whatsapp-dashboard.component';
+import { ChatWindowComponent } from './member5/chat-window/chat-window.component';
 
 const routes: Routes = [
   {
@@ -40,6 +43,14 @@ const routes: Routes = [
   {
     path: 'member1/attendance',
     component: Member1AttendanceComponent,
+  },
+  {
+    path: 'member1/billing-dashboard',
+    component: Member1BillingDashboardComponent,
+  },
+  {
+    path: 'member1/whatsapp-dashboard',
+    component: WhatsappDashboardComponent,
   },
   {
     path: 'member2',
@@ -66,6 +77,10 @@ const routes: Routes = [
     component: Member5AttendanceComponent,
   },
   {
+    path: 'member5/chat-window',
+    component: ChatWindowComponent,
+  },
+  {
     path: 'member6',
     component: Member6Component,
   },
@@ -79,4 +94,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class GrpBRoutingModule { }
+export class GrpBRoutingModule { }
+

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { BillingService } from '../../services/billing.service';
 
 export interface Product {
@@ -14,10 +15,12 @@ export interface Product {
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit, OnDestroy {
   @Output() productAdded = new EventEmitter<Product>();
 
   searchText: string = '';
+  activeDiscounts: { [key: string]: number } = {};
+  private discountSub!: Subscription;
 
   products: Product[] = [
     { name: 'Rice', price: 50, image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&auto=format&fit=crop', rating: 4.5 },
@@ -34,13 +37,46 @@ export class ProductListComponent {
     { name: 'Salt', price: 20, image: 'https://images.unsplash.com/photo-1614759258004-39da973d3268?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c2FsdCUyMHBhY2tldHxlbnwwfHwwfHx8MA%3D%3D', rating: 4.1 },
     { name: 'Wheat Flour', price: 40, image: 'https://images.unsplash.com/photo-1627735483792-233bf632619b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8d2hlYXQlMjBmbG91cnxlbnwwfHwwfHx8MA%3D%3D', rating: 4.4 },
     { name: 'Potato', price: 30, image: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&auto=format&fit=crop', rating: 4.3 },
-    { name: 'Tomato', price: 40, image: 'https://images.unsplash.com/photo-1582284540020-8acbe03f4924?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dG9tYXRvfGVufDB8fDB8fHww', rating: 4.2 }
+    { name: 'Tomato', price: 40, image: 'https://images.unsplash.com/photo-1582284540020-8acbe03f4924?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dG9tYXRvfGVufDB8fDB8fHww', rating: 4.2 },
+    { name: 'Onion', price: 25, image: 'https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=400&auto=format&fit=crop', rating: 4.1 },
+    { name: 'Pasta', price: 65, image: 'https://images.unsplash.com/photo-1497802492746-aa584aa6ea22?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGFzdGElMjBwYWNrZXR8ZW58MHx8MHx8fDA%3D', rating: 4.5 },
+    { name: 'Oats', price: 85, image: 'https://plus.unsplash.com/premium_photo-1671130295244-b058fc8d86fe?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', rating: 4.6 },
+    { name: 'Honey', price: 150, image: 'https://images.unsplash.com/photo-1587049352851-8d4e89133924?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG9uZXl8ZW58MHx8MHx8fDA%3D', rating: 4.8 },
+    { name: 'Yogurt', price: 45, image: 'https://images.unsplash.com/photo-1641196936589-7df4db18de66?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHlvZ3VydHxlbnwwfHwwfHx8MA%3D%3D', rating: 4.4 },
+    { name: 'Lentils', price: 95, image: 'https://images.unsplash.com/photo-1552585960-0e1069ce7405?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TGVudGlsc3xlbnwwfHwwfHx8MA%3D%3D', rating: 4.7 }
   ];
 
   constructor(private billingService: BillingService) {}
 
+  ngOnInit() {
+    // Subscribe to discount changes from admin
+    this.discountSub = this.billingService.productDiscounts$.subscribe(discounts => {
+      this.activeDiscounts = discounts;
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.discountSub) {
+      this.discountSub.unsubscribe();
+    }
+  }
+
   addProduct(product: Product) {
-    this.productAdded.emit(product);
+    const discountedPrice = this.getDiscountedPrice(product);
+    const productToEmit = { ...product, price: discountedPrice };
+    this.productAdded.emit(productToEmit);
+  }
+
+  getDiscount(productName: string): number {
+    return this.activeDiscounts[productName] || 0;
+  }
+
+  getDiscountedPrice(product: Product): number {
+    const disc = this.getDiscount(product.name);
+    if (disc > 0) {
+      return product.price - (product.price * disc / 100);
+    }
+    return product.price;
   }
 
   getProductIcon(name: string): string {

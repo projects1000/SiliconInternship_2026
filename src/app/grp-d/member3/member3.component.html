@@ -1,31 +1,77 @@
-<div class="profile-page-layout">
-  <header class="profile-header">
-    <button class="btn-back" (click)="goBackToGroup()">← Back to Group List</button>
-  </header>
+<div class="dashboard-wrapper">
+  <div class="main-content">
+    <div class="member3-wrapper">
+      <div *ngIf="showToast" class="toast-success">{{ toastMessage }}</div>
 
-  <main class="profile-content">
-    <div class="profile-card">
-      <img src="assets/titiksha.jpg" alt="Profile Picture" class="profile-avatar">
-      <div class="profile-details">
-        <h1>Titiksha Sahu</h1>
-        <p><strong>Intern ID:</strong> M3-2026</p>
-        <p><strong>Department:</strong> Development</p>
+      <div *ngIf="activeView === 'profile'" class="glass-card">
+        <img src="assets/titiksha.jpg" alt="Profile" class="profile-img">
+        <h1>Titiksha Sahu 👋</h1>
+        <p><strong>💻 Java Full Stack Developer</strong></p>
+        <span class="status-badge">Available for Opportunities</span>
+        <p class="bio">Passionate about Java, Spring Boot, Angular and Data Structures.</p>
+        <div class="skills-grid">
+          <span class="skill">Java</span>
+          <span class="skill">Spring Boot</span>
+          <span class="skill">Angular</span>
+          <span class="skill">MySQL</span>
+          <span class="skill">Git</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/titikshasahu09-web" target="_blank">🔗 GitHub</a> | 
+          <a href="https://www.linkedin.com/in/titiksha-sahu-697478412" target="_blank">💼 LinkedIn</a>
+        </div>
+        <div class="actions">
+          <button (click)="activeView = 'shop'">🛍️ Shop</button>
+          <button (click)="activeView = 'attendance'">📅 Attendance</button>
+          <button (click)="activeView = 'chat'">💬 Chat</button>
+          <button (click)="navigateToGroupD()" class="back-btn">⬅ Back to Group D</button>
+        </div>
+      </div>
+
+      <div *ngIf="activeView === 'chat'" class="glass-card" style="display: flex; flex-direction: column; height: 650px; background: #0f172a;">
+        <div class="chat-header" style="display: flex; justify-content: space-between; padding: 15px; color: white;">
+          <h2>🌐 Strategic Collaboration Hub</h2>
+          <button (click)="activeView = 'profile'" style="background: transparent; color: white; border: 1px solid white; cursor: pointer;">✕ Close</button>
+        </div>
+        <div style="flex-grow: 1; overflow: hidden; position: relative;">
+          <app-chat-member3 style="display: block; height: 100%;"></app-chat-member3>
+        </div>
+      </div>
+
+      <div *ngIf="activeView === 'attendance'" class="glass-card">
+        <app-attendance-tracker></app-attendance-tracker>
+        <button (click)="goBack()" style="margin-top: 20px;">⬅ Back to Profile</button>
+      </div>
+
+      <div *ngIf="activeView === 'shop'" class="glass-card shop-full-view">
+        <div class="shop-header">
+          <h2>🌿 Plant Paradise</h2>
+          <div class="shop-actions">
+            <button (click)="goBack()">Back</button>
+            <button (click)="checkout()">🛒 Checkout ({{cart.length}})</button>
+          </div>
+        </div>
+        <div class="plants-grid">
+          <div *ngFor="let plant of plants" class="plant-card">
+            <img [src]="plant.image" [alt]="plant.name">
+            <h3>{{ plant.name }}</h3>
+            <p class="price">₹{{ plant.price }}</p>
+            <button class="add-btn" (click)="addToCart(plant)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="activeView === 'billing'" class="glass-card">
+        <h3>Customer Details</h3>
+        <input [(ngModel)]="customer.name" placeholder="Name">
+        <input [(ngModel)]="customer.mobile" placeholder="Mobile">
+        <button (click)="saveCustomer()">Save</button>
+        <input [(ngModel)]="couponCode" placeholder="Enter SAVE10">
+        <button (click)="applyCoupon()">Apply</button>
+        <h3>Grand Total: ₹{{ getFinalTotal() }}</h3>
+        <button (click)="generateBill()">Generate & Print</button>
+        <button (click)="activeView = 'shop'">Back to Shop</button>
       </div>
     </div>
-
-    <div class="profile-actions">
-      <button class="action-btn" (click)="showAttendance = !showAttendance">
-        {{ showAttendance ? 'Hide Profile Details' : 'Show Profile Details' }}
-      </button>
-
-      <button class="nav-btn matrix-btn" (click)="openMatrix()">
-        View Attendance Matrix (Advanced)
-      </button>
-    </div>
-
-    <div *ngIf="showAttendance" class="details-section">
-      <h3>Additional Information</h3>
-      <p>Group D - Internship Program 2026</p>
-    </div>
-  </main>
+  </div>
 </div>

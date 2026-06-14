@@ -1,0 +1,95 @@
+<div class="chat-card glass-card">
+  <div class="chat-header">
+    <div class="header-title">
+      <h3>Central Chat</h3>
+      <span class="online-status"><span class="dot"></span> 2 Members Online</span>
+    </div>
+    <button class="icon-btn" (click)="clearChat()" title="Clear Chat">
+      <mat-icon>delete_sweep</mat-icon>
+    </button>
+  </div>
+
+  <div class="chat-body" #chatScroll>
+    <div class="message-wrapper" *ngFor="let msg of messages" 
+         [ngClass]="{'msg-outgoing': msg.sender === 'satya', 'msg-incoming': msg.sender === 'hariya'}">
+      
+      <div class="avatar-small">
+        <span *ngIf="msg.sender === 'satya'">👨🏻</span>
+        <span *ngIf="msg.sender === 'hariya'">👨🏽</span>
+      </div>
+
+      <div class="message-content">
+        <div class="sender-name">{{ msg.sender }}</div>
+        
+        <div class="bubble-container">
+          <!-- The Message Bubble -->
+          <div class="bubble">
+            
+            <!-- Inline Edit Mode -->
+            <div *ngIf="editingMessageId === msg.id" class="edit-mode">
+              <input type="text" class="edit-input" [(ngModel)]="editText" (keyup.enter)="saveEdit()">
+              <div class="edit-actions">
+                <button class="action-btn-small" (click)="cancelEdit()"><mat-icon>close</mat-icon></button>
+                <button class="action-btn-small confirm" (click)="saveEdit()"><mat-icon>check</mat-icon></button>
+              </div>
+            </div>
+
+            <!-- Normal View Mode -->
+            <ng-container *ngIf="editingMessageId !== msg.id">
+              <!-- Text Message -->
+              <div *ngIf="msg.type === 'text' || !msg.type" class="message-text">
+                {{ msg.text }}
+              </div>
+
+              <!-- Audio Message -->
+              <div *ngIf="msg.type === 'audio'" class="audio-container">
+                <audio controls [src]="msg.audioUrl"></audio>
+              </div>
+
+              <!-- Folder Message -->
+              <div *ngIf="msg.type === 'folder' && msg.folderData" class="folder-card">
+                <div class="folder-header">
+                  <mat-icon class="folder-icon">folder_special</mat-icon>
+                  <div class="folder-info">
+                    <span class="folder-name">{{ msg.folderData.folderName }}</span>
+                    <span class="folder-meta">{{ msg.folderData.fileCount }} files • {{ msg.folderData.totalSize }}</span>
+                  </div>
+                </div>
+                <div class="file-list">
+                  <div class="file-item" *ngFor="let file of msg.folderData.files">
+                    <mat-icon class="file-icon">description</mat-icon>
+                    <span class="file-name">{{ file.name }}</span>
+                    <span class="file-size">{{ file.size }}</span>
+                  </div>
+                  <div class="file-more" *ngIf="msg.folderData.fileCount > 5">
+                    + {{ msg.folderData.fileCount - 5 }} more files
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            
+            <div class="bubble-footer">
+              <span class="edited-tag" *ngIf="msg.isEdited">(edited)</span>
+              <span class="timestamp">{{ msg.timestamp | date:'shortTime' }}</span>
+            </div>
+          </div>
+
+          <!-- Hover Actions for Edit / Delete -->
+          <div class="bubble-actions" *ngIf="msg.type === 'text' || !msg.type">
+            <button class="hover-action-btn edit" (click)="startEdit(msg)" title="Edit"><mat-icon>edit</mat-icon></button>
+            <button class="hover-action-btn delete" (click)="deleteMessage(msg.id)" title="Delete"><mat-icon>delete</mat-icon></button>
+          </div>
+          <div class="bubble-actions media" *ngIf="msg.type === 'audio' || msg.type === 'folder'">
+            <button class="hover-action-btn delete" (click)="deleteMessage(msg.id)" title="Delete"><mat-icon>delete</mat-icon></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    
+    <div *ngIf="messages.length === 0" class="empty-state">
+      <mat-icon>forum</mat-icon>
+      <p>Start the conversation</p>
+    </div>
+  </div>
+</div>

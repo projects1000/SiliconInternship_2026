@@ -9,10 +9,6 @@ body{
     background:#0f172a;
 }
 
-/* ==========================
-   PORTFOLIO SECTION
-========================== */
-
 .portfolio-container{
     min-height:100vh;
     padding:40px;
@@ -20,7 +16,7 @@ body{
         135deg,
         #0f172a,
         #1e293b,
-        #312e81
+        #312e81,
         #1e3a8a,
         #7c3aed
     );
@@ -30,12 +26,6 @@ body{
     text-align:center;
     color:white;
     margin-bottom:40px;
-}
-
-.profile-image{
-    width:170px;
-    height:170px;
-    padding:50px 20px;
 }
 
 .profile-image{
@@ -49,30 +39,7 @@ body{
     align-items:center;
     font-size:85px;
     box-shadow:0 0 30px rgba(255,255,255,0.4);
-}
-
-.hero-section h1{
-    margin-top:20px;
-    font-size:45px;
-}
-
-.hero-section h2{
-    color:#38bdf8;
-    margin-top:10px;
-}
-
-.tagline{
-    margin-top:15px;
-    font-size:18px;
-    color:#cbd5e1;
-}
-
-.attendance-btn{
-    margin-top:25px;
-    padding:15px 35px;
-    font-size:90px;
-    box-shadow:0 0 40px rgba(255,255,255,0.8);
-    transition:0.4s;
+    transition:0.3s;
 }
 
 .profile-image:hover{
@@ -112,6 +79,7 @@ body{
     font-size:16px;
     font-weight:600;
     transition:0.3s;
+    color:white;
 }
 
 .btn:hover{
@@ -122,11 +90,10 @@ body{
     background:linear-gradient(
         45deg,
         #06b6d4,
-        #2563eb
+        #2563eb,
         #f97316,
         #facc15
     );
-    color:white;
 }
 
 .project-btn{
@@ -135,7 +102,6 @@ body{
         #06b6d4,
         #2563eb
     );
-    color:white;
 }
 
 .section-card{
@@ -153,10 +119,6 @@ body{
     color:#facc15;
 }
 
-/* ==========================
-   INFO GRID
-========================== */
-
 .info-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -173,10 +135,6 @@ body{
     color:#60a5fa;
     margin-bottom:10px;
 }
-
-/* ==========================
-   STATS
-========================== */
 
 .stats{
     display:grid;
@@ -200,10 +158,6 @@ body{
     color:#f1f5f9;
 }
 
-/* ==========================
-   SKILLS
-========================== */
-
 .skills-grid{
     display:flex;
     flex-wrap:wrap;
@@ -217,10 +171,6 @@ body{
     color:white;
     font-weight:600;
 }
-
-/* ==========================
-   EDUCATION
-========================== */
 
 .education-card{
     background:rgba(255,255,255,0.1);
@@ -236,10 +186,6 @@ body{
     color:#facc15;
 }
 
-/* ==========================
-   TIMELINE
-========================== */
-
 .timeline{
     display:flex;
     flex-direction:column;
@@ -251,10 +197,6 @@ body{
     padding:15px;
     border-radius:10px;
 }
-
-/* ==========================
-   ACHIEVEMENTS
-========================== */
 
 .achievement-list{
     display:grid;
@@ -268,10 +210,6 @@ body{
     border-radius:12px;
 }
 
-/* ==========================
-   CERTIFICATIONS
-========================== */
-
 .certification-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -283,10 +221,6 @@ body{
     padding:18px;
     border-radius:12px;
 }
-
-/* ==========================
-   PROJECTS
-========================== */
 
 .project-grid{
     display:grid;
@@ -305,10 +239,6 @@ body{
     margin-bottom:10px;
 }
 
-/* ==========================
-   CONTACT
-========================== */
-
 .contact-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -322,211 +252,34 @@ body{
     text-align:center;
 }
 
-/* ==========================
-   BILLING MANAGEMENT
-========================== */
-
-.project-container{
-    padding:40px;
-    background:#f5f7fa;
-}
-
-.title{
+.tagline{
+    margin-top:20px;
     text-align:center;
-    color:#1e3a8a;
-    margin-bottom:25px;
+    color:#cbd5e1;
+    font-size:18px;
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
-    gap:25px;
-}
-
-.card{
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.08);
-}
-
-.card h3{
-    margin-bottom:15px;
-    color:#1e3a8a;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th{
-    background:#2563eb;
-    color:white;
-}
-
-th,
-td{
-    border:1px solid #ddd;
-    padding:12px;
-    text-align:center;
-}
-
-input{
-    width:100%;
-    padding:12px;
-    margin-bottom:12px;
-    border:1px solid #ddd;
-    border-radius:8px;
-}
-
-.card button{
-    background:#2563eb;
-    color:white;
+.attendance-btn{
+    display:block;
+    margin:25px auto 0;
+    padding:14px 30px;
     border:none;
-    padding:10px 16px;
-    border-radius:8px;
+    border-radius:30px;
+    background:linear-gradient(
+        45deg,
+        #22c55e,
+        #16a34a
+    );
+    color:white;
     cursor:pointer;
+    font-size:16px;
+    font-weight:600;
+    transition:0.3s;
 }
 
 .attendance-btn:hover{
     transform:scale(1.05);
 }
-
-.card{
-    max-width:1100px;
-    margin:25px auto;
-    padding:30px;
-    border-radius:20px;
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(12px);
-    color:white;
-    box-shadow:0 8px 25px rgba(0,0,0,0.3);
-}
-
-.card h3{
-    color:#38bdf8;
-    margin-bottom:20px;
-    font-size:28px;
-}
-
-.info-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-}
-
-.info-box{
-    padding:20px;
-    border-radius:15px;
-    background:rgba(255,255,255,0.1);
-}
-
-.info-box h4{
-    margin-bottom:10px;
-}
-
-.skills{
-    display:flex;
-    flex-wrap:wrap;
-    gap:15px;
-}
-
-.skills span{
-    padding:12px 18px;
-    background:#2563eb;
-    border-radius:25px;
-    font-weight:bold;
-}
-
-.project{
-    padding:20px;
-    border-radius:15px;
-    background:rgba(255,255,255,0.1);
-    margin-bottom:15px;
-}
-
-.project h4{
-    color:#facc15;
-    margin-bottom:10px;
-}
-
-.achievement-list{
-    padding-left:20px;
-}
-
-.achievement-list li{
-    margin:10px 0;
-}
-
-.contact-buttons{
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-}
-
-.contact-btn{
-    padding:12px 25px;
-    border:none;
-    border-radius:25px;
-    background:#0ea5e9;
-    color:white;
-    cursor:pointer;
-    font-size:16px;
-    transition:0.3s;
-}
-
-.contact-btn:hover{
-    background:#0284c7;
-    transform:translateY(-3px);
-.card button:hover{
-    opacity:0.9;
-}
-}
-
-.notification{
-    background:#dcfce7;
-    color:#166534;
-    padding:12px;
-    border-radius:8px;
-    margin-bottom:10px;
-}
-
-.total{
-    margin-top:15px;
-    color:#dc2626;
-}
-
-.clear-btn{
-    margin-top:15px;
-    background:#dc2626 !important;
-}
-
-/* ==========================
-   DASHBOARD
-
-.dashboard{
-    margin-top:30px;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-}
-
-.box{
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    text-align:center;
-    box-shadow:0 5px 15px rgba(0,0,0,0.08);
-}
-
-.box h4{
-    color:#1e3a8a;
-    margin-bottom:10px;
-}
-
-
-   RESPONSIVE
 
 @media(max-width:768px){
 
@@ -543,9 +296,4 @@ input{
         height:140px;
         font-size:70px;
     }
-
-    .grid{
-        grid-template-columns:1fr;
-    }
 }
-    */

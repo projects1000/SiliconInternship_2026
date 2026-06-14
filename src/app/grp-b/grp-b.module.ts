@@ -18,9 +18,6 @@ import { AttendanceComponent as Member2AttendanceComponent } from './member2/att
 
 import { GrpBRoutingModule } from './grp-b-routing.module';
 
-// ============================================================
-// Gaming PC Builder — Rohan Nayak (24BCSG13) — Grp-B Member2
-// ============================================================
 import { GamingPcBuilderComponent } from './member2/gaming-pc-builder/gaming-pc-builder.component';
 import { ProductCatalogComponent } from './member2/gaming-pc-builder/components/product-catalog/product-catalog.component';
 import { CustomerDetailsComponent } from './member2/gaming-pc-builder/components/customer-details/customer-details.component';
@@ -48,6 +45,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-attendance.component';
+import { BillingSystemModule as Member1BillingSystemModule } from './member1/billing-system/billing-system.module';
+import { Member1WhatsappModule } from './member1/member1-whatsapp/member1-whatsapp.module';
+import { ChatWindowComponent } from './member5/chat-window/chat-window.component';
+import { ModiComponent } from './member5/modi/modi.component';
+import { MeloniComponent } from './member5/meloni/meloni.component';
+import { ProductListComponent } from './member5/product-list/product-list.component';
+import { BillDetailsComponent } from './member5/bill-details/bill-details.component';
+import { NotificationComponent } from './member5/notification/notification.component';
+import { WorkflowComponent } from './member5/workflow/workflow.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +78,13 @@ import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-atten
     CategoryFilterComponent,
     NotificationPanelComponent,
     SavedBillsComponent,
+    ModiComponent,
+    MeloniComponent,
+    ChatWindowComponent,
+    ProductListComponent,
+    BillDetailsComponent,
+    NotificationComponent,
+    WorkflowComponent,
   ],
   imports: [
     CommonModule,
@@ -92,11 +105,10 @@ import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-atten
     MatToolbarModule,
     MatBadgeModule,
     Member3MaterialModule,
-
-    // ✅ Toast Notifications
+    Member1BillingSystemModule,
+    Member1WhatsappModule,
     ToastrModule,
   ],
 })
-
 export class GrpBModule {}
 

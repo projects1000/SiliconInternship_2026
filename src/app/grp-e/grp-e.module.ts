@@ -31,6 +31,32 @@ import { ServicesComponent } from './member8/services/services.component';
 import { ProjectsComponent } from './member8/projects/projects.component';
 import { AttendanceComponent as Member8AttendanceComponent }
 from './member8/attendance/attendance.component';
+import { BillingHomeComponent } from './member8/billing/billing-home/billing-home.component';
+import { CustomerDetailsComponent } from './member8/billing/customer-details/customer-details.component';
+import { ProductListComponent } from './member8/billing/product-list/product-list.component';
+import { NotificationComponent } from './member8/billing/notification/notification.component';
+import { BillingCartComponent } from './member8/billing/billing-cart/billing-cart.component';
+import { AttendanceComponent0001 } from './member2/attendence0001/attendence0001.component';
+import { NitroBillingComponent } from './member7/nitro-billing/nitro-billing.component';
+import { ProductListComponent as Member7ProductListComponent } from './member7/nitro-billing/product-list/product-list.component';
+import { CustomerDetailsComponent as Member7CustomerDetailsComponent } from './member7/nitro-billing/customer-details/customer-details.component';
+import { BillDetailsComponent as Member7BillDetailsComponent } from './member7/nitro-billing/bill-details/bill-details.component';
+import { NotificationComponent as Member7NotificationComponent } from './member7/nitro-billing/notification/notification.component';
+
+import { ChatComponent as Member7ChatComponent } from './member7/chat/chat.component';
+import { UserAComponent as Member7UserAComponent } from './member7/chat/user-a/user-a.component';
+import { UserBComponent as Member7UserBComponent } from './member7/chat/user-b/user-b.component';
+import { ChatWindowComponent as Member7ChatWindowComponent } from './member7/chat/chat-window/chat-window.component';
+import { Billingmanagement0001Component } from './member2/billingmanagement0001/billingmanagement0001.component';
+import { Whatsappclone0001Component } from './member2/whatsappclone0001/whatsappclone0001.component';
+
+import { WhatsappChatComponent } from './member8/whatsapp-chat/whatsapp-chat.component';
+import { WaUserAComponent } from './member8/whatsapp-chat/user-a/user-a.component';
+import { WaUserBComponent } from './member8/whatsapp-chat/user-b/user-b.component';
+import { WaChatWindowComponent } from './member8/whatsapp-chat/chat-window/chat-window.component';
+
+
+
 
 
 
@@ -48,12 +74,37 @@ from './member8/attendance/attendance.component';
     Member9Component,
 
     AttandanceComponent,
+    AttendanceComponent0001,
 
     NavbarComponent,
     HomeComponent,
     ServicesComponent,
     ProjectsComponent,
-    Member8AttendanceComponent
+    Member8AttendanceComponent,
+    BillingHomeComponent,
+    CustomerDetailsComponent,
+    ProductListComponent,
+    NotificationComponent,
+    BillingCartComponent,
+
+    NitroBillingComponent,
+    Member7ProductListComponent,
+    Member7CustomerDetailsComponent,
+    Member7BillDetailsComponent,
+    Member7NotificationComponent,
+
+    Member7ChatComponent,
+    Member7UserAComponent,
+    Member7UserBComponent,
+    Member7ChatWindowComponent,
+    Billingmanagement0001Component,
+    Whatsappclone0001Component,
+
+    WhatsappChatComponent,
+    WaUserAComponent,
+    WaUserBComponent,
+    WaChatWindowComponent,
+
   ],
 
   imports: [
@@ -69,7 +120,7 @@ from './member8/attendance/attendance.component';
     MatSidenavModule,
     MatDatepickerModule,
     MatNativeDateModule,
-     Member1AttendanceComponent,
+    Member1AttendanceComponent,
   ]
 })
 export class GrpEModule { }

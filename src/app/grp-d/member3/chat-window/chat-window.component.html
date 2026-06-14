@@ -1,0 +1,26 @@
+<div class="chat-hub-container">
+  <div class="side-panel">
+    <div class="user-avatar">👨‍💻</div>
+    <h3>Arjun</h3>
+    <textarea [(ngModel)]="msgArjun" placeholder="Type as Arjun..."></textarea>
+    <button (click)="send('Arjun')">SEND</button>
+  </div>
+
+  <div class="message-grid">
+    <div *ngFor="let m of messages" [class]="'msg-bubble ' + m.sender">
+      <strong>{{m.sender}}</strong> <span>{{m.time}}</span>
+      <p>{{m.text}}</p>
+    </div>
+    
+    <div *ngIf="messages.length === 0" style="color: white; padding: 20px; text-align: center;">
+      No messages to display.
+    </div>
+  </div>
+
+  <div class="side-panel">
+    <div class="user-avatar">👩‍🔬</div>
+    <h3>Priya</h3>
+    <textarea [(ngModel)]="msgPriya" placeholder="Type as Priya..."></textarea>
+    <button (click)="send('Priya')">SEND</button>
+  </div>
+</div>

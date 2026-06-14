@@ -1,104 +1,120 @@
-<div class="member-page">
+<div *ngIf="!showBillingDashboard">
+  <div class="member-page">
 
-  <div class="profile-card">
+    <div class="profile-card">
 
-    <div class="profile-header">
+      <div class="profile-header">
 
-      <!-- Add your image path later -->
-      <img src="assets/Gaurav.jpeg" alt="Profile Photo" class="profile-image">
+        <!-- Add your image path later -->
+        <img src="assets/Gaurav.jpeg" alt="Profile Photo" class="profile-image">
 
-      <div class="profile-info">
-        <h1>Gaurav Patra</h1>
+        <div class="profile-info">
+          <h1>Gaurav Patra</h1>
 
-        <h3>Java Full Stack Developer Intern</h3>
+          <h3>Java Full Stack Developer Intern</h3>
 
-        <p class="company">
-          Silicon University Internship Program 2026
-        </p>
+          <p class="company">
+            Silicon University Internship Program 2026
+          </p>
 
-        <p class="location">
-          Bhubaneswar, Odisha, India
-        </p>
+          <p class="location">
+            Bhubaneswar, Odisha, India
+          </p>
+        </div>
+
       </div>
 
-    </div>
-
-    <div class="profile-section">
-      <h2>About</h2>
-
-      <p>
-        Aspiring Java Full Stack Developer with a strong foundation in
-        Core Java, Advanced Java, Servlets, JSP, JDBC, Spring MVC, HTML,
-        CSS, JavaScript, Angular, and MySQL. Through my academic training,
-        I gained experience in building web applications using Java-based
-        technologies and modern front-end frameworks.
-
-        Currently, I am pursuing a Java Full Stack Development Internship
-        to strengthen my backend development skills, understand enterprise
-        application architecture, and gain hands-on experience with
-        industry-standard development practices. I am passionate about
-        creating scalable web applications and continuously expanding my
-        knowledge of full-stack technologies.
-      </p>
-    </div>
-
-    <div class="profile-section">
-      <h2>Internship</h2>
-
-      <div class="experience-card">
-        <h3>Java Full Stack Developer Intern</h3>
-
-        <p class="organization">
-          Silicon University Internship Program
-        </p>
+      <div class="profile-section">
+        <h2>About</h2>
 
         <p>
-          Currently undergoing training in Java Full Stack Development
-          with a focus on Java, Angular, and MySQL. Developing modern
-          web applications while strengthening skills in frontend
-          development, database management, and backend application
-          architecture.
+          Aspiring Java Full Stack Developer with a strong foundation in
+          Core Java, Advanced Java, Servlets, JSP, JDBC, Spring MVC, HTML,
+          CSS, JavaScript, Angular, and MySQL. Through my academic training,
+          I gained experience in building web applications using Java-based
+          technologies and modern front-end frameworks.
+
+          Currently, I am pursuing a Java Full Stack Development Internship
+          to strengthen my backend development skills, understand enterprise
+          application architecture, and gain hands-on experience with
+          industry-standard development practices. I am passionate about
+          creating scalable web applications and continuously expanding my
+          knowledge of full-stack technologies.
         </p>
       </div>
-    </div>
 
-    <div class="profile-section">
-      <h2>Skills</h2>
+      <div class="profile-section">
+        <h2>Internship</h2>
 
-      <div class="skills">
-        <span>Core Java</span>
-        <span>Servlets</span>
-        <span>JSP</span>
-        <span>JDBC</span>
-        <span>Spring MVC</span>
-        <span>Angular</span>
-        <span>TypeScript</span>
-        <span>JavaScript</span>
-        <span>HTML</span>
-        <span>CSS</span>
-        <span>MySQL</span>
-        <span>Git</span>
-        <span>GitHub</span>
+        <div class="experience-card">
+          <h3>Java Full Stack Developer Intern</h3>
+
+          <p class="organization">
+            Silicon University Internship Program
+          </p>
+
+          <p>
+            Currently undergoing training in Java Full Stack Development
+            with a focus on Java, Angular, and MySQL. Developing modern
+            web applications while strengthening skills in frontend
+            development, database management, and backend application
+            architecture.
+          </p>
+        </div>
       </div>
-    </div>
 
-    <div class="profile-section">
-      <h2>Education</h2>
+      <div class="profile-section">
+        <h2>Skills</h2>
 
-      <div class="education-card">
-        <h3>Bachelor of Technology</h3>
-
-        <p>
-          Computer Science & Engineering
-        </p>
+        <div class="skills">
+          <span>Core Java</span>
+          <span>Servlets</span>
+          <span>JSP</span>
+          <span>JDBC</span>
+          <span>Spring MVC</span>
+          <span>Angular</span>
+          <span>TypeScript</span>
+          <span>JavaScript</span>
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>MySQL</span>
+          <span>Git</span>
+          <span>GitHub</span>
+        </div>
       </div>
+
+      <div class="profile-section">
+        <h2>Education</h2>
+
+        <div class="education-card">
+          <h3>Bachelor of Technology</h3>
+
+          <p>
+            Computer Science & Engineering
+          </p>
+        </div>
+      </div>
+
+      <button class="attendance-btn" (click)="openAttendanceDashboard()">
+        Open Attendance Management System
+      </button>
+      <br>
+      <button class="billing-btn" (click)="openBillingDashboard()">
+        Open Shopping Management System
+      </button>
+      <br>
+      <button class="chat-btn" (click)="openChatApp()">
+        Open WhatsApp Chat App
+      </button>
+      <br>
+      <button (click)="goBackToGroup()">
+        Go Back to Group C
+      </button>
+
     </div>
 
-    <button (click)="goBackToGroup()">
-      Go Back to Group C
-    </button>
 
   </div>
-
-
 </div>
+<app-shopping-dashboard *ngIf="showBillingDashboard" (backClicked)="closeBillingDashboard()">
+</app-shopping-dashboard>

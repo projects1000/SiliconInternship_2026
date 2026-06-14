@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from './components/product-list/product-list.component';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { Product, ProductListComponent } from './components/product-list/product-list.component';
 import { BillItem } from './components/bill-details/bill-details.component';
-import { Customer } from './components/customer-details/customer-details.component';
+import { Customer, CustomerDetailsComponent } from './components/customer-details/customer-details.component';
 import { BillingService } from './services/billing.service';
 
 export interface SavedBill {
@@ -21,7 +22,7 @@ export interface SavedBill {
   templateUrl: './product-management.component.html',
   styleUrls: ['./product-management.component.css']
 })
-export class ProductManagementComponent implements OnInit {
+export class ProductManagementComponent implements OnInit, OnDestroy {
   selectedItems: BillItem[] = [];
   customerName: string = '';
   mobileNumber: string = '';
@@ -36,7 +37,33 @@ export class ProductManagementComponent implements OnInit {
   isAdmin: boolean = false;
   adminView: 'billing' | 'management' = 'billing';
 
-  displayedColumns: string[] = ['customerName', 'mobileNumber', 'itemsCount', 'subTotal', 'discountAmount', 'grandTotal', 'timestamp'];
+  // Admin Discount feature
+  discountProductName: string = '';
+  discountPercentage: number | null = null;
+  activeDiscounts: { [key: string]: number } = {};
+  showInfoPanel: boolean = false;
+
+  // BehaviorSubjects for data flow using Observables
+  selectedItems$ = new BehaviorSubject<BillItem[]>([]);
+  customerName$ = new BehaviorSubject<string>('');
+  mobileNumber$ = new BehaviorSubject<string>('');
+  isReturningCustomer$ = new BehaviorSubject<boolean>(false);
+
+  private customerSubscription?: Subscription;
+
+  @ViewChild(CustomerDetailsComponent) set customerDetails(component: CustomerDetailsComponent | undefined) {
+    if (this.customerSubscription) {
+      this.customerSubscription.unsubscribe();
+      this.customerSubscription = undefined;
+    }
+    if (component) {
+      this.customerSubscription = component.customerSaved.subscribe(customer => {
+        this.onCustomerSaved(customer);
+      });
+    }
+  }
+
+  displayedColumns: string[] = ['customerName', 'mobileNumber', 'itemsCount', 'subTotal', 'grandTotal', 'timestamp'];
   userDisplayedColumns: string[] = ['name', 'mobile', 'role'];
 
   constructor(
@@ -47,15 +74,23 @@ export class ProductManagementComponent implements OnInit {
   ngOnInit() {
     // Sync state with BillingService
     this.selectedItems = this.billingService.selectedItems;
+    this.selectedItems$.next(this.selectedItems);
     this.savedBills = this.billingService.savedBills;
     this.isDarkMode = this.billingService.isDarkMode;
+    
+    // Subscribe to discounts
+    this.billingService.productDiscounts$.subscribe(discounts => {
+      this.activeDiscounts = discounts;
+    });
     
     // Check if session storage or service indicates we are logged in
     this.isLoggedIn = this.billingService.isLoggedIn || sessionStorage.getItem('isLoggedIn') === 'true';
     if (this.isLoggedIn) {
       this.billingService.isLoggedIn = true;
       this.customerName = this.billingService.customerName || sessionStorage.getItem('customerName') || '';
+      this.customerName$.next(this.customerName);
       this.mobileNumber = this.billingService.mobileNumber || sessionStorage.getItem('mobileNumber') || '';
+      this.mobileNumber$.next(this.mobileNumber);
       this.currentUserRole = this.billingService.currentUserRole || sessionStorage.getItem('role') || 'customer';
       
       this.billingService.customerName = this.customerName;
@@ -73,12 +108,16 @@ export class ProductManagementComponent implements OnInit {
       
       // Auto detect if they have past bills for the returning discount
       this.isReturningCustomer = this.savedBills.some(bill => bill.mobileNumber === this.mobileNumber);
+      this.isReturningCustomer$.next(this.isReturningCustomer);
       this.billingService.isReturningCustomer = this.isReturningCustomer;
     } else {
       this.customerName = '';
+      this.customerName$.next('');
       this.mobileNumber = '';
+      this.mobileNumber$.next('');
       this.isRegistered = false;
       this.isReturningCustomer = false;
+      this.isReturningCustomer$.next(false);
       this.currentUserRole = 'customer';
       this.isAdmin = false;
       this.adminView = 'billing';
@@ -108,7 +147,8 @@ export class ProductManagementComponent implements OnInit {
     
     // Sync with service
     this.billingService.selectedItems = this.selectedItems;
-    this.billingService.sendNotification(`${product.name} added to cart`, 'product');
+    this.selectedItems$.next(this.selectedItems);
+    this.billingService.trackProductAdded(product.name);
   }
 
   onItemRemoved(index: number) {
@@ -120,17 +160,49 @@ export class ProductManagementComponent implements OnInit {
       
       // Sync with service
       this.billingService.selectedItems = this.selectedItems;
+      this.selectedItems$.next(this.selectedItems);
       this.billingService.sendNotification(`${removedItem.name} removed from cart`, 'product');
+    }
+  }
+
+  increaseItemQuantity(index: number) {
+    if (index > -1 && index < this.selectedItems.length) {
+      const updated = [...this.selectedItems];
+      updated[index].qty += 1;
+      updated[index].total = updated[index].qty * updated[index].price;
+      this.selectedItems = updated;
+      this.billingService.selectedItems = this.selectedItems;
+      this.selectedItems$.next(this.selectedItems);
+    }
+  }
+
+  decreaseItemQuantity(index: number) {
+    if (index > -1 && index < this.selectedItems.length) {
+      const updated = [...this.selectedItems];
+      if (updated[index].qty > 1) {
+        updated[index].qty -= 1;
+        updated[index].total = updated[index].qty * updated[index].price;
+        this.selectedItems = updated;
+        this.billingService.selectedItems = this.selectedItems;
+        this.selectedItems$.next(this.selectedItems);
+      } else {
+        // If qty becomes 0, we can remove it entirely
+        this.onItemRemoved(index);
+      }
     }
   }
 
   onCustomerSaved(customer: Customer) {
     // Fallback: This is not used when logged in, but kept for interface completeness
     this.customerName = customer.name;
+    this.customerName$.next(this.customerName);
     this.mobileNumber = customer.mobile;
+    this.mobileNumber$.next(this.mobileNumber);
     this.selectedItems = [];
+    this.selectedItems$.next([]);
     
     this.isReturningCustomer = this.savedBills.some(bill => bill.mobileNumber === customer.mobile);
+    this.isReturningCustomer$.next(this.isReturningCustomer);
     this.isRegistered = true;
     
     // Sync with service
@@ -152,6 +224,10 @@ export class ProductManagementComponent implements OnInit {
     
     // Only reset the active cart, keep customer info logged in
     this.selectedItems = [];
+    this.selectedItems$.next([]);
+
+    // Reset subscription product counter on bill generation
+    this.billingService.resetProductAddedCount();
     
     // Sync with service
     this.billingService.savedBills = this.savedBills;
@@ -159,6 +235,7 @@ export class ProductManagementComponent implements OnInit {
 
     // Check returning status for next time (they will definitely be a returning customer now)
     this.isReturningCustomer = true;
+    this.isReturningCustomer$.next(true);
     this.billingService.isReturningCustomer = true;
   }
 
@@ -225,7 +302,7 @@ export class ProductManagementComponent implements OnInit {
 
   get totalBillAmount(): number {
     const sub = this.subTotal;
-    const discount = this.isReturningCustomer ? sub * 0.10 : 0;
+    const discount = 0; // Discount not given financially
     const taxable = sub - discount;
     return taxable + (taxable * 0.18); // Including 18% GST after discount
   }
@@ -243,10 +320,14 @@ export class ProductManagementComponent implements OnInit {
     this.billingService.isLoggedIn = false;
     this.isLoggedIn = false;
     this.customerName = '';
+    this.customerName$.next('');
     this.mobileNumber = '';
+    this.mobileNumber$.next('');
     this.isRegistered = false;
     this.isReturningCustomer = false;
+    this.isReturningCustomer$.next(false);
     this.selectedItems = [];
+    this.selectedItems$.next([]);
     this.currentUserRole = 'customer';
     this.isAdmin = false;
     this.adminView = 'billing';
@@ -257,6 +338,7 @@ export class ProductManagementComponent implements OnInit {
     this.billingService.isReturningCustomer = false;
     this.billingService.selectedItems = [];
     this.billingService.currentUserRole = 'customer';
+    this.billingService.resetProductAddedCount();
 
     sessionStorage.removeItem('isLoggedIn');
     sessionStorage.removeItem('customerName');
@@ -268,5 +350,30 @@ export class ProductManagementComponent implements OnInit {
 
   goBackToProfile() {
     this.router.navigate(['/grp-a/member6']);
+  }
+
+  // --- Admin Discount Management ---
+  applyDiscount() {
+    if (!this.discountProductName || !this.discountPercentage || this.discountPercentage <= 0) {
+      this.billingService.sendNotification('Please provide a valid product name and discount percentage.', 'product');
+      return;
+    }
+    this.billingService.setProductDiscount(this.discountProductName.trim(), this.discountPercentage);
+    this.discountProductName = '';
+    this.discountPercentage = null;
+  }
+
+  clearAllDiscounts() {
+    this.billingService.clearAllDiscounts();
+  }
+
+  removeDiscount(productName: string) {
+    this.billingService.removeProductDiscount(productName);
+  }
+
+  ngOnDestroy() {
+    if (this.customerSubscription) {
+      this.customerSubscription.unsubscribe();
+    }
   }
 }
