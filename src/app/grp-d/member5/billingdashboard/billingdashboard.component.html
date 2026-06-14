@@ -1,0 +1,165 @@
+<div class="billing-container">
+
+    <!-- HERO SECTION -->
+
+    <div class="hero-section">
+
+        <h1>🎨 Art & Craft Store</h1>
+
+        <p>
+            Handmade Paintings • Resin Art • Bookmarks • Home Decor
+        </p>
+
+    </div>
+
+    <!-- PRODUCTS -->
+
+    <h2 class="section-title">
+        Featured Products
+    </h2>
+
+    <div class="product-grid">
+
+        <div
+        class="product-card"
+        *ngFor="let product of products">
+
+            <img
+            [src]="product.image"
+            [alt]="product.name">
+
+            <h3>
+                {{product.name}}
+            </h3>
+
+            <p class="price">
+                ₹{{product.price}}
+            </p>
+
+            <button
+            (click)="addToCart(product)">
+
+                Add To Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- CART -->
+
+    <div class="cart-card">
+
+        <h2>
+            🛒 My Cart
+        </h2>
+
+        <div
+        *ngIf="cart.length === 0">
+
+            No products added yet.
+
+        </div>
+
+        <div
+        *ngFor="let item of cart"
+        class="cart-item">
+
+            <div>
+
+                <h4>{{item.name}}</h4>
+
+                <p>
+                    ₹{{item.price}}
+                </p>
+
+            </div>
+
+            <div class="quantity-controls">
+
+                <button
+                (click)="decreaseQuantity(item)">
+                    -
+                </button>
+
+                <span>
+                    {{item.quantity}}
+                </span>
+
+                <button
+                (click)="increaseQuantity(item)">
+                    +
+                </button>
+
+            </div>
+
+            <div>
+
+                ₹{{item.price * item.quantity}}
+
+            </div>
+
+            <button
+            class="remove-btn"
+            (click)="removeItem(item)">
+
+                Remove
+
+            </button>
+
+        </div>
+
+        <div class="total">
+
+            Total Amount : ₹{{totalAmount}}
+
+        </div>
+
+        <button
+        class="checkout-btn"
+        (click)="generateBill()">
+
+            Generate Bill
+
+        </button>
+
+    </div>
+
+    <!-- INVOICE -->
+
+    <div
+    class="invoice-card"
+    *ngIf="billGenerated">
+
+        <h2>
+            🧾 Invoice
+        </h2>
+
+        <hr>
+
+        <div
+        *ngFor="let item of cart"
+        class="invoice-item">
+
+            <span>
+                {{item.name}} x {{item.quantity}}
+            </span>
+
+            <span>
+                ₹{{item.price * item.quantity}}
+            </span>
+
+        </div>
+
+        <hr>
+
+        <h3>
+
+            Grand Total : ₹{{totalAmount}}
+
+        </h3>
+
+    </div>
+
+</div>

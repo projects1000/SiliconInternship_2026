@@ -1,0 +1,87 @@
+.navbar{
+
+    background:#2f6f55;
+
+    padding:15px 25px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    border-radius:20px;
+
+    margin:15px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* LOGO */
+
+.logo{
+
+    color:white;
+
+    font-size:32px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+}
+
+/* NAV LINKS */
+
+.nav-links{
+
+    display:flex;
+
+    gap:12px;
+}
+
+/* BUTTONS */
+
+.nav-links button{
+
+    background:transparent;
+
+    border:none;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    padding:12px 22px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    transition:all .3s ease;
+}
+
+/* HOVER EFFECT */
+
+.nav-links button:hover{
+
+    background:#a8d5ba;
+
+    color:#1f5e45;
+
+    transform:translateY(-2px);
+}
+
+/* ACTIVE PAGE */
+
+.nav-links button.active{
+
+    background:#d8f0df;
+
+    color:#1f5e45;
+
+    font-weight:700;
+
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
