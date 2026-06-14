@@ -1,0 +1,72 @@
+<div class="bill-card">
+  <div class="bill-card__header">
+    <div class="bill-card__title">
+      <mat-icon>receipt_long</mat-icon>
+      <div>
+        <h2>Bill Details</h2>
+        <span>{{ billItems.length }} item{{ billItems.length === 1 ? '' : 's' }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bill-card__empty" *ngIf="billItems.length === 0">
+    <mat-icon>shopping_basket</mat-icon>
+    <p>No items in bill yet. Add products from the catalog.</p>
+  </div>
+
+  <div class="bill-items" *ngIf="billItems.length > 0">
+    <article class="bill-item" *ngFor="let item of billItems">
+      <div class="bill-item__thumb" [style.--accent]="item.product.accent">
+        <img [src]="item.product.image" [alt]="item.product.name" class="bill-item__image" />
+      </div>
+
+      <div class="bill-item__info">
+        <strong>{{ item.product.name }}</strong>
+        <span>{{ item.product.category }} · &#8377;{{ item.product.price | number: '1.0-0' }}</span>
+      </div>
+
+      <div class="bill-item__qty">
+        <button type="button" mat-icon-button (click)="decreaseQuantity(item)" aria-label="Decrease quantity">
+          <mat-icon>remove</mat-icon>
+        </button>
+        <span>{{ item.quantity }}</span>
+        <button type="button" mat-icon-button (click)="increaseQuantity(item)" aria-label="Increase quantity">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+
+      <div class="bill-item__total">
+        &#8377;{{ getLineTotal(item) | number: '1.0-0' }}
+      </div>
+
+      <button
+        type="button"
+        mat-icon-button
+        class="bill-item__remove"
+        (click)="removeItem(item.product.id)"
+        aria-label="Remove item">
+        <mat-icon>delete_outline</mat-icon>
+      </button>
+    </article>
+  </div>
+
+  <div class="bill-totals" *ngIf="billItems.length > 0">
+    <div class="bill-totals__row">
+      <span>Subtotal</span>
+      <span>&#8377;{{ billSummary.subtotal | number: '1.0-0' }}</span>
+    </div>
+    <div class="bill-totals__row bill-totals__row--muted" *ngIf="showGst">
+      <span>GST (18%)</span>
+      <span>&#8377;{{ billSummary.gst | number: '1.0-0' }}</span>
+    </div>
+    <div class="bill-totals__grand">
+      <span>Grand Total</span>
+      <strong>&#8377;{{ billSummary.grandTotal | number: '1.0-0' }}</strong>
+    </div>
+  </div>
+
+  <p class="bill-hint" *ngIf="billItems.length > 0 && !customer">
+    <mat-icon>info</mat-icon>
+    Save customer details to enable bill generation.
+  </p>
+</div>

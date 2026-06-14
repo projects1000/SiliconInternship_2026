@@ -1,0 +1,349 @@
+<div class="pm-shell">
+  <aside class="pm-sidebar" aria-label="Dashboard navigation">
+    <div class="pm-sidebar__brand">
+      <div class="pm-sidebar__logo">
+        <mat-icon>hub</mat-icon>
+      </div>
+      <div>
+        <strong>Silicon Internship</strong>
+        <span>Portal 2026</span>
+      </div>
+    </div>
+
+    <nav class="pm-sidebar__nav">
+      <button
+        type="button"
+        class="pm-nav-item"
+        *ngFor="let item of sidebarItems"
+        [class.pm-nav-item--active]="isSidebarActive(item)"
+        (click)="navigateSidebar(item)">
+        <mat-icon>{{ item.icon }}</mat-icon>
+        <span>{{ item.label }}</span>
+        <span class="pm-nav-badge" *ngIf="item.badge">{{ item.badge }}</span>
+      </button>
+    </nav>
+
+    <div class="pm-sidebar__user">
+      <div class="pm-sidebar__avatar">TRM</div>
+      <div>
+        <strong>Tushar R. Muduli</strong>
+        <span>Member3 · Group B</span>
+      </div>
+    </div>
+  </aside>
+
+  <div class="pm-main">
+    <header class="pm-hero">
+      <div class="pm-hero__top">
+        <button mat-stroked-button class="pm-back-btn" (click)="goBackToProfile()">
+          <mat-icon>arrow_back</mat-icon>
+          Back to Profile
+        </button>
+      </div>
+
+      <div class="pm-hero__content">
+        <div class="pm-hero__copy">
+          <span class="pm-hero__eyebrow">Enterprise Billing Workspace</span>
+          <h1>{{ activeView === 'reports' ? 'Sales Reports' : activeView === 'settings' ? 'Store Settings' : 'Product Management' }}</h1>
+          <p *ngIf="activeView === 'catalog'">Browse products, add to cart, save customer details and generate invoice.</p>
+          <p *ngIf="activeView === 'reports'">View catalog analytics, category breakdown, and current billing insights.</p>
+          <p *ngIf="activeView === 'settings'">Configure store preferences, GST, notifications, and billing options.</p>
+        </div>
+
+        <div class="pm-hero__stats">
+          <div class="pm-stat-card">
+            <div class="pm-stat-card__icon pm-stat-card__icon--blue">
+              <mat-icon>inventory_2</mat-icon>
+            </div>
+            <div>
+              <span class="pm-stat-card__label">Products Available</span>
+              <strong>{{ totalProductsAvailable }} Available</strong>
+            </div>
+          </div>
+
+          <div class="pm-stat-card">
+            <div class="pm-stat-card__icon pm-stat-card__icon--purple">
+              <mat-icon>shopping_cart</mat-icon>
+            </div>
+            <div>
+              <span class="pm-stat-card__label">Items in Bill</span>
+              <strong>{{ totalProductsSelected }} Selected</strong>
+            </div>
+          </div>
+
+          <div class="pm-stat-card pm-stat-card--accent">
+            <div class="pm-stat-card__icon pm-stat-card__icon--green">
+              <mat-icon>payments</mat-icon>
+            </div>
+            <div>
+              <span class="pm-stat-card__label">Grand Total</span>
+              <strong>&#8377;{{ billSummary.grandTotal | number: '1.0-0' }}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="pm-body">
+      <ng-container *ngIf="activeView === 'catalog'">
+        <section class="pm-workspace" aria-label="Product catalog and billing">
+          <div class="pm-workspace__catalog">
+            <app-pm-product-list (productAdded)="onProductAdded($event)"></app-pm-product-list>
+          </div>
+
+          <div class="pm-workspace__checkout">
+            <app-pm-customer-details (customerSaved)="onCustomerSaved($event)"></app-pm-customer-details>
+            <app-pm-bill-details
+              [billItems]="billItems"
+              [customer]="customerInfo"
+              [billSummary]="billSummary"
+              [showGst]="settings.showGstOnBill"
+              (quantityChanged)="onQuantityChanged($event)"
+              (itemRemoved)="onItemRemoved($event)">
+            </app-pm-bill-details>
+          </div>
+        </section>
+
+        <section id="activity-section" class="pm-activity" aria-label="Recent activity">
+          <app-pm-notification></app-pm-notification>
+        </section>
+      </ng-container>
+
+      <section class="pm-panel" *ngIf="activeView === 'reports'" aria-label="Sales reports">
+        <div class="pm-panel__header pm-panel__header--row">
+          <div>
+            <h2>Inventory &amp; Billing Reports</h2>
+            <p>Live analytics for your tech catalog, categories, and the current billing session.</p>
+          </div>
+          <button mat-stroked-button class="panel-action-btn" (click)="goToCatalog()">
+            <mat-icon>storefront</mat-icon>
+            Open Catalog
+          </button>
+        </div>
+
+        <div class="report-grid">
+          <div class="report-card report-card--highlight">
+            <mat-icon>storefront</mat-icon>
+            <span>Catalog Value</span>
+            <strong>&#8377;{{ catalogInventoryValue | number: '1.0-0' }}</strong>
+            <small>{{ totalProductsAvailable }} products listed</small>
+          </div>
+
+          <div class="report-card">
+            <mat-icon>trending_up</mat-icon>
+            <span>Average Price</span>
+            <strong>&#8377;{{ averageProductPrice | number: '1.0-0' }}</strong>
+            <small>Per product in catalog</small>
+          </div>
+
+          <div class="report-card">
+            <mat-icon>receipt_long</mat-icon>
+            <span>Current Bill</span>
+            <strong>&#8377;{{ billSummary.grandTotal | number: '1.0-0' }}</strong>
+            <small>{{ totalProductsSelected }} items incl. GST</small>
+          </div>
+
+          <div class="report-card">
+            <mat-icon>person</mat-icon>
+            <span>Customer Status</span>
+            <strong>{{ customerInfo?.name || 'Pending' }}</strong>
+            <small>{{ customerInfo?.mobile || 'No mobile saved' }}</small>
+          </div>
+        </div>
+
+        <div class="report-progress-card">
+          <div class="report-progress-card__copy">
+            <h3>Bill Session Progress</h3>
+            <p>{{ billReadyPercent }}% ready to generate invoice</p>
+          </div>
+          <div class="report-progress-card__bar">
+            <div class="report-progress-card__fill" [style.width.%]="billReadyPercent"></div>
+          </div>
+          <div class="report-progress-card__steps">
+            <span [class.done]="billItems.length > 0">
+              <mat-icon>{{ billItems.length > 0 ? 'check_circle' : 'radio_button_unchecked' }}</mat-icon>
+              Products added
+            </span>
+            <span [class.done]="customerInfo">
+              <mat-icon>{{ customerInfo ? 'check_circle' : 'radio_button_unchecked' }}</mat-icon>
+              Customer saved
+            </span>
+          </div>
+        </div>
+
+        <div class="report-sections">
+          <div class="report-block">
+            <h3>Category Breakdown</h3>
+            <div class="category-bars">
+              <div class="category-bar" *ngFor="let row of categoryReports">
+                <div class="category-bar__label">
+                  <span>{{ row.category }}</span>
+                  <span>{{ row.count }} items · &#8377;{{ row.totalValue | number: '1.0-0' }}</span>
+                </div>
+                <div class="category-bar__track">
+                  <div class="category-bar__fill" [style.width.%]="getCategoryBarPercent(row.totalValue)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="report-block">
+            <h3>Top Priced Products</h3>
+            <div class="top-product-list">
+              <div class="top-product" *ngFor="let product of topProducts; let i = index">
+                <span class="top-product__rank">{{ i + 1 }}</span>
+                <img [src]="product.image" [alt]="product.name" class="top-product__img" />
+                <div class="top-product__info">
+                  <strong>{{ product.name }}</strong>
+                  <span>{{ product.category }}</span>
+                </div>
+                <strong class="top-product__price">&#8377;{{ product.price | number: '1.0-0' }}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="report-block report-block--session" *ngIf="billItems.length > 0">
+          <h3>Current Session Items</h3>
+          <div class="session-table">
+            <div class="session-table__head">
+              <span>Product</span>
+              <span>Qty</span>
+              <span>Line Total</span>
+            </div>
+            <div class="session-table__row" *ngFor="let item of billItems">
+              <span class="session-table__product">
+                <img [src]="item.product.image" [alt]="item.product.name" />
+                {{ item.product.name }}
+              </span>
+              <span>{{ item.quantity }}</span>
+              <span>&#8377;{{ item.product.price * item.quantity | number: '1.0-0' }}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="pm-panel" *ngIf="activeView === 'settings'" aria-label="Store settings">
+        <div class="pm-panel__header">
+          <h2>Store Configuration</h2>
+          <p>Customize shop details, invoice format, notifications, and billing session controls.</p>
+        </div>
+
+        <div class="settings-preview">
+          <div class="settings-preview__icon">
+            <mat-icon>storefront</mat-icon>
+          </div>
+          <div>
+            <strong>{{ settings.shopName }}</strong>
+            <span>Invoice prefix: {{ settings.invoicePrefix }}-001</span>
+          </div>
+        </div>
+
+        <div class="settings-grid">
+          <div class="settings-card">
+            <h3>General</h3>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Shop Name</mat-label>
+              <input matInput [(ngModel)]="settings.shopName" name="shopName" />
+              <mat-icon matPrefix>store</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Invoice Prefix</mat-label>
+              <input matInput [(ngModel)]="settings.invoicePrefix" name="invoicePrefix" />
+              <mat-icon matPrefix>tag</mat-icon>
+              <mat-hint>Used when generating bills (demo)</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>GST Rate (%)</mat-label>
+              <input matInput [value]="settings.gstRate * 100" readonly />
+              <mat-icon matPrefix>percent</mat-icon>
+              <mat-hint>Fixed at 18% for billing calculations</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="settings-card">
+            <h3>Notifications &amp; Display</h3>
+            <div class="settings-toggle">
+              <div>
+                <strong>Toast Notifications</strong>
+                <p>Show snackbar alerts for product, customer, and bill actions.</p>
+              </div>
+              <mat-slide-toggle [(ngModel)]="settings.toastEnabled" name="toastEnabled"></mat-slide-toggle>
+            </div>
+
+            <div class="settings-toggle">
+              <div>
+                <strong>Show GST on Bill</strong>
+                <p>Display GST breakdown in the bill details panel.</p>
+              </div>
+              <mat-slide-toggle [(ngModel)]="settings.showGstOnBill" name="showGstOnBill"></mat-slide-toggle>
+            </div>
+
+            <div class="settings-info">
+              <mat-icon>info</mat-icon>
+              <span>Activity log always records events even when toasts are disabled.</span>
+            </div>
+          </div>
+
+          <div class="settings-card settings-card--danger">
+            <h3>Bill Actions</h3>
+            <p>Clear the current cart and customer details to start a new billing session.</p>
+            <div class="settings-session-stats">
+              <span><strong>{{ totalProductsSelected }}</strong> items in cart</span>
+              <span><strong>{{ customerInfo ? '1' : '0' }}</strong> customer saved</span>
+            </div>
+            <button mat-stroked-button color="warn" class="reset-btn" (click)="resetBill()">
+              <mat-icon>delete_sweep</mat-icon>
+              Reset Current Bill
+            </button>
+          </div>
+        </div>
+
+        <div class="settings-actions">
+          <p class="settings-saved" *ngIf="settingsSavedMessage">{{ settingsSavedMessage }}</p>
+          <button mat-raised-button color="primary" class="save-settings-btn" (click)="saveSettings()">
+            <mat-icon>save</mat-icon>
+            Save Settings
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <footer class="pm-footer" aria-label="Billing summary">
+      <div class="pm-footer__summary">
+        <div class="pm-footer__item">
+          <span class="pm-footer__label">Customer</span>
+          <strong>{{ customerInfo?.name || 'Not saved' }}</strong>
+        </div>
+        <div class="pm-footer__divider"></div>
+        <div class="pm-footer__item">
+          <span class="pm-footer__label">Mobile</span>
+          <strong>{{ customerInfo?.mobile || '—' }}</strong>
+        </div>
+        <div class="pm-footer__divider"></div>
+        <div class="pm-footer__item">
+          <span class="pm-footer__label">Items Selected</span>
+          <strong>{{ totalProductsSelected }}</strong>
+        </div>
+        <div class="pm-footer__divider"></div>
+        <div class="pm-footer__item pm-footer__item--total">
+          <span class="pm-footer__label">Total Amount</span>
+          <strong>&#8377;{{ billSummary.grandTotal | number: '1.2-2' }}</strong>
+          <small>incl. GST</small>
+        </div>
+      </div>
+
+      <button
+        mat-raised-button
+        class="pm-generate-btn"
+        [disabled]="!canGenerateBill()"
+        (click)="generateBill()">
+        <mat-icon>receipt_long</mat-icon>
+        Generate Bill
+        <mat-icon class="pm-generate-btn__arrow">arrow_forward</mat-icon>
+      </button>
+    </footer>
+  </div>
+</div>

@@ -16,4 +16,8 @@ export class Member3Component {
   goToAttendance(): void {
     this.router.navigate(['/grp-b/member3/attendance']);
   }
+
+  goToProductManagement(): void {
+    this.router.navigate(['/grp-b/product-management']);
+  }
 }

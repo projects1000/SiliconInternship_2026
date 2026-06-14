@@ -38,6 +38,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon'; // <-- ADDED THIS CRITICAL LINE
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+// Member3: Product Management components (aliasing to avoid name collisions)
+import { ProductManagementComponent } from './member3/product-management/product-management.component';
+import { ProductListComponent as ProductListMgmtComponent } from './member3/product-management/product-list/product-list.component';
+import { CustomerDetailsComponent as ProductCustomerDetailsComponent } from './member3/product-management/customer-details/customer-details.component';
+import { BillDetailsComponent as BillDetailsMgmtComponent } from './member3/product-management/bill-details/bill-details.component';
+import { NotificationComponent as NotificationMgmtComponent } from './member3/product-management/notification/notification.component';
+import { ChattingComponent } from './member3/chatting/chatting.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -69,6 +76,14 @@ import { WorkflowComponent } from './member5/workflow/workflow.component';
     Member1AttendanceComponent,
     Member2AttendanceComponent,
     Memb6AttendanceComponent,
+
+    // Member3: Product Management
+    ProductManagementComponent,
+    ProductListMgmtComponent,
+    ProductCustomerDetailsComponent,
+    BillDetailsMgmtComponent,
+    NotificationMgmtComponent,
+    ChattingComponent,
 
     // ✅ Gaming PC Builder Components — Rohan Nayak (24BCSG13)
     GamingPcBuilderComponent,
