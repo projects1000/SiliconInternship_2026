@@ -1,0 +1,47 @@
+<div class="checkout-card">
+  <div class="checkout-card__header">
+    <div class="checkout-card__icon">
+      <mat-icon>person_pin</mat-icon>
+    </div>
+    <div>
+      <h2>Customer Details</h2>
+      <p>Enter billing contact information</p>
+    </div>
+  </div>
+
+  <form class="checkout-form" (ngSubmit)="saveCustomer()" novalidate>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Customer Name</mat-label>
+      <input
+        matInput
+        [(ngModel)]="customerName"
+        name="customerName"
+        placeholder="e.g. Rahul Kumar"
+        autocomplete="name" />
+      <mat-icon matPrefix>badge</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Mobile Number</mat-label>
+      <input
+        matInput
+        [(ngModel)]="mobileNumber"
+        name="mobileNumber"
+        placeholder="10-digit mobile number"
+        maxlength="10"
+        inputmode="numeric"
+        autocomplete="tel" />
+      <mat-icon matPrefix>phone_iphone</mat-icon>
+    </mat-form-field>
+
+    <div class="validation-banner" *ngIf="validationMessage" role="alert">
+      <mat-icon>error_outline</mat-icon>
+      <span>{{ validationMessage }}</span>
+    </div>
+
+    <button mat-raised-button color="primary" type="submit" class="save-btn">
+      <mat-icon>save</mat-icon>
+      Save Customer
+    </button>
+  </form>
+</div>
