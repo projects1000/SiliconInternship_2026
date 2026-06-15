@@ -31,7 +31,10 @@ import { UserAyushComponent } from './member3/chat-system/user-ayush/user-ayush.
 import { UserAnshumanComponent } from './member3/chat-system/user-anshuman/user-anshuman.component';
 import { ChatWindowComponent } from './member3/chat-system/chat-window/chat-window.component';
 import { Member8AttendanceComponent } from './member8-attendance/member8-attendance.component';
-
+import { Member8ChatParentComponent } from './member8/chat-system/chat-parent/chat-parent.component';
+import { Member8UserAComponent } from './member8/chat-system/user-a/user-a.component';
+import { Member8UserBComponent }from './member8/chat-system/user-b/user-b.component';
+import { Member8ChatWindowComponent } from './member8/chat-system/chat-window/chat-window.component';
 @NgModule({
   declarations: [
     GrpCComponent,
@@ -45,6 +48,10 @@ import { Member8AttendanceComponent } from './member8-attendance/member8-attenda
     Member9Component,
     Member10Component,
     Member8AttendanceComponent,
+    Member8ChatParentComponent,
+    Member8UserAComponent,
+    Member8UserBComponent,
+    Member8ChatWindowComponent,
     AttendanceComponent,
     Member4attmngComponent,
     Member3AttendanceComponent,
@@ -57,7 +64,9 @@ import { Member8AttendanceComponent } from './member8-attendance/member8-attenda
     ChatParentComponent,
     UserAyushComponent,
     UserAnshumanComponent,
-    ChatWindowComponent
+    ChatWindowComponent,
+
+    
   ],
   imports: [
     CommonModule,
