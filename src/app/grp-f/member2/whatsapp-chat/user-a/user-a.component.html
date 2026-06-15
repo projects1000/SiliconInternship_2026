@@ -1,0 +1,172 @@
+<div class="user-card">
+
+    <div class="user-header">
+
+        <img
+            src="assets/Member-2(group-f)/chat/user-a.jpg"
+            alt="User A">
+
+        <div>
+          <link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+            <input
+  class="name-input"
+  [(ngModel)]="userName"
+  placeholder="Enter User Name">
+
+            <span class="online">
+                ● Online
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="input-section">
+
+  <!-- Message Input -->
+  <input
+    type="text"
+    [(ngModel)]="message"
+    (input)="onTyping()"
+    placeholder="Type message">
+
+  <!-- Emoji Button -->
+  <div class="emoji-section">
+
+    <button
+      (click)="showEmojiPicker=!showEmojiPicker">
+
+      😊
+
+    </button>
+
+  </div>
+
+  <!-- Emoji Picker -->
+  <div
+    *ngIf="showEmojiPicker"
+    class="emoji-picker">
+
+    <span
+      *ngFor="let emoji of emojis"
+      (click)="addEmoji(emoji)">
+
+      {{emoji}}
+
+    </span>
+
+  </div>
+
+  <!-- MEDIA BUTTONS START -->
+
+  <div class="media-actions">
+
+    <!-- IMAGE -->
+
+    <label class="media-btn">
+
+      🖼️
+
+      <input
+        type="file"
+        accept="image/*"
+        hidden
+        (change)="uploadImage($event)">
+
+    </label>
+
+    <!-- VIDEO -->
+
+    <label class="media-btn">
+
+      🎥
+
+      <input
+        type="file"
+        accept="video/*"
+        hidden
+        (change)="uploadVideo($event)">
+
+    </label>
+
+    <!-- AUDIO -->
+
+    <label class="media-btn">
+
+      
+
+      <button
+
+       (click)="recordVoice()">
+
+       {{ isRecording ? '⏹️' : '🎤' }}
+
+       </button>
+       </label>
+
+    <!-- DOCUMENT -->
+
+    <label class="media-btn">
+
+      📄
+
+      <input
+        type="file"
+        hidden
+        (change)="uploadFile($event)">
+
+    </label>
+
+    <!-- CAMERA -->
+
+    <label class="media-btn">
+
+  <button
+    type="button"
+    (click)="openCamera()">
+
+    📷
+
+  </button>
+
+</label>
+
+      
+
+  </div>
+
+  <!-- MEDIA BUTTONS END -->
+<div
+  *ngIf="showCamera"
+  class="camera-box">
+
+  <video
+    id="cameraVideoA"
+    autoplay
+    playsinline>
+
+  </video>
+
+  <button
+    class="capture-btn"
+    (click)="captureFromCamera()">
+
+    📸 Capture Photo
+
+  </button>
+
+</div>
+  <button
+    (click)="sendMessage()">
+
+    <i class="fa fa-paper-plane"></i>
+    Send
+
+  </button>
+
+</div>
+        
+
+    
