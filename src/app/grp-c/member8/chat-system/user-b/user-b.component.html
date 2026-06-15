@@ -1,0 +1,29 @@
+<div class="user-card user-b">
+
+  <div class="profile">
+    <div class="avatar-wrapper">
+        <img src="https://i.pravatar.cc/150?img=12">
+        <span class="online-dot"></span>
+    </div>
+
+    <div>
+      <h3>Sohan</h3>
+      <span>Active now</span>
+    </div>
+  </div>
+
+  <div class="input-box">
+
+    <input
+      [(ngModel)]="messageText"
+        (input)="onTyping()"
+      placeholder="Type a message..."
+    >
+
+    <button (click)="sendMessage()">
+      ➤
+    </button>
+
+  </div>
+
+</div>

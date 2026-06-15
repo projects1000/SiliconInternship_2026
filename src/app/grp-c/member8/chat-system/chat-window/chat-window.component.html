@@ -1,0 +1,80 @@
+<div class="chat-window">
+
+  <!-- Header -->
+
+  <div class="chat-header">
+
+    <div>
+
+      <h2>Chat Room</h2>
+
+      <span>
+        {{messages.length}} messages
+      </span>
+
+    </div>
+   <span>{{currentTime | date:'shortTime'}}</span>
+
+    <button
+      class="clear-btn"
+      (click)="clearChat()">
+
+      🗑 Clear
+
+    </button>
+
+  </div>
+
+  <!-- Messages -->
+   <div
+    class="empty-chat"
+     *ngIf="messages.length === 0">💬 Start a conversation
+  </div>
+  <div #chatContainer class="messages-container">
+    <div
+      *ngFor="let msg of messages"
+      [ngClass]="{
+      'sent': msg.sender === 'Debashis',
+      'received': msg.sender === 'Sohan'
+    }"
+      class="message-bubble">
+       <div class="tick">✓✓</div>
+
+      <div class="message-top">
+
+        <strong>
+          {{msg.sender}}
+        </strong>
+
+        <small>
+          {{msg.timestamp}}
+        </small>
+
+      </div>
+
+      <div class="message-text">
+
+        {{msg.text}}
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="typing-indicator" *ngIf="typingUser">
+    ● ● ● {{typingUser}} is typing...
+  </div>
+
+  <!-- Footer -->
+
+  <div class="chat-footer">
+
+    LAST MESSAGE:
+
+    <span>
+      "{{lastMessage}}"
+    </span>
+
+  </div>
+
+</div>
