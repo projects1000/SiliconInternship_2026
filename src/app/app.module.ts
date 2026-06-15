@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { HomeComponents } from './home/home.component';
+import { HomeComponent as HomeComponents } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -34,7 +34,7 @@ import { MatDividerModule } from '@angular/material/divider';
   declarations: [
     AppComponent,
     NavBarComponent,
-    HomeComponent,
+    HomeComponents,
     
   ],
 
