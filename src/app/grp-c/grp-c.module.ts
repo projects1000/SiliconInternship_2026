@@ -36,12 +36,10 @@ import { UserAyushComponent } from './member3/chat-system/user-ayush/user-ayush.
 import { UserAnshumanComponent } from './member3/chat-system/user-anshuman/user-anshuman.component';
 import { ChatWindowComponent } from './member3/chat-system/chat-window/chat-window.component';
 import { Member8AttendanceComponent } from './member8-attendance/member8-attendance.component';
-<<<<<<< HEAD
 import { Member8ChatParentComponent } from './member8/chat-system/chat-parent/chat-parent.component';
 import { Member8UserAComponent } from './member8/chat-system/user-a/user-a.component';
 import { Member8UserBComponent }from './member8/chat-system/user-b/user-b.component';
 import { Member8ChatWindowComponent } from './member8/chat-system/chat-window/chat-window.component';
-=======
 
 import { AttendanceDashboardComponent } from './member2/attendance-dashboard/attendance-dashboard.component';
 
@@ -67,7 +65,6 @@ import { BillingSystemMember4Module } from './member4/billingsystem-member4/bill
 
 
 
->>>>>>> 7a5c3f7ee2d2bc88a6dd572c3a7ad8fbfb1cc62e
 @NgModule({
   declarations: [
     GrpCComponent,
@@ -101,9 +98,9 @@ import { BillingSystemMember4Module } from './member4/billingsystem-member4/bill
     Member4attmngComponent,
     Member3AttendanceComponent,
     ProductManagementComponent,
-   Member9UserAComponent,
-Member9UserBComponent,
-Member9ChatWindowComponent,
+    Member9UserAComponent,
+    Member9UserBComponent,
+    Member9ChatWindowComponent,
     ChatbotComponent,
     BillingParentComponent,
     ProductListComponent,
@@ -114,12 +111,7 @@ Member9ChatWindowComponent,
     UserAyushComponent,
     UserAnshumanComponent,
     ChatWindowComponent,
-<<<<<<< HEAD
-
-=======
->>>>>>> 7a5c3f7ee2d2bc88a6dd572c3a7ad8fbfb1cc62e
-    
-  ],
+],
   imports: [
     CommonModule,
     GrpCRoutingModule,
