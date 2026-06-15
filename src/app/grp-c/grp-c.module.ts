@@ -102,7 +102,8 @@ Member9ChatWindowComponent,
     ChatParentComponent,
     UserAyushComponent,
     UserAnshumanComponent,
-    ChatWindowComponent
+    ChatWindowComponent,
+    
   ],
   imports: [
     CommonModule,
