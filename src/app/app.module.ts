@@ -29,7 +29,15 @@ import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, HomeComponent],
+
+
+  declarations: [
+    AppComponent,
+    NavBarComponent,
+    HomeComponent,
+    
+  ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,

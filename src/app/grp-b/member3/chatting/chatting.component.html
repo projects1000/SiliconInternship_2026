@@ -1,0 +1,200 @@
+<div class="chat-shell">
+  <div class="chat-bg-orb chat-bg-orb--1"></div>
+  <div class="chat-bg-orb chat-bg-orb--2"></div>
+  <div class="chat-bg-orb chat-bg-orb--3"></div>
+
+  <aside class="chat-sidebar" aria-label="Dashboard navigation">
+    <div class="chat-sidebar__brand">
+      <div class="chat-sidebar__logo">
+        <mat-icon>hub</mat-icon>
+      </div>
+      <div>
+        <strong>Silicon Internship</strong>
+        <span>Portal 2026</span>
+      </div>
+    </div>
+
+    <nav class="chat-sidebar__nav">
+      <button
+        type="button"
+        class="chat-nav-item"
+        *ngFor="let item of sidebarItems"
+        [class.chat-nav-item--active]="isSidebarActive(item)"
+        (click)="navigateSidebar(item)">
+        <mat-icon>{{ item.icon }}</mat-icon>
+        <span>{{ item.label }}</span>
+        <span class="chat-nav-badge" *ngIf="item.badge">{{ item.badge }}</span>
+      </button>
+    </nav>
+
+    <div class="chat-sidebar__user">
+      <div class="chat-sidebar__avatar">TRM</div>
+      <div>
+        <strong>Tushar R. Muduli</strong>
+        <span>Member3 · Group B</span>
+      </div>
+    </div>
+  </aside>
+
+  <div class="chat-main">
+    <header class="chat-hero">
+      <div class="chat-hero__top">
+        <button mat-stroked-button class="chat-back-btn" (click)="goBackToProfile()">
+          <mat-icon>arrow_back</mat-icon>
+          Back to Profile
+        </button>
+      </div>
+
+      <div class="chat-hero__content">
+        <div class="chat-hero__copy">
+          <span class="chat-hero__eyebrow">Chatting Window</span>
+          <h1>User 1 ↔ User 2</h1>
+          <p>Type from either side — fully manual, no auto-replies. Each user has a dedicated input panel.</p>
+        </div>
+
+        <div class="chat-hero__stats">
+          <div class="chat-stat-card chat-stat-card--blue">
+            <div class="chat-stat-card__icon"><mat-icon>person</mat-icon></div>
+            <div>
+              <span class="chat-stat-card__label">User 1</span>
+              <strong>Left Panel</strong>
+            </div>
+          </div>
+          <div class="chat-stat-card chat-stat-card--purple">
+            <div class="chat-stat-card__icon"><mat-icon>person</mat-icon></div>
+            <div>
+              <span class="chat-stat-card__label">User 2</span>
+              <strong>Right Panel</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="chat-body">
+      <div class="chat-arena">
+        <!-- User 1 Panel -->
+        <aside class="user-panel user-panel--one" aria-label="User 1 controls">
+          <div class="user-panel__card">
+            <div class="user-panel__glow user-panel__glow--blue"></div>
+            <div class="user-panel__avatar user-panel__avatar--blue">U1</div>
+            <h2>User 1</h2>
+            <span class="user-panel__status">
+              <span class="status-dot"></span> Online
+            </span>
+            <p class="user-panel__hint">Messages appear on the left</p>
+          </div>
+
+          <div class="user-panel__composer">
+            <label for="user1-input">User 1 message</label>
+            <textarea
+              id="user1-input"
+              class="user-panel__input"
+              [(ngModel)]="draftUser1"
+              (keydown)="onKeyDown($event, userOneId)"
+              rows="3"
+              placeholder="Type as User 1..."></textarea>
+            <button
+              type="button"
+              class="user-panel__send user-panel__send--blue"
+              [disabled]="!draftUser1.trim()"
+              (click)="sendMessage(userOneId)">
+              <mat-icon>send</mat-icon>
+              Send as User 1
+            </button>
+          </div>
+        </aside>
+
+        <!-- Center Thread -->
+        <section class="thread-panel" aria-label="Chat conversation">
+          <div class="thread-panel__header">
+            <div class="thread-panel__title">
+              <mat-icon>forum</mat-icon>
+              <span>Live Conversation</span>
+            </div>
+            <mat-form-field appearance="outline" class="thread-search">
+              <mat-label>Search</mat-label>
+              <mat-icon matPrefix>search</mat-icon>
+              <input
+                matInput
+                [value]="searchInput"
+                (input)="onSearchChange($any($event.target).value)"
+                placeholder="Filter messages..." />
+              <button
+                mat-icon-button
+                matSuffix
+                *ngIf="searchInput"
+                type="button"
+                aria-label="Clear search"
+                (click)="onSearchChange('')">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+
+          <div class="thread-messages" #messagesContainer>
+            <ng-container *ngIf="filteredMessages$ | async as messages">
+              <div class="thread-empty" *ngIf="messages.length === 0">
+                <div class="thread-empty__orb"></div>
+                <mat-icon>chat_bubble_outline</mat-icon>
+                <h3>{{ searchInput ? 'No messages found' : 'Start chatting' }}</h3>
+                <p *ngIf="searchInput">Try another search term.</p>
+                <p *ngIf="!searchInput">Use the User 1 or User 2 panels to send your first message.</p>
+              </div>
+
+              <div
+                class="msg-row"
+                *ngFor="let message of messages; trackBy: trackByMessageId"
+                [class.msg-row--user1]="isUserOneMessage(message)"
+                [class.msg-row--user2]="!isUserOneMessage(message)"
+                [@messageEnter]>
+                <div class="msg-bubble">
+                  <span class="msg-bubble__sender">{{ message.sender }}</span>
+                  <p class="msg-bubble__text">{{ message.text }}</p>
+                  <time class="msg-bubble__time">{{ formatTimestamp(message.timestamp) }}</time>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="thread-footer">
+            <mat-icon>info_outline</mat-icon>
+            <span><kbd>Enter</kbd> to send · <kbd>Shift</kbd>+<kbd>Enter</kbd> for new line</span>
+          </div>
+        </section>
+
+        <!-- User 2 Panel -->
+        <aside class="user-panel user-panel--two" aria-label="User 2 controls">
+          <div class="user-panel__card">
+            <div class="user-panel__glow user-panel__glow--purple"></div>
+            <div class="user-panel__avatar user-panel__avatar--purple">U2</div>
+            <h2>User 2</h2>
+            <span class="user-panel__status">
+              <span class="status-dot status-dot--purple"></span> Online
+            </span>
+            <p class="user-panel__hint">Messages appear on the right</p>
+          </div>
+
+          <div class="user-panel__composer">
+            <label for="user2-input">User 2 message</label>
+            <textarea
+              id="user2-input"
+              class="user-panel__input"
+              [(ngModel)]="draftUser2"
+              (keydown)="onKeyDown($event, userTwoId)"
+              rows="3"
+              placeholder="Type as User 2..."></textarea>
+            <button
+              type="button"
+              class="user-panel__send user-panel__send--purple"
+              [disabled]="!draftUser2.trim()"
+              (click)="sendMessage(userTwoId)">
+              <mat-icon>send</mat-icon>
+              Send as User 2
+            </button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>

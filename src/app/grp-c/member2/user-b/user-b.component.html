@@ -1,0 +1,18 @@
+<div class="user-card">
+
+    <h2>🌸 Juliet</h2>
+
+    <p class="online">
+        🟢 Online
+    </p>
+
+    <input type="text" placeholder="Enter Message" [(ngModel)]="message" (input)="typing()"
+        (keyup.enter)="sendMessage()">
+
+    <br><br>
+
+    <button (click)="sendMessage()">
+        Send
+    </button>
+
+</div>
