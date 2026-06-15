@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { GrpBComponent } from './grp-b/grp-b.component';
-import { Member1Component } from './member1/member1.component';
+import { Member1Component } from '../grp-b/member1/member1.component';
 import { Member2Component } from './member2/member2.component';
 import { Member3Component } from './member3/member3.component';
 import { AttendanceComponent as Member3AttendanceComponent } from './member3/attendance/attendance.component';
