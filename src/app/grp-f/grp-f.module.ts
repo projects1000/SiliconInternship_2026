@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,20 +9,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-<<<<<<< HEAD
+import { MatNativeDateModule, MatRippleModule, MatCommonModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
-import { GrpFRoutingModule } from './grp-f-routing.module';
-=======
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatRippleModule } from '@angular/material/core';
->>>>>>> b84a771ebef0a3c2c011496eb1cceb62a05c5705
 
+import { GrpFRoutingModule } from './grp-f-routing.module';
 import { GrpFComponent } from './grp-f/grp-f.component';
 
 import { Member1Component } from './member1/member1.component';
@@ -53,13 +48,11 @@ import { ChatWindowComponent } from './member3/chat-window/chat-window.component
 import { BillingSystemComponent } from './member3/billing-system/billing-system.component';
 import { ProductListComponent } from './member3/product-list/product-list.component';
 import { CustomerComponent } from './member3/customer/customer.component';
-import { BillingComponent } from './member3/billing/billing.component';
+import { BillingComponent as Member3BillingComponent } from './member3/billing-system/billing.component';
 import { Member6AttendanceComponent } from './member6-attendance/member6-attendance.component';
 import { Member6ChatComponent } from './member6-chat/member6-chat.component';
-import { AttendanceComponent } from './member5/attendance/attendance.component';
 import { Member10AttendanceDashboardComponent } from './member10/member10-attendance-dashboard/member10-attendance-dashboard.component';
-import { BillingComponent } from './member10/billing/billing.component';
-import { GrpFRoutingModule } from './grp-f-routing.module';
+import { BillingComponent as Member10BillingComponent } from './member10/billing/billing.component';
 
 @NgModule({
   declarations: [
@@ -95,17 +88,15 @@ import { GrpFRoutingModule } from './grp-f-routing.module';
     CustomerComponent,
     Member6AttendanceComponent,
     Member6ChatComponent,
-    AttendanceComponent,
     Member10AttendanceDashboardComponent,
-    BillingComponent
+    Member3BillingComponent,
+    Member10BillingComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     GrpFRoutingModule,
-
-    GrpFRoutingModule,
-    FormsModule,
     MatIconModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -114,11 +105,12 @@ import { GrpFRoutingModule } from './grp-f-routing.module';
     MatSidenavModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSnackBarModule
+    MatCommonModule,
+    MatSnackBarModule,
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
-    MatSnackBarModule,
+    MatSelectModule,
     MatTooltipModule,
     MatRippleModule
   ]
