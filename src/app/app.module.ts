@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponents } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
