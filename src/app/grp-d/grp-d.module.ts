@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 // Routing
-import { GrpDRoutingModule } from './grp-d-routing.module';
 
 // Layout & Members
 import { GrpDComponent } from './grp-d/grp-d.component';
@@ -90,7 +89,7 @@ import { WhatsappComponent } from './member5/whatsapp/whatsapp.component';
     ProfileComponent,
     AttendanceSComponent,
     BillingdashboardComponent,
-    WhatsappComponent
+    WhatsappComponent,
     UserAComponent,
     UserBComponent,
     Member1Chat,
