@@ -1,0 +1,20 @@
+<div class="cake-page">
+
+  <div class="cake-card" *ngFor="let item of items">
+
+    <img [src]="item.image"alt="img" [alt]="item.name">
+
+    <div class="cake-info">
+      <h3>{{ item.name }}</h3>
+      <p>${{ item.price.toFixed(2) }}</p>
+    </div>
+
+    <div class="cake-actions">
+      <button (click)="addToCart(item)">−</button>
+<span (click)="addToCart(item)">ADD</span>
+<button (click)="addToCart(item)">+</button>
+    </div>
+
+  </div>
+
+</div>

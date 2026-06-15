@@ -1,21 +1,75 @@
 <section class="panel">
+
   <h2>Customer Details</h2>
 
+  <!-- Customer Name -->
   <label>
     Customer Name
-    <input type="text" [(ngModel)]="name" placeholder="Enter customer name">
+
+    <input
+      type="text"
+      [(ngModel)]="name"
+      placeholder="Enter customer name">
+
   </label>
 
+  <!-- Mobile -->
   <label>
     Mobile Number
-    <input type="tel" [(ngModel)]="mobile" placeholder="Enter mobile number">
   </label>
 
+  <div class="phone-group">
+
+    <select [(ngModel)]="selectedCountry">
+
+      <option
+        *ngFor="let country of countryCodes"
+        [ngValue]="country">
+
+        {{ country.code }}
+
+      </option>
+
+    </select>
+
+    <input
+      type="tel"
+      [(ngModel)]="mobile"
+      [attr.maxlength]="selectedCountry.length"
+      placeholder="Enter mobile number"
+      (keypress)="allowOnlyNumbers($event)"
+      (input)="validatePhone()">
+
+  </div>
+
+  <div
+    class="error"
+    *ngIf="phoneError">
+
+    {{ phoneError }}
+
+  </div>
+
+  <!-- Address -->
   <label>
+
     Saved Address
-    <textarea rows="3" [(ngModel)]="address" placeholder="Enter saved address"></textarea>
+
+    <textarea
+      rows="3"
+      [(ngModel)]="address"
+      placeholder="Enter saved address">
+
+    </textarea>
+
   </label>
 
-  <button type="button" (click)="saveCustomer()">Save Customer</button>
-</section>
+  <button
+    type="button"
+    (click)="saveCustomer()">
 
+    Save Customer
+
+  </button>
+
+</section>

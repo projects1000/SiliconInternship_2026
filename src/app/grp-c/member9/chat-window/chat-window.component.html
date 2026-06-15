@@ -1,0 +1,28 @@
+<div class="chat-box">
+
+  <h2>Chat History</h2>
+
+  <div
+    *ngFor="let msg of messages"
+    class="message"
+  >
+
+    <strong>{{msg.sender}}</strong>
+
+    <p>{{msg.text}}</p>
+
+    <small>{{msg.time}}</small>
+
+  </div>
+
+  <hr>
+
+  <p>Total Messages: {{messages.length}}</p>
+
+  <p>Last Message: {{lastMessage}}</p>
+
+  <button (click)="clearChat()">
+    Clear Chat
+  </button>
+
+</div>

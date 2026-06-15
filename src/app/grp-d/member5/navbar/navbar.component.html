@@ -1,0 +1,41 @@
+<nav class="navbar">
+
+    <div class="logo">
+        🌿 Silicon Internship 2026
+    </div>
+
+    <div class="nav-links">
+
+        <button
+            [class.active]="selectedPage === 'home'"
+            (click)="changePage('home')">
+            Home
+        </button>
+
+        <button
+            [class.active]="selectedPage === 'profile'"
+            (click)="changePage('profile')">
+            Profile
+        </button>
+
+        <button
+            [class.active]="selectedPage === 'attendance'"
+            (click)="changePage('attendance')">
+            Attendance
+        </button>
+
+        <button
+            [class.active]="selectedPage === 'billing'"
+            (click)="changePage('billing')">
+            Billing
+        </button>
+
+        <button
+            [class.active]="selectedPage === 'whatsapp'"
+            (click)="changePage('whatsapp')">
+            WhatsApp
+        </button>
+
+    </div>
+
+</nav>

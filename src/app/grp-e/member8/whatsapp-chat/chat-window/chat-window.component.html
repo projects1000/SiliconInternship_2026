@@ -1,0 +1,29 @@
+<div class="chat-box">
+  <div class="chat-header">
+    <span class="back-dot"></span>
+    <h3>WhatsApp Chat</h3>
+    <button class="clear-btn" (click)="clearChat()">Clear</button>
+  </div>
+
+  <div class="chat-feed" #scrollContainer>
+    <div *ngIf="messages.length === 0" class="empty-feed">
+      Say hi from Aman or Priya 👋
+    </div>
+
+    <div *ngFor="let msg of messages" class="msg-row" [ngClass]="msg.sender === 'Aman' ? 'left' : 'right'">
+      <div class="bubble" [ngClass]="msg.sender === 'Aman' ? 'bubble-a' : 'bubble-b'">
+        <div class="bubble-sender">{{ msg.sender }}</div>
+        <div class="bubble-text">{{ msg.text }}</div>
+        <div class="bubble-time">{{ msg.timestamp | date:'shortTime' }}</div>
+      </div>
+    </div>
+    <div *ngIf="typingUser" class="msg-row" [ngClass]="typingUser === 'Aman' ? 'left' : 'right'">
+      <div class="bubble typing-bubble" [ngClass]="typingUser === 'Aman' ? 'bubble-a' : 'bubble-b'">
+        <div class="bubble-sender">{{ typingUser }}</div>
+        <div class="typing-dots">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

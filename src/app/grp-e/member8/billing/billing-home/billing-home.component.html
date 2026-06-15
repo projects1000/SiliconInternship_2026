@@ -1,70 +1,108 @@
 <section class="billing-page">
+
+  <!-- HEADER -->
   <header class="billing-header">
+
     <div>
-      <p class="eyebrow">Billing Section</p>
       <h1>Billing Home</h1>
-      <p class="subtitle">Select the saved customer to view billing activity.</p>
     </div>
 
-    <nav class="billing-nav">
-      <button class="cart-button" type="button" (click)="openCart.emit()">
-        Cart
-        <strong>{{ totals.totalItems }}</strong>
+    <div class="billing-nav">
+
+      <button class="cart-button" (click)="openCart.emit()">
+        🛒 Cart ({{ totals.totalItems }})
       </button>
 
-      <button class="exit-button" type="button" (click)="exitBilling.emit()">
-        Exit
+      <button class="exit-button" (click)="exitBilling.emit()">
+        🚪 Exit
       </button>
-    </nav>
+
+    </div>
+
   </header>
 
-  <section
-    class="customer-summary"
-    *ngIf="customer; else noCustomer"
-    [class.active]="customerActivityOpen"
-    tabindex="0"
-    (click)="openCustomerActivity()"
-    (keydown.enter)="openCustomerActivity()">
+  <!-- CUSTOMER FORM MODAL -->
+  <div *ngIf="showCustomerForm" class="modal-overlay">
+    <div class="modal-box">
+
+      <app-customer-details
+        [customer]="null"
+        (customerSaved)="saveCustomer($event)">
+      </app-customer-details>
+
+      <button class="btn-default" (click)="closeCustomerForm()">
+        Close
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ACTIVE CUSTOMER -->
+  <section *ngIf="customer" class="customer-summary">
+
     <div>
-      <span>Customer Name</span>
       <strong>{{ customer.name }}</strong>
     </div>
+
     <div>
-      <span>Mobile Number</span>
       <strong>{{ customer.mobile }}</strong>
     </div>
+
     <div>
-      <span>Saved Address</span>
       <strong>{{ customer.address }}</strong>
     </div>
-    <div class="open-hint">
-      <span>Status</span>
-      <strong>{{ customerActivityOpen ? 'Activity Open' : 'Click to View Activity' }}</strong>
+
+    <div class="actions">
+      <button class="btn-default" (click)="openCustomerActivity()">
+        Open Activity
+      </button>
+       <button class="signout-btn" (click)="signOutCustomer()">
+    Sign Out
+  </button>
     </div>
+
   </section>
 
-  <ng-template #noCustomer>
-    <app-customer-details
-      [customer]="customer"
-      (customerSaved)="saveCustomer($event)">
-    </app-customer-details>
-  </ng-template>
+  <!-- SAVED CUSTOMERS -->
+  <div class="saved-customers">
 
-  <section class="activity-hint" *ngIf="customer && !customerActivityOpen">
-    Your saved customer is ready. Click the customer card above to open products, bill activity, and cart actions.
-  </section>
+    <h3>Saved Customers</h3>
 
-  <div class="billing-grid" *ngIf="customerActivityOpen">
-    <app-customer-details
-      [customer]="customer"
-      (customerSaved)="saveCustomer($event)">
-    </app-customer-details>
+    <div
+      class="customer-card"
+      *ngFor="let cust of customers"
+      (click)="selectCustomer(cust)"
+      [class.active]="cust.id === customer?.id">
+
+      <div>
+        <p><b>{{ cust.name }}</b></p>
+        <p>{{ cust.mobile }}</p>
+      </div>
+
+      <button class="delete-btn"
+        (click)="deleteCustomer(cust.id); $event.stopPropagation()">
+        Delete
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- PRODUCT SECTION -->
+  <div *ngIf="customerActivityOpen" class="product-section">
 
     <app-product-list
       [customerSaved]="!!customer"
       (productAdded)="addProduct($event)">
     </app-product-list>
-  </div>
 
+  </div>
+<!-- ADD CUSTOMER BUTTON -->
+  <div class="top-actions center">
+  <button class="btn-default" (click)="openCustomerForm()">
+    + Add Customer
+  </button>
+</div>
   <app-notification></app-notification>
+
 </section>

@@ -17,6 +17,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 const MATERIAL_MODULES = [
   CommonModule,
@@ -36,7 +37,8 @@ const MATERIAL_MODULES = [
   MatDividerModule,
   MatSnackBarModule,
   MatProgressBarModule,
-  MatSortModule
+  MatSortModule,
+  MatSlideToggleModule
 ];
 
 @NgModule({

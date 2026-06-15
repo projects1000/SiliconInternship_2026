@@ -1,9 +1,137 @@
-<div class="member-page">
+<div class="member2-container">
+  <div class="content">
+    <!-- Back Button -->
+    <div class="top-bar">
+      <button class="back-btn" (click)="goBackToGroup()">
+        ← Back to Group E
+      </button>
+    </div>
 
-  <h1>Member 2</h1>
+    <div class="content">
+      <div class="left">
+        <h1>Hi, I'm <span>Maniket Pradhan</span></h1>
 
-  <button (click)="goBackToGroup()">
-    Go back to Group E
-  </button>
+        <h2>Angular Developer</h2>
 
+        <p>
+          Passionate about building modern Angular applications with clean UI,
+          routing and reusable components.
+        </p>
+
+        <div class="buttons">
+          <button class="btn-primary" (click)="goToAttendance()">
+            Attendance Dashboard
+          </button>
+
+          <button class="btn-primary" (click)="goToBilling()">
+            Billing Management System
+          </button>
+
+          <button class="btn-primary" (click)="goToWhatsAppClone()">
+            WhatsApp Clone
+          </button>
+
+          <button class="btn-secondary" (click)="scrollToSection('about')">
+            About Me
+          </button>
+
+          <button class="btn-secondary" (click)="scrollToSection('skills')">
+            View Skills
+          </button>
+
+          <button class="btn-secondary" (click)="scrollToSection('contact')">
+            Contact Me
+          </button>
+        </div>
+      </div>
+
+      <div class="right">
+        <img src="https://via.placeholder.com/250" alt="Profile" />
+      </div>
+    </div>
+  </div>
 </div>
+<div id="about" class="about-section">
+  <h2>About Me</h2>
+
+  <p>
+    I am Maniket Pradhan, a Computer Science student with an interest in Angular
+    development, frontend design, and modern web technologies.
+  </p>
+
+  <p>
+    This page demonstrates Angular routing, component architecture, event
+    binding and responsive UI design.
+  </p>
+
+  <div class="skills-section">
+    <h2>My Skills</h2>
+
+    <div id="skills" class="skills-grid">
+      <div class="skill-card">
+        <h3>Angular</h3>
+        <p>Building Single Page Applications using Components and Routing.</p>
+      </div>
+
+      <div class="skill-card">
+        <h3>TypeScript</h3>
+        <p>Writing scalable and strongly typed frontend applications.</p>
+      </div>
+
+      <div class="skill-card">
+        <h3>HTML & CSS</h3>
+        <p>Creating responsive and user-friendly interfaces.</p>
+      </div>
+
+      <div class="skill-card">
+        <h3>Git & GitHub</h3>
+        <p>Version control, branching and collaborative development.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="projects-section">
+  <h2>Projects</h2>
+
+  <div class="project-grid">
+    <div class="project-card">
+      <h3>Attendance Management System</h3>
+      <p>
+        Angular-based attendance tracking system with routing, local storage and
+        reporting features.
+      </p>
+    </div>
+
+    <div class="project-card">
+      <h3>College ERP Portal</h3>
+      <p>
+        Developed multiple Angular components for student and faculty
+        management.
+      </p>
+    </div>
+
+    <div class="project-card">
+      <h3>Portfolio Website</h3>
+      <p>Responsive personal portfolio built using Angular, HTML and CSS.</p>
+    </div>
+  </div>
+</div>
+
+<div id="contact" class="contact-section">
+  <h2>Contact Information</h2>
+
+  <div class="contact-card">
+    <p><strong>Name:</strong> Maniket Pradhan</p>
+
+    <p><strong>Role:</strong> Team E - Member 2</p>
+
+    <p><strong>Email:</strong> maniketpradhan9688@gmail.com</p>
+
+    <p><strong>Technology:</strong> Angular, TypeScript, HTML, CSS</p>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>© 2026 Maniket Pradhan | Group E | Angular Project</p>
+</footer>

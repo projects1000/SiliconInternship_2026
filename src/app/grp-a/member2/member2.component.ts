@@ -16,4 +16,8 @@ export class Member2Component {
   goToAttendance() {
     this.router.navigate(['grp-a/member2/attendance']);
   }
+
+  goToHospital() {
+    this.router.navigate(['grp-a/member2/hospital']);
+  }
 }

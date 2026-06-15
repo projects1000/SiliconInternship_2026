@@ -41,3 +41,49 @@ button {
   font-weight: 700;
 }
 
+.phone-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.phone-group select {
+  width: 90px;
+  padding: 8px;
+}
+
+.phone-group input {
+  flex: 1;
+}
+
+.error {
+  color: red;
+  font-size: 13px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.phone-group{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.phone-group select{
+    width:90px;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+.phone-group input{
+    flex:1;
+}
+
+.error{
+    color:red;
+    font-size:13px;
+    margin-top:5px;
+    margin-bottom:10px;
+    font-weight:600;
+}

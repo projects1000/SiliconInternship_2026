@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
+
+:host {
+  display: block;
+  font-family: 'Outfit', sans-serif;
+  --bg-card: rgba(255, 255, 255, 0.7);
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --border-color: rgba(255, 255, 255, 0.5);
+  --primary-color: #6366f1;
+  --shadow-soft: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  --glass-blur: blur(16px);
+}
+
+.wow-layout {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  min-height: 90vh;
+  border-radius: 24px;
+  overflow: hidden;
+  color: var(--text-primary);
+}
+
+/* Animated Gradient Background */
+.animated-bg {
+  position: absolute;
+  top: -50%; left: -50%; right: -50%; bottom: -50%;
+  width: 200%; height: 200%;
+  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 50%, #e0c3fc 100%);
+  background-size: 200% 200%;
+  animation: gradientBG 15s ease infinite;
+  z-index: 0;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.main-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Header */
+.chat-system-header {
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: var(--glass-blur);
+  padding: 16px 32px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-color);
+}
+
+.header-content mat-icon {
+  color: var(--primary-color);
+  font-size: 28px;
+  width: 28px; height: 28px;
+}
+
+.header-content h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #6366f1, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Terminals Wrapper */
+.panels-wrapper {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: stretch;
+  flex: 1;
+}
+
+.side-panel {
+  flex: 1;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.center-panel {
+  flex: 2;
+  max-width: 750px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1200px) {
+  .panels-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .side-panel, .center-panel {
+    width: 100%;
+    max-width: 100%;
+  }
+}

@@ -33,11 +33,11 @@ export class CustomerDetailsComponent {
       this.formError = 'Customer name is required.';
       return;
     }
-    if (!this.customer.mobile.trim() || !/^\d{10}$/.test(this.customer.mobile)) {
+    if (!this.customer.mobile?.trim() || !/^\d{10}$/.test(this.customer.mobile)) {
       this.formError = 'Please enter a valid 10-digit mobile number.';
       return;
     }
-    if (!this.customer.address.trim()) {
+    if (!this.customer.address?.trim()) {
       this.formError = 'Address is required.';
       return;
     }

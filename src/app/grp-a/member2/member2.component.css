@@ -265,6 +265,16 @@
   background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
 }
 
+.btn-hospital {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
+}
+
+.btn-hospital:hover {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.45);
+}
+
 .secondary-btn {
   background: #0f1422;
   border-color: #1e2d50;

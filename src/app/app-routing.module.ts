@@ -1,12 +1,12 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   // Home page
   { path: '', component: HomeComponent },
+  
 
   // Lazy-loaded group modules
   {
@@ -43,6 +43,11 @@ const routes: Routes = [
     path: 'grp-g',
     loadChildren: () =>
       import('./grp-g/grp-g.module').then(m => m.GrpGModule)
+  },
+  {
+    path: 'product-management',
+    redirectTo: 'grp-b/product-management',
+    pathMatch: 'full'
   },
 
   // fallback (optional but recommended)

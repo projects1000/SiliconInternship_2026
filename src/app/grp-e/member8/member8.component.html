@@ -1,4 +1,5 @@
 <app-navbar
+  *ngIf="currentSection !== 'products' && currentSection !== 'cart'"
   (navigate)="showSection($event)">
 </app-navbar>
 
@@ -21,10 +22,26 @@
 <div *ngIf="currentSection === 'billing'">
   <app-billing-home
     (openCart)="showSection('cart')"
+    (openProducts)="showSection('products')"
     (exitBilling)="showSection('home')">
   </app-billing-home>
 </div>
 
+<div *ngIf="currentSection === 'products'">
+
+  <app-product-list
+    [customerSaved]="true"
+    (productAdded)="addProduct($event)"
+    (openCart)="showSection('cart')"
+    (exitToHome)="showSection('home')">
+  </app-product-list>
+
+  <app-notification></app-notification>
+
+</div>
+
 <div *ngIf="currentSection === 'cart'">
-  <app-billing-cart (backToBilling)="showSection('billing')"></app-billing-cart>
+  <app-billing-cart
+    (backToBilling)="showSection('billing')">
+  </app-billing-cart>
 </div>

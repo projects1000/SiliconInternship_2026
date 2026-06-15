@@ -448,3 +448,67 @@ button:hover {
     justify-content: center;
   }
 }
+
+
+
+
+/* ══════════════════════════════════════════
+   NEW — Billing project card additions only
+   (all existing styles above are unchanged)
+══════════════════════════════════════════ */
+
+/* Gap between the two project cards */
+.billing-project-card {
+  margin-top: 1rem;
+  border-color: #c7d2fe;
+  background: linear-gradient(135deg, #f8f9ff, #ffffff);
+}
+
+.billing-project-card:hover {
+  box-shadow: 0 6px 24px rgba(79, 70, 229, .15);
+}
+
+/* Concept chips row (shows @Input / @Output / Shared Service) */
+.concept-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.concept-chip {
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 3px 10px;
+}
+
+.chip-blue   { background: #e0e7ff; color: #4338ca; }
+.chip-green  { background: #dcfce7; color: #15803d; }
+.chip-purple { background: #ede9fe; color: #6d28d9; }
+
+/* Billing button — indigo/violet instead of blue */
+.billing-btn {
+  background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+}
+
+.billing-btn:hover {
+  background: linear-gradient(135deg, #4f46e5, #3730a3) !important;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, .4) !important;
+}
+
+@media (max-width: 720px) {
+  .profile-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .project-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
