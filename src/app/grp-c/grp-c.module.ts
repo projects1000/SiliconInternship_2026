@@ -36,7 +36,10 @@ import { UserAyushComponent } from './member3/chat-system/user-ayush/user-ayush.
 import { UserAnshumanComponent } from './member3/chat-system/user-anshuman/user-anshuman.component';
 import { ChatWindowComponent as Member3ChatWindowComponent } from './member3/chat-system/chat-window/chat-window.component';
 import { Member8AttendanceComponent } from './member8-attendance/member8-attendance.component';
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 import { Member8ChatParentComponent } from './member8/chat-system/chat-parent/chat-parent.component';
 import { Member8UserAComponent } from './member8/chat-system/user-a/user-a.component';
 import { Member8UserBComponent } from './member8/chat-system/user-b/user-b.component';
@@ -64,6 +67,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { BillingSystemMember4Module } from './member4/billingsystem-member4/billing-system-member4.module';
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> main
 @NgModule({
   declarations: [
     GrpCComponent,
@@ -91,6 +99,14 @@ import { BillingSystemMember4Module } from './member4/billingsystem-member4/bill
 
     // Member 3 Components
     Member3AttendanceComponent,
+<<<<<<< HEAD
+=======
+    ProductManagementComponent,
+    Member9UserAComponent,
+    Member9UserBComponent,
+    Member9ChatWindowComponent,
+    ChatbotComponent,
+>>>>>>> main
     BillingParentComponent,
     ProductListComponent,
     CustomerDetailsComponent,
@@ -99,6 +115,7 @@ import { BillingSystemMember4Module } from './member4/billingsystem-member4/bill
     ChatParentComponent,
     UserAyushComponent,
     UserAnshumanComponent,
+<<<<<<< HEAD
     Member3ChatWindowComponent,
 
     // Member 4 Components
@@ -119,6 +136,10 @@ import { BillingSystemMember4Module } from './member4/billingsystem-member4/bill
     Member9ChatWindowComponent,
     ChatbotComponent,
   ],
+=======
+    ChatWindowComponent,
+],
+>>>>>>> main
   imports: [
     CommonModule,
     GrpCRoutingModule,
