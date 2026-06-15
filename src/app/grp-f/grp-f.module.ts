@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { AttendanceComponent as Member5AttendanceComponent } from './member5/attendance/attendance.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -30,26 +30,39 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
+import { MatCommonModule } from '@angular/material/core';
 
 import { AttendanceComponent } from './member7/attendance/attendance.component';
 import { ChatComponent } from './member7/chat/chat.component';
 
+import { BillingComponent } from './member10/billing/billing.component';
+import { Member10AttendanceDashboardComponent } from './member10/member10-attendance-dashboard/member10-attendance-dashboard.component';
+import { Member6AttendanceComponent } from './member6-attendance/member6-attendance.component';
+import { Member6ChatComponent } from './member6-chat/member6-chat.component';
 @NgModule({
   declarations: [
-    GrpFComponent,
-    Member1Component,
-    Member2Component,
-    Member3Component,
-    Member4Component,
-    Member5Component,
-    Member6Component,
-    Member7Component,
-    Member8Component,
-    Member9Component,
-    Member10Component,
-    AttendanceComponent,
-    ChatComponent
-  ],
+  GrpFComponent,
+  Member1Component,
+  Member2Component,
+  Member3Component,
+  Member4Component,
+  Member5Component,
+  Member6Component,
+  Member7Component,
+  Member8Component,
+  Member9Component,
+  Member10Component,
+  Member5AttendanceComponent,
+
+  AttendanceComponent,
+  ChatComponent,
+
+  Member6AttendanceComponent,
+  Member6ChatComponent,
+  Member10AttendanceDashboardComponent,
+  BillingComponent
+],
+  
   imports: [
     CommonModule,
     GrpFRoutingModule,

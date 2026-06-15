@@ -7,7 +7,7 @@ import { Member2Component } from './member2/member2.component';
 import { Member3Component } from './member3/member3.component';
 import { Member4Component } from './member4/member4.component';
 import { Member5Component } from './member5/member5.component';
-import { AttendanceComponent } from './member5/attendance/attendance.component';
+
 import { Member6Component } from './member6/member6.component';
 import { Member6AttendanceComponent } from './member6-attendance/member6-attendance.component';
 import { Member6ChatComponent } from './member6-chat/member6-chat.component';
@@ -17,9 +17,12 @@ import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { Member10AttendanceDashboardComponent } from './member10/member10-attendance-dashboard/member10-attendance-dashboard.component';
 import { BillingComponent } from './member10/billing/billing.component';
+import { AttendanceComponent as Member5AttendanceComponent } from './member5/attendance/attendance.component';
 
-import { AttendanceComponent } from './member7/attendance/attendance.component';
+import { AttendanceComponent as Member7AttendanceComponent } from './member7/attendance/attendance.component';
+
 import { ChatComponent } from './member7/chat/chat.component';
+
 
 const routes: Routes = [
   {
@@ -47,9 +50,9 @@ const routes: Routes = [
     component: Member5Component
   },
   {
-    path: 'member5/attendance',
-    component: AttendanceComponent
-  },
+  path: 'member5/attendance',
+  component: Member5AttendanceComponent
+},
   {
     path: 'member6',
     component: Member6Component
@@ -67,9 +70,13 @@ const routes: Routes = [
     component: Member7Component
   },
   {
-    path: 'member7/attendance',
-    component: AttendanceComponent
-  },
+  path: 'member7/attendance',
+  component: Member7AttendanceComponent
+},
+{
+  path: 'member7/chat',
+  component: ChatComponent
+},
   {
     path: 'member7/chat',
     component: ChatComponent
