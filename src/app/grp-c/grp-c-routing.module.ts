@@ -23,128 +23,122 @@ import { Member4attmngComponent } from './member4/member4attmng/member4attmng.co
 
 import { BillingsystemMember4Component } from './member4/billingsystem-member4/billingsystem-member4.component';
 
-import('./member1/member1.module').then(m => m.Member1Module)
+import('./member1/member1.module').then((m) => m.Member1Module);
 
 import { ProductManagementComponent } from './member9/product-management/product-management.component';
 import { Member3AttendanceComponent } from './member3/member3-attendance/member3-attendance.component';
-<<<<<<< HEAD
-=======
+
 import { ChatbotComponent } from './member9/chatbot/chatbot.component';
-import { member8ProductManagementComponent } from './member8/product-management/product-management/product-management.component';
->>>>>>> 7a5c3f7ee2d2bc88a6dd572c3a7ad8fbfb1cc62e
+
 import { AttendanceComponent } from './member9/attendance/attendance.component';
 import { BillingParentComponent } from './member3/billing-parent/billing-parent.component';
 import { ChatParentComponent } from './member3/chat-system/chat-parent/chat-parent.component';
 
-
 const routes: Routes = [
   {
     path: '',
-    component: GrpCComponent
+    component: GrpCComponent,
   },
   {
     path: 'member1',
     loadChildren: () =>
-      import('./member1/member1.module').then(m => m.Member1Module)
+      import('./member1/member1.module').then((m) => m.Member1Module),
   },
   {
     path: 'member2',
-    component: Member2Component
+    component: Member2Component,
   },
   {
     path: 'member2/attendance',
-    component: AttendanceDashboardComponent
+    component: AttendanceDashboardComponent,
   },
   {
     path: 'member2/chat',
-    component: WhatsappChatComponent
+    component: WhatsappChatComponent,
   },
   {
     path: 'member3',
-    component: Member3Component
+    component: Member3Component,
   },
   {
     path: 'member4',
-    component: Member4Component
+    component: Member4Component,
   },
   {
     path: 'member5',
-    component: Member5Component
+    component: Member5Component,
   },
   {
     path: 'member6',
-    component: Member6Component
+    component: Member6Component,
   },
   {
     path: 'member7',
-    component: Member7Component
+    component: Member7Component,
   },
   {
     path: 'member7-attendance',
-    component: Member7Component // Using Member7Component if your logic is baked inside your main folder files
+    component: Member7Component, // Using Member7Component if your logic is baked inside your main folder files
   },
   {
     path: 'member8',
-    component: Member8Component
+    component: Member8Component,
   },
-  
+
   {
     path: 'member8-attendance',
-    component: Member8AttendanceComponent
+    component: Member8AttendanceComponent,
   },
   {
-  path: 'member8-product-management',
-  component: member8ProductManagementComponent
+    path: 'member8-product-management',
+    component: member8ProductManagementComponent,
   },
   {
-  path: 'member8-chat',
-  component: Member8ChatParentComponent
+    path: 'member8-chat',
+    component: Member8ChatParentComponent,
   },
 
   {
     path: 'member9',
-    component: Member9Component
+    component: Member9Component,
   },
 
   {
     path: 'attendance',
-    component: AttendanceComponent
+    component: AttendanceComponent,
   },
- 
-{
-  path: 'product-management',
-  component: ProductManagementComponent
-},
-{
-  path: 'member10',
-  component: Member10Component
-},
-{ path: 'member3-chat', component: ChatParentComponent },
 
   {
-  path: 'member4/member4attmng',
-  component: Member4attmngComponent
-},
+    path: 'product-management',
+    component: ProductManagementComponent,
+  },
+  {
+    path: 'member10',
+    component: Member10Component,
+  },
+  { path: 'member3-chat', component: ChatParentComponent },
+
+  {
+    path: 'member4/member4attmng',
+    component: Member4attmngComponent,
+  },
 
   { path: 'member3-attendance', component: Member3AttendanceComponent },
   {
-  path: 'chatbot',
-  component: ChatbotComponent
-},
+    path: 'chatbot',
+    component: ChatbotComponent,
+  },
 
-{
-  path:'member4/billingsystem-member4',
-  component:BillingsystemMember4Component
-},
+  {
+    path: 'member4/billingsystem-member4',
+    component: BillingsystemMember4Component,
+  },
 
   { path: 'member3-billing', component: BillingParentComponent },
-
-
-
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class GrpCRoutingModule { }
+export class GrpCRoutingModule {}

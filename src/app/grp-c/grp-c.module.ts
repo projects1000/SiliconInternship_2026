@@ -34,14 +34,13 @@ import { NotificationComponent } from './member3/billing-parent/notification/not
 import { ChatParentComponent } from './member3/chat-system/chat-parent/chat-parent.component';
 import { UserAyushComponent } from './member3/chat-system/user-ayush/user-ayush.component';
 import { UserAnshumanComponent } from './member3/chat-system/user-anshuman/user-anshuman.component';
-import { ChatWindowComponent } from './member3/chat-system/chat-window/chat-window.component';
+import { ChatWindowComponent as Member3ChatWindowComponent } from './member3/chat-system/chat-window/chat-window.component';
 import { Member8AttendanceComponent } from './member8-attendance/member8-attendance.component';
-<<<<<<< HEAD
+
 import { Member8ChatParentComponent } from './member8/chat-system/chat-parent/chat-parent.component';
 import { Member8UserAComponent } from './member8/chat-system/user-a/user-a.component';
-import { Member8UserBComponent }from './member8/chat-system/user-b/user-b.component';
+import { Member8UserBComponent } from './member8/chat-system/user-b/user-b.component';
 import { Member8ChatWindowComponent } from './member8/chat-system/chat-window/chat-window.component';
-=======
 
 import { AttendanceDashboardComponent } from './member2/attendance-dashboard/attendance-dashboard.component';
 
@@ -51,8 +50,8 @@ import { CustomerManagementComponent } from './member2/customer-management/custo
 import { InvoiceManagementComponent } from './member2/invoice-management/invoice-management.component';
 import { ToastNotificationComponent } from './member2/toast-notification/toast-notification.component';
 import { WhatsappChatComponent } from './member2/whatsapp-chat/whatsapp-chat.component';
-import { UserAComponent } from './member2/user-a/user-a.component';
-import { UserBComponent } from './member2/user-b/user-b.component';
+import { UserAComponent as Member2UserAComponent } from './member2/user-a/user-a.component';
+import { UserBComponent as Member2UserBComponent } from './member2/user-b/user-b.component';
 import { MessagingPanelComponent } from './member2/messaging-panel/messaging-panel.component';
 
 import { MatIconModule } from '@angular/material/icon';
@@ -65,9 +64,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { BillingSystemMember4Module } from './member4/billingsystem-member4/billing-system-member4.module';
 
-
-
->>>>>>> 7a5c3f7ee2d2bc88a6dd572c3a7ad8fbfb1cc62e
 @NgModule({
   declarations: [
     GrpCComponent,
@@ -81,6 +77,7 @@ import { BillingSystemMember4Module } from './member4/billingsystem-member4/bill
     Member9Component,
     Member10Component,
 
+    // Member 2 Components
     AttendanceDashboardComponent,
     ShoppingDashboardComponent,
     AnimeCollectionComponent,
@@ -88,23 +85,12 @@ import { BillingSystemMember4Module } from './member4/billingsystem-member4/bill
     InvoiceManagementComponent,
     ToastNotificationComponent,
     WhatsappChatComponent,
-    UserAComponent,
-    UserBComponent,
+    Member2UserAComponent,
+    Member2UserBComponent,
     MessagingPanelComponent,
 
-    Member8AttendanceComponent,
-    Member8ChatParentComponent,
-    Member8UserAComponent,
-    Member8UserBComponent,
-    Member8ChatWindowComponent,
-    AttendanceComponent,
-    Member4attmngComponent,
+    // Member 3 Components
     Member3AttendanceComponent,
-    ProductManagementComponent,
-   Member9UserAComponent,
-Member9UserBComponent,
-Member9ChatWindowComponent,
-    ChatbotComponent,
     BillingParentComponent,
     ProductListComponent,
     CustomerDetailsComponent,
@@ -113,12 +99,25 @@ Member9ChatWindowComponent,
     ChatParentComponent,
     UserAyushComponent,
     UserAnshumanComponent,
-    ChatWindowComponent,
-<<<<<<< HEAD
+    Member3ChatWindowComponent,
 
-=======
->>>>>>> 7a5c3f7ee2d2bc88a6dd572c3a7ad8fbfb1cc62e
-    
+    // Member 4 Components
+    Member4attmngComponent,
+
+    // Member 8 Components
+    Member8AttendanceComponent,
+    Member8ChatParentComponent,
+    Member8UserAComponent,
+    Member8UserBComponent,
+    Member8ChatWindowComponent,
+
+    // Member 9 Components
+    AttendanceComponent,
+    ProductManagementComponent,
+    Member9UserAComponent,
+    Member9UserBComponent,
+    Member9ChatWindowComponent,
+    ChatbotComponent,
   ],
   imports: [
     CommonModule,
@@ -134,9 +133,7 @@ Member9ChatWindowComponent,
     MatCardModule,
 
     BillingSystemMember4Module,
-
-    ProductManagementModule
-
-  ]
+    ProductManagementModule,
+  ],
 })
-export class GrpCModule { }
+export class GrpCModule {}
