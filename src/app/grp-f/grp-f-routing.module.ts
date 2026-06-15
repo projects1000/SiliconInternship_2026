@@ -73,10 +73,7 @@ const routes: Routes = [
   path: 'member7/attendance',
   component: Member7AttendanceComponent
 },
-{
-  path: 'member7/chat',
-  component: ChatComponent
-},
+
   {
     path: 'member7/chat',
     component: ChatComponent
