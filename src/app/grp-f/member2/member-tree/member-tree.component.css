@@ -1,0 +1,163 @@
+.dark-theme .sidebar{
+
+    background:#111827;
+
+    color:white;
+
+}
+
+.light-theme .sidebar{
+
+    background:#ffffff;
+
+    color:#111827;
+
+    border-right:1px solid #e5e7eb;
+
+}
+.sidebar{
+
+    height:100vh;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+    padding:20px;
+
+    background:#111827;
+
+}
+.sidebar::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.sidebar::-webkit-scrollbar-track{
+
+    background:#1f2937;
+
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+
+    background:linear-gradient(
+        180deg,
+        #00d4ff,
+        #7c3aed
+    );
+
+    border-radius:10px;
+
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover{
+
+    background:linear-gradient(
+        180deg,
+        #22d3ee,
+        #9333ea
+    );
+
+}
+.sidebar h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:#00d4ff;
+}
+
+
+.search-box{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#1f2937;
+    color:white;
+    margin-bottom:20px;
+}
+
+.search-box::placeholder{
+    color:#9ca3af;
+}
+.group-card{
+    background:#1f2937;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:10px;
+}
+
+.group-card h3{
+    color:#00d4ff;
+    margin-bottom:10px;
+}
+
+.group-card ul{
+    padding-left:20px;
+}
+
+.group-card li{
+    margin-bottom:5px;
+}
+.group-header{
+    cursor:pointer;
+    font-weight:bold;
+    color:#00d4ff;
+    padding:8px 0;
+}
+
+.group-header:hover{
+    color:white;
+}
+
+.group-card ul{
+    list-style:none;
+    padding-left:20px;
+    margin-top:10px;
+}
+
+.group-card li{
+    padding:6px;
+    border-radius:6px;
+}
+
+.group-card li:hover{
+    background:#374151;
+}
+.highlighted{
+    background:#00d4ff;
+    color:black;
+    font-weight:bold;
+    border-radius:6px;
+    padding:6px;
+}
+li{
+
+    cursor:pointer;
+
+    padding:10px;
+
+    border-radius:8px;
+
+    transition:.3s;
+
+}
+
+li:hover{
+
+    background:#0ea5e9;
+
+    color:white;
+
+}
+
+.selected{
+
+    background:#06b6d4;
+
+    color:white;
+
+    font-weight:bold;
+
+}

@@ -1,0 +1,41 @@
+<div class="sidebar">
+
+  <h2>Groups</h2>
+
+  <input
+  type="text"
+  placeholder="Search Member..."
+  class="search-box"
+  [(ngModel)]="searchText">
+
+  <div
+  class="group-card"
+  *ngFor="let group of groups"
+  [hidden]="!hasMatchingMembers(group)">
+
+    <div
+      class="group-header"
+      (click)="toggleGroup(group)">
+
+      <span>
+        {{ group.expanded ? '▼' : '▶' }}
+      </span>
+
+      {{ group.name }}
+
+    </div>
+
+    <ul *ngIf="group.expanded">
+<li
+  *ngFor="let member of filterMembers(group.members)"
+  (click)="selectMember(member)"
+  [class.selected]="member===selectedMember">
+
+  {{ member }}
+
+</li>
+    </ul>
+
+  </div>
+
+</div>

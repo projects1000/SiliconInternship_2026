@@ -1,0 +1,116 @@
+
+<div class="selected-member-card">
+
+  <h3>
+    Selected Member
+  </h3>
+
+  <p>
+    {{ selectedMember || 'No member selected' }}
+  </p>
+
+</div>
+  
+<div class="calendar-card">
+
+  <div class="calendar-header">
+
+    <h2>
+      📅 Attendance Calendar
+    </h2>
+
+    <div class="calendar-navigation">
+
+  <button
+    class="month-btn"
+    (click)="previousMonth()">
+
+    ←
+
+  </button>
+
+  <h2>
+
+    {{ months[currentMonth] }}
+    {{ currentYear }}
+
+  </h2>
+
+  <button
+    class="month-btn"
+    (click)="nextMonth()">
+
+    →
+
+  </button>
+
+</div>
+  </div>
+
+  <div class="weekdays">
+
+  <div>Sun</div>
+  <div>Mon</div>
+  <div>Tue</div>
+  <div>Wed</div>
+  <div>Thu</div>
+  <div>Fri</div>
+  <div>Sat</div>
+
+</div>
+
+<div class="calendar-grid">
+    <div
+  *ngFor="let day of calendarGrid"
+  class="calendar-day"
+
+  [class.empty]="day.empty"
+
+  [class.present]="
+    day.status === 'present'
+  "
+
+  [class.absent]="
+    day.status === 'absent'
+  "
+
+  [class.locked]="
+    day.locked
+  "
+
+  [class.future]="
+    day.future
+  "
+
+  [class.selected-date]="
+    day.date === selectedDate
+  "
+
+  (click)="
+    !day.empty &&
+    !day.future &&
+    selectDate(day.date)
+  ">
+  <span *ngIf="!day.empty">
+  {{ day.day }}
+</span>
+</div>
+
+  </div>
+
+  <div class="calendar-legend">
+
+    <span class="legend-item">
+      🟢 Present
+    </span>
+
+    <span class="legend-item">
+      🔴 Absent
+    </span>
+
+    <span class="legend-item">
+      🔒 Locked
+    </span>
+
+  </div>
+
