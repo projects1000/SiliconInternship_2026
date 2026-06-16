@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+/* ── Panel Shell ─────────────────────────────────────── */
+.pm-panel {
+  background: #0d0d0d;
+  border: 1px solid #1a1a1a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  height: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.pm-panel:hover {
+  border-color: rgba(197, 168, 128, 0.2);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+}
+
+/* ── Panel Header ────────────────────────────────────── */
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.panel-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.product-icon-bg {
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.panel-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.panel-subtitle {
+  font-size: 0.7rem;
+  color: #555;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+/* ── Table ───────────────────────────────────────────── */
+.product-table-wrapper {
+  flex: 1;
+  overflow-x: auto;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-table thead tr {
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.product-table th {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #555;
+  font-weight: 600;
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.product-row {
+  border-bottom: 1px solid #111;
+  transition: background 0.2s ease;
+}
+
+.product-row:last-child {
+  border-bottom: none;
+}
+
+.product-row:hover {
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.product-table td {
+  padding: 0.75rem 0.8rem;
+  vertical-align: middle;
+}
+
+.product-name {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: #e0e0e0;
+  font-family: 'Outfit', sans-serif;
+}
+
+.product-price {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #c5a880;
+  font-family: 'Outfit', sans-serif;
+}
+
+.col-name  { width: 45%; }
+.col-price { width: 25%; }
+.col-action { width: 30%; text-align: right; }
+
+/* ── Add Button ──────────────────────────────────────── */
+.add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4rem 1rem;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  border-radius: 6px;
+  color: #22c55e;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+  white-space: nowrap;
+}
+
+.add-btn:hover {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: #22c55e;
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.3);
+  transform: translateY(-1px);
+}
+
+.add-btn.added {
+  background: rgba(34, 197, 94, 0.25);
+  border-color: #22c55e;
+  box-shadow: 0 0 14px rgba(34, 197, 94, 0.4);
+  transform: scale(0.97);
+}
+
+.add-btn-icon {
+  font-size: 0.85rem;
+  font-weight: 700;
+}

@@ -1,0 +1,61 @@
+<div class="pm-panel">
+  <div class="panel-header">
+    <div class="panel-icon-wrap customer-icon-bg">
+      <span class="panel-icon">👤</span>
+    </div>
+    <div>
+      <h3 class="panel-title">Customer Details</h3>
+    </div>
+  </div>
+
+  <div class="form-body">
+
+    <!-- Customer Name Field -->
+    <div class="form-group">
+      <label class="form-label" for="customerName">Customer Name</label>
+      <input
+        id="customerName"
+        type="text"
+        class="form-input"
+        [class.input-error]="nameError"
+        [(ngModel)]="customerName"
+        placeholder="Enter customer name"
+        autocomplete="off"
+      />
+      <span class="error-msg" *ngIf="nameError">{{ nameError }}</span>
+    </div>
+
+    <!-- Mobile Number Field -->
+    <div class="form-group">
+      <label class="form-label" for="mobileNumber">Mobile Number</label>
+      <input
+        id="mobileNumber"
+        type="tel"
+        class="form-input"
+        [class.input-error]="mobileError"
+        [(ngModel)]="mobileNumber"
+        placeholder="Enter 10-digit mobile"
+        maxlength="10"
+        autocomplete="off"
+      />
+      <span class="error-msg" *ngIf="mobileError">{{ mobileError }}</span>
+    </div>
+
+    <!-- Save Button -->
+    <button
+      class="save-btn"
+      [class.saved]="isSaved"
+      (click)="saveCustomer()"
+    >
+      <span class="save-btn-icon">{{ isSaved ? '✓' : '💾' }}</span>
+      {{ isSaved ? 'Saved!' : 'Save Customer' }}
+    </button>
+
+    <!-- Saved Confirmation -->
+    <div class="saved-badge" *ngIf="isSaved">
+      <span class="badge-dot"></span>
+      Customer saved successfully
+    </div>
+
+  </div>
+</div>

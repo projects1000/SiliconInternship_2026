@@ -167,6 +167,11 @@
   background-color: rgba(255, 255, 255, 0.02);
 }
 
+.group-node mat-icon,
+.group-node .mat-icon-button {
+  color: var(--text-primary) !important;
+}
+
 .group-node.active-group {
   background-color: var(--accent-gold-glow) !important;
   border-left: 2px solid var(--accent-gold);
@@ -182,6 +187,7 @@
   user-select: none;
   width: 100%;
   padding: 0.4rem 0;
+  color: var(--text-primary);
 }
 
 .group-label {
@@ -928,7 +934,10 @@
 }
 
 /* Custom Datepicker panel styling for Dark Mode */
-::ng-deep .member7-dark-datepicker .mat-datepicker-content {
+::ng-deep .member7-dark-datepicker,
+::ng-deep .member7-dark-datepicker .mat-datepicker-content,
+::ng-deep .member7-dark-datepicker.mat-datepicker-content,
+::ng-deep .member7-dark-datepicker .mat-datepicker-content-container {
   background-color: #0d0d0d !important;
   color: #ffffff !important;
   border: 1px solid #1a1a1a !important;
@@ -937,6 +946,7 @@
 
 ::ng-deep .member7-dark-datepicker .mat-calendar {
   background-color: #0d0d0d !important;
+  color: #ffffff !important;
 }
 
 ::ng-deep .member7-dark-datepicker .mat-calendar-body-cell-content {
@@ -983,7 +993,10 @@
 }
 
 /* Custom Datepicker panel styling for Light Mode */
-::ng-deep .member7-light-datepicker .mat-datepicker-content {
+::ng-deep .member7-light-datepicker,
+::ng-deep .member7-light-datepicker .mat-datepicker-content,
+::ng-deep .member7-light-datepicker.mat-datepicker-content,
+::ng-deep .member7-light-datepicker .mat-datepicker-content-container {
   background-color: #ffffff !important;
   color: #1a202c !important;
   border: 1px solid #e2e8f0 !important;
@@ -992,6 +1005,7 @@
 
 ::ng-deep .member7-light-datepicker .mat-calendar {
   background-color: #ffffff !important;
+  color: #1a202c !important;
 }
 
 ::ng-deep .member7-light-datepicker .mat-calendar-body-cell-content {
