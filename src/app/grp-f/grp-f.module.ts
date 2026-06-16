@@ -29,7 +29,7 @@ import { AttendanceComponent } from './member5/attendance/attendance.component';
 import { Member4AttendanceComponent} from './member4/attendance/attendance.component';
 import { ProductManagementComponent } from './member4/product-management/product-management.component';
 import { ProductListComponent } from './member4/product-list/product-list.component';
-import { CustomerComponent } from './member4/customer/customer.component';
+
 import { BillingComponent } from './member4/billing/billing.component';
 import { NotificationComponent } from './member4/notification/notification.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -45,6 +45,8 @@ import { CheckoutComponent } from './member4/checkout/checkout.component';
 import { StudentAComponent } from './member4/student-a/student-a.component';
 import { StudentBComponent } from './member4/student-b/student-b.component';
 import { ChatWindowComponent } from './member4/chat-window/chat-window.component';
+import { ChatService } from './member4/chat-service/chat.service';
+import { CustomerService } from './member4/shared/customer.service';
 
 @NgModule({
   declarations: [
@@ -63,21 +65,22 @@ import { ChatWindowComponent } from './member4/chat-window/chat-window.component
     Member10Component,
     ProductManagementComponent,
     ProductListComponent,
-    CustomerComponent,
+ 
     BillingComponent,
     NotificationComponent,
    ProductDetailComponent,
     FooterComponent,
     LoginComponent,
     CartComponent,
-    CheckoutComponent,
-    StudentAComponent,
-    StudentBComponent,
-    ChatWindowComponent
+    CheckoutComponent
+   
+    
   ],
   providers: [
     ToastService,
-    ProductService
+    ProductService,
+    ChatService,
+     CustomerService
   ],
   imports: [
     CommonModule,
@@ -95,6 +98,15 @@ MatSnackBarModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    ChatWindowComponent,
+       StudentAComponent,      
+    StudentBComponent,      
+    ChatWindowComponent
+  ],
+   exports: [
+    ChatWindowComponent,
+    StudentAComponent,
+  StudentBComponent
   ]
 })
 export class GrpFModule { }

@@ -11,10 +11,11 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class CartComponent implements OnInit, OnDestroy {
 
-  cart: Cart = { items: [], totalPrice: 0, totalItems: 0 };
+  cart: Cart = { items: [], totalPrice: 0, totalItems: 0, lastUpdated: new Date() };
 
   deliveryCharge: number = 50;
   tax: number = 0;
+  freeDeliveryThreshold: number = 499;
 
   private destroy$ = new Subject<void>();
 
@@ -43,11 +44,6 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   updateQuantity(productId: number, quantity: number, size?: string, color?: string): void {
-    if (quantity <= 0) {
-      this.removeItem(productId, size, color);
-      return;
-    }
-
     this.cartService.updateQuantity(productId, quantity, size, color);
   }
 
@@ -58,23 +54,36 @@ export class CartComponent implements OnInit, OnDestroy {
 
   proceedToCheckout(): void {
     if (!this.cart.items.length) {
-      this.toastService.show('Cart is empty', 'error');
+      this.toastService.show('Your cart is empty', 'error');
       return;
     }
-
     this.router.navigate(['/grp-f/member4/checkout']);
   }
 
+  /** Continue Shopping - Goes back to Product List */
   continueShopping(): void {
-    this.router.navigate(['/grp-f/member4/product-list']);
+    this.router.navigate(['/grp-f/member4/product-management']);
   }
 
   getSubtotal(): number {
     return this.cart.totalPrice;
   }
 
+  getDeliveryCharge(): number {
+    return this.getSubtotal() >= this.freeDeliveryThreshold ? 0 : this.deliveryCharge;
+  }
+
   getTotal(): number {
-    return this.cart.totalPrice + this.tax + this.deliveryCharge;
+    return this.getSubtotal() + this.tax + this.getDeliveryCharge();
+  }
+
+  getDeliveryMessage(): string {
+    const subtotal = this.getSubtotal();
+    if (subtotal >= this.freeDeliveryThreshold) {
+      return '✅ Your order qualifies for FREE delivery!';
+    }
+    const remaining = this.freeDeliveryThreshold - subtotal;
+    return `Add ₹${remaining} more for FREE delivery`;
   }
 
   applyCoupon(): void {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService, Productservice } from '../shared/product.service';
+import { CartService } from '../shared/cart.service';
+import { ToastService } from '../shared/toast.service';
 
 @Component({
   selector: 'app-product-list',
@@ -16,13 +18,15 @@ export class ProductListComponent implements OnInit {
   selectedCategory: string = '';
   sortBy: string = 'featured';
 
-  priceRange = {
-    min: 0,
-    max: 100000
+  priceRange = { 
+    min: 0, 
+    max: 100000 
   };
 
   constructor(
     public ps: ProductService,
+    private cartService: CartService,
+    private toastService: ToastService,
     private router: Router
   ) {}
 
@@ -31,55 +35,39 @@ export class ProductListComponent implements OnInit {
     this.filteredProducts = [...this.products];
   }
 
-  /* ---------------- FILTER BY PRICE ---------------- */
   filterByPrice(): void {
     this.filteredProducts = this.products.filter(p =>
-      p.price >= this.priceRange.min &&
-      p.price <= this.priceRange.max
+      p.price >= this.priceRange.min && p.price <= this.priceRange.max
     );
   }
 
-  /* ---------------- SORT ---------------- */
   onSortChange(): void {
-
     switch (this.sortBy) {
-
       case 'price-low':
         this.filteredProducts.sort((a, b) => a.price - b.price);
         break;
-
       case 'price-high':
         this.filteredProducts.sort((a, b) => b.price - a.price);
         break;
-
       case 'rating':
-       this.filteredProducts.sort((a, b) =>
-  (b.rating ?? 0) - (a.rating ?? 0)
-);
-break;
-
+        this.filteredProducts.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
+        break;
       default:
         this.filteredProducts = [...this.products];
     }
   }
 
-  /* ---------------- CATEGORY FILTER ---------------- */
   filterCategory(category: string): void {
     this.selectedCategory = category;
-
-    this.filteredProducts = this.products.filter(p =>
-      p.category === category
-    );
+    this.filteredProducts = this.products.filter(p => p.category === category);
   }
 
-  /* ---------------- SEARCH ---------------- */
   searchProducts(): void {
     this.filteredProducts = this.products.filter(p =>
       p.name.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
   }
 
-  /* ---------------- CLEAR FILTER ---------------- */
   clearFilters(): void {
     this.priceRange = { min: 0, max: 100000 };
     this.sortBy = 'featured';
@@ -88,19 +76,34 @@ break;
     this.filteredProducts = [...this.products];
   }
 
-  /* ---------------- VIEW PRODUCT ---------------- */
-viewProductDetails(product: Productservice) {
-  this.router.navigate(['/grp-f/member4/product-detail', product.id]);
-}
-  /* ---------------- ADD TO CART ---------------- */
-  addToCart(product: Productservice): void {
-  this.router.navigate(['/grp-f/member4/cart', product.id]);
+  viewProductDetails(product: Productservice): void {
+    this.router.navigate(['/grp-f/member4/product-detail', product.id]);
   }
 
-  /* ---------------- DISCOUNT ---------------- */
+  /** ADD TO CART - Fixed & Direct Navigation to Cart */
+  addToCart(product: Productservice, event?: Event): void {
+    if (event) {
+      event.stopPropagation();
+    }
+
+    // Add product to cart
+    this.cartService.addToCart(product, 1);
+
+    // Show success message
+    this.toastService.show(`${product.name} added to cart`, 'success');
+
+    // Navigate to Cart Page
+    this.router.navigate(['/grp-f/member4/cart']);
+  }
+
+  /** Wishlist */
+  addToWishlist(product: Productservice, event?: Event): void {
+    if (event) event.stopPropagation();
+    this.toastService.show(`${product.name} added to Wishlist ❤️`, 'success');
+  }
+
   getDiscountPercentage(product: Productservice): number {
     if (!product.originalPrice) return 0;
-
     return Math.round(
       ((product.originalPrice - product.price) / product.originalPrice) * 100
     );

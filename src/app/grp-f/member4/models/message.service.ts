@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { MessageService} from '../models/message.service';
+
+export interface Message {
+  sender: string;
+  text: string;
+  time: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-  private messageSource = new Subject<MessageService>();
+  private messageSource = new Subject<Message>();
 
   messages$ = this.messageSource.asObservable();
 
-  sendMessage(message: MessageService) {
+  sendMessage(message: Message) {
     this.messageSource.next(message);
   }
 }

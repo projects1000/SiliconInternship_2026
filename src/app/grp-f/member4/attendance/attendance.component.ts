@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 interface Member {
   id: string;
   name: string;
@@ -13,7 +13,7 @@ interface Member {
   styleUrls: ['./attendance.component.css']
 })
 export class   Member4AttendanceComponent  implements OnInit {
-
+  constructor(private router: Router) {}
   selectedDate: string = new Date().toISOString().split('T')[0];
 
   search: string = '';
@@ -300,4 +300,7 @@ export class   Member4AttendanceComponent  implements OnInit {
     );
     return teamPrefix + (maxId + 1);
   }
+  goHome() {
+  this.router.navigate(['/grp-f/member4']);
+}
 }

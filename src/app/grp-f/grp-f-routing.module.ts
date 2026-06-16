@@ -8,7 +8,7 @@ import { Member3Component } from './member3/member3.component';
 import { Member4Component } from './member4/member4.component';
 import { Member4AttendanceComponent} from './member4/attendance/attendance.component';
 import{BillingComponent} from './member4/billing/billing.component';
-import{CustomerComponent} from './member4/customer/customer.component';
+
 import{NotificationComponent} from './member4/notification/notification.component';
 import{ProductListComponent} from './member4/product-list/product-list.component';
 import{ProductManagementComponent} from './member4/product-management/product-management.component';
@@ -19,8 +19,8 @@ import{ProductDetailComponent} from './member4/product-detail/product-detail.com
 import{LoginComponent} from './member4/login/login.component';
 import{CartComponent} from './member4/cart/cart.component';
 import{CheckoutComponent} from './member4/checkout/checkout.component';
-
-
+import{ChatService} from './member4/chat-service/chat.service';
+import { CustomerService } from './member4/shared/customer.service';
 import { Member5Component } from './member5/member5.component';
 import { AttendanceComponent } from './member5/attendance/attendance.component';
 import { Member6Component } from './member6/member6.component';
@@ -64,11 +64,7 @@ const routes: Routes = [
     path: 'member4/billing',
     component: BillingComponent
   },
-  
-  {
-    path: 'member4/customer',
-    component: CustomerComponent
-  },
+ 
   {
     path: 'member4/notification',
     component: NotificationComponent
@@ -82,6 +78,7 @@ const routes: Routes = [
     component: ProductManagementComponent
   },
  
+ 
  {
   path:'member4/footer',
   component:FooterComponent
@@ -92,13 +89,17 @@ const routes: Routes = [
  {path:'member4/shared/toast.service',
  component:ToastService
  },
+{
+  path:'member4/shared/customer.Service',
+  component: CustomerService
+},
  {path:'member4/shared/product.service',
   component:ProductService
  },
  {path:'member4/product-detail/:id',
  component:ProductDetailComponent
  },
- {path:'member4/cart/:id',
+ {path:'member4/cart',
  component:CartComponent
  },
  {path:'member4/checkout',
@@ -112,6 +113,9 @@ const routes: Routes = [
  },
  {path:'member4/chat-window',
   component:ChatWindowComponent
+ },
+ {path:'member4/chat-service',
+   component:ChatService
  },
 
 
