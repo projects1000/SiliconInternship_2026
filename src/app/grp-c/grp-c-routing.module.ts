@@ -17,6 +17,8 @@ import { AttendanceDashboardComponent } from './member2/attendance-dashboard/att
 import { WhatsappChatComponent } from './member2/whatsapp-chat/whatsapp-chat.component';
 
 import { Member8AttendanceComponent } from './member8-attendance/member8-attendance.component';
+import { member8ProductManagementComponent} from './member8/product-management/product-management/product-management.component';
+import { Member8ChatParentComponent } from './member8/chat-system/chat-parent/chat-parent.component';
 import { Member4attmngComponent } from './member4/member4attmng/member4attmng.component';
 
 import { BillingsystemMember4Component } from './member4/billingsystem-member4/billingsystem-member4.component';
@@ -26,7 +28,6 @@ import('./member1/member1.module').then(m => m.Member1Module)
 import { ProductManagementComponent } from './member9/product-management/product-management.component';
 import { Member3AttendanceComponent } from './member3/member3-attendance/member3-attendance.component';
 import { ChatbotComponent } from './member9/chatbot/chatbot.component';
-import { member8ProductManagementComponent } from './member8/product-management/product-management/product-management.component';
 import { AttendanceComponent } from './member9/attendance/attendance.component';
 import { BillingParentComponent } from './member3/billing-parent/billing-parent.component';
 import { ChatParentComponent } from './member3/chat-system/chat-parent/chat-parent.component';
@@ -75,17 +76,27 @@ const routes: Routes = [
     component: Member7Component
   },
   {
+    path: 'member7-attendance',
+    component: Member7Component // Using Member7Component if your logic is baked inside your main folder files
+  },
+  {
     path: 'member8',
     component: Member8Component
   },
-  {
-  path: 'member8-product-management',
-  component: member8ProductManagementComponent
-},
+  
   {
     path: 'member8-attendance',
     component: Member8AttendanceComponent
   },
+  {
+  path: 'member8-product-management',
+  component: member8ProductManagementComponent
+  },
+  {
+  path: 'member8-chat',
+  component: Member8ChatParentComponent
+  },
+
   {
     path: 'member9',
     component: Member9Component
@@ -106,13 +117,14 @@ const routes: Routes = [
 },
 { path: 'member3-chat', component: ChatParentComponent },
 
-  {
+{
   path: 'member4/member4attmng',
   component: Member4attmngComponent
 },
 
-  { path: 'member3-attendance', component: Member3AttendanceComponent },
-  {
+{ path: 'member3-attendance', component: Member3AttendanceComponent },
+  
+{
   path: 'chatbot',
   component: ChatbotComponent
 },

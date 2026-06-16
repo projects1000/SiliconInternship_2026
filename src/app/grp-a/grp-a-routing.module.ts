@@ -13,6 +13,10 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 
+// ── MEMBER 9 CUSTOM COMPONENTS ───────────────────────────────────────────
+import { AttendanceComponent } from './member9/attendance/attendance.component';
+import { ProductManagementComponent } from './member9/product-management/product-management.component'; // <-- 1. ADDED THIS IMPORT
+
 const routes: Routes = [
   {
     path: '',
@@ -80,11 +84,24 @@ const routes: Routes = [
     component: Member9Component,
   },
   {
-  path: 'member9/whatsapp-chat-app',
-  loadChildren: () =>
-    import('./member9/whatsapp-chat-app/whatsapp-chat-app.module')
-      .then(m => m.WhatsappChatAppModule)
-}
+    path: 'member9/whatsapp-chat-app',
+    loadChildren: () =>
+      import('./member9/whatsapp-chat-app/whatsapp-chat-app.module').then(
+        (m) => m.WhatsappChatAppModule,
+      ),
+  },
+  {
+    path: 'member9/attendance',
+    component: AttendanceComponent,
+  },
+  {
+    path: 'member9/product-management',
+    component: ProductManagementComponent,
+  },
+  // { 
+  //   path: 'member9/billing-system', 
+  //   loadChildren: () => import('./member9/billing-system/billing-system.module').then(m => m.BillingSystemModule) 
+  // },
 ];
 
 @NgModule({
