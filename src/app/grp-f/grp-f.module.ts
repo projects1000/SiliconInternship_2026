@@ -1,7 +1,9 @@
+// src/app/grp-f/grp-f.module.ts
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AttendanceComponent as Member5AttendanceComponent } from './member5/attendance/attendance.component';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -16,8 +18,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRippleModule } from '@angular/material/core';
-
-import { GrpFRoutingModule } from './grp-f-routing.module';
 
 import { GrpFComponent } from './grp-f/grp-f.component';
 import { Member1Component } from './member1/member1.component';
@@ -52,20 +52,45 @@ import { BillingComponent } from './member10/billing/billing.component';
 import { Member10AttendanceDashboardComponent } from './member10/member10-attendance-dashboard/member10-attendance-dashboard.component';
 import { Member6AttendanceComponent } from './member6-attendance/member6-attendance.component';
 import { Member6ChatComponent } from './member6-chat/member6-chat.component';
+import { AttendanceComponent } from './member5/attendance/attendance.component';
+
+
+// ── New Chat App components ──
+import { Member10ChatAppComponent } from './member10/member10-chatapp/member10-chatapp.component';
+import { Member10UserAComponent } from './member10/member10-chatapp/user-a/user-a.component';
+import { Member10UserBComponent } from './member10/member10-chatapp/user-b/user-b.component';
+import { Member10ChatWindowComponent } from './member10/member10-chatapp/chat-window/chat-window.component';
+
+import { GrpFRoutingModule } from './grp-f-routing.module';
+
 @NgModule({
   declarations: [
 
-  GrpFComponent,
-  Member1Component,
-  Member2Component,
-  Member3Component,
-  Member4Component,
-  Member5Component,
-  Member6Component,
-  Member7Component,
-  Member8Component,
-  Member9Component,
-  Member10Component,
+    GrpFComponent,
+    Member1Component,
+    Member2Component,
+    Member3Component,
+    Member4Component,
+    Member5Component,
+    Member6Component,
+    Member7Component,
+    Member8Component,
+    Member9Component,
+    Member10Component,
+    Member6AttendanceComponent,
+    Member6ChatComponent,
+    AttendanceComponent,
+    Member10AttendanceDashboardComponent,
+    BillingComponent,
+
+    // ── Chat App ──
+    Member10ChatAppComponent,
+    Member10UserAComponent,
+    Member10UserBComponent,
+    Member10ChatWindowComponent
+
+
+  
 
   Member2AttendanceComponent,
   MemberTreeComponent,
@@ -91,9 +116,7 @@ import { Member6ChatComponent } from './member6-chat/member6-chat.component';
   Member6AttendanceComponent,
   Member6ChatComponent,
 
-  Member10AttendanceDashboardComponent,
-  BillingComponent
-
+ 
 ],
   
   imports: [
@@ -119,4 +142,4 @@ import { Member6ChatComponent } from './member6-chat/member6-chat.component';
   ]
 
 })
-export class GrpFModule { }
+export class GrpFModule {}

@@ -1,3 +1,5 @@
+// src/app/grp-f/grp-f-routing.module.ts
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -7,7 +9,7 @@ import { Member2Component } from './member2/member2.component';
 import { Member3Component } from './member3/member3.component';
 import { Member4Component } from './member4/member4.component';
 import { Member5Component } from './member5/member5.component';
-
+import { AttendanceComponent } from './member5/attendance/attendance.component';
 import { Member6Component } from './member6/member6.component';
 import { Member6AttendanceComponent } from './member6-attendance/member6-attendance.component';
 import { Member6ChatComponent } from './member6-chat/member6-chat.component';
@@ -21,14 +23,12 @@ import { ProductDashboardComponent } from './member2/product-management/product-
 import { WhatsappChatDashboardComponent } from './member2/whatsapp-chat/whatsapp-chat-dashboard/whatsapp-chat-dashboard.component';
 import { Member10AttendanceDashboardComponent } from './member10/member10-attendance-dashboard/member10-attendance-dashboard.component';
 import { BillingComponent } from './member10/billing/billing.component';
-import { AttendanceComponent as Member5AttendanceComponent } from './member5/attendance/attendance.component';
-
-import { AttendanceComponent as Member7AttendanceComponent } from './member7/attendance/attendance.component';
-
-import { ChatComponent } from './member7/chat/chat.component';
-
+import { Member10ChatAppComponent } from './member10/member10-chatapp/member10-chatapp.component';
 
 const routes: Routes = [
+  
+  { path: 'member10/chatapp',         
+   component: Member10ChatAppComponent },  // ← NEW
   {
     path: '',
     component: GrpFComponent
