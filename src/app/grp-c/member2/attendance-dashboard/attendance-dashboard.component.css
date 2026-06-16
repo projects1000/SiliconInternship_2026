@@ -1,0 +1,432 @@
+/* ==================================================
+   GLOBAL
+================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background: #f8fafc;
+    position: relative;
+}
+
+/* ==================================================
+   FLOATING BACKGROUND
+================================================== */
+
+.dashboard-container::before,
+.dashboard-container::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.25;
+    z-index: 0;
+}
+
+.dashboard-container::before {
+    width: 400px;
+    height: 400px;
+    background: #6366f1;
+    top: -100px;
+    left: -100px;
+}
+
+.dashboard-container::after {
+    width: 500px;
+    height: 500px;
+    background: #0ea5e9;
+    bottom: -150px;
+    right: -150px;
+}
+
+/* ==================================================
+   SIDEBAR
+================================================== */
+
+.left-panel {
+    width: 300px;
+    background: linear-gradient(
+        160deg,
+        #ffffff 0%,
+        #f1f5f9 100%
+    );
+
+    color: #1e293b;
+    padding: 30px 20px;
+    z-index: 10;
+
+    border-right: 1px solid #e2e8f0;
+
+    box-shadow:
+        10px 0 30px rgba(0,0,0,.08);
+}
+
+.left-panel h2 {
+    text-align: center;
+    color: #2563eb;
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+/* ==================================================
+   TEAM BUTTONS
+================================================== */
+
+.team-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.team-buttons button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    background: #e2e8f0;
+    color: #1e293b;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.team-buttons button:hover {
+    background: #cbd5e1;
+    transform: translateX(5px);
+}
+
+.active-team {
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    ) !important;
+
+    color: white !important;
+}
+
+/* ==================================================
+   RIGHT PANEL
+================================================== */
+
+.right-panel {
+    flex: 1;
+    padding: 35px;
+    z-index: 5;
+}
+
+/* ==================================================
+   HEADER
+================================================== */
+
+.header {
+    background: linear-gradient(
+        135deg,
+        #6366f1,
+        #4338ca
+    );
+
+    color: white;
+
+    padding: 30px;
+
+    border-radius: 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 30px;
+
+    box-shadow:
+        0 15px 30px rgba(67,56,202,.25);
+}
+
+.header h1 {
+    font-size: 34px;
+}
+
+.subtitle {
+    margin-top: 8px;
+    opacity: .9;
+}
+
+.date-info {
+    background: rgba(255,255,255,.15);
+    padding: 12px 20px;
+    border-radius: 12px;
+}
+
+/* ==================================================
+   ALERTS
+================================================== */
+
+.lock-banner {
+    background: #fee2e2;
+    color: #dc2626;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.success-banner {
+    background: #dcfce7;
+    color: #16a34a;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+/* ==================================================
+   SUMMARY
+================================================== */
+
+.summary {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+.summary mat-card {
+    padding: 25px;
+    border-radius: 20px;
+    color: white;
+    border: none;
+}
+
+.summary mat-card:nth-child(1) {
+    background: linear-gradient(135deg,#3b82f6,#2563eb);
+}
+
+.summary mat-card:nth-child(2) {
+    background: linear-gradient(135deg,#10b981,#059669);
+}
+
+.summary mat-card:nth-child(3) {
+    background: linear-gradient(135deg,#ef4444,#dc2626);
+}
+
+.summary mat-card:nth-child(4) {
+    background: linear-gradient(135deg,#f59e0b,#d97706);
+}
+
+.summary mat-card:nth-child(5) {
+    background: linear-gradient(135deg,#8b5cf6,#6d28d9);
+}
+
+.summary mat-card h3 {
+    margin-top: 10px;
+}
+
+.summary mat-card p {
+    font-size: 30px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* ==================================================
+   DATE + SEARCH
+================================================== */
+
+.date-section,
+.search-section {
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 20px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.05);
+}
+
+.date-section label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+input[type="date"],
+.search-box {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+input[type="date"]:focus,
+.search-box:focus {
+    outline: none;
+    border-color: #6366f1;
+}
+
+/* ==================================================
+   TABLE
+================================================== */
+
+table {
+    width: 100%;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.mat-mdc-header-row {
+    background: #f1f5f9;
+}
+
+.mat-mdc-header-cell {
+    font-weight: 700 !important;
+    color: #334155;
+}
+
+.mat-mdc-cell {
+    color: #1e293b;
+}
+
+.mat-mdc-row:hover {
+    background: #f8fafc;
+}
+
+/* ==================================================
+   BUTTONS
+================================================== */
+
+.actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.actions button {
+    min-width: 180px;
+    border-radius: 12px;
+}
+
+/* ==================================================
+   REPORT
+================================================== */
+
+.report-section {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    margin-top: 30px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.05);
+}
+
+.report-section h2 {
+    margin-bottom: 15px;
+}
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+.footer {
+    margin-top: 30px;
+    text-align: center;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* ==================================================
+   ICON FIX
+================================================== */
+
+mat-icon {
+    font-family: 'Material Icons' !important;
+    font-size: 24px !important;
+    line-height: 1 !important;
+}
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media(max-width:1024px){
+
+    .dashboard-container{
+        flex-direction:column;
+    }
+
+    .left-panel{
+        width:100%;
+    }
+
+    .right-panel{
+        padding:20px;
+    }
+
+    .header{
+        flex-direction:column;
+        text-align:center;
+        gap:20px;
+    }
+
+    .actions{
+        flex-direction:column;
+    }
+
+    .actions button{
+        width:100%;
+    }
+}
+
+.clickable-row {
+    cursor: pointer;
+}
+
+.clickable-row:hover {
+    background: #eef2ff;
+}
+
+.student-report {
+    margin-top: 30px;
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.05);
+}
+
+.student-report h2 {
+    margin-bottom: 15px;
+    color: #4338ca;
+}
+
+.student-report p {
+    margin: 10px 0;
+    font-size: 16px;
+}

@@ -1,3 +1,5 @@
+// src/app/grp-f/grp-f.module.ts
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -33,13 +35,14 @@ import { Member6ChatComponent } from './member6-chat/member6-chat.component';
 import { AttendanceComponent } from './member5/attendance/attendance.component';
 import { Member10AttendanceDashboardComponent } from './member10/member10-attendance-dashboard/member10-attendance-dashboard.component';
 import { BillingComponent } from './member10/billing/billing.component';
-import { GrpFRoutingModule } from './grp-f-routing.module';
 
+// ── New Chat App components ──
 import { Member10ChatAppComponent } from './member10/member10-chatapp/member10-chatapp.component';
 import { Member10UserAComponent } from './member10/member10-chatapp/user-a/user-a.component';
 import { Member10UserBComponent } from './member10/member10-chatapp/user-b/user-b.component';
 import { Member10ChatWindowComponent } from './member10/member10-chatapp/chat-window/chat-window.component';
 
+import { GrpFRoutingModule } from './grp-f-routing.module';
 
 @NgModule({
   declarations: [
@@ -59,11 +62,12 @@ import { Member10ChatWindowComponent } from './member10/member10-chatapp/chat-wi
     AttendanceComponent,
     Member10AttendanceDashboardComponent,
     BillingComponent,
+
+    // ── Chat App ──
     Member10ChatAppComponent,
     Member10UserAComponent,
     Member10UserBComponent,
     Member10ChatWindowComponent
-    
   ],
   imports: [
     CommonModule,
@@ -85,4 +89,4 @@ import { Member10ChatWindowComponent } from './member10/member10-chatapp/chat-wi
     MatRippleModule
   ]
 })
-export class GrpFModule { }
+export class GrpFModule {}

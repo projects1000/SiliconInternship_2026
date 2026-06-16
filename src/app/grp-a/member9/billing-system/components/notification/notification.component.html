@@ -1,0 +1,17 @@
+<div class="card shadow-sm h-100 border-danger">
+    <div class="card-header bg-light text-danger fw-bold text-center">4. NOTIFICATION (Child)</div>
+
+    <div class="card-body p-2" style="max-height: 300px; overflow-y: auto;">
+
+        <div *ngFor="let note of notifications"
+            class="alert alert-{{note.type === 'primary' ? 'primary' : (note.type === 'success' ? 'success' : 'warning')}} py-2 mb-2"
+            style="font-size: 0.9rem;">
+            <i class="bi bi-check-circle-fill me-2"></i> {{ note.message }}
+        </div>
+
+        <div *ngIf="notifications.length === 0" class="text-center text-muted mt-3">
+            No notifications yet.
+        </div>
+
+    </div>
+</div>

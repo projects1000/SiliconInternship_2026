@@ -8,5 +8,5 @@
 export interface Customer {
   name: string;
   mobile: string;
-  address: string;
+  address?: string;
 }

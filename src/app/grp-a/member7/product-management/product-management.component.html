@@ -1,0 +1,139 @@
+<!-- ══ TOAST NOTIFICATIONS (top-right) ══════════════════════════════════ -->
+<div class="toast-container">
+  <div
+    *ngFor="let toast of toasts; trackBy: trackToastById"
+    class="toast"
+    [class.toast-product]="toast.type === 'product'"
+    [class.toast-customer]="toast.type === 'customer'"
+    [class.toast-bill]="toast.type === 'bill'"
+    [class.toast-warn]="toast.type === 'warn'"
+    (click)="dismissToast(toast.id)"
+  >
+    <span class="toast-icon">
+      <span *ngIf="toast.type === 'product'">✓</span>
+      <span *ngIf="toast.type === 'customer'">✓</span>
+      <span *ngIf="toast.type === 'bill'">✓</span>
+      <span *ngIf="toast.type === 'warn'">⚠</span>
+    </span>
+    <span class="toast-text">{{ toast.message }}</span>
+    <span class="toast-close">✕</span>
+  </div>
+</div>
+
+<!-- ══ MAIN DASHBOARD ════════════════════════════════════════════════════ -->
+<div class="pm-dashboard">
+
+  <!-- ── Page Header ──────────────────────────────────────────────────── -->
+  <header class="pm-header">
+    <div class="header-left">
+      <button class="back-btn" (click)="goBack()" id="pm-back-btn">
+        <span class="back-arrow">←</span>
+        Back to Portfolio
+      </button>
+      <div class="header-brand">
+        <span class="brand-dot"></span>
+        <span class="brand-name">Priyanshu.</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <h1 class="page-title">Product Management System</h1>
+    </div>
+  </header>
+
+
+  <!-- ── 4-Panel Grid ──────────────────────────────────────────────────── -->
+  <div class="panels-grid">
+
+    <!-- Panel 1: Product List -->
+    <app-product-list
+      (productAdded)="onProductAdded($event)"
+    ></app-product-list>
+
+    <!-- Panel 2: Customer Details -->
+    <app-customer-details
+      (customerSaved)="onCustomerSaved($event)"
+    ></app-customer-details>
+
+    <!-- Panel 3: Bill Details -->
+    <app-bill-details
+      [billItems]="billItems"
+      [customerName]="customer.name"
+      [customerMobile]="customer.mobile"
+      [subtotal]="subtotal"
+      [gst]="gst"
+      [grandTotal]="grandTotal"
+      (billGenerated)="onBillGenerated()"
+    ></app-bill-details>
+
+    <!-- Panel 4: Notifications -->
+    <app-notifications></app-notifications>
+
+  </div>
+
+  <!-- ── Dashboard Summary Section (Parent Billboard) ─────────────────── -->
+  <section class="dashboard-summary">
+    <div class="summary-header">
+      <div class="summary-header-inner">
+        <span class="summary-icon">📊</span>
+        <div>
+          <h2 class="summary-title">Billing Dashboard</h2>
+          <p class="summary-subtitle">Real-time Summary</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="summary-cards">
+
+      <!-- Customer Name Card -->
+      <div class="summary-card" id="summary-card-name">
+        <div class="summary-card-icon icon-purple">👤</div>
+        <div class="summary-card-content">
+          <span class="summary-card-label">Customer Name</span>
+          <span class="summary-card-value" [class.empty-value]="!customer.name">
+            {{ customer.name || '—' }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Mobile Number Card -->
+      <div class="summary-card" id="summary-card-mobile">
+        <div class="summary-card-icon icon-blue">📱</div>
+        <div class="summary-card-content">
+          <span class="summary-card-label">Mobile Number</span>
+          <span class="summary-card-value" [class.empty-value]="!customer.mobile">
+            {{ customer.mobile || '—' }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Products Selected Card -->
+      <div class="summary-card" id="summary-card-products">
+        <div class="summary-card-icon icon-green">🛒</div>
+        <div class="summary-card-content">
+          <span class="summary-card-label">Total Products Selected</span>
+          <span class="summary-card-value">
+            <span class="metric-value">{{ totalProductsSelected }}</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Total Bill Amount Card -->
+      <div class="summary-card summary-card-gold" id="summary-card-total">
+        <div class="summary-card-icon icon-gold">₹</div>
+        <div class="summary-card-content">
+          <span class="summary-card-label">Total Bill Amount</span>
+          <span class="summary-card-value grand-total-display">
+            {{ grandTotal > 0 ? '₹' + grandTotal.toFixed(2) : '₹0.00' }}
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="pm-footer">
+    <p>© 2026 Priyanshu Sekhar Badhei — Group A, Member 7 · Silicon University Internship</p>
+  </footer>
+
+</div>

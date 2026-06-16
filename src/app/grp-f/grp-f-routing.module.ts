@@ -1,3 +1,5 @@
+// src/app/grp-f/grp-f-routing.module.ts
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -20,75 +22,23 @@ import { BillingComponent } from './member10/billing/billing.component';
 import { Member10ChatAppComponent } from './member10/member10-chatapp/member10-chatapp.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: GrpFComponent
-  },
-  {
-    path: 'member1',
-    component: Member1Component
-  },
-  {
-    path: 'member2',
-    component: Member2Component
-  },
-  {
-    path: 'member3',
-    component: Member3Component
-  },
-  {
-    path: 'member4',
-    component: Member4Component
-  },
-  {
-    path: 'member5',
-    component: Member5Component
-  },
-  {
-    path: 'member5/attendance',
-    component: AttendanceComponent
-  },
-  {
-    path: 'member6',
-    component: Member6Component
-  },
-  {
-    path: 'member6-chat',
-    component: Member6ChatComponent
-  },
-  {
-    path: 'member6-attendance',
-    component: Member6AttendanceComponent
-  },
-  {
-    path: 'member7',
-    component: Member7Component
-  },
-  {
-    path: 'member8',
-    component: Member8Component
-  },
-  {
-    path: 'member9',
-    component: Member9Component
-  },
-  {
-    path: 'member10',
-    component: Member10Component
-  },
-  {
-    path: 'member10/attendance-dashboard',
-    component: Member10AttendanceDashboardComponent
-  },
-  {
-    path: 'member10/billing',
-    component: BillingComponent
-  },
-  { 
-    path: 'member10/chatapp',         
-    component: Member10ChatAppComponent 
-  }  // ← NEW
-  
+  { path: '',                          component: GrpFComponent },
+  { path: 'member1',                   component: Member1Component },
+  { path: 'member2',                   component: Member2Component },
+  { path: 'member3',                   component: Member3Component },
+  { path: 'member4',                   component: Member4Component },
+  { path: 'member5',                   component: Member5Component },
+  { path: 'member5/attendance',        component: AttendanceComponent },
+  { path: 'member6',                   component: Member6Component },
+  { path: 'member6-chat',              component: Member6ChatComponent },
+  { path: 'member6-attendance',        component: Member6AttendanceComponent },
+  { path: 'member7',                   component: Member7Component },
+  { path: 'member8',                   component: Member8Component },
+  { path: 'member9',                   component: Member9Component },
+  { path: 'member10',                  component: Member10Component },
+  { path: 'member10/attendance-dashboard', component: Member10AttendanceDashboardComponent },
+  { path: 'member10/billing',          component: BillingComponent },
+  { path: 'member10/chatapp',          component: Member10ChatAppComponent }  // ← NEW
 ];
 
 @NgModule({

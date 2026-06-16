@@ -1,0 +1,128 @@
+<div class="attendance-container">
+
+    <div class="hero-section">
+
+        <div>
+            <h1>Silicon Internship Portal 2026</h1>
+            <p>Advanced Attendance Management Dashboard</p>
+        </div>
+
+        <div class="hero-buttons">
+
+            <button class="export-btn" (click)="exportReport()">
+                Export Report
+            </button>
+
+            <button class="save-btn" (click)="saveAttendance()">
+                Save Attendance
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- CALENDAR / MONTH-YEAR SELECTOR -->
+    <div class="calendar-card">
+
+        <div class="calendar-selector">
+
+            <div class="select-group">
+                <label>Month</label>
+                <select [(ngModel)]="selectedMonth" (ngModelChange)="onMonthYearChange()">
+                    <option *ngFor="let month of months; let i = index" [value]="i">
+                        {{month}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="select-group">
+                <label>Year</label>
+                <select [(ngModel)]="selectedYear" (ngModelChange)="onMonthYearChange()">
+                    <option *ngFor="let year of years" [value]="year">
+                        {{year}}
+                    </option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="save-message" *ngIf="saveMessage">
+            {{saveMessage}}
+        </div>
+
+    </div>
+
+    <div class="dashboard-summary">
+
+        <div class="summary-box">
+            <h3>Total Students</h3>
+            <p>{{employees.length}}</p>
+        </div>
+
+        <div class="summary-box">
+            <h3>Total Present</h3>
+            <p>{{getTotalPresent()}}</p>
+        </div>
+
+        <div class="summary-box">
+            <h3>Total Records</h3>
+            <p>{{getTotalRecords()}}</p>
+        </div>
+
+        <div class="summary-box">
+            <h3>Attendance %</h3>
+            <p>{{getAttendancePercentage()}}%</p>
+        </div>
+
+    </div>
+
+    <div class="table-card">
+
+        <h2>Attendance Register - {{months[selectedMonth]}} {{selectedYear}}</h2>
+
+        <div class="table-scroll">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Student Name</th>
+
+                        <th *ngFor="let date of dates">
+                            {{date}}
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor="let employee of employees">
+
+                        <td class="employee-name">
+                            {{employee.name}}
+                        </td>
+
+                        <td
+                            *ngFor="let status of employee.attendance; let i = index">
+
+                            <input
+                                type="checkbox"
+                                [(ngModel)]="employee.attendance[i]">
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

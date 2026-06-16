@@ -1,0 +1,238 @@
+<div class="dashboard-container">
+
+    <!-- LEFT PANEL -->
+    <div class="left-panel">
+
+        <h2>Teams</h2>
+
+        <div class="team-buttons">
+
+            <button *ngFor="let team of teams" class="team-btn" [class.active]="selectedTeam === team"
+                (click)="selectTeam(team)">
+
+                <mat-icon>groups</mat-icon>
+                Team {{ team }}
+
+            </button>
+
+        </div>
+
+        <div class="team-info">
+
+            <h3>Selected Team: {{ selectedTeam }}</h3>
+
+            <p>Members: {{ members.length }}</p>
+            <p>Present: {{ presentCount }}</p>
+            <p>Absent: {{ absentCount }}</p>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+
+        <!-- HEADER -->
+        <div class="header">
+
+            <div>
+                <h1>Attendance Management System</h1>
+                <p class="subtitle">Team {{ selectedTeam }} Dashboard</p>
+            </div>
+
+            <div class="date-info">
+                Current Date: {{ currentDate }}
+            </div>
+
+        </div>
+
+        <!-- LOCK BANNER -->
+        <div class="lock-banner" *ngIf="isLocked">
+            <mat-icon>lock</mat-icon>
+            Attendance Locked
+        </div>
+
+        <!-- SUCCESS MESSAGE -->
+        <div class="success-banner" *ngIf="showSavedMessage">
+            Saved Successfully
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="summary">
+
+            <mat-card>
+                <mat-icon>groups</mat-icon>
+                <h3>Total</h3>
+                <p>{{ members.length }}</p>
+            </mat-card>
+
+            <mat-card>
+                <mat-icon>how_to_reg</mat-icon>
+                <h3>Present</h3>
+                <p>{{ presentCount }}</p>
+            </mat-card>
+
+            <mat-card>
+                <mat-icon>person_off</mat-icon>
+                <h3>Absent</h3>
+                <p>{{ absentCount }}</p>
+            </mat-card>
+
+            <mat-card>
+                <mat-icon>analytics</mat-icon>
+                <h3>Attendance %</h3>
+                <p>{{ attendancePercentage }}%</p>
+            </mat-card>
+
+        </div>
+
+        <!-- DATE -->
+        <div class="date-section">
+            <label>Select Date</label>
+            <input type="date" [(ngModel)]="selectedDate" (change)="onDateChange()">
+        </div>
+
+        <!-- SEARCH -->
+        <div class="search-section">
+            <input type="text" placeholder="Search Member..." [(ngModel)]="searchText" class="search-box">
+        </div>
+
+        <!-- TABLE -->
+        <table mat-table [dataSource]="filteredMembers" class="mat-elevation-z8">
+
+            <!-- ID -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>ID</th>
+                <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+            </ng-container>
+
+            <!-- NAME -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+            </ng-container>
+
+            <!-- ATTENDANCE -->
+            <ng-container matColumnDef="attendance">
+                <th mat-header-cell *matHeaderCellDef>Present</th>
+                <td mat-cell *matCellDef="let row">
+
+                    <mat-checkbox [(ngModel)]="row.present" [disabled]="isLocked" (click)="$event.stopPropagation()">
+                    </mat-checkbox>
+
+                </td>
+            </ng-container>
+
+            <!-- STATUS -->
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let row">
+
+                    <mat-icon color="primary" *ngIf="row.present">
+                        check_circle
+                    </mat-icon>
+
+                    <mat-icon color="warn" *ngIf="!row.present">
+                        cancel
+                    </mat-icon>
+
+                </td>
+            </ng-container>
+
+            <!-- ROW -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+            <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="viewStudentReport(row)"
+                class="clickable-row">
+            </tr>
+
+        </table>
+
+        <!-- ACTIONS -->
+        <div class="actions">
+
+            <button mat-raised-button color="primary" (click)="saveAttendance()">
+                Save Attendance
+            </button>
+
+            <button mat-raised-button color="warn" (click)="lockAllAttendance()">
+                Lock All & Download
+            </button>
+
+            <button mat-raised-button color="accent" (click)="backToProfile()">
+                Back To Profile
+            </button>
+
+            <button mat-raised-button color="primary" (click)="resetAttendance()">
+                Reset
+            </button>
+
+        </div>
+
+        <!-- REPORT -->
+        <div class="report-section">
+
+            <h2>Attendance Report</h2>
+
+            <p>Total Members: {{ members.length }}</p>
+            <p>Present: {{ presentCount }}</p>
+            <p>Absent: {{ absentCount }}</p>
+            <p>Attendance %: {{ attendancePercentage }}%</p>
+
+        </div>
+
+        <!-- STUDENT REPORT -->
+        <div class="student-report" *ngIf="selectedStudent">
+
+        <h2>Student Report</h2>
+        <div class="student-report" *ngIf="selectedStudent">
+
+            <h2>Student Attendance Report</h2>
+
+            <p>
+                <strong>Name:</strong>
+                {{ selectedStudent.name }}
+            </p>
+
+            <p>
+                <strong>ID:</strong>
+                {{ selectedStudent.id }}
+            </p>
+
+            <p>
+                <strong>Team:</strong>
+                {{ selectedStudent.team }}
+            </p>
+
+            <hr>
+
+            <p>
+                Total Days:
+                {{ studentReport.totalDays }}
+            </p>
+
+            <p>
+                Present:
+                {{ studentReport.presentDays }}
+            </p>
+
+            <p>
+                Absent:
+                {{ studentReport.absentDays }}
+            </p>
+
+            <p>
+                Attendance Percentage:
+                {{ studentReport.percentage }}%
+            </p>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            Developed By Gaurav Patra
+        </div>
+
+    </div>
+
+</div>

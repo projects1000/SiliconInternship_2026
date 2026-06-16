@@ -17,6 +17,14 @@ export class Member2Component {
   this.router.navigate(['grp-e/member2/attendence0001']);
 }
 
+  goToBilling() {
+    this.router.navigate(['grp-e/member2/billingmanagement0001']);
+  }
+
+  goToWhatsAppClone() {
+    this.router.navigate(['grp-e/member2/whatsappclone0001']);
+  }
+
   scrollToSection(sectionId: string) {
     const element = document.getElementById(sectionId);
 
