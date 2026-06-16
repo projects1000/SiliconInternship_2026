@@ -30,11 +30,30 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
+import { Member2AttendanceComponent } from './member2/member2-attendance/member2-attendance.component';
+import { MemberTreeComponent } from './member2/member-tree/member-tree.component';
+import { AttendanceTableComponent } from './member2/attendance-table/attendance-table.component';
+import { AttendanceHistoryComponent } from './member2/attendance-history/attendance-history.component';
+import { AttendanceCalendarComponent } from './member2/attendance-calendar/attendance-calendar.component';
+import { ProductDashboardComponent } from './member2/product-management/product-dashboard/product-dashboard.component';
+import { ProductListComponent } from './member2/product-management/product-list/product-list.component';
+import { CustomerDetailsComponent } from './member2/product-management/customer-details/customer-details.component';
+import { BillingComponent as Member2BillingComponent } from './member2/product-management/billing/billing.component';
+import { WhatsappChatDashboardComponent } from './member2/whatsapp-chat/whatsapp-chat-dashboard/whatsapp-chat-dashboard.component';
+import { UserAComponent } from './member2/whatsapp-chat/user-a/user-a.component';
+import { UserBComponent } from './member2/whatsapp-chat/user-b/user-b.component';
+import { ChatWindowComponent } from './member2/whatsapp-chat/chat-window/chat-window.component';
+import { MatCommonModule } from '@angular/material/core';
+
+import { AttendanceComponent } from './member7/attendance/attendance.component';
+import { ChatComponent } from './member7/chat/chat.component';
+
+import { BillingComponent } from './member10/billing/billing.component';
+import { Member10AttendanceDashboardComponent } from './member10/member10-attendance-dashboard/member10-attendance-dashboard.component';
 import { Member6AttendanceComponent } from './member6-attendance/member6-attendance.component';
 import { Member6ChatComponent } from './member6-chat/member6-chat.component';
 import { AttendanceComponent } from './member5/attendance/attendance.component';
-import { Member10AttendanceDashboardComponent } from './member10/member10-attendance-dashboard/member10-attendance-dashboard.component';
-import { BillingComponent } from './member10/billing/billing.component';
+
 
 // ── New Chat App components ──
 import { Member10ChatAppComponent } from './member10/member10-chatapp/member10-chatapp.component';
@@ -46,6 +65,7 @@ import { GrpFRoutingModule } from './grp-f-routing.module';
 
 @NgModule({
   declarations: [
+
     GrpFComponent,
     Member1Component,
     Member2Component,
@@ -68,11 +88,43 @@ import { GrpFRoutingModule } from './grp-f-routing.module';
     Member10UserAComponent,
     Member10UserBComponent,
     Member10ChatWindowComponent
-  ],
+
+
+  
+
+  Member2AttendanceComponent,
+  MemberTreeComponent,
+  AttendanceTableComponent,
+  AttendanceHistoryComponent,
+  AttendanceCalendarComponent,
+
+  ProductDashboardComponent,
+  ProductListComponent,
+  CustomerDetailsComponent,
+  Member2BillingComponent,
+
+  WhatsappChatDashboardComponent,
+  UserAComponent,
+  UserBComponent,
+  ChatWindowComponent,
+
+  Member5AttendanceComponent,
+
+  AttendanceComponent,
+  ChatComponent,
+
+  Member6AttendanceComponent,
+  Member6ChatComponent,
+
+ 
+],
+  
   imports: [
     CommonModule,
     GrpFRoutingModule,
     FormsModule,
+    MatSnackBarModule,
+
     MatIconModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -88,5 +140,6 @@ import { GrpFRoutingModule } from './grp-f-routing.module';
     MatTooltipModule,
     MatRippleModule
   ]
+
 })
 export class GrpFModule {}

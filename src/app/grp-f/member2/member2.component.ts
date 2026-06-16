@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-member2',
   templateUrl: './member2.component.html',
@@ -12,4 +13,9 @@ export class Member2Component {
   goBackToGroup() {
     this.router.navigate(['grp-f']);
   }
+  goToAttendanceManagement() {
+  this.router.navigate(
+    ['/grp-f/member2/member2-attendance']
+  );
+}
 }
