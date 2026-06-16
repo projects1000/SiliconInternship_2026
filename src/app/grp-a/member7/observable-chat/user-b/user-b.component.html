@@ -1,0 +1,53 @@
+<div class="user-panel panel-mayur">
+
+  <!-- ── Header ──────────────────────────────────────────── -->
+  <div class="user-header">
+    <div class="user-avatar avatar-mayur">M</div>
+    <div class="user-meta">
+      <h3 class="user-name">Mayur</h3>
+      <div class="online-row">
+        <span class="pulse-dot dot-purple"></span>
+        <span class="online-label">Online</span>
+      </div>
+    </div>
+    <span class="user-tag">User B</span>
+  </div>
+
+  <!-- ── RxJS Hint ────────────────────────────────────────── -->
+  <div class="rxjs-hint hint-mayur">
+    <span class="hint-icon">⚡</span>
+    <span class="hint-text">Uses <code>Subject.next()</code> to send messages</span>
+  </div>
+
+  <!-- ── Message Input ────────────────────────────────────── -->
+  <div class="input-section">
+    <label class="input-label" for="mayur-msg">Enter Message</label>
+    <textarea
+      id="mayur-msg"
+      class="msg-textarea"
+      [(ngModel)]="messageText"
+      (input)="onInput()"
+      (keydown)="onKeydown($event)"
+      placeholder="Type a message to Gents..."
+      rows="4"
+    ></textarea>
+  </div>
+
+  <!-- ── Send Button ───────────────────────────────────────── -->
+  <button
+    id="mayur-send-btn"
+    class="send-btn send-btn-mayur"
+    [class.sending]="isSending"
+    (click)="send()"
+  >
+    <span class="send-icon">{{ isSending ? '✓' : '✈' }}</span>
+    <span>{{ isSending ? 'Sent!' : 'SEND' }}</span>
+  </button>
+
+  <!-- ── Footer ───────────────────────────────────────────── -->
+  <div class="user-footer">
+    <span class="logged-label">Logged in as: </span>
+    <strong class="logged-name logged-mayur">Mayur</strong>
+  </div>
+
+</div>

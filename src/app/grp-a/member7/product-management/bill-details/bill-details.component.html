@@ -1,0 +1,68 @@
+<div class="pm-panel">
+  <div class="panel-header">
+    <div class="panel-icon-wrap bill-icon-bg">
+      <span class="panel-icon">🧾</span>
+    </div>
+    <div>
+      <h3 class="panel-title">Bill Details</h3>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-bill" *ngIf="billItems.length === 0">
+    <span class="empty-icon">📋</span>
+    <p class="empty-text">No products added yet</p>
+    <p class="empty-hint">Click Add on any product to start billing</p>
+  </div>
+
+  <!-- Bill Table -->
+  <div class="bill-body" *ngIf="billItems.length > 0">
+    <div class="bill-table-wrapper">
+      <table class="bill-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th class="text-center">Qty</th>
+            <th class="text-right">Price (₹)</th>
+            <th class="text-right">Total (₹)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of billItems" class="bill-row">
+            <td class="product-cell">{{ item.name }}</td>
+            <td class="text-center qty-cell">
+              <span class="qty-badge">{{ item.quantity }}</span>
+            </td>
+            <td class="text-right price-cell">{{ item.price }}</td>
+            <td class="text-right total-cell">{{ item.total }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Totals Section -->
+    <div class="totals-section">
+      <div class="total-row">
+        <span class="total-label">Sub Total</span>
+        <span class="total-value">₹{{ subtotal.toFixed(2) }}</span>
+      </div>
+      <div class="total-row">
+        <span class="total-label">GST (18%)</span>
+        <span class="total-value gst-value">₹{{ gst.toFixed(2) }}</span>
+      </div>
+      <div class="total-row grand-row">
+        <span class="grand-label">Grand Total</span>
+        <span class="grand-value">₹{{ grandTotal.toFixed(2) }}</span>
+      </div>
+    </div>
+
+    <!-- Generate Bill Button -->
+    <button
+      class="generate-btn"
+      [class.generated]="isGenerated"
+      (click)="generateBill()"
+    >
+      <span>{{ isGenerated ? '✓ Bill Generated' : '⚡ Generate Bill' }}</span>
+    </button>
+  </div>
+</div>

@@ -107,7 +107,7 @@
                        (dateChange)="onDateChange($event)"
                        readonly>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <mat-datepicker #picker [panelClass]="isDarkMode ? 'member7-dark-datepicker' : 'member7-light-datepicker'"></mat-datepicker>
               </mat-form-field>
               
               <div class="current-date-info">
