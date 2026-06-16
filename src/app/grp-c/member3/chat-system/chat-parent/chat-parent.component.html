@@ -1,0 +1,19 @@
+<style>
+  .chat-wrapper { max-width: 1100px; margin: 20px auto; font-family: 'Segoe UI', Tahoma, sans-serif; }
+  .chat-title { background-color: #075e54; color: white; text-align: center; padding: 15px; border-radius: 8px 8px 0 0; margin: 0; }
+  .subtitle { background-color: #128c7e; color: #ece5dd; text-align: center; padding: 5px; border-radius: 0 0 8px 8px; margin-bottom: 20px; }
+  .chat-grid { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 20px; align-items: start; }
+</style>
+
+<div class="chat-wrapper">
+  <header>
+    <h2 class="chat-title">Two User WhatsApp Chat App</h2>
+    <div class="subtitle">Using Observable & Subscribe</div>
+  </header>
+
+  <div class="chat-grid">
+    <app-user-ayush></app-user-ayush>
+    <app-chat-window></app-chat-window>
+    <app-user-anshuman></app-user-anshuman>
+  </div>
+</div>

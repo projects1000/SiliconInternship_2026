@@ -1,0 +1,42 @@
+<h2 class="title">Available Products</h2>
+
+<div class="products-grid">
+
+  <div
+    class="product-card"
+    *ngFor="let product of products">
+
+    <img
+      [src]="product.image"
+      [alt]="product.name"
+      class="product-image">
+
+    <h3>{{product.name}}</h3>
+
+    <p class="price">
+      ₹{{product.price}}
+    </p>
+
+    <div class="qty-controls">
+
+      <button
+        class="qty-btn minus"
+        (click)="decrease(product)">
+        -
+      </button>
+
+      <span class="qty">
+        {{product.qty}}
+      </span>
+
+      <button
+        class="qty-btn plus"
+        (click)="increase(product)">
+        +
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

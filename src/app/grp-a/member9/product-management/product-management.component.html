@@ -1,0 +1,131 @@
+<div class="pm-terminal-container">
+
+    <div class="pm-header">
+        <div class="pm-title-block">
+            <h1>Inventory Management Console</h1>
+            <p>Add, edit, monitor, and remove system items with automatic data persistence.</p>
+        </div>
+
+        <div class="pm-search-box">
+            <input type="text" [(ngModel)]="searchQuery" (input)="applyFilter()"
+                placeholder="Search inventory (Name, SKU, Category)..." class="pm-input" />
+        </div>
+    </div>
+
+    <div class="pm-workspace-grid">
+
+        <div class="pm-glass-card form-card-box">
+            <div class="pm-card-header">
+                {{ isEditing ? 'Modify Product Record' : 'Register New Product Node' }}
+            </div>
+            <div class="pm-card-body">
+                <form (ngSubmit)="onSubmitProduct()">
+
+                    <div class="pm-form-group">
+                        <label>Product Title *</label>
+                        <input type="text" [(ngModel)]="productName" name="pName"
+                            placeholder="e.g., UltraWide Gaming Display" class="pm-input" required />
+                    </div>
+
+                    <div class="pm-form-row">
+                        <div class="pm-form-group">
+                            <label>SKU Code *</label>
+                            <input type="text" [(ngModel)]="productSku" name="pSku" placeholder="e.g., MON-UW-29"
+                                class="pm-input" required />
+                        </div>
+                        <div class="pm-form-group">
+                            <label>Category</label>
+                            <input type="text" [(ngModel)]="productCategory" name="pCat" placeholder="e.g., Electronics"
+                                class="pm-input" />
+                        </div>
+                    </div>
+
+                    <div class="pm-form-row">
+                        <div class="pm-form-group">
+                            <label>Price Value (INR) *</label>
+                            <input type="number" [(ngModel)]="productPrice" name="pPrice" placeholder="0.00"
+                                class="pm-input" required />
+                        </div>
+                        <div class="pm-form-group">
+                            <label>Stock Qty *</label>
+                            <input type="number" [(ngModel)]="productStock" name="pStock" placeholder="0"
+                                class="pm-input" required />
+                        </div>
+                    </div>
+
+                    <div class="pm-form-group">
+                        <label>Item Description</label>
+                        <textarea [(ngModel)]="productDescription" name="pDesc" rows="3"
+                            placeholder="Enter specifications and technical details..."
+                            class="pm-input pm-textarea"></textarea>
+                    </div>
+
+                    <div class="pm-form-actions">
+                        <button type="submit" class="pm-btn pm-btn-submit">
+                            {{ isEditing ? 'Update Metrics' : 'Deploy Product' }}
+                        </button>
+                        <button type="button" *ngIf="isEditing" (click)="clearForm()" class="pm-btn pm-btn-cancel">
+                            Cancel
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <div class="pm-glass-card table-card-box">
+            <div class="pm-card-header">Active Inventory Registers</div>
+            <div class="pm-card-body p-0">
+                <div class="pm-table-scroll">
+                    <table class="pm-data-table">
+                        <thead>
+                            <tr>
+                                <th>SKU Code</th>
+                                <th>Product Title</th>
+                                <th>Category</th>
+                                <th class="text-right">Price</th>
+                                <th class="text-center">Stock Level</th>
+                                <th class="text-center">Controls</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of filteredProducts" class="pm-table-row">
+                                <td class="pm-sku-text">{{ item.sku }}</td>
+                                <td>
+                                    <div class="pm-title-cell">
+                                        <span class="pm-main-name">{{ item.name }}</span>
+                                        <small class="pm-sub-desc" *ngIf="item.description">{{ item.description
+                                            }}</small>
+                                    </div>
+                                </td>
+                                <td><span class="pm-category-tag">{{ item.category }}</span></td>
+                                <td class="text-right pm-price-text">₹{{ item.price.toLocaleString('en-IN') }}</td>
+                                <td class="text-center">
+                                    <div class="pm-stock-badge" [ngClass]="getStockBadgeClass(item.stock)">
+                                        <span class="badge-dot"></span>
+                                        <span>{{ item.stock }} Unit ({{ getStockLabel(item.stock) }})</span>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="pm-action-buttons-wrap">
+                                        <button class="control-action-btn edit-color" (click)="onEditProduct(item)"
+                                            title="Edit Parameters">⚙ Edit</button>
+                                        <button class="control-action-btn delete-color"
+                                            (click)="onDeleteProduct(item.id)" title="Wipe Record">✕ Drop</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr *ngIf="filteredProducts.length === 0">
+                                <td colspan="6" class="pm-empty-row">
+                                    No active inventory matrix nodes match your lookup criteria.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

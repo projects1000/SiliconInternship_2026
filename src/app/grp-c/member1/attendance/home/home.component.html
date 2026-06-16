@@ -1,0 +1,378 @@
+<div class="attendance-container">
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+        <div>
+            <h1>Attendance Management System</h1>
+            <p>Track and manage team attendance records</p>
+        </div>
+
+        <div class="header-buttons">
+
+            <button
+                mat-raised-button
+                color="primary"
+                [disabled]="isLocked"
+                (click)="submitAttendance()">
+
+                <mat-icon>save</mat-icon>
+                Save Attendance
+
+            </button>
+
+            <button
+                mat-raised-button
+                color="warn"
+                [disabled]="isLocked"
+                (click)="lockSystem()">
+
+                <mat-icon>lock</mat-icon>
+                Lock Records
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- STATUS BAR -->
+
+    <div class="status-cards">
+
+        <mat-card class="status-card">
+
+            <h3>Selected Date</h3>
+
+            <p>{{ currentDateStr }}</p>
+
+        </mat-card>
+
+        <mat-card class="status-card">
+
+            <h3>Records Visible</h3>
+
+            <p>{{ filteredTableData.length }}</p>
+
+        </mat-card>
+
+        <mat-card class="status-card">
+
+            <h3>Status</h3>
+
+            <p *ngIf="!isLocked">Editable</p>
+            <p *ngIf="isLocked">Locked</p>
+
+        </mat-card>
+
+    </div>
+
+    <!-- MAIN LAYOUT -->
+
+    <div class="main-layout">
+
+        <!-- LEFT PANEL -->
+
+        <div class="left-panel">
+
+            <!-- CALENDAR -->
+
+            <mat-card class="panel-card">
+
+                <mat-card-header>
+
+                    <mat-card-title>
+
+                        <mat-icon>calendar_month</mat-icon>
+                        Attendance Date
+
+                    </mat-card-title>
+
+                </mat-card-header>
+
+                <mat-card-content>
+
+                    <mat-calendar
+                        [selected]="selectedCalendarDate"
+                        (selectedChange)="onCalendarDateChange($event)">
+                    </mat-calendar>
+
+                </mat-card-content>
+
+            </mat-card>
+
+            <!-- SEARCH -->
+
+            <mat-card class="panel-card">
+
+                <mat-card-header>
+
+                    <mat-card-title>
+
+                        <mat-icon>search</mat-icon>
+                        Search Member
+
+                    </mat-card-title>
+
+                </mat-card-header>
+
+                <mat-card-content>
+
+                    <mat-form-field appearance="outline" class="full-width">
+
+                        <mat-label>Member Name</mat-label>
+
+                        <input
+                            matInput
+                            [(ngModel)]="searchQuery"
+                            (input)="onSearchChange()">
+
+                    </mat-form-field>
+
+                    <button
+                        mat-stroked-button
+                        color="primary"
+                        (click)="clearAllFilters()">
+
+                        Reset Filters
+
+                    </button>
+
+                </mat-card-content>
+
+            </mat-card>
+
+            <!-- TREE -->
+
+            <mat-card class="panel-card">
+
+                <mat-card-header>
+
+                    <mat-card-title>
+
+                        <mat-icon>groups</mat-icon>
+                        Teams Explorer
+
+                    </mat-card-title>
+
+                </mat-card-header>
+
+                <mat-card-content>
+
+                    <mat-tree
+                        [dataSource]="treeDataSource"
+                        [treeControl]="treeControl">
+
+                        <!-- MEMBER -->
+
+                        <mat-tree-node
+                            *matTreeNodeDef="let node"
+                            matTreeNodeToggle>
+
+                            <button
+                                mat-icon-button
+                                disabled>
+                            </button>
+
+                            <span
+                                class="member-node"
+                                (click)="onNodeSelect(node)">
+
+                                <mat-icon>person</mat-icon>
+                                {{ node.name }}
+
+                            </span>
+
+                        </mat-tree-node>
+
+                        <!-- TEAM -->
+
+                        <mat-nested-tree-node
+                            *matTreeNodeDef="let node; when: hasChild">
+
+                            <div class="mat-tree-node">
+
+                                <button
+                                    mat-icon-button
+                                    matTreeNodeToggle>
+
+                                    <mat-icon>
+
+                                        {{treeControl.isExpanded(node)
+                                        ? 'expand_more'
+                                        : 'chevron_right'}}
+
+                                    </mat-icon>
+
+                                </button>
+
+                                <span
+                                    class="team-node"
+                                    (click)="onNodeSelect(node)">
+
+                                    <mat-icon>group</mat-icon>
+
+                                    {{ node.name }}
+
+                                </span>
+
+                            </div>
+
+                            <div
+                                [hidden]="!treeControl.isExpanded(node)">
+
+                                <ng-container
+                                    matTreeNodeOutlet>
+                                </ng-container>
+
+                            </div>
+
+                        </mat-nested-tree-node>
+
+                    </mat-tree>
+
+                </mat-card-content>
+
+            </mat-card>
+
+        </div>
+
+        <!-- RIGHT PANEL -->
+
+        <div class="right-panel">
+
+          
+            <!-- TABLE -->
+
+            <mat-card class="table-card">
+
+                <mat-card-title>
+
+                    Attendance Register
+
+                </mat-card-title>
+
+                <mat-card-content>
+
+                    <div class="table-wrapper">
+
+                        <table
+                            mat-table
+                            [dataSource]="filteredTableData">
+
+                            <!-- ACTION -->
+
+                            <ng-container matColumnDef="actions">
+
+                                <th
+                                    mat-header-cell
+                                    *matHeaderCellDef>
+
+                                    Remove
+
+                                </th>
+
+                                <td
+                                    mat-cell
+                                    *matCellDef="let element">
+
+                                    <button
+                                        mat-icon-button
+                                        color="warn"
+                                        [disabled]="isLocked"
+                                        (click)="deleteMember(element.memberId)">
+
+                                        <mat-icon>delete</mat-icon>
+
+                                    </button>
+
+                                </td>
+
+                            </ng-container>
+
+                            <!-- MEMBER -->
+
+                            <ng-container matColumnDef="memberName">
+
+                                <th
+                                    mat-header-cell
+                                    *matHeaderCellDef>
+
+                                    Member
+
+                                </th>
+
+                                <td
+                                    mat-cell
+                                    *matCellDef="let element">
+
+                                    <strong>{{element.memberName}}</strong>
+
+                                    <br>
+
+                                    <small>{{element.teamName}}</small>
+
+                                </td>
+
+                            </ng-container>
+
+                            <!-- DYNAMIC DATES -->
+
+                            <ng-container
+                                *ngFor="let dateStr of dates">
+
+                                <ng-container
+                                    [matColumnDef]="dateStr">
+
+                                    <th
+                                        mat-header-cell
+                                        *matHeaderCellDef>
+
+                                        {{ dateStr | date:'dd MMM' }}
+
+                                    </th>
+
+                                    <td
+                                        mat-cell
+                                        *matCellDef="let element">
+
+                                        <mat-checkbox
+
+                                            [checked]="isRowChecked(element,dateStr)"
+
+                                            [disabled]="!isDateEditable(dateStr)"
+
+                                            (change)="onCheckboxToggle(element,dateStr,$event.checked)">
+
+                                        </mat-checkbox>
+
+                                    </td>
+
+                                </ng-container>
+
+                            </ng-container>
+
+                            <tr
+                                mat-header-row
+                                *matHeaderRowDef="displayedColumns; sticky:true">
+                            </tr>
+
+                            <tr
+                                mat-row
+                                *matRowDef="let row; columns: displayedColumns">
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+                </mat-card-content>
+
+            </mat-card>
+
+        </div>
+
+    </div>
+
+</div>

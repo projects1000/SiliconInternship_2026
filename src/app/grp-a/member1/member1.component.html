@@ -1,9 +1,701 @@
-<div class="member-page">
+<div class="glass-page-container">
 
-  <h1>Member 1</h1>
+  <!-- Floating Navigation Controls -->
+  <div class="top-nav-bar">
+    <button class="nav-btn-back" (click)="goBackToGroup()">
+      <span class="material-icons">arrow_back</span> Back to Group A
+    </button>
+    <div class="nav-tabs">
+      <button class="tab-btn" [class.active]="activeTab === 'profile'" (click)="activeTab = 'profile'">
+        <span class="material-icons">person</span> Profile
+      </button>
+      <button class="tab-btn" [class.active]="activeTab === 'attendance'" (click)="activeTab = 'attendance'">
+        <span class="material-icons">event_available</span> Attendance Hub
+      </button>
+    </div>
+  </div>
 
-  <button (click)="goBackToGroup()">
-    Go back to Group A
-  </button>
+  <!-- TAB 1: PROFILE VIEW -->
+  <div class="tab-content" *ngIf="activeTab === 'profile'">
+    <div class="profile-hero-card">
+      <div class="profile-banner"></div>
+      
+      <div class="profile-info-section">
+        <div class="avatar-container">
+          <div class="avatar-glow"></div>
+          <div class="avatar-box image-avatar">
+            <img src="assets/soyngsruti.jpg" alt="Soyngsruti Jena" class="avatar-image">
+          </div>
+        </div>
+        
+        <div class="profile-header-text">
+          <span class="member-tag">Member 1 &middot; Group A</span>
+          <h1 class="profile-name">{{ profile.name }}</h1>
+          <p class="profile-headline">{{ profile.headline }}</p>
+          <div class="social-links">
+            <a [href]="profile.github" target="_blank" class="social-icon" title="GitHub">
+              <span class="material-icons">code</span>
+            </a>
+            <a [href]="profile.linkedin" target="_blank" class="social-icon" title="LinkedIn">
+              <span class="material-icons">badge</span>
+            </a>
+            <a [href]="'mailto:' + profile.email" class="social-icon" title="Email">
+              <span class="material-icons">email</span>
+            </a>
+          </div>
+        </div>
+      </div>
 
+      <!-- Quick Stats Band -->
+      <div class="stats-band">
+        <div class="stat-item">
+          <span class="stat-val">{{ stats.percentage }}%</span>
+          <span class="stat-lbl">Attendance Rate</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val">{{ stats.streak }} days</span>
+          <span class="stat-lbl">Active Streak</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val">{{ stats.present + stats.late }}</span>
+          <span class="stat-lbl">Days Attended</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Details Grid -->
+    <div class="profile-grid">
+      <!-- Left Column: Bio & Info -->
+      <div class="grid-col-left">
+        <div class="glass-card bio-card">
+          <div class="card-header">
+            <span class="material-icons text-gradient">face</span>
+            <h2>About Me</h2>
+          </div>
+          <p class="bio-text">{{ profile.bio }}</p>
+        </div>
+
+        <div class="glass-card details-card">
+          <div class="card-header">
+            <span class="material-icons text-gradient">info</span>
+            <h2>Academic Details</h2>
+          </div>
+          <ul class="details-list">
+            <li>
+              <span class="detail-name">College</span>
+              <span class="detail-value">{{ profile.college }}</span>
+            </li>
+            <li>
+              <span class="detail-name">Course</span>
+              <span class="detail-value">{{ profile.course }}</span>
+            </li>
+            <li>
+              <span class="detail-name">Academic Year</span>
+              <span class="detail-value">{{ profile.year }}</span>
+            </li>
+            <li>
+              <span class="detail-name">Email ID</span>
+              <span class="detail-value">{{ profile.email }}</span>
+            </li>
+            <li>
+              <span class="detail-name">Phone No.</span>
+              <span class="detail-value">{{ profile.phone }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right Column: Skills & Interests -->
+      <div class="grid-col-right">
+        <div class="glass-card skills-card">
+          <div class="card-header">
+            <span class="material-icons text-gradient">psychology</span>
+            <h2>Core Competencies</h2>
+          </div>
+          <div class="chips-container">
+            <span class="skill-chip" *ngFor="let skill of profile.skills">{{ skill }}</span>
+          </div>
+        </div>
+
+        <div class="glass-card interests-card">
+          <div class="card-header">
+            <span class="material-icons text-gradient">favorite</span>
+            <h2>Interests & Hobbies</h2>
+          </div>
+          <div class="chips-container">
+            <span class="interest-chip" *ngFor="let interest of profile.interests">{{ interest }}</span>
+          </div>
+        </div>
+
+        <!-- Action Card -->
+        <div class="action-promo-card">
+          <h3>Interactive System</h3>
+          <p>Verify attendance data, adjust target thresholds, geofencing limits, or configure class schedules.</p>
+          <button class="promo-btn" (click)="activeTab = 'attendance'">
+            Open Attendance Hub <span class="material-icons">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: ATTENDANCE HUB -->
+  <div class="tab-content" *ngIf="activeTab === 'attendance'">
+    
+    <!-- View Switcher (Personal vs Group Manager) -->
+    <div class="attendance-view-selector-bar">
+      <button class="selector-btn" [class.selected]="attendanceViewMode === 'personal'" (click)="attendanceViewMode = 'personal'">
+        <span class="material-icons">account_circle</span> Personal Attendance
+      </button>
+      <button class="selector-btn glow-purple-border" [class.selected]="attendanceViewMode === 'group'" (click)="attendanceViewMode = 'group'">
+        <span class="material-icons">groups</span> Group Attendance Manager
+      </button>
+    </div>
+
+    <!-- SUBTAB 2A: PERSONAL VIEW -->
+    <div class="view-mode-container" *ngIf="attendanceViewMode === 'personal'">
+      <!-- Attendance Summary Stats Row -->
+      <div class="summary-stats-grid">
+        <!-- Circular Progress Card -->
+        <div class="glass-card progress-card flex-center">
+          <div class="circular-progress-box">
+            <svg class="progress-svg" viewBox="0 0 100 100">
+              <circle class="bg-circle" cx="50" cy="50" r="40"></circle>
+              <circle class="fill-circle" cx="50" cy="50" r="40"
+                      [style.strokeDashoffset]="251.2 - (251.2 * stats.percentage) / 100"
+                      [class.under-target]="!stats.meetsTarget"
+                      [class.meets-target]="stats.meetsTarget"></circle>
+            </svg>
+            <div class="progress-text">
+              <span class="percent-num">{{ stats.percentage }}%</span>
+              <span class="percent-label">Attendance</span>
+            </div>
+          </div>
+          <div class="progress-status-info">
+            <h3>Target Status</h3>
+            <div class="status-badge" [class.badge-success]="stats.meetsTarget" [class.badge-warning]="!stats.meetsTarget">
+              <span class="material-icons">{{ stats.meetsTarget ? 'check_circle' : 'warning' }}</span>
+              {{ stats.meetsTarget ? 'Meets Target (' + settings.targetPercentage + '%)' : 'Below Target (' + settings.targetPercentage + '%)' }}
+            </div>
+            <p class="stats-subtext">Required target is customizable in advanced settings.</p>
+          </div>
+        </div>
+
+        <!-- Quick Metrics -->
+        <div class="metrics-grid-container">
+          <div class="metric-box status-present">
+            <span class="material-icons icon-present">check_circle</span>
+            <div class="metric-content">
+              <span class="metric-val">{{ stats.present }}</span>
+              <span class="metric-lbl">Present Days</span>
+            </div>
+          </div>
+          <div class="metric-box status-late">
+            <span class="material-icons icon-late">schedule</span>
+            <div class="metric-content">
+              <span class="metric-val">{{ stats.late }}</span>
+              <span class="metric-lbl">Late Arrivals</span>
+            </div>
+          </div>
+          <div class="metric-box status-leave">
+            <span class="material-icons icon-leave">vacation</span>
+            <div class="metric-content">
+              <span class="metric-val">{{ stats.leave }}</span>
+              <span class="metric-lbl">Leaves / Holidays</span>
+            </div>
+          </div>
+          <div class="metric-box status-absent">
+            <span class="material-icons icon-absent">cancel</span>
+            <div class="metric-content">
+              <span class="metric-val">{{ stats.absent }}</span>
+              <span class="metric-lbl">Absent Days</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Attendance Actions (Check-In / Simulation) -->
+      <div class="glass-card live-action-card">
+        <div class="action-card-header">
+          <div class="title-with-pulse">
+            <span class="live-pulse"></span>
+            <h2>Live Portal Check-In/Out</h2>
+          </div>
+          <span class="time-stamp-label">Today's Date: {{ currentDate | date:'fullDate' }}</span>
+        </div>
+
+        <div class="action-split-layout">
+          <!-- Manual Action Buttons -->
+          <div class="action-buttons-group">
+            <div class="check-buttons">
+              <button class="check-in-btn" [disabled]="isTodayCheckedIn" (click)="simulateCheckIn()">
+                <span class="material-icons">login</span> Check In
+              </button>
+              <button class="check-out-btn" [disabled]="!isTodayCheckedIn || isTodayCheckedOut" (click)="simulateCheckOut()">
+                <span class="material-icons">logout</span> Check Out
+              </button>
+            </div>
+
+            <div class="today-times">
+              <div class="time-block">
+                <span class="time-lbl">Check-In Time:</span>
+                <span class="time-val" [class.text-amber]="isTodayCheckedIn && todayCheckInTime > settings.shiftStartTime">{{ todayCheckInTime }}</span>
+              </div>
+              <div class="time-block">
+                <span class="time-lbl">Check-Out Time:</span>
+                <span class="time-val">{{ todayCheckOutTime }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Simulation Presets -->
+          <div class="simulation-panel">
+            <h4>Developer Simulation Presets:</h4>
+            <div class="simulation-buttons">
+              <button class="sim-btn sim-ontime" (click)="simulateOnTimeCheckIn()">
+                <span class="material-icons">done_all</span> Force On-Time (8:52 AM)
+              </button>
+              <button class="sim-btn sim-late" (click)="simulateLateCheckIn()">
+                <span class="material-icons">warning_amber</span> Force Late (9:25 AM)
+              </button>
+            </div>
+            <div class="simulation-indicators">
+              <span class="indicator-tag" [class.active]="settings.geofenceEnabled">
+                Geofence: {{ settings.geofenceEnabled ? 'ON (' + settings.geofenceRadius + 'm)' : 'OFF' }}
+              </span>
+              <span class="indicator-tag" [class.active]="settings.ipEnabled">
+                IP Range: {{ settings.ipEnabled ? 'ON (' + settings.campusSubnet + '.x)' : 'OFF' }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback Messages -->
+        <div class="live-alert-message" *ngIf="checkInMessage" [class]="checkInMessageType">
+          <span class="material-icons">
+            {{ checkInMessageType === 'success' ? 'check_circle' : (checkInMessageType === 'error' ? 'report' : 'info') }}
+          </span>
+          <p>{{ checkInMessage }}</p>
+          <button class="alert-close" (click)="checkInMessage = ''">&times;</button>
+        </div>
+      </div>
+
+      <!-- Main Workspace: Calendar & Advanced Settings -->
+      <div class="attendance-workspace-grid">
+        
+        <!-- Calendar Grid Card -->
+        <div class="glass-card calendar-card">
+          <div class="calendar-header-bar">
+            <div class="month-nav">
+              <button class="month-nav-btn" (click)="prevMonth()">
+                <span class="material-icons">chevron_left</span>
+              </button>
+              <h3>{{ monthNames[selectedMonth] }} {{ selectedYear }}</h3>
+              <button class="month-nav-btn" (click)="nextMonth()">
+                <span class="material-icons">chevron_right</span>
+              </button>
+            </div>
+            <span class="hint-text">Click a date block to manually cycle status</span>
+          </div>
+
+          <!-- Weekday Headers -->
+          <div class="calendar-week-grid">
+            <div class="week-header" *ngFor="let day of weekDays">{{ day }}</div>
+          </div>
+
+          <!-- Calendar Days Grid -->
+          <div class="calendar-days-grid">
+            <div class="day-block" 
+                 *ngFor="let d of calendarDays" 
+                 [class.pad-day]="d.date === null"
+                 [class.is-today]="d.isToday"
+                 [class.weekend-day]="d.isWeekend"
+                 [class.status-present]="d.record?.status === 'Present'"
+                 [class.status-absent]="d.record?.status === 'Absent'"
+                 [class.status-late]="d.record?.status === 'Late'"
+                 [class.status-leave]="d.record?.status === 'Leave'"
+                 (click)="toggleDayStatus(d)">
+              <span class="day-number">{{ d.date }}</span>
+              <div class="day-status-indicator" *ngIf="d.record && d.record.status !== 'Unmarked'">
+                <span class="indicator-dot"></span>
+                <span class="indicator-name">{{ d.record.status }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Legend -->
+          <div class="calendar-legend">
+            <div class="legend-item"><span class="legend-dot pres"></span> Present</div>
+            <div class="legend-item"><span class="legend-dot lat"></span> Late</div>
+            <div class="legend-item"><span class="legend-dot leav"></span> Leave</div>
+            <div class="legend-item"><span class="legend-dot abs"></span> Absent</div>
+            <div class="legend-item"><span class="legend-dot unmark"></span> Unmarked</div>
+          </div>
+        </div>
+
+        <!-- Advanced Settings Section -->
+        <div class="glass-card settings-card">
+          <div class="settings-header-bar" (click)="showSettings = !showSettings">
+            <div class="settings-title">
+              <span class="material-icons text-gradient spinner">settings</span>
+              <h2>Attendance Advanced Settings</h2>
+            </div>
+            <button class="settings-toggle-btn">
+              <span class="material-icons">{{ showSettings ? 'expand_less' : 'expand_more' }}</span>
+            </button>
+          </div>
+
+          <div class="settings-panel-content" [class.collapsed]="!showSettings">
+            
+            <!-- Standard Thresholds -->
+            <div class="settings-section-block">
+              <h3>Standard Targets</h3>
+              <div class="input-group-range">
+                <label>Attendance Rate Target: <span>{{ settings.targetPercentage }}%</span></label>
+                <input type="range" min="50" max="100" step="5" [(ngModel)]="settings.targetPercentage" (change)="saveSettings()">
+              </div>
+              
+              <div class="timing-inputs-row">
+                <div class="time-input-box">
+                  <label>Shift Starts:</label>
+                  <input type="time" [(ngModel)]="settings.shiftStartTime" (change)="saveSettings()">
+                </div>
+                <div class="time-input-box">
+                  <label>Shift Ends:</label>
+                  <input type="time" [(ngModel)]="settings.shiftEndTime" (change)="saveSettings()">
+                </div>
+              </div>
+
+              <div class="input-group-range">
+                <label>Late Tolerance (Grace): <span>{{ settings.gracePeriod }} mins</span></label>
+                <input type="range" min="0" max="60" step="5" [(ngModel)]="settings.gracePeriod" (change)="saveSettings()">
+              </div>
+            </div>
+
+            <!-- Geofence Constraints -->
+            <div class="settings-section-block">
+              <div class="section-title-toggle">
+                <h3>Geofence Verification</h3>
+                <label class="switch-container">
+                  <input type="checkbox" [(ngModel)]="settings.geofenceEnabled" (change)="saveSettings()">
+                  <span class="slider-toggle"></span>
+                </label>
+              </div>
+              
+              <div class="collapsible-settings-block" *ngIf="settings.geofenceEnabled">
+                <div class="form-row-double">
+                  <div class="form-input">
+                    <label>Campus Latitude:</label>
+                    <input type="number" step="0.0001" [(ngModel)]="settings.campusLat" (change)="saveSettings()">
+                  </div>
+                  <div class="form-input">
+                    <label>Campus Longitude:</label>
+                    <input type="number" step="0.0001" [(ngModel)]="settings.campusLng" (change)="saveSettings()">
+                  </div>
+                </div>
+                <div class="input-group-range">
+                  <label>Geofence Radius Limit: <span>{{ settings.geofenceRadius }}m</span></label>
+                  <input type="range" min="50" max="500" step="25" [(ngModel)]="settings.geofenceRadius" (change)="saveSettings()">
+                </div>
+                <div class="form-row-double border-top-glow">
+                  <div class="form-input">
+                    <label>Mocked User Lat:</label>
+                    <input type="number" step="0.0001" [(ngModel)]="settings.mockUserLat" (change)="saveSettings()">
+                  </div>
+                  <div class="form-input">
+                    <label>Mocked User Lng:</label>
+                    <input type="number" step="0.0001" [(ngModel)]="settings.mockUserLng" (change)="saveSettings()">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- IP Restriction Constraints -->
+            <div class="settings-section-block">
+              <div class="section-title-toggle">
+                <h3>IP Address Restrictions</h3>
+                <label class="switch-container">
+                  <input type="checkbox" [(ngModel)]="settings.ipEnabled" (change)="saveSettings()">
+                  <span class="slider-toggle"></span>
+                </label>
+              </div>
+              
+              <div class="collapsible-settings-block" *ngIf="settings.ipEnabled">
+                <div class="form-row-double">
+                  <div class="form-input">
+                    <label>Allowed Subnet IP:</label>
+                    <input type="text" placeholder="e.g. 192.168.1" [(ngModel)]="settings.campusSubnet" (change)="saveSettings()">
+                  </div>
+                  <div class="form-input">
+                    <label>Mock User Current IP:</label>
+                    <input type="text" placeholder="e.g. 192.168.1.45" [(ngModel)]="settings.mockUserIp" (changeSettings)="saveSettings()">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Alerts & Triggers -->
+            <div class="settings-section-block">
+              <h3>Automated Alerts</h3>
+              <div class="toggle-option-item">
+                <span class="lbl-desc">Enable Daily Email Reminder Checklist</span>
+                <label class="switch-container">
+                  <input type="checkbox" [(ngModel)]="settings.emailAlerts" (change)="saveSettings()">
+                  <span class="slider-toggle"></span>
+                </label>
+              </div>
+              <div class="toggle-option-item">
+                <span class="lbl-desc">Show warning banners if attendance drops below target</span>
+                <label class="switch-container">
+                  <input type="checkbox" [(ngModel)]="settings.lowAttendanceWarning" (change)="saveSettings()">
+                  <span class="slider-toggle"></span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Attendance Historical logs Table -->
+      <div class="glass-card history-card">
+        <div class="history-header">
+          <h2>Recent Attendance Log History (Last 10 Days)</h2>
+          <div class="history-actions">
+            <button class="tbl-action-btn export-csv-btn" (click)="exportToCSV()">
+              <span class="material-icons">download</span> Export CSV Report
+            </button>
+            <button class="tbl-action-btn reset-btn" (click)="resetAllData()">
+              <span class="material-icons">delete_forever</span> Reset All Records
+            </button>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Check-In</th>
+                <th>Check-Out</th>
+                <th>IP Address</th>
+                <th>Geofence Coordinates</th>
+                <th>System Log Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let log of getRecentLogs()">
+                <td class="td-date">{{ log.date | date:'mediumDate' }}</td>
+                <td>
+                  <span class="status-badge-inline" 
+                        [class.pres]="log.record.status === 'Present'"
+                        [class.abs]="log.record.status === 'Absent'"
+                        [class.lat]="log.record.status === 'Late'"
+                        [class.leav]="log.record.status === 'Leave'">
+                    {{ log.record.status }}
+                  </span>
+                </td>
+                <td class="td-time">{{ log.record.checkIn || '--:--' }}</td>
+                <td class="td-time">{{ log.record.checkOut || '--:--' }}</td>
+                <td class="td-network">{{ log.record.ip || 'N/A' }}</td>
+                <td class="td-network">
+                  {{ log.record.latitude && log.record.longitude ? log.record.latitude + ', ' + log.record.longitude : 'N/A' }}
+                </td>
+                <td class="td-notes">{{ log.record.notes || 'N/A' }}</td>
+              </tr>
+              <tr *ngIf="getRecentLogs().length === 0">
+                <td colspan="7" class="empty-table-state">No attendance records found. Click check-in above or mark the calendar.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBTAB 2B: GROUP MANAGER VIEW -->
+    <div class="view-mode-container" *ngIf="attendanceViewMode === 'group'">
+      
+      <!-- Group Wise Stats & Date Picker header -->
+      <div class="glass-card group-header-control-card">
+        <div class="group-header-controls">
+          <div class="group-select-box">
+            <label>Selected Internship Group:</label>
+            <select class="custom-select" [(ngModel)]="selectedGroup" (change)="calculateGroupStats()">
+              <option value="Group A">Group A (Front-End & UI)</option>
+              <option value="Group B">Group B (Backend & DB)</option>
+              <option value="Group C">Group C (Full-Stack Angular)</option>
+              <option value="Group D">Group D (Mobile Dev)</option>
+              <option value="Group E">Group E (Cloud & DevOps)</option>
+              <option value="Group F">Group F (QA & Testing)</option>
+              <option value="Group G">Group G (AI & Analytics)</option>
+            </select>
+          </div>
+
+          <div class="group-date-box">
+            <label>Attendance Logging Date:</label>
+            <input type="date" class="custom-date-input" [(ngModel)]="groupSelectedDate" (change)="calculateGroupStats(); calculateGroupComparison()">
+          </div>
+
+          <div class="quick-admin-actions">
+            <button class="admin-act-btn mark-present-all" (click)="markAllGroupPresent()">
+              <span class="material-icons">done_all</span> Mark All Present
+            </button>
+            <button class="admin-act-btn mark-absent-all" (click)="markAllGroupAbsent()">
+              <span class="material-icons">close</span> Mark Unmarked Absent
+            </button>
+            <button class="admin-act-btn mark-reset-all" (click)="resetGroupAttendance()">
+              <span class="material-icons">restart_alt</span> Reset Today
+            </button>
+          </div>
+        </div>
+
+        <div class="group-stats-strip">
+          <div class="grp-stat-bubble">
+            <span class="bubble-val">{{ groupStats.total }}</span>
+            <span class="bubble-lbl">Members Logged</span>
+          </div>
+          <div class="grp-stat-bubble green">
+            <span class="bubble-val">{{ groupStats.present }}</span>
+            <span class="bubble-lbl">Present</span>
+          </div>
+          <div class="grp-stat-bubble amber">
+            <span class="bubble-val">{{ groupStats.late }}</span>
+            <span class="bubble-lbl">Late</span>
+          </div>
+          <div class="grp-stat-bubble blue">
+            <span class="bubble-val">{{ groupStats.leave }}</span>
+            <span class="bubble-lbl">On Leave</span>
+          </div>
+          <div class="grp-stat-bubble red">
+            <span class="bubble-val">{{ groupStats.absent }}</span>
+            <span class="bubble-lbl">Absent</span>
+          </div>
+          <div class="grp-stat-bubble purple">
+            <span class="bubble-val">{{ groupStats.percentage }}%</span>
+            <span class="bubble-lbl">Group Attendance Rate</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Group Workspace: Member Management List & Comparison Chart -->
+      <div class="group-workspace-grid">
+        
+        <!-- Group Member Table Card -->
+        <div class="glass-card group-members-list-card">
+          <div class="list-card-header">
+            <h2>{{ selectedGroup }} Members Roster</h2>
+            <div class="search-box-container">
+              <span class="material-icons search-icon">search</span>
+              <input type="text" class="table-search-input" [(ngModel)]="groupSearchQuery" placeholder="Search by name...">
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="group-roster-table">
+              <thead>
+                <tr>
+                  <th>Intern Profile</th>
+                  <th>Status Log</th>
+                  <th>Shift Timings</th>
+                  <th>Quick Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let member of getFilteredGroupMembers()">
+                  <td>
+                    <div class="intern-profile-cell">
+                      <div class="intern-avatar" [style.background]="member.avatarColor">
+                        <span>{{ getInitials(member.name) }}</span>
+                      </div>
+                      <div class="intern-name-info">
+                        <span class="intern-name">{{ member.name }}</span>
+                        <span class="intern-subtext">{{ member.id === 'a1' ? 'Me (Group Admin)' : 'Intern ID: ' + member.id }}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="status-badge-inline"
+                          [class.pres]="getGroupMemberStatus(member.id) === 'Present'"
+                          [class.abs]="getGroupMemberStatus(member.id) === 'Absent'"
+                          [class.lat]="getGroupMemberStatus(member.id) === 'Late'"
+                          [class.leav]="getGroupMemberStatus(member.id) === 'Leave'">
+                      {{ getGroupMemberStatus(member.id) }}
+                    </span>
+                  </td>
+                  <td class="td-time">{{ getGroupMemberTime(member.id) }}</td>
+                  <td>
+                    <div class="inline-attendance-selector">
+                      <button class="status-btn pres-btn" 
+                              [class.active]="getGroupMemberStatus(member.id) === 'Present'" 
+                              (click)="setGroupMemberStatus(member.id, 'Present')"
+                              title="Mark Present">P</button>
+                      <button class="status-btn lat-btn" 
+                              [class.active]="getGroupMemberStatus(member.id) === 'Late'" 
+                              (click)="setGroupMemberStatus(member.id, 'Late')"
+                              title="Mark Late">L</button>
+                      <button class="status-btn leav-btn" 
+                              [class.active]="getGroupMemberStatus(member.id) === 'Leave'" 
+                              (click)="setGroupMemberStatus(member.id, 'Leave')"
+                              title="Mark Leave">V</button>
+                      <button class="status-btn abs-btn" 
+                              [class.active]="getGroupMemberStatus(member.id) === 'Absent'" 
+                              (click)="setGroupMemberStatus(member.id, 'Absent')"
+                              title="Mark Absent">A</button>
+                      <button class="status-btn unmark-btn" 
+                              [class.active]="getGroupMemberStatus(member.id) === 'Unmarked'" 
+                              (click)="setGroupMemberStatus(member.id, 'Unmarked')"
+                              title="Reset Status">X</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr *ngIf="getFilteredGroupMembers().length === 0">
+                  <td colspan="4" class="empty-table-state">No group members match the search filters.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="list-card-footer">
+            <button class="tbl-action-btn export-csv-btn" (click)="exportGroupToCSV()">
+              <span class="material-icons">download</span> Export Group CSV Report
+            </button>
+          </div>
+        </div>
+
+        <!-- Comparative Chart Panel -->
+        <div class="glass-card group-comparison-card">
+          <div class="card-header">
+            <span class="material-icons text-gradient">bar_chart</span>
+            <h2>Group-Wise Comparative Performance</h2>
+          </div>
+          <p class="comparison-subtext">Displays attendance rates for all groups on {{ groupSelectedDate | date:'mediumDate' }}.</p>
+
+          <div class="vertical-bars-container">
+            <div class="bar-chart-row" *ngFor="let stat of groupCompareStats">
+              <span class="chart-group-label" [class.highlight-group]="stat.groupName === selectedGroup">{{ stat.groupName }}</span>
+              <div class="bar-track">
+                <div class="bar-fill" 
+                     [style.width.%]="stat.percentage" 
+                     [class.active-highlight]="stat.groupName === selectedGroup"
+                     [class.low-fill]="stat.percentage < settings.targetPercentage">
+                </div>
+              </div>
+              <span class="chart-val-label" [class.highlight-group]="stat.groupName === selectedGroup">{{ stat.percentage }}%</span>
+            </div>
+          </div>
+
+          <div class="comparison-legend-box">
+            <div class="chart-legend-item"><span class="legend-bar-color normal-bar"></span> Meets Target</div>
+            <div class="chart-legend-item"><span class="legend-bar-color low-bar"></span> Under Target</div>
+            <div class="chart-legend-item"><span class="legend-bar-color highlight-bar"></span> Selected Group</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
 </div>
+

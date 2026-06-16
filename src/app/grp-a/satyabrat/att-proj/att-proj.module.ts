@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AttProjRoutingModule } from './att-proj-routing.module';
+import { SatyabratModule } from '../satyabrat.module';
 
 // ---> FIX: MatNativeDateModule is imported from 'core' <---
 import { MatNativeDateModule } from '@angular/material/core'; 
@@ -35,6 +36,7 @@ import { ReportComponent } from './components/report/report.component';
   imports: [
     CommonModule,
     AttProjRoutingModule,
+    SatyabratModule,
     
     MatTreeModule,
     MatTableModule,

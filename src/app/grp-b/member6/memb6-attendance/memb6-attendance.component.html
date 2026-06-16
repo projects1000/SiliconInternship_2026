@@ -1,0 +1,598 @@
+<div class="attendance-container" [class.dark]="darkMode">
+
+  <!-- SIDEBAR -->
+
+  <div class="sidebar">
+
+    <h2 class="logo">🚀 Smart Attendance</h2>
+
+    <button
+      class="menu-btn"
+      [class.active]="activeTab==='dashboard'"
+      (click)="activeTab='dashboard'">
+
+      📊 Dashboard
+
+    </button>
+
+    <button
+      class="menu-btn"
+      [class.active]="activeTab==='attendance'"
+      (click)="activeTab='attendance'">
+
+      ✅ Attendance
+
+    </button>
+
+    <button
+      class="menu-btn"
+      [class.active]="activeTab==='register'"
+      (click)="activeTab='register'">
+
+      📋 Register
+
+    </button>
+
+  </div>
+
+  <!-- MAIN -->
+
+  <div class="main-content">
+
+    <!-- HEADER -->
+
+    <div class="header glass-card">
+
+      <div>
+
+        <h1>Smart Attendance System</h1>
+
+        <p>{{ currentTime }}</p>
+
+      </div>
+
+      <button
+        class="theme-btn"
+        (click)="toggleTheme()">
+
+        {{ darkMode ? '☀️ Light' : '🌙 Dark' }}
+
+      </button>
+
+    </div>
+
+    <!-- DASHBOARD -->
+
+    <div *ngIf="activeTab==='dashboard'">
+
+      <div class="stats-grid">
+
+        <div class="stat-card blue">
+          <h3>Total Students</h3>
+          <h1>{{ students.length }}</h1>
+        </div>
+
+        <div class="stat-card green">
+          <h3>Present</h3>
+          <h1>{{ presentCount }}</h1>
+        </div>
+
+        <div class="stat-card orange">
+          <h3>Late</h3>
+          <h1>{{ lateCount }}</h1>
+        </div>
+
+        <div class="stat-card red">
+          <h3>Absent</h3>
+          <h1>{{ absentCount }}</h1>
+        </div>
+
+      </div>
+
+      <!-- LEADERBOARD -->
+
+      <div class="glass-card">
+
+        <h2>🏆 Attendance Leaderboard</h2>
+
+        <div
+          class="leader-item"
+          *ngFor="let student of leaderboard; let i=index">
+
+          <div class="rank">
+            #{{ i+1 }}
+          </div>
+
+          <img
+            [src]="student.photo"
+            class="leader-photo">
+
+          <div class="leader-info">
+
+            <h4>{{ student.name }}</h4>
+
+            <p>{{ student.team }}</p>
+
+          </div>
+
+          <div class="leader-percent">
+
+            {{ getAttendancePercentage(student) }}%
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ATTENDANCE -->
+
+    <div *ngIf="activeTab==='attendance'">
+
+      <div class="glass-card controls">
+
+        <div class="control-box">
+
+          <label>Date</label>
+
+          <input
+            type="date"
+            [(ngModel)]="selectedDateStr">
+
+        </div>
+
+        <div class="control-box">
+
+          <label>Team</label>
+
+          <select [(ngModel)]="selectedTeam">
+
+            <option value="">All Teams</option>
+
+            <option
+              *ngFor="let team of teams"
+              [value]="team">
+
+              {{ team }}
+
+            </option>
+
+          </select>
+
+        </div>
+
+        <div class="control-box">
+
+          <label>Search</label>
+
+          <input
+  type="search"
+  [(ngModel)]="searchText"
+  placeholder="Search Student"
+  autocomplete="off">
+
+        </div>
+
+      </div>
+
+      <!-- ADMIN LOGIN -->
+
+      <div class="glass-card admin-panel">
+
+  <h3>🔐 Admin Access</h3>
+
+  <div class="admin-controls">
+
+    <!-- BEFORE LOGIN -->
+
+    <ng-container *ngIf="!isAdmin">
+
+      <input
+        type="password"
+        [(ngModel)]="adminPassword"
+        placeholder="Enter Admin Password">
+
+      <button
+        class="admin-btn"
+        (click)="loginAdmin()">
+
+        Login
+
+      </button>
+
+    </ng-container>
+
+    <!-- AFTER LOGIN -->
+
+    <ng-container *ngIf="isAdmin">
+
+      <div class="admin-success">
+
+        ✅ Admin Logged In Successfully
+
+      </div>
+
+      <button
+        class="logout-btn"
+        (click)="logoutAdmin()">
+
+        🚪 Logout
+
+      </button>
+
+    </ng-container>
+
+  </div>
+
+</div>
+
+      <!-- BUTTONS -->
+
+     <div class="action-buttons">
+
+  <!-- BEFORE LOGIN -->
+
+  <button
+    *ngIf="!isAdmin"
+    class="unlock-btn"
+    (click)="showLoginMessage()">
+
+    🔓 Unlock Attendance
+
+  </button>
+
+  <!-- AFTER LOGIN -->
+
+  <button
+    *ngIf="isAdmin && !isAttendanceLocked"
+    class="submit-btn"
+    (click)="submitAttendance()">
+
+    ✅ Submit Attendance
+
+  </button>
+
+  <!-- AFTER SUBMIT -->
+
+  <button
+    *ngIf="isAdmin && isAttendanceLocked"
+    class="unlock-btn"
+    (click)="unlockAttendance()">
+
+    🔓 Unlock Attendance
+
+  </button>
+
+</div>
+
+      <div
+        class="lock-box"
+        *ngIf="isAttendanceLocked">
+
+        🔒 Attendance Locked For
+        {{ formatDate(selectedDateStr) }}
+
+      </div>
+
+      <!-- TABLE -->
+
+      <div class="glass-card table-wrapper">
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>#</th>
+              <th>Photo</th>
+              <th>Name</th>
+              <th>Team</th>
+              <th>Status</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr
+              *ngFor="let student of filteredStudents; let i=index">
+
+              <td>{{ i+1 }}</td>
+
+              <td>
+
+                <img
+                  [src]="student.photo"
+                  class="student-photo">
+
+              </td>
+
+              <td>{{ student.name }}</td>
+
+              <td>{{ student.team }}</td>
+
+             <td>
+
+  <div class="status-group">
+
+    <button
+      class="mini-btn present"
+      [class.active-btn]="getStatus(student)==='Present'"
+      [disabled]="isAttendanceLocked"
+      (click)="student.attendance[selectedDateStr]='Present'; updateDashboardCounts()">
+
+      Present
+
+    </button>
+
+    <button
+      class="mini-btn late"
+      [class.active-btn]="getStatus(student)==='Late'"
+      [disabled]="isAttendanceLocked"
+      (click)="student.attendance[selectedDateStr]='Late'; updateDashboardCounts()">
+
+      Late
+
+    </button>
+
+    <button
+      class="mini-btn absent"
+      [class.active-btn]="getStatus(student)==='Absent'"
+      [disabled]="isAttendanceLocked"
+      (click)="student.attendance[selectedDateStr]='Absent'; updateDashboardCounts()">
+
+      Absent
+
+    </button>
+
+  </div>
+
+</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+    <!-- REGISTER -->
+
+    <!-- REGISTER -->
+
+<div *ngIf="activeTab==='register'">
+
+  <div class="glass-card register-card">
+
+    <h2>📋 Attendance Register</h2>
+
+    <div class="register-table-wrapper">
+
+      <table class="register-table">
+
+        <thead>
+
+          <tr>
+
+            <!-- STUDENT NAME -->
+
+            <th class="sticky-col">
+
+              Student
+
+            </th>
+
+            <!-- DATES -->
+
+            <th *ngFor="let date of attendanceDates">
+
+              {{ formatDate(date) }}
+
+            </th>
+
+            <!-- PDF -->
+
+            <th>
+
+              PDF Report
+
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let student of students">
+
+            <!-- STUDENT NAME -->
+
+           <td
+  class="sticky-col student-name clickable-name"
+  (click)="openStudentProfile(student)">
+
+  {{ student.name }}
+
+</td>
+
+            <!-- ATTENDANCE STATUS -->
+
+            <td *ngFor="let date of attendanceDates">
+
+              <span
+                class="register-status"
+                [class.present-text]="getStatus(student,date)==='Present'"
+                [class.late-text]="getStatus(student,date)==='Late'"
+                [class.absent-text]="getStatus(student,date)==='Absent'">
+
+                {{ getStatus(student,date) }}
+
+              </span>
+
+            </td>
+
+            <!-- PDF BUTTON -->
+
+            <td>
+
+              <button
+                class="pdf-btn"
+                (click)="downloadPDF(student)">
+
+                📄 Download
+
+              </button>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
+
+  </div>
+
+</div>
+<!-- STUDENT PROFILE POPUP -->
+
+<div
+  class="popup-overlay"
+  *ngIf="showProfilePopup">
+
+  <div class="profile-popup">
+
+    <button
+      class="close-btn"
+      (click)="closeStudentProfile()">
+
+      ✖
+
+    </button>
+
+    <img
+      [src]="selectedStudent.photo"
+      class="popup-photo">
+
+    <h2>
+
+      {{ selectedStudent.name }}
+
+    </h2>
+
+    <p>
+
+      🏷 Team :
+      {{ selectedStudent.team }}
+
+    </p>
+
+    <div class="popup-stats">
+
+      <div class="popup-box green-box">
+
+        <h3>
+
+          {{ getPresentCount(selectedStudent) }}
+
+        </h3>
+
+        <p>Present</p>
+
+      </div>
+
+      <div class="popup-box orange-box">
+
+        <h3>
+
+          {{ getLateCount(selectedStudent) }}
+
+        </h3>
+
+        <p>Late</p>
+
+      </div>
+
+      <div class="popup-box red-box">
+
+        <h3>
+
+          {{ getAbsentCount(selectedStudent) }}
+
+        </h3>
+
+        <p>Absent</p>
+
+      </div>
+
+    </div>
+    
+
+    <div class="attendance-percent">
+
+      Attendance :
+      {{ getAttendancePercentage(selectedStudent) }}%
+
+    </div>
+
+    <!-- HEATMAP -->
+
+<h3 class="heatmap-title">
+
+  Attendance Heatmap
+
+</h3>
+
+<div class="heatmap-container">
+
+  <div
+    *ngFor="let date of attendanceDates"
+    class="heatmap-box"
+    [ngClass]="
+      getHeatmapClass(
+        selectedStudent,
+        date
+      )
+    ">
+
+    {{ formatDate(date).split('/')[0] }}
+
+  </div>
+
+</div>
+
+    <button
+      class="pdf-btn"
+      (click)="downloadPDF(selectedStudent)">
+
+      📄 Download PDF
+
+    </button>
+
+  </div>
+
+</div>
+
+<!-- TOAST NOTIFICATION -->
+
+<div
+  class="toast-notification"
+  *ngIf="showToast">
+
+  {{ toastMessage }}
+
+</div>

@@ -1,4 +1,4 @@
-<div class="member-page">
+<div class="member-page" *ngIf="!isAttendanceView">
 
   <div class="top-context-title">Member 7 Portfolio Dashboard</div>
 
@@ -8,20 +8,13 @@
       <div class="avatar-holder">
         <div class="avatar-wrapper" (click)="fileInput.click()">
           <img *ngIf="imageUrl" [src]="imageUrl" alt="Profile Picture" class="avatar-img-actual">
-          
           <div *ngIf="!imageUrl" class="avatar-img-fallback">DT</div>
-          
           <div class="avatar-overlay">
             <span class="camera-icon">📷</span>
             <span class="overlay-text">Change Photo</span>
           </div>
         </div>
-        <input 
-          #fileInput 
-          type="file" 
-          accept="image/*" 
-          style="display: none;" 
-          (change)="onPhotoSelected($event)">
+        <input #fileInput type="file" accept="image/*" style="display: none;" (change)="onPhotoSelected($event)">
       </div>
       <h1 class="user-title-name">Debashis Tripathy</h1>
       <p class="user-subtitle">B.Tech Student • Group C • Member 7</p>
@@ -30,7 +23,7 @@
     <div class="content-card-section">
       <h2 class="section-card-heading">About Me</h2>
       <p class="section-card-text">
-        Currently pursuing my B.Tech degree and actively participating in the Silicon Internship Program. I am keenly interested in full-stack development, object-oriented concepts, and constructing clean, responsive user interfaces. I enjoy exploring backend logic architectures alongside front-end frameworks.
+        Currently pursuing my B.Tech degree and actively participating in the Silicon Internship Program. I am keenly interested in full-stack development, object-oriented concepts, and constructing clean, responsive user interfaces.
       </p>
     </div>
 
@@ -71,37 +64,192 @@
     <div class="content-card-section">
       <h2 class="section-card-heading">Projects</h2>
       <div class="projects-display-grid">
-        
         <div class="project-inner-card">
           <h3 class="project-inner-title">debsLook</h3>
-          <p class="project-inner-desc">
-            An e-commerce web application concept specialized in clothing sales, emphasizing an interactive layout, styled navigation structures, and fluid responsive design layouts.
-          </p>
+          <p class="project-inner-desc">An e-commerce web application concept specialized in clothing sales.</p>
         </div>
-
         <div class="project-inner-card">
           <h3 class="project-inner-title">Developer Portfolio</h3>
-          <p class="project-inner-desc">
-            Personal responsive workspace showcasing academic projects, core developer skills, assignment task trackers, and engineering frameworks.
-          </p>
+          <p class="project-inner-desc">Personal responsive workspace showcasing academic projects.</p>
         </div>
-
         <div class="project-inner-card">
           <h3 class="project-inner-title">Database Management Hub</h3>
-          <p class="project-inner-desc">
-            An engineering coursework tracker implementing entity-relationship layouts, relational schemas, queries, and systematic transaction models.
-          </p>
+          <p class="project-inner-desc">An engineering coursework tracker implementing schemas and queries.</p>
         </div>
-
       </div>
+    </div>
+
+    <div class="pill-buttons-container" style="margin-top: 30px; margin-bottom: 20px; display: flex; gap: 12px; flex-wrap: wrap; padding: 0 20px;">
+      <button 
+        routerLink="/grp-c/member7-attendance"
+        style="background-color: #6a1b9a; color: white; border: none; padding: 10px 22px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 0.85rem; box-shadow: 0 2px 4px rgba(0,0,0,0.15); transition: background-color 0.2s;">
+        Attendance Management System
+      </button>
     </div>
 
   </div>
 
-  <div class="back-btn-container">
+  <div class="back-btn-container" style="text-align: center; margin-top: 30px;">
     <button class="btn-go-back" (click)="goBackToGroup()">
-      ← Go back to Group C
+      ← Back to Group C
     </button>
   </div>
 
+</div>
+
+
+<div class="member-page" *ngIf="isAttendanceView" style="padding: 20px; max-width: 1400px; margin: 0 auto;">
+
+  <div class="management-header-banner">
+    <div class="banner-left">
+      <h2>Attendance Management System</h2>
+      <p>Track and manage team attendance records inside Group C workspace</p>
+    </div>
+    <div class="banner-right-actions">
+      <button class="btn-banner-action save-btn" (click)="saveAttendanceData()">
+        <span class="icon">💾</span> Save Attendance
+      </button>
+      <button class="btn-banner-action lock-btn" [style.background-color]="systemStatus === 'Editable' ? '#ef5350' : '#7f8c8d'" (click)="lockRecordsToggle()">
+        <span class="icon">🔒</span> {{ systemStatus === 'Editable' ? 'Lock Records' : 'Unlock Records' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="metrics-row-dashboard">
+    <div class="metric-widget-card">
+      <span class="widget-label">Selected Date</span>
+      <span class="widget-value-highlight text-purple">{{ selectedDateText }}</span>
+    </div>
+    <div class="metric-widget-card">
+      <span class="widget-label">Records Visible</span>
+      <span class="widget-value-highlight text-blue">{{ totalRecordsVisibleCount }}</span>
+    </div>
+    <div class="metric-widget-card">
+      <span class="widget-label">Status</span>
+      <span class="widget-value-highlight" [style.color]="systemStatus === 'Editable' ? '#2e7d32' : '#c62828'">{{ systemStatus }}</span>
+    </div>
+  </div>
+
+  <div class="twin-workspace-flex-grid">
+    
+    <div class="left-table-data-container card-shadow">
+      <h3 class="container-inner-title">Attendance Register</h3>
+      
+      <div class="table-scroll-axis-wrapper">
+        <table class="register-matrix-table">
+          <thead>
+            <tr>
+              <th style="width: 80px; text-align: center;">Remove</th>
+              <th>Member</th>
+              <th *ngFor="let date of dateColumns" style="text-align: center;" [style.color]="selectedDateText === date ? '#6b46c1' : ''">
+                {{ date }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of filteredStudents; let idx = index">
+              <td style="text-align: center;">
+                <button class="btn-row-remove-trash" (click)="removeStudent(idx)">🗑️</button>
+              </td>
+              <td>
+                <div class="member-identity-cell-block">
+                  <span class="member-cell-primary-name">{{ student.name }}</span>
+                  <span class="member-cell-secondary-subteam"><strong style="color: #6b46c1;">{{ student.team }}</strong></span>
+                </div>
+              </td>
+              <td 
+                *ngFor="let date of dateColumns" 
+                style="text-align: center;" 
+                [style.background-color]="selectedDateText === date ? '#faf5ff' : 'transparent'">
+                <input 
+                  type="checkbox" 
+                  [(ngModel)]="student.attendance[date]"
+                  [disabled]="systemStatus !== 'Editable'"
+                  class="custom-attendance-checkbox-input">
+              </td>
+            </tr>
+            <tr *ngIf="filteredStudents.length === 0">
+              <td [attr.colspan]="dateColumns.length + 2" style="text-align: center; padding: 40px; color: #888;">
+                No members found matching the specified filter criteria.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="right-sidebar-controls-container">
+      
+      <div class="sidebar-widget-card-panel card-shadow">
+        <h4 class="widget-card-panel-heading">📅 Attendance Date</h4>
+        <div class="calendar-ui-wrapper-box">
+          <div class="calendar-ui-header">
+            <span class="current-month-view-label">JUN 2026</span>
+            <div class="calendar-navigation-arrow-links">
+              <span>‹</span>&nbsp;&nbsp;<span>›</span>
+            </div>
+          </div>
+          <div class="calendar-ui-days-weekheading-row">
+            <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+          </div>
+          <div class="calendar-ui-days-numbers-flexgrid">
+            <span class="inactive-day">31</span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span (click)="selectActiveCalendarDate('05 Jun')" [className]="selectedDateText === '05 Jun' ? 'active-selected-day-pill' : ''" style="cursor: pointer; font-weight: 600;">5</span>
+            <span (click)="selectActiveCalendarDate('06 Jun')" [className]="selectedDateText === '06 Jun' ? 'active-selected-day-pill' : ''" style="cursor: pointer; font-weight: 600;">6</span>
+            <span (click)="selectActiveCalendarDate('07 Jun')" [className]="selectedDateText === '07 Jun' ? 'active-selected-day-pill' : ''" style="cursor: pointer; font-weight: 600;">7</span>
+            <span (click)="selectActiveCalendarDate('08 Jun')" [className]="selectedDateText === '08 Jun' ? 'active-selected-day-pill' : ''" style="cursor: pointer; font-weight: 600;">8</span>
+            <span (click)="selectActiveCalendarDate('09 Jun')" [className]="selectedDateText === '09 Jun' ? 'active-selected-day-pill' : ''" style="cursor: pointer; font-weight: 600;">9</span>
+            <span>10</span><span>11</span><span>12</span><span>13</span>
+            <span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+            <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span>
+            <span>28</span><span>29</span><span>30</span><span class="inactive-day">1</span><span class="inactive-day">2</span><span class="inactive-day">3</span><span class="inactive-day">4</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-widget-card-panel card-shadow" style="margin-top: 20px;">
+        <h4 class="widget-card-panel-heading">🔍 Search Member</h4>
+        <div class="search-field-control-input-wrapper">
+          <input 
+            type="text" 
+            [(ngModel)]="searchText"
+            placeholder="Member Name..." 
+            class="sidebar-search-text-input-field"
+            style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem; margin-bottom: 12px; box-sizing: border-box;">
+          <button class="btn-clear-search-filters" (click)="resetSearchFilters()">Reset Filters</button>
+        </div>
+      </div>
+
+      <div class="sidebar-widget-card-panel card-shadow" style="margin-top: 20px;">
+        <h4 class="widget-card-panel-heading">👥 Teams Explorer</h4>
+        
+        <div class="teams-explorer-scroll-list-box" style="max-height: 240px; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; padding-right: 4px;">
+          
+          <div 
+            *ngFor="let team of teamsList"
+            (click)="selectFilterTeam(team.name)"
+            [style.background-color]="selectedTeam === team.name ? '#faf5ff' : 'transparent'"
+            [style.border-left-color]="selectedTeam === team.name ? '#6b46c1' : 'transparent'"
+            class="team-explorer-row-item">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="arrow-indicator" [style.transform]="selectedTeam === team.name ? 'rotate(90deg)' : 'rotate(0deg)'">❯</span>
+              <span class="group-icon">👥</span>
+              <span class="team-label-text" [style.font-weight]="selectedTeam === team.name ? '700' : '500'">{{ team.name }}</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="btn-navigation-return-link-block" routerLink="/grp-c/member7" style="margin-top: 20px;">
+        ← Back to Dashboard
+      </button>
+
+    </div>
+    
+  </div>
 </div>

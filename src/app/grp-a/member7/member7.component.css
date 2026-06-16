@@ -350,6 +350,8 @@
 .portfolio-actions {
   margin-top: 1.5rem;
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .attendance-btn {
@@ -380,4 +382,62 @@
   transform: translateY(-2px);
 }
 
+/* Product Management Button */
+.product-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 1.8rem;
+  border: 1px solid #4f46e5;
+  border-radius: 6px;
+  background: transparent;
+  color: #818cf8;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  box-shadow: 0 0 10px rgba(79, 70, 229, 0.05);
+}
 
+.product-btn span {
+  font-size: 1.25rem;
+}
+
+.product-btn:hover {
+  background: rgba(79, 70, 229, 0.15);
+  border-color: #818cf8;
+  color: #c7d2fe;
+  box-shadow: 0 0 20px rgba(79, 70, 229, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Observable Chat App Button */
+.chat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 1.8rem;
+  border: 1px solid #0891b2;
+  border-radius: 6px;
+  background: transparent;
+  color: #22d3ee;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  box-shadow: 0 0 10px rgba(8, 145, 178, 0.05);
+}
+
+.chat-btn span {
+  font-size: 1.25rem;
+}
+
+.chat-btn:hover {
+  background: rgba(8, 145, 178, 0.15);
+  border-color: #22d3ee;
+  color: #a5f3fc;
+  box-shadow: 0 0 20px rgba(8, 145, 178, 0.28);
+  transform: translateY(-2px);
+}

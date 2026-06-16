@@ -1,0 +1,24 @@
+<!-- ============================================================
+  category-filter.component.html
+  Child component template
+  Child → Parent Communication via @Output categoryChanged
+  ============================================================ -->
+
+<div class="filter-bar">
+  <div class="filter-label">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+    </svg>
+    <span>Filter</span>
+  </div>
+  <div class="filter-chips">
+    <button
+      *ngFor="let cat of categories"
+      class="chip"
+      [class.active]="selectedCategory === cat"
+      (click)="selectCategory(cat)"
+      [attr.id]="'filter-' + cat.replace(' ', '-').toLowerCase()">
+      {{ cat }}
+    </button>
+  </div>
+</div>

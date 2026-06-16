@@ -1,0 +1,28 @@
+<div class="carousel-outer-wrapper">
+  <button class="nav-chevron-btn left-arrow" (click)="scrollCarousel(-300)">‹</button>
+
+  <div class="horizontal-scroll-shelf-wrapper" #shelfScroller>
+    <div 
+      class="shelf-sneaker-card" 
+      *ngFor="let prod of productsList" 
+      [class.shelf-active]="activeProduct?.id === prod.id"
+      [ngStyle]="{'background': activeProduct?.id === prod.id ? prod.bgGradient : 'rgba(15,15,20,0.6)'}"
+      (click)="focusSneaker(prod)">
+      
+      <div class="shelf-media-hull">
+        <img [src]="prod.image" [alt]="prod.name">
+      </div>
+      
+      <div class="shelf-details-hull">
+        <h5>{{ prod.name }}</h5>
+        <p class="shelf-category">{{ prod.brand }}</p>
+        <div class="shelf-price-row">
+          <span class="shelf-cost">₹{{ prod.price | number }}</span>
+          <span class="shelf-stars">★ {{ prod.rating }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="nav-chevron-btn right-arrow" (click)="scrollCarousel(300)">›</button>
+</div>

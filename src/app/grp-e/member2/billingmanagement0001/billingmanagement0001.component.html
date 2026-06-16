@@ -1,0 +1,89 @@
+<div class="container">
+  <h1>Billing Management System</h1>
+
+  <button class="back-btn" (click)="goBack()">Back to Member 2</button>
+
+  <div class="customer-section">
+    <h2>Customer Details</h2>
+
+    <input type="text" placeholder="Customer Name" [(ngModel)]="customerName" />
+
+    <input type="text" placeholder="Mobile Number" [(ngModel)]="mobileNumber" />
+  </div>
+
+  <div class="product-section">
+    <div class="product-section">
+      <h2>Products</h2>
+
+      <div *ngFor="let category of categories">
+        <h3>{{ category.name }}</h3>
+
+        <div class="category-container">
+          <div class="product-card" *ngFor="let product of category.products">
+            <h4>{{ product.name }}</h4>
+
+            <p>₹{{ product.price }}</p>
+
+            <button (click)="addToBill(product)">Add To Bill</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bill-section" #invoice>
+    <h2>Bill Details</h2>
+
+    <div class="customer-info">
+      <h3>Customer Information</h3>
+
+      <p><strong>Name:</strong> {{ customerName }}</p>
+
+      <p><strong>Phone:</strong> {{ mobileNumber }}</p>
+    </div>
+
+    <table>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Action</th>
+      </tr>
+
+      <tr *ngFor="let item of cart; let i = index">
+        <td>{{ item.name }}</td>
+
+        <td>₹{{ item.price }}</td>
+
+        <td>
+          <button (click)="decreaseQuantity(item)">-</button>
+
+          <span class="qty">
+            {{ item.quantity }}
+          </span>
+
+          <button (click)="increaseQuantity(item)">+</button>
+        </td>
+
+        <td>₹{{ item.price * item.quantity }}</td>
+
+        <td>
+          <button (click)="removeItem(i)">Remove</button>
+        </td>
+      </tr>
+    </table>
+
+    <div class="total-box">
+      <p>Subtotal : ₹{{ subtotal }}</p>
+
+      <p>GST (18%) : ₹{{ gst }}</p>
+
+      <h3>Grand Total : ₹{{ grandTotal }}</h3>
+
+      <button class="download-btn" (click)="downloadInvoice()">
+        Download Invoice PDF
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { BillingProduct } from './billing/billing.models';
+import { BillingService } from './billing/billing.service';
 
 @Component({
   selector: 'app-member8',
@@ -7,9 +8,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./member8.component.css']
 })
 export class Member8Component {
- constructor(private router: Router) {}
 
-  goBackToGroup() {
-    this.router.navigate(['grp-e']);
+  currentSection = 'home';
+
+  constructor(private billingService: BillingService) {}
+
+  showSection(section: string) {
+    this.currentSection = section;
   }
+
+  addProduct(product: BillingProduct): void {
+    this.billingService.addProduct(product);
+  }
+
 }

@@ -1,0 +1,57 @@
+/* grp-b/member1/member1-whatsapp/whatsapp-dashboard/whatsapp-dashboard.component.css */
+
+.wa-dashboard-container {
+    /* Light Mode Structural Tokens variables */
+    --bg-app: #f0f2f5;
+    --bg-card: #ffffff;
+    --bg-nav: #ffffff;
+    --bg-chat-wallpaper: #efeae2;
+    --bg-bubble-left: #ffffff;
+    --bg-bubble-right: #d9fdd3;
+    --text-main: #111b21;
+    --text-muted: #667781;
+    --border-color: #e9edef;
+    --shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+
+    padding: 24px;
+    background-color: var(--bg-app);
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.wa-dashboard-container.dark-theme {
+    /* Dark Mode Strategic Overrides variables */
+    --bg-app: #0b141a;
+    --bg-card: #111b21;
+    --bg-nav: #202c33;
+    --bg-chat-wallpaper: #0b141a;
+    --bg-bubble-left: #202c33;
+    --bg-bubble-right: #005c4b;
+    --text-main: #e9edef;
+    --text-muted: #8696a0;
+    --border-color: #222e35;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.users-flex-row {
+    display: flex;
+    gap: 20px;
+}
+
+.flex-item {
+    flex: 1;
+}
+
+/* Propagate properties tokens deeper into structural children styles blocks */
+::v-deep .child-box {
+    background-color: var(--bg-card) !important;
+    color: var(--text-main) !important;
+    border-color: var(--border-color) !important;
+}
+
+@media (max-width: 768px) {
+    .users-flex-row {
+        flex-direction: column;
+    }
+}

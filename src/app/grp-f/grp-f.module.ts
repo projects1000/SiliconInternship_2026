@@ -48,6 +48,10 @@ import { ChatWindowComponent } from './member4/chat-window/chat-window.component
 import { ChatService } from './member4/chat-service/chat.service';
 import { CustomerService } from './member4/shared/customer.service';
 
+import { BillingComponent } from './member10/billing/billing.component';
+import { Member10AttendanceDashboardComponent } from './member10/member10-attendance-dashboard/member10-attendance-dashboard.component';
+import { Member6AttendanceComponent } from './member6-attendance/member6-attendance.component';
+import { Member6ChatComponent } from './member6-chat/member6-chat.component';
 @NgModule({
   declarations: [
     GrpFComponent,

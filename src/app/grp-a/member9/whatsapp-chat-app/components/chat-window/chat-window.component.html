@@ -1,0 +1,28 @@
+<div class="chat-window">
+    <div class="chat-header">
+        <h3>3. CHAT WINDOW COMPONENT (Shared)</h3>
+        <p>CHAT HISTORY</p>
+    </div>
+
+    <div class="chat-history" #chatContainer>
+        <div *ngFor="let msg of messages" class="message-wrapper"
+            [ngClass]="{'left-align': msg.sender === 'Gents', 'right-align': msg.sender === 'Mayur'}">
+            <div class="avatar-small">
+                {{ msg.sender === 'Gents' ? '👨🏽‍💼' : '👨🏻‍💻' }}
+            </div>
+            <div class="message-bubble" [ngClass]="msg.sender.toLowerCase()">
+                <div class="message-sender">{{ msg.sender }}</div>
+                <div class="message-text">{{ msg.text }}</div>
+                <div class="message-time">{{ msg.timestamp | date:'shortTime' }} ✓✓</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-footer">
+        <div class="stats">
+            <span>Total Messages : {{ totalMessages }}</span>
+            <span>Last Message : {{ lastMessage }}</span>
+        </div>
+        <button class="btn-clear" (click)="clearChat()">🗑 Clear Chat</button>
+    </div>
+</div>

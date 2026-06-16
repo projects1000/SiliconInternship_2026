@@ -138,9 +138,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 85vh;
   gap: 40px;
   padding: 20px 0;
+  margin-top: 20px;
 }
 
 .hero-left {
@@ -226,7 +226,7 @@
   margin-top: 36px;
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 20px 14px;
 }
 
 .btn {
@@ -244,9 +244,19 @@
 
 /* Premium Emerald attendance direct entry route trigger styling */
 .attendance-btn {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(135deg, #c86311 0%, #059669 100%);
   color: #ffffff;
   box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+}
+.billing-btn{
+  background: linear-gradient(135deg, #1095c2 0%, #059669 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(11, 126, 242, 0.601);
+}
+.whatsapp-btn{
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
 }
 
 .primary-btn {

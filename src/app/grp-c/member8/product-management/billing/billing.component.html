@@ -1,0 +1,56 @@
+<div class="billing-card">
+<h2>Billing Summary</h2>
+
+<div *ngIf="customer">
+
+ <p>
+  <strong>Customer:</strong>
+  {{customer.name}}
+</p>
+
+<p>
+  <strong>Mobile:</strong>
+  {{customer.mobile}}
+</p>
+
+  <hr>
+
+</div>
+
+<table *ngIf="products.length > 0">
+
+  <tr>
+    <th>Product</th>
+    <th>Qty</th>
+    <th>Amount</th>
+  </tr>
+
+<tr *ngFor="let product of products">
+    <ng-container *ngIf="product.qty > 0">
+
+    <td>{{product.name}}</td>
+    <td *ngIf="product.qty > 0">{{product.name}}</td>
+
+    <td>₹{{product.price * product.qty}}</td>
+    </ng-container>
+
+  </tr>
+
+</table>
+
+<div class="totals">
+
+  <p><strong>Subtotal :</strong> ₹{{subtotal}}</p>
+
+  <p><strong>GST (18%) :</strong> ₹{{gst}}</p>
+
+  <h3>Grand Total : ₹{{grandTotal}}</h3>
+
+</div>
+
+<button
+  class="generate-btn"
+  (click)="generateBill()">
+  Generate Bill
+</button>
+</div>
