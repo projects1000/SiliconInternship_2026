@@ -6,6 +6,7 @@
     "axe/forms": [
       "default",
       {
+<<<<<<< HEAD
         "label": "off"
       }
     ],
@@ -21,6 +22,9 @@
       "default",
       {
         "image-alt": "off"
+=======
+        "select-name": "off"
+>>>>>>> main
       }
     ]
   }

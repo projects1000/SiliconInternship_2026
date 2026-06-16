@@ -1,0 +1,72 @@
+<div class="container">
+
+  <h2>Attendance Tracker</h2>
+
+  <div class="attendance-form">
+
+    <input
+      type="date"
+      [(ngModel)]="attendanceDate">
+
+    <select
+      [(ngModel)]="attendanceStatus">
+
+      <option value="Present">
+        Present
+      </option>
+
+      <option value="Absent">
+        Absent
+      </option>
+
+    </select>
+
+    <button (click)="markAttendance()">
+      Mark Attendance
+    </button>
+
+  </div>
+
+  <table>
+
+    <tr>
+      <th>Date</th>
+      <th>Status</th>
+    </tr>
+
+    <tr *ngFor="let item of attendanceData">
+
+      <td>{{item.date}}</td>
+
+      <td>{{item.status}}</td>
+
+    </tr>
+
+  </table>
+
+  <div class="summary">
+
+    <p>
+      Present Days: {{presentCount}}
+    </p>
+
+    <p>
+      Absent Days: {{absentCount}}
+    </p>
+
+    <p>
+      Attendance Percentage:
+      {{attendancePercentage}}%
+    </p>
+
+  </div>
+
+</div>
+
+<div class="back-home">
+
+  <button (click)="goHome()">
+    Back to Home
+  </button>
+
+</div>

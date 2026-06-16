@@ -1,0 +1,231 @@
+<!-- ============================================================
+  gaming-pc-builder.component.html
+  PARENT COMPONENT — Dashboard Layout
+  
+  Communication Summary:
+  ✅ [selectedCategory]        → Parent → CategoryFilter (via @Input)
+  ✅ (categoryChanged)         → CategoryFilter → Parent (via @Output)
+  ✅ [selectedCategory]        → Parent → ProductCatalog (via @Input)
+  ✅ [selectedProductIds]      → Parent → ProductCatalog (via @Input)
+  ✅ (productSelected)         → ProductCatalog → Parent (via @Output)
+  ✅ (productRemoved)          → ProductCatalog → Parent (via @Output)
+  ✅ (customerSaved)           → CustomerDetails → Parent (via @Output)
+  ✅ [selectedProducts]        → Parent → BillSummary (via @Input)
+  ✅ [customer]                → Parent → BillSummary (via @Input)
+  ✅ [subtotal][gstAmount]...  → Parent → BillSummary (via @Input)
+  ✅ NotificationPanel         → subscribes to NotificationService directly
+  ============================================================ -->
+
+<div class="builder-app" [class.light-mode]="isLightMode">
+  <!-- Scanlines overlay for cyberpunk effect -->
+  <div class="scanlines"></div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="app-header">
+    <div class="header-left">
+      <button class="back-btn" (click)="goBack()" id="back-to-profile-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+        Back
+      </button>
+      <div class="logo-area">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#grad)" stroke-width="2">
+            <defs>
+              <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#7c3aed"/>
+                <stop offset="100%" stop-color="#a855f7"/>
+              </linearGradient>
+            </defs>
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+            <path d="M8 21h8M12 17v4"/>
+            <path d="M7 8h2v2H7zM15 8h2v2h-2zM11 10v4M9 12h6"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">GG BUILD</span>
+          <span class="logo-sub">Gaming PC Builder &amp; Billing System</span>
+        </div>
+      </div>
+
+      <button class="theme-toggle-btn" (click)="toggleTheme()" title="Toggle Theme">
+        <svg *ngIf="!isLightMode" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg *ngIf="isLightMode" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
+      <button class="view-bills-btn" (click)="toggleSavedBillsView()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+        {{ showSavedBills ? 'Back to Builder' : 'View Saved Bills' }}
+      </button>
+    </div>
+    <div class="header-right">
+      <div class="build-stats">
+        <div class="stat-chip">
+          <span class="stat-num">{{ selectedProducts.length }}</span>
+          <span class="stat-label">Parts</span>
+        </div>
+        <div class="stat-chip highlight" *ngIf="grandTotal > 0">
+          <span class="stat-num">₹{{ grandTotal.toLocaleString('en-IN') }}</span>
+          <span class="stat-label">Total</span>
+        </div>
+      </div>
+      <button class="clear-build-btn" (click)="onClearBuild()" *ngIf="selectedProducts.length > 0" id="clear-build-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/>
+        </svg>
+        Clear Build
+      </button>
+    </div>
+  </header>
+
+
+  <div class="main-content-wrapper" *ngIf="!showSavedBills">
+    <!-- ============ CATEGORY FILTER BAR ============ -->
+  <!-- Parent → Child: [selectedCategory] via @Input -->
+  <!-- Child → Parent: (categoryChanged) via @Output -->
+  <div class="filter-section">
+    <app-category-filter
+      [selectedCategory]="selectedCategory"
+      (categoryChanged)="onCategoryChanged($event)">
+    </app-category-filter>
+  </div>
+
+  <!-- ============ MAIN GRID LAYOUT ============ -->
+  <div class="main-grid">
+
+    <!-- ===== LEFT: Product Catalog (large) ===== -->
+    <!-- Parent → Child: [selectedCategory], [selectedProductIds] via @Input -->
+    <!-- Child → Parent: (productSelected), (productRemoved) via @Output -->
+    <div class="catalog-section">
+      <div class="section-label input-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+        </svg>
+        Product Catalog
+      </div>
+      <app-product-catalog
+        [selectedCategory]="selectedCategory"
+        [selectedProductIds]="selectedProductIds"
+        (productSelected)="onProductSelected($event)"
+        (productRemoved)="onProductRemoved($event)">
+      </app-product-catalog>
+    </div>
+
+    <!-- ===== RIGHT COLUMN ===== -->
+    <div class="right-column">
+
+      <!-- Customer Details -->
+      <!-- Child → Parent: (customerSaved) via @Output -->
+      <div class="section-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        Customer Details
+      </div>
+      <app-customer-details
+        (customerSaved)="onCustomerSaved($event)">
+      </app-customer-details>
+
+      <!-- Current Build Panel -->
+      <div class="current-build-panel" *ngIf="selectedProducts.length > 0">
+        <div class="section-label" style="margin-bottom: 12px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 11 12 14 22 4"/>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+          </svg>
+          Current Build
+          <span class="build-count">{{ selectedProducts.length }}</span>
+        </div>
+        <div class="build-chips">
+          <div class="build-chip" *ngFor="let p of selectedProducts">
+            <span class="chip-cat">{{ p.category }}</span>
+            <span class="chip-name">{{ p.name }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bill Summary -->
+      <!-- Parent → Child: All @Input bindings -->
+      <div class="section-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+        </svg>
+        Bill Summary
+      </div>
+      <app-bill-summary
+        [selectedProducts]="selectedProducts"
+        [customer]="customer"
+        [subtotal]="subtotal"
+        [gstAmount]="gstAmount"
+        [grandTotal]="grandTotal"
+        [gstPercent]="gstPercent"
+        [billGenerated]="billGenerated">
+      </app-bill-summary>
+
+      <!-- Generate Bill Button -->
+      <button
+        id="generate-bill-btn"
+        class="generate-btn"
+        (click)="onGenerateBill()"
+        [disabled]="selectedProducts.length === 0 || !customer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+        Generate Bill
+        <span class="btn-hint" *ngIf="selectedProducts.length === 0 || !customer">
+          (Add items &amp; customer first)
+        </span>
+      </button>
+
+      <!-- Notification Panel -->
+      <!-- Uses Shared Service (BehaviorSubject) — no @Input needed -->
+      <div class="section-label service-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+        </svg>
+        Notification Panel
+      </div>
+      <app-notification-panel></app-notification-panel>
+
+    </div>
+  </div>
+  </div>
+
+  <div class="saved-bills-wrapper" *ngIf="showSavedBills" style="padding: 24px;">
+    <app-saved-bills (closeView)="toggleSavedBillsView()"></app-saved-bills>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="app-footer">
+    <span class="footer-text">
+      <span class="footer-accent">Rohan Nayak</span> | 24BCSG13 | Grp-B Member2 |
+      Silicon Institute of Technology — Component Communication Demo
+    </span>
+  </footer>
+</div>

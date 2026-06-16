@@ -1,0 +1,932 @@
+From 714037b3969851a65ac58accee7e9f92e32be7b4 Mon Sep 17 00:00:00 2001
+From: Sohan Mohanty <sohancodes24@gmail.com>
+Date: Mon, 8 Jun 2026 22:39:03 +0530
+Subject: [PATCH] Added Attendance Management System with search and date
+ selection
+
+---
+ src/app/grp-c/grp-c-routing.module.ts         |  10 ++
+ src/app/grp-c/grp-c.module.ts                 |  10 +-
+ .../attendance/attendance.component.css       | 170 ++++++++++++++++++
+ .../attendance/attendance.component.html      | 140 +++++++++++++++
+ .../attendance/attendance.component.spec.ts   |  23 +++
+ .../attendance/attendance.component.ts        |  65 +++++++
+ src/app/grp-c/member9/member9.component.css   | 166 +++++++++++------
+ src/app/grp-c/member9/member9.component.html  | 131 +++++++++++++-
+ src/app/grp-c/member9/member9.component.ts    |   8 +-
+ 9 files changed, 661 insertions(+), 62 deletions(-)
+ create mode 100644 src/app/grp-c/member9/attendance/attendance.component.css
+ create mode 100644 src/app/grp-c/member9/attendance/attendance.component.html
+ create mode 100644 src/app/grp-c/member9/attendance/attendance.component.spec.ts
+ create mode 100644 src/app/grp-c/member9/attendance/attendance.component.ts
+
+diff --git a/src/app/grp-c/grp-c-routing.module.ts b/src/app/grp-c/grp-c-routing.module.ts
+index 030028e..2278d37 100644
+--- a/src/app/grp-c/grp-c-routing.module.ts
++++ b/src/app/grp-c/grp-c-routing.module.ts
+@@ -14,11 +14,15 @@ import { Member8Component } from './member8/member8.component';
+ import { Member9Component } from './member9/member9.component';
+ import { Member10Component } from './member10/member10.component';
+ 
++
+ import { Member4attmngComponent } from './member4/member4attmng/member4attmng.component';
+ 
+ import { Member3AttendanceComponent } from './member3/member3-attendance/member3-attendance.component';
+ 
+ 
++import { AttendanceComponent } from './member9/attendance/attendance.component';
++
++
+ const routes: Routes = [
+   {
+     path: '',
+@@ -60,6 +64,12 @@ const routes: Routes = [
+     path: 'member9',
+     component: Member9Component
+   },
++
++  {
++    path: 'attendance',
++    component: AttendanceComponent
++  },
++
+   {
+     path: 'member10',
+     component: Member10Component
+diff --git a/src/app/grp-c/grp-c.module.ts b/src/app/grp-c/grp-c.module.ts
+index 06cbb53..cd75b7a 100644
+--- a/src/app/grp-c/grp-c.module.ts
++++ b/src/app/grp-c/grp-c.module.ts
+@@ -1,6 +1,7 @@
+ import { NgModule } from '@angular/core';
+ import { CommonModule } from '@angular/common';
+ import { FormsModule } from '@angular/forms';
++
+ import { GrpCComponent } from './grp-c/grp-c.component';
+ import { Member1Component } from './member1/member1.component';
+ import { Member2Component } from './member2/member2.component';
+@@ -15,6 +16,7 @@ import { Member10Component } from './member10/member10.component';
+ 
+ import { GrpCRoutingModule } from './grp-c-routing.module';
+ 
++
+ import { Member4attmngComponent } from './member4/member4attmng/member4attmng.component';
+ 
+ import { Member3AttendanceComponent } from './member3/member3-attendance/member3-attendance.component';
+@@ -22,6 +24,8 @@ import { Member3AttendanceComponent } from './member3/member3-attendance/member3
+ 
+ 
+ 
++import { AttendanceComponent } from './member9/attendance/attendance.component';
++
+ @NgModule({
+   declarations: [
+     GrpCComponent,
+@@ -36,10 +40,14 @@ import { Member3AttendanceComponent } from './member3/member3-attendance/member3
+     Member9Component,
+     Member10Component,
+ 
++
+     Member4attmngComponent,
+ 
+     Member3AttendanceComponent
+ 
++
++    AttendanceComponent
++
+   ],
+   imports: [
+     CommonModule,
+@@ -47,4 +55,4 @@ import { Member3AttendanceComponent } from './member3/member3-attendance/member3
+     FormsModule
+   ]
+ })
+-export class GrpCModule { }
++export class GrpCModule { }
+\ No newline at end of file
+diff --git a/src/app/grp-c/member9/attendance/attendance.component.css b/src/app/grp-c/member9/attendance/attendance.component.css
+new file mode 100644
+index 0000000..ff4e673
+--- /dev/null
++++ b/src/app/grp-c/member9/attendance/attendance.component.css
+@@ -0,0 +1,170 @@
++*{
++    margin:0;
++    padding:0;
++    box-sizing:border-box;
++    font-family:'Poppins',sans-serif;
++}
++
++.attendance-page{
++    min-height:100vh;
++    padding:40px;
++    background:linear-gradient(
++        135deg,
++        #0f172a,
++        #1e293b,
++        #312e81
++    );
++}
++
++.top-bar{
++    max-width:1200px;
++    margin:auto;
++    margin-bottom:20px;
++}
++
++.back-btn{
++    padding:12px 25px;
++    border:none;
++    border-radius:25px;
++    background:#2563eb;
++    color:white;
++    cursor:pointer;
++}
++
++.header-card,
++.table-card{
++    max-width:1200px;
++    margin:auto;
++    margin-bottom:30px;
++    padding:30px;
++    border-radius:20px;
++    background:rgba(255,255,255,0.08);
++    backdrop-filter:blur(12px);
++    color:white;
++    box-shadow:0 8px 25px rgba(0,0,0,0.3);
++}
++
++.header-card h1{
++    text-align:center;
++    color:#38bdf8;
++    margin-bottom:25px;
++}
++
++.date-picker-section{
++    text-align:center;
++    margin-bottom:20px;
++}
++
++.date-picker-section label{
++    display:block;
++    margin-bottom:10px;
++    font-weight:bold;
++}
++
++.date-picker-section input{
++    padding:12px;
++    border:none;
++    border-radius:10px;
++}
++
++.date{
++    text-align:center;
++    color:#cbd5e1;
++    margin-bottom:25px;
++}
++
++.stats{
++    display:flex;
++    justify-content:center;
++    gap:25px;
++    flex-wrap:wrap;
++}
++
++.stat-box{
++    width:220px;
++    padding:20px;
++    border-radius:15px;
++    text-align:center;
++    background:rgba(255,255,255,0.1);
++}
++
++.stat-box h3{
++    color:#facc15;
++}
++
++.stat-box p{
++    font-size:30px;
++    margin-top:10px;
++    font-weight:bold;
++}
++
++.search-container{
++    max-width:1200px;
++    margin:20px auto;
++}
++
++.search-container input{
++    width:100%;
++    padding:16px;
++    border:none;
++    border-radius:15px;
++    font-size:16px;
++}
++
++table{
++    width:100%;
++    border-collapse:collapse;
++}
++
++th{
++    background:#2563eb;
++    color:white;
++}
++
++th,
++td{
++    padding:15px;
++    text-align:center;
++    border:1px solid rgba(255,255,255,0.2);
++}
++
++tr:hover{
++    background:rgba(255,255,255,0.08);
++}
++
++.present{
++    color:#22c55e;
++    font-weight:bold;
++}
++
++.absent{
++    color:#ef4444;
++    font-weight:bold;
++}
++
++.lock-btn{
++    margin-top:25px;
++    padding:15px 30px;
++    border:none;
++    border-radius:30px;
++    background:linear-gradient(
++        45deg,
++        #ef4444,
++        #f97316
++    );
++    color:white;
++    cursor:pointer;
++}
++
++.lock-message{
++    margin-top:20px;
++    text-align:center;
++    color:#22c55e;
++    font-weight:bold;
++}
++
++.footer{
++    text-align:center;
++    margin-top:30px;
++    color:#cbd5e1;
++}
+\ No newline at end of file
+diff --git a/src/app/grp-c/member9/attendance/attendance.component.html b/src/app/grp-c/member9/attendance/attendance.component.html
+new file mode 100644
+index 0000000..746435a
+--- /dev/null
++++ b/src/app/grp-c/member9/attendance/attendance.component.html
+@@ -0,0 +1,140 @@
++<div class="attendance-page">
++
++    <div class="top-bar">
++
++        <button class="back-btn" (click)="goBack()">
++            ← Back to Profile
++        </button>
++
++    </div>
++
++    <div class="header-card">
++
++        <h1>📋 Attendance Management System</h1>
++
++        <div class="date-picker-section">
++
++            <label>Select Attendance Date</label>
++
++            <input
++                type="date"
++                [max]="today"
++                [value]="selectedDate"
++                (change)="onDateChange($event)">
++
++        </div>
++
++        <p class="date">
++            Selected Date: {{selectedDate}}
++        </p>
++
++        <div class="stats">
++
++            <div class="stat-box">
++                <h3>Total Students</h3>
++                <p>{{students.length}}</p>
++            </div>
++
++            <div class="stat-box">
++                <h3>Present</h3>
++                <p>{{presentCount}}</p>
++            </div>
++
++            <div class="stat-box">
++                <h3>Absent</h3>
++                <p>{{absentCount}}</p>
++            </div>
++
++        </div>
++
++    </div>
++
++    <div class="search-container">
++
++        <input
++            type="text"
++            placeholder="🔍 Search Student..."
++            [(ngModel)]="searchText">
++
++    </div>
++
++    <div class="table-card">
++
++        <table>
++
++            <thead>
++
++                <tr>
++                    <th>Student Name</th>
++                    <th>Attendance</th>
++                    <th>Status</th>
++                </tr>
++
++            </thead>
++
++            <tbody>
++
++                <tr *ngFor="let student of filteredStudents">
++
++                    <td>{{student.name}}</td>
++
++                    <td>
++
++                        <input
++                            type="checkbox"
++                            [checked]="student.present"
++                            (change)="toggleAttendance(student)"
++                            [disabled]="isLocked">
++
++                    </td>
++
++                    <td>
++
++                        <span
++                            class="present"
++                            *ngIf="student.present">
++
++                            ✔ Present
++
++                        </span>
++
++                        <span
++                            class="absent"
++                            *ngIf="!student.present">
++
++                            ✖ Absent
++
++                        </span>
++
++                    </td>
++
++                </tr>
++
++            </tbody>
++
++        </table>
++
++        <button
++            class="lock-btn"
++            (click)="lockAttendance()"
++            [disabled]="isLocked">
++
++            🔒 Lock Attendance
++
++        </button>
++
++        <div
++            class="lock-message"
++            *ngIf="isLocked">
++
++            🔒 Attendance Locked Successfully. No further changes allowed.
++
++        </div>
++
++    </div>
++
++    <div class="footer">
++        Attendance Management System | Angular Project 2026
++    </div>
++
++</div>
+\ No newline at end of file
+diff --git a/src/app/grp-c/member9/attendance/attendance.component.spec.ts b/src/app/grp-c/member9/attendance/attendance.component.spec.ts
+new file mode 100644
+index 0000000..cd21576
+--- /dev/null
++++ b/src/app/grp-c/member9/attendance/attendance.component.spec.ts
+@@ -0,0 +1,23 @@
++import { ComponentFixture, TestBed } from '@angular/core/testing';
++
++import { AttendanceComponent } from './attendance.component';
++
++describe('AttendanceComponent', () => {
++  let component: AttendanceComponent;
++  let fixture: ComponentFixture<AttendanceComponent>;
++
++  beforeEach(async () => {
++    await TestBed.configureTestingModule({
++      declarations: [ AttendanceComponent ]
++    })
++    .compileComponents();
++
++    fixture = TestBed.createComponent(AttendanceComponent);
++    component = fixture.componentInstance;
++    fixture.detectChanges();
++  });
++
++  it('should create', () => {
++    expect(component).toBeTruthy();
++  });
++});
+diff --git a/src/app/grp-c/member9/attendance/attendance.component.ts b/src/app/grp-c/member9/attendance/attendance.component.ts
+new file mode 100644
+index 0000000..0f94815
+--- /dev/null
++++ b/src/app/grp-c/member9/attendance/attendance.component.ts
+@@ -0,0 +1,65 @@
++import { Component } from '@angular/core';
++import { Router } from '@angular/router';
++
++@Component({
++  selector: 'app-attendance',
++  templateUrl: './attendance.component.html',
++  styleUrls: ['./attendance.component.css']
++})
++export class AttendanceComponent {
++
++  constructor(private router: Router) {}
++
++  today = new Date().toISOString().split('T')[0];
++
++  selectedDate = this.today;
++
++  searchText = '';
++
++  isLocked = false;
++
++  students = [
++    { name: 'Rahul Sharma', present: false },
++    { name: 'Priya Das', present: false },
++    { name: 'Rohan Mohanty', present: false },
++    { name: 'Anjali Patel', present: false },
++    { name: 'Amit Kumar', present: false },
++    { name: 'Sneha Sahu', present: false },
++    { name: 'Karan Singh', present: false },
++    { name: 'Neha Gupta', present: false },
++    { name: 'Arjun Roy', present: false },
++    { name: 'Suman Das', present: false }
++  ];
++
++  onDateChange(event: any) {
++    this.selectedDate = event.target.value;
++  }
++
++  toggleAttendance(student: any) {
++    student.present = !student.present;
++  }
++
++  lockAttendance() {
++    this.isLocked = true;
++  }
++
++  goBack() {
++    this.router.navigate(['/grp-c/member9']);
++  }
++
++  get filteredStudents() {
++    return this.students.filter(student =>
++      student.name.toLowerCase().includes(
++        this.searchText.toLowerCase()
++      )
++    );
++  }
++
++  get presentCount() {
++    return this.students.filter(s => s.present).length;
++  }
++
++  get absentCount() {
++    return this.students.length - this.presentCount;
++  }
++}
+\ No newline at end of file
+diff --git a/src/app/grp-c/member9/member9.component.css b/src/app/grp-c/member9/member9.component.css
+index 14d1d73..2fbf001 100644
+--- a/src/app/grp-c/member9/member9.component.css
++++ b/src/app/grp-c/member9/member9.component.css
+@@ -2,90 +2,64 @@
+     margin:0;
+     padding:0;
+     box-sizing:border-box;
+-    font-family:'Poppins', sans-serif;
++    font-family:'Poppins',sans-serif;
+ }
+ 
+ .page{
+     min-height:100vh;
+-    display:flex;
+-    justify-content:center;
+-    align-items:center;
++    padding:40px;
+     background:linear-gradient(
+         135deg,
+-        #667eea,
+-        #764ba2,
+-        #ff6b6b
++        #0f172a,
++        #1e293b,
++        #312e81
+     );
+ }
+ 
+-.profile-card{
+-    width:420px;
+-    padding:30px;
+-    border-radius:25px;
++.hero-section{
+     text-align:center;
+-    background:rgba(255,255,255,0.15);
+-    backdrop-filter:blur(15px);
+-    box-shadow:0 8px 32px rgba(0,0,0,0.3);
+-    transition:0.4s;
+-}
+-
+-.profile-card:hover{
+-    transform:translateY(-10px);
++    color:white;
++    margin-bottom:40px;
+ }
+ 
+ .profile-image{
+-    width:130px;
+-    height:130px;
++    width:170px;
++    height:170px;
+     margin:auto;
+     border-radius:50%;
+     background:white;
+     display:flex;
+     justify-content:center;
+     align-items:center;
+-    font-size:70px;
+-    box-shadow:0 0 20px white;
++    font-size:85px;
++    box-shadow:0 0 30px rgba(255,255,255,0.4);
+ }
+ 
+-h1{
++.hero-section h1{
+     margin-top:20px;
+-    color:white;
+-    font-size:32px;
++    font-size:45px;
+ }
+ 
+-h2{
+-    color:#ffe66d;
++.hero-section h2{
++    color:#38bdf8;
+     margin-top:10px;
+-    margin-bottom:20px;
+ }
+ 
+-.info{
+-    text-align:left;
+-    margin-top:20px;
+-}
+-
+-.info p{
+-    background:white;
+-    margin:12px 0;
+-    padding:12px;
+-    border-radius:12px;
+-    font-size:17px;
+-    font-weight:500;
+-}
+-
+-.info span{
+-    color:#764ba2;
+-    font-weight:bold;
++.tagline{
++    margin-top:15px;
++    font-size:18px;
++    color:#cbd5e1;
+ }
+ 
+-.btn{
++.attendance-btn{
+     margin-top:25px;
+-    padding:12px 30px;
++    padding:15px 35px;
+     border:none;
+     border-radius:30px;
+     background:linear-gradient(
+         45deg,
+-        #ff6b6b,
+-        #feca57
++        #06b6d4,
++        #2563eb
+     );
+     color:white;
+     font-size:18px;
+@@ -93,6 +67,94 @@ h2{
+     transition:0.3s;
+ }
+ 
+-.btn:hover{
+-    transform:scale(1.1);
++.attendance-btn:hover{
++    transform:scale(1.05);
++}
++
++.card{
++    max-width:1100px;
++    margin:25px auto;
++    padding:30px;
++    border-radius:20px;
++    background:rgba(255,255,255,0.08);
++    backdrop-filter:blur(12px);
++    color:white;
++    box-shadow:0 8px 25px rgba(0,0,0,0.3);
++}
++
++.card h3{
++    color:#38bdf8;
++    margin-bottom:20px;
++    font-size:28px;
++}
++
++.info-grid{
++    display:grid;
++    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
++    gap:20px;
++}
++
++.info-box{
++    padding:20px;
++    border-radius:15px;
++    background:rgba(255,255,255,0.1);
++}
++
++.info-box h4{
++    margin-bottom:10px;
++}
++
++.skills{
++    display:flex;
++    flex-wrap:wrap;
++    gap:15px;
++}
++
++.skills span{
++    padding:12px 18px;
++    background:#2563eb;
++    border-radius:25px;
++    font-weight:bold;
++}
++
++.project{
++    padding:20px;
++    border-radius:15px;
++    background:rgba(255,255,255,0.1);
++    margin-bottom:15px;
++}
++
++.project h4{
++    color:#facc15;
++    margin-bottom:10px;
++}
++
++.achievement-list{
++    padding-left:20px;
++}
++
++.achievement-list li{
++    margin:10px 0;
++}
++
++.contact-buttons{
++    display:flex;
++    gap:20px;
++    flex-wrap:wrap;
++}
++
++.contact-btn{
++    padding:12px 25px;
++    border:none;
++    border-radius:25px;
++    background:#0ea5e9;
++    color:white;
++    cursor:pointer;
++    font-size:16px;
++    transition:0.3s;
++}
++
++.contact-btn:hover{
++    background:#0284c7;
++    transform:translateY(-3px);
+ }
+\ No newline at end of file
+diff --git a/src/app/grp-c/member9/member9.component.html b/src/app/grp-c/member9/member9.component.html
+index 20f62ed..2e427f4 100644
+--- a/src/app/grp-c/member9/member9.component.html
++++ b/src/app/grp-c/member9/member9.component.html
+@@ -1,6 +1,6 @@
+ <div class="page">
+ 
+-    <div class="profile-card">
++    <div class="hero-section">
+ 
+         <div class="profile-image">
+             👨‍💻
+@@ -10,16 +10,131 @@
+ 
+         <h2>{{role}}</h2>
+ 
+-        <div class="info">
+-            <p><span>🎓 College:</span> {{college}}</p>
+-            <p><span>📧 Email:</span> {{email}}</p>
+-            <p><span>📱 Phone:</span> {{phone}}</p>
+-        </div>
++        <p class="tagline">
++            Passionate Angular Developer | Frontend Enthusiast | Problem Solver
++        </p>
++
++        <button
++            class="attendance-btn"
++            (click)="openAttendance()">
++
++            📋 Open Attendance System
+ 
+-        <button class="btn">
+-            Contact Me
+         </button>
+ 
+     </div>
+ 
++    <div class="card">
++
++        <h3>About Me</h3>
++
++        <p>
++            I am an enthusiastic Angular developer from Silicon University with
++            a passion for creating responsive and user-friendly web applications.
++            I enjoy learning new technologies and building innovative solutions.
++        </p>
++
++    </div>
++
++    <div class="card">
++
++        <h3>Personal Information</h3>
++
++        <div class="info-grid">
++
++            <div class="info-box">
++                <h4>🎓 College</h4>
++                <p>{{college}}</p>
++            </div>
++
++            <div class="info-box">
++                <h4>📧 Email</h4>
++                <p>{{email}}</p>
++            </div>
++
++            <div class="info-box">
++                <h4>📱 Phone</h4>
++                <p>{{phone}}</p>
++            </div>
++
++        </div>
++
++    </div>
++
++    <div class="card">
++
++        <h3>Technical Skills</h3>
++
++        <div class="skills">
++
++            <span>Angular</span>
++            <span>TypeScript</span>
++            <span>HTML</span>
++            <span>CSS</span>
++            <span>JavaScript</span>
++            <span>Git</span>
++            <span>GitHub</span>
++            <span>Angular Material</span>
++
++        </div>
++
++    </div>
++
++    <div class="card">
++
++        <h3>Projects</h3>
++
++        <div class="project">
++            <h4>Attendance Management System</h4>
++            <p>
++                Developed an Angular Attendance Management System with student
++                tracking, attendance marking and reporting functionality.
++            </p>
++        </div>
++
++        <div class="project">
++            <h4>Student Registration Portal</h4>
++            <p>
++                Built a responsive registration application using Angular,
++                TypeScript and CSS.
++            </p>
++        </div>
++
++    </div>
++
++    <div class="card">
++
++        <h3>Achievements</h3>
++
++        <ul class="achievement-list">
++            <li>✔ Angular Development Projects</li>
++            <li>✔ Git & GitHub Version Control</li>
++            <li>✔ Frontend UI Development</li>
++            <li>✔ Responsive Web Design</li>
++        </ul>
++
++    </div>
++
++    <div class="card">
++
++        <h3>Connect With Me</h3>
++
++        <div class="contact-buttons">
++
++            <button class="contact-btn">
++                📧 Email
++            </button>
++
++            <button class="contact-btn">
++                💼 LinkedIn
++            </button>
++
++            <button class="contact-btn">
++                💻 GitHub
++            </button>
++
++        </div>
++
++    </div>
++
+ </div>
+\ No newline at end of file
+diff --git a/src/app/grp-c/member9/member9.component.ts b/src/app/grp-c/member9/member9.component.ts
+index a65a0b4..e2f25c3 100644
+--- a/src/app/grp-c/member9/member9.component.ts
++++ b/src/app/grp-c/member9/member9.component.ts
+@@ -1,11 +1,12 @@
+ import { Component } from '@angular/core';
++import { Router } from '@angular/router';
+ 
+ @Component({
+   selector: 'app-member9',
+   templateUrl: './member9.component.html',
+   styleUrls: ['./member9.component.css']
+ })
+-export class Member9Component  {
++export class Member9Component {
+ 
+   name = 'Sohan Mohanty';
+   role = 'Angular Developer';
+@@ -13,4 +14,9 @@ export class Member9Component  {
+   email = 'sohan@gmail.com';
+   phone = '+91 6789032112';
+ 
++  constructor(private router: Router) {}
++
++ openAttendance() {
++  this.router.navigate(['/grp-c/attendance']);
++}
+ }
+\ No newline at end of file
+-- 
+2.54.0.windows.1
+

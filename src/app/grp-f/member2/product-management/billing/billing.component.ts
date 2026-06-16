@@ -9,7 +9,7 @@ import {
 from '@angular/core';
 
 @Component({
-  selector: 'app-billing',
+  selector: 'app-member2-billing',
   templateUrl: './billing.component.html',
   styleUrls: ['./billing.component.css']
 })

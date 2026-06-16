@@ -1,0 +1,34 @@
+.invoice-dark-card {
+  background: #111115;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  padding: 24px;
+}
+.invoice-dark-card h3 { margin: 0 0 20px 0; font-size: 13px; font-weight: 900; letter-spacing: 1.5px; color: #ff2a3b; }
+.ledger-scroll-hull { max-height: 240px; overflow-y: auto; margin-bottom: 20px; }
+
+.luxury-ledger-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.luxury-ledger-table th { text-align: left; padding-bottom: 12px; color: #71717a; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 700; letter-spacing: 0.5px; }
+.luxury-ledger-table td { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.02); color: #e4e4e7; }
+.text-right { text-align: right; }
+
+.model-name-cell { max-width: 130px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 600; }
+.size-pill { background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 11px; }
+
+.rack-purge-btn {
+  background: rgba(254, 42, 59, 0.1);
+  border: 1px solid rgba(254, 42, 59, 0.2);
+  color: #ff2a3b;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.rack-purge-btn:hover { background: #ff2a3b; color: white; }
+.empty-matrix-msg { text-align: center; color: #52525b; padding: 40px 0; font-style: italic; }
+
+.summary-breakdown-footer { border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 16px; }
+.breakdown-row { display: flex; justify-content: space-between; color: #a1a1aa; margin-bottom: 8px; font-size: 13px; }
+.master-grand-total { font-size: 15px; font-weight: 900; color: #ffffff; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.5px; }

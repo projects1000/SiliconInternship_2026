@@ -1,0 +1,39 @@
+<div class="chat-container"> 
+   <div
+  class="chat-dashboard"
+  [class.dark-theme]="isDarkMode"
+  [class.light-theme]="!isDarkMode"
+>
+
+  <!-- Header -->
+  <div class="dashboard-header">
+
+    <div class="logo-section">
+      <i class="fab fa-whatsapp"></i>
+      <h1>Two User WhatsApp Chat</h1>
+    </div>
+
+    <button class="theme-btn" (click)="toggleTheme()">
+
+      <span *ngIf="isDarkMode">☀️</span>
+      <span *ngIf="!isDarkMode">🌙</span>
+
+    </button>
+
+  </div>
+
+  <!-- Existing Layout -->
+   <div class="chat-layout">
+
+  <div class="left-panel">
+
+    <app-member8-user-a></app-member8-user-a>
+
+    <app-member8-user-b></app-member8-user-b>
+
+  </div>
+
+  <app-member8-chat-window></app-member8-chat-window>
+
+</div>
+</div>

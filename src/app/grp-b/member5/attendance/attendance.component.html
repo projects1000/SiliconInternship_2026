@@ -1,0 +1,157 @@
+<div class="container">
+
+    <div class="header">
+  
+      <h1>Attendance Management System</h1>
+  
+      <input
+        type="date"
+        [(ngModel)]="attendanceDate">
+  
+      <button
+        class="lock-btn"
+        (click)="lockAttendance()">
+  
+        🔒 Lock Attendance
+  
+      </button>
+  
+    </div>
+  
+    <!-- Premium Success Popup -->
+  
+    <div
+      class="success-popup"
+      *ngIf="showMessage">
+  
+      <div class="popup-content">
+  
+        <div class="check-icon">
+          ✅
+        </div>
+  
+        <h2>Attendance Locked</h2>
+  
+        <p>
+          Attendance Submitted Successfully For Today
+        </p>
+  
+      </div>
+  
+    </div>
+  
+    <div class="controls">
+  
+      <select [(ngModel)]="selectedGroup">
+  
+        <option value="">All Groups</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+        <option>D</option>
+        <option>E</option>
+        <option>F</option>
+        <option>G</option>
+  
+      </select>
+  
+      <input
+        type="text"
+        placeholder="🔍 Search Student"
+        [(ngModel)]="searchText">
+  
+      <button
+        class="present"
+        (click)="markAttendanceBySearch('Present')">
+  
+        ✅ Search Present
+  
+      </button>
+  
+      <button
+        class="absentBtn"
+        (click)="markAttendanceBySearch('Absent')">
+  
+        ❌ Search Absent
+  
+      </button>
+  
+    </div>
+  
+    <div class="controls">
+  
+      <input
+        type="text"
+        placeholder="Student Name"
+        [(ngModel)]="studentName">
+  
+      <input
+        type="text"
+        placeholder="Group"
+        [(ngModel)]="studentGroup">
+  
+      <button (click)="addStudent()">
+        Add Student
+      </button>
+  
+      <button (click)="deleteStudent()">
+        Delete Student
+      </button>
+  
+    </div>
+  
+    <table>
+  
+      <thead>
+  
+        <tr>
+          <th>Group</th>
+          <th>Name</th>
+          <th>Status</th>
+        </tr>
+  
+      </thead>
+  
+      <tbody>
+  
+        <tr
+          *ngFor="let s of filteredStudents"
+          [class.absent]="s.status === 'Absent'">
+  
+          <td>{{s.group}}</td>
+  
+          <td>{{s.name}}</td>
+  
+          <td>
+  
+            <button
+              class="present"
+              [disabled]="locked"
+              (click)="markPresent(s)">
+  
+              ✅
+  
+            </button>
+  
+            <button
+              class="absentBtn"
+              [disabled]="locked"
+              (click)="markAbsent(s)">
+  
+              ❌
+  
+            </button>
+  
+            <span class="status">
+              {{s.status}}
+            </span>
+  
+          </td>
+  
+        </tr>
+  
+      </tbody>
+  
+    </table>
+  
+  </div>

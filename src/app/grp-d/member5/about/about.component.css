@@ -1,0 +1,51 @@
+.about-card{
+    background:white;
+    margin:20px;
+    padding:30px;
+    border-radius:24px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.about-card:hover{
+    transform:translateY(-5px);
+}
+
+.about-title{
+    border-left:5px solid #2f6f55;
+    padding-left:15px;
+    margin-bottom:20px;
+}
+
+.about-title h2{
+    color:#2f6f55;
+    margin:0;
+}
+
+.about-card p{
+    line-height:1.8;
+    color:#555;
+}
+
+.about-stats{
+    display:flex;
+    gap:20px;
+    margin-top:25px;
+}
+
+.stat{
+    background:#dff5e6;
+    padding:15px;
+    border-radius:15px;
+    text-align:center;
+    flex:1;
+}
+
+.stat h3{
+    color:#2f6f55;
+    margin:0;
+}
+
+.stat span{
+    font-size:14px;
+}

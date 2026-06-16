@@ -1,0 +1,178 @@
+<div class="dashboard">
+
+  <div class="top-card">
+    <h2>Attendance Management System</h2>
+
+    <input type="date">
+
+    <input
+      type="text"
+      placeholder="Search Student"
+      [(ngModel)]="searchText">
+  </div>
+
+  <div class="stats">
+
+    <div class="card">
+      <h3>{{totalStudents}}</h3>
+      <p>Total Students</p>
+    </div>
+
+    <div class="card">
+      <h3>{{presentCount}}</h3>
+      <p>Present</p>
+    </div>
+
+    <div class="card">
+      <h3>{{absentCount}}</h3>
+      <p>Absent</p>
+    </div>
+
+    <div class="card">
+      <h3>{{attendancePercent}}%</h3>
+      <p>Attendance</p>
+    </div>
+
+  </div>
+
+  <div class="content">
+
+    <!-- LEFT SIDE -->
+    <div class="groups">
+
+      <h3>Groups</h3>
+
+      <button (click)="selectedGroup='A'">Group A</button>
+      <button (click)="selectedGroup='B'">Group B</button>
+      <button (click)="selectedGroup='C'">Group C</button>
+      <button (click)="selectedGroup='D'">Group D</button>
+      <button (click)="selectedGroup='E'">Group E</button>
+      <button (click)="selectedGroup='F'">Group F</button>
+      <button (click)="selectedGroup='G'">Group G</button>
+
+      <br><br>
+
+      <div class="add-member">
+
+        <h3>Add Member</h3>
+
+        <input
+          type="text"
+          placeholder="Enter Student Name"
+          [(ngModel)]="newStudent">
+
+        <button (click)="addStudent()">
+          Add Member
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="table-section">
+
+      <table>
+
+        <tr>
+          <th>Roll No</th>
+          <th>Student Name</th>
+          <th>Present</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+
+        <tr *ngFor="let s of students">
+
+          <td>{{s.roll}}</td>
+
+          <td>{{s.name}}</td>
+
+          <td>
+            <input
+              type="checkbox"
+              [(ngModel)]="s.present">
+          </td>
+
+          <td>
+
+            <span
+              class="present-badge"
+              *ngIf="s.present">
+              Present
+            </span>
+
+            <span
+              class="absent-badge"
+              *ngIf="!s.present">
+              Absent
+            </span>
+
+          </td>
+
+          <td>
+
+            <button
+              class="delete-btn"
+              (click)="deleteStudent(s.roll)">
+              Delete
+            </button>
+
+          </td>
+
+        </tr>
+
+      </table>
+
+      <div class="summary">
+
+        <div>
+          Present : {{presentCount}}
+        </div>
+
+        <div>
+          Absent : {{absentCount}}
+        </div>
+
+        <div>
+          Attendance : {{attendancePercent}}%
+        </div>
+
+      </div>
+
+      <button
+        class="save-btn"
+        (click)="saveAttendance()">
+
+        Save Attendance
+
+      </button>
+
+      <br><br>
+
+      <!-- Analytics -->
+
+      <div class="stats">
+
+        <div class="card">
+          <h3>5</h3>
+          <p>Total Reports</p>
+        </div>
+
+        <div class="card">
+          <h3>{{attendancePercent}}%</h3>
+          <p>Average Attendance</p>
+        </div>
+
+        <div class="card">
+          <h3>Group {{selectedGroup}}</h3>
+          <p>Current Group</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

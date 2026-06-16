@@ -1,0 +1,197 @@
+<div class="chat-dashboard-container">
+  <!-- Far Left Menu Sidebar Strip -->
+  <aside class="side-menu-strip">
+    <div class="logo-box">
+      <span class="sparkle">✦</span>
+    </div>
+    <nav class="menu-items">
+      <a class="menu-item active" title="All chats">
+        <span class="badge">43</span>
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <span class="menu-label">All chats</span>
+      </a>
+      <a class="menu-item" title="Work">
+        <span class="badge badge-orange">4</span>
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+        </svg>
+        <span class="menu-label">Work</span>
+      </a>
+      <a class="menu-item" title="Friends">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        <span class="menu-label">Friends</span>
+      </a>
+      <a class="menu-item" title="Profile">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        <span class="menu-label">Profile</span>
+      </a>
+    </nav>
+    <div class="menu-footer">
+      <a routerLink="/grp-e/member7" class="menu-item exit-btn" title="Back to Portfolio">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span class="menu-label">Portfolio</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Workspace -->
+  <main class="chat-workspace">
+    <!-- Left Column: Active Chats & User A Control Panel -->
+    <section class="workspace-col col-left">
+      <div class="col-header-bar">
+        <div class="search-wrapper">
+          <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" placeholder="Search chats..." readonly>
+        </div>
+      </div>
+
+      <!-- User A (Zen) simulated phone mockup -->
+      <div class="phone-device gents-device">
+        <div class="phone-notch">
+          <div class="speaker-grill"></div>
+          <div class="camera-lens"></div>
+        </div>
+        <div class="phone-status-bar">
+          <span class="phone-time">01:38</span>
+          <div class="phone-icons">
+            <svg class="wifi-svg" viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+              <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+              <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+              <line x1="12" y1="20" x2="12.01" y2="20"></line>
+            </svg>
+            <span class="battery-text">88%</span>
+            <div class="battery-cap">
+              <div class="battery-body">
+                <div class="battery-charge" style="width: 88%"></div>
+              </div>
+              <div class="battery-tip"></div>
+            </div>
+          </div>
+        </div>
+        <div class="phone-screen-content">
+          <app-m7-user-a></app-m7-user-a>
+        </div>
+      </div>
+
+      <!-- Simulated inactive chats to match design mockup -->
+      <div class="mock-chats-list">
+        <div class="mock-chat-item">
+          <div class="mock-avatar">O</div>
+          <div class="mock-meta">
+            <div class="mock-title"><span>Osman Campos</span><span class="time">20m</span></div>
+            <span class="subtext">Hey! We are ready...</span>
+          </div>
+        </div>
+        <div class="mock-chat-item">
+          <div class="mock-avatar">J</div>
+          <div class="mock-meta">
+            <div class="mock-title"><span>Jayden Church</span><span class="time">1h</span></div>
+            <span class="subtext">I prepared some varia...</span>
+          </div>
+        </div>
+        <div class="mock-chat-item">
+          <div class="mock-avatar">L</div>
+          <div class="mock-meta">
+            <div class="mock-title"><span>Jasmin Lowery</span><span class="time">20m</span></div>
+            <span class="subtext">Ok! Let's discuss it...</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Center Column: Shared Chat Window Component -->
+    <section class="workspace-col col-center">
+      <app-m7-chat-window></app-m7-chat-window>
+    </section>
+
+    <!-- Right Column: Group Info & User B Control Panel -->
+    <section class="workspace-col col-right">
+      <!-- Group Info (Audit Logs / Assignment Specs) -->
+      <div class="spec-card group-info-card">
+        <div class="spec-header">
+          <h3>Group Info</h3>
+          <button class="close-btn-mock">✕</button>
+        </div>
+        <div class="spec-body">
+          <div class="audit-stats-box">
+            <div class="stat-row-item">
+              <span class="stat-label">Total Messages</span>
+              <strong class="stat-value font-blue">{{ messageCount }}</strong>
+            </div>
+            <div class="stat-row-item">
+              <span class="stat-label">Last Message</span>
+              <span class="stat-value last-msg-text" [title]="lastMessage">{{ lastMessage }}</span>
+            </div>
+          </div>
+          <button class="clear-chat-btn" (click)="clearChat()">
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+            <span>Clear Chat History</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- User B (Mayur) simulated phone mockup -->
+      <div class="phone-device mayur-device">
+        <div class="phone-notch">
+          <div class="speaker-grill"></div>
+          <div class="camera-lens"></div>
+        </div>
+        <div class="phone-status-bar">
+          <span class="phone-time">01:38</span>
+          <div class="phone-icons">
+            <svg class="wifi-svg" viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+              <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+              <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+              <line x1="12" y1="20" x2="12.01" y2="20"></line>
+            </svg>
+            <span class="battery-text">92%</span>
+            <div class="battery-cap">
+              <div class="battery-body">
+                <div class="battery-charge" style="width: 92%"></div>
+              </div>
+              <div class="battery-tip"></div>
+            </div>
+          </div>
+        </div>
+        <div class="phone-screen-content">
+          <app-m7-user-b></app-m7-user-b>
+        </div>
+      </div>
+
+      <!-- 23 Members (Decorative List matching design) -->
+      <div class="members-mock-card">
+        <h4>Group Members (2)</h4>
+        <div class="member-mock-row">
+          <div class="member-avatar g-bg">G</div>
+          <span>Zen <span class="admin-label">Admin</span></span>
+        </div>
+        <div class="member-mock-row">
+          <div class="member-avatar m-bg">M</div>
+          <span>Mayur Sahu</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>

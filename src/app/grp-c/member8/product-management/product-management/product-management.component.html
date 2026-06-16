@@ -1,0 +1,27 @@
+<div class="pos-container">
+
+  <div class="header">
+    <h1>Product Management System</h1>
+  </div>
+
+  <div class="content">
+
+    <div class="left-panel">
+      <app-product-list (productAdded)="receiveProduct($event)"></app-product-list>
+    </div>
+
+    <div class="right-panel">
+
+   <app-customer (customerSaved)="receiveCustomer($event)"></app-customer>
+
+     <app-billing 
+     [products]="selectedProducts"
+     [customer]="customerData"
+     (billGenerated)="onBillGenerated()">
+    </app-billing>
+    <app-notification></app-notification>
+    </div>
+
+  </div>
+
+</div>

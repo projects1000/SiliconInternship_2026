@@ -1,0 +1,244 @@
+<div class="app-container" [class.dark-theme]="isDarkMode" [class.light-theme]="!isDarkMode">
+  
+  <!-- Header Bar -->
+  <header class="main-header">
+    <div class="header-left">
+      <button class="back-btn" (click)="goBack()" title="Back to Profile">
+        <span class="btn-icon">←</span> Back
+      </button>
+      <div class="brand">
+        <span class="logo-badge">SYSTEM</span>
+        <h1>Attendance Tracker</h1>
+      </div>
+    </div>
+    
+    <div class="header-right">
+      <!-- Date Picker Input -->
+      <div class="date-picker-wrapper">
+        <label for="att-date">Select Date:</label>
+        <input 
+          type="date" 
+          id="att-date" 
+          [(ngModel)]="selectedDate" 
+          (change)="onDateChange()" 
+          class="date-input"
+        />
+      </div>
+
+      <!-- Theme Toggle -->
+      <button class="theme-toggle" (click)="toggleTheme()" title="Toggle Dark/Light Mode">
+        <span class="mode-icon">{{ isDarkMode ? '☀️' : '🌙' }}</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Grid Layout -->
+  <div class="dashboard-grid">
+    
+    <!-- Sidebar Controls -->
+    <aside class="sidebar-card">
+      <div class="sidebar-section">
+        <h3>🔍 Search Intern</h3>
+        <div class="search-box">
+          <input 
+            type="text" 
+            [(ngModel)]="searchQuery" 
+            (ngModelChange)="onSearchChange()" 
+            placeholder="Search name or ID..."
+            class="sidebar-input"
+          />
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>📂 Filter by Group</h3>
+        <div class="group-list">
+          <button 
+            class="group-item" 
+            [class.active]="selectedGroup === ''" 
+            (click)="onGroupChange('')"
+          >
+            All Groups <span class="badge">{{ members.length }}</span>
+          </button>
+          <button 
+            *ngFor="let grp of groups" 
+            class="group-item" 
+            [class.active]="selectedGroup === grp" 
+            (click)="onGroupChange(grp)"
+          >
+            {{ grp }}
+          </button>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>⚙️ Quick Actions</h3>
+        <div class="bulk-actions">
+          <button class="bulk-btn present" (click)="markAllPresent()" [disabled]="isActiveDateLocked">
+            Mark Filtered Present
+          </button>
+          <button class="bulk-btn absent" (click)="markAllAbsent()" [disabled]="isActiveDateLocked">
+            Mark Filtered Absent
+          </button>
+          <button class="bulk-btn reset" (click)="resetAttendance()" [disabled]="isActiveDateLocked">
+            Reset Active Date
+          </button>
+          <button 
+            class="bulk-btn lock" 
+            [class.locked]="isActiveDateLocked" 
+            (click)="lockActiveDate()" 
+            [disabled]="isActiveDateLocked"
+          >
+            {{ isActiveDateLocked ? '🔒 Day Attendance Locked' : '🔐 Lock Active Day' }}
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Content Workspace -->
+    <main class="workspace-area">
+      
+      <!-- Statistics Row -->
+      <div class="stats-row">
+        <div class="stat-card blue">
+          <div class="stat-icon">👥</div>
+          <div class="stat-data">
+            <span class="stat-label">Present Today</span>
+            <span class="stat-value">{{ stats.presentCount }}</span>
+          </div>
+        </div>
+
+        <div class="stat-card red">
+          <div class="stat-icon">🚫</div>
+          <div class="stat-data">
+            <span class="stat-label">Absent Today</span>
+            <span class="stat-value">{{ stats.absentCount }}</span>
+          </div>
+        </div>
+
+        <div class="stat-card green">
+          <div class="stat-icon">📈</div>
+          <div class="stat-data">
+            <span class="stat-label">Daily Present Rate</span>
+            <span class="stat-value">{{ stats.dailyPercentage }}%</span>
+          </div>
+        </div>
+
+        <div class="stat-card purple">
+          <div class="stat-icon">🔒</div>
+          <div class="stat-data">
+            <span class="stat-label">Locked Days</span>
+            <span class="stat-value">{{ stats.lockedDaysCount }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Table Container -->
+      <div class="table-container-card">
+        <div class="table-header">
+          <h2>Student List &amp; Weekly Grid</h2>
+          <div class="export-dropdown">
+            <span class="export-label">💾 Export Report:</span>
+            <button class="export-btn csv" (click)="exportCSV()" title="Export CSV">CSV</button>
+            <button class="export-btn excel" (click)="exportExcel()" title="Export Excel">Excel</button>
+            <button class="export-btn pdf" (click)="exportPDF()" title="Export PDF">PDF</button>
+          </div>
+        </div>
+
+        <div class="table-scroller">
+          <table class="attendance-table">
+            <thead>
+              <tr>
+                <th>Reg No</th>
+                <th>Name</th>
+                <th>Group</th>
+                <!-- Sliding columns header -->
+                <th *ngFor="let date of slidingDates" [class.active-header]="date === selectedDate">
+                  <div class="header-date">
+                    <span>{{ formatDisplayDate(date) }}</span>
+                    <span class="lock-status-badge" *ngIf="isDateLocked(date)">🔒</span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let member of filteredMembers">
+                <td class="reg-cell">{{ member.regNo }}</td>
+                <td class="name-cell">{{ member.name }}</td>
+                <td class="group-cell">
+                  <span class="group-tag">{{ member.group }}</span>
+                </td>
+                <!-- Checkbox grid cells -->
+                <td *ngFor="let date of slidingDates" [class.active-cell]="date === selectedDate">
+                  <button 
+                    class="status-toggle-btn"
+                    [class.present]="getAttendance(member.id, date)"
+                    [class.absent]="!getAttendance(member.id, date)"
+                    [class.locked]="isDateLocked(date)"
+                    (click)="toggleAttendance(member.id, date)"
+                    [disabled]="isDateLocked(date)"
+                  >
+                    {{ getAttendance(member.id, date) ? 'Present' : 'Absent' }}
+                  </button>
+                </td>
+              </tr>
+              <tr *ngIf="filteredMembers.length === 0">
+                <td [attr.colspan]="3 + slidingDates.length" class="empty-cell">
+                  No interns found matching the criteria.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Lower Visualization Panels -->
+      <div class="analytics-row">
+        
+        <!-- Chart.js Widget -->
+        <div class="analytics-card chart-panel">
+          <h3>📊 Realtime Distribution (Selected Day)</h3>
+          <div class="chart-box">
+            <canvas #statsChart></canvas>
+          </div>
+        </div>
+
+        <!-- Progress Overview Widget -->
+        <div class="analytics-card progress-panel">
+          <h3>📈 Performance Analytics</h3>
+          
+          <div class="progress-item">
+            <div class="progress-info">
+              <span>Active Selection Week Attendance</span>
+              <span>{{ stats.activeGroupPercentage }}%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill blue" [style.width.%]="stats.activeGroupPercentage"></div>
+            </div>
+          </div>
+
+          <div class="progress-item">
+            <div class="progress-info">
+              <span>Global Internship Average (Rolling 5 Days)</span>
+              <span>{{ stats.overallPercentage }}%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill green" [style.width.%]="stats.overallPercentage"></div>
+            </div>
+          </div>
+
+          <div class="performance-tips">
+            <span class="tips-title">💡 Insight Note</span>
+            <p>
+              Attendance rates above 85% reflect strong team momentum. Locking dates secures documentation 
+              for auditing and assessment purposes.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+</div>

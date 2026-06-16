@@ -1,0 +1,49 @@
+.navbar{
+  background:#0a66c2;
+  color:white;
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+  padding:15px 30px;
+}
+
+.navbar ul{
+  display:flex;
+  gap:20px;
+  list-style:none;
+}
+
+.navbar a{
+  color:white;
+  text-decoration:none;
+}
+
+.navbar button {
+  border: 0;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+.navbar button:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.whatsapp-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 6px;
+  border-radius: 50%;
+  transition: background 0.2s;
+  margin-left: auto;
+}
+
+.whatsapp-link:hover {
+  background: rgba(255, 255, 255, 0.16);
+}

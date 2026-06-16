@@ -1,0 +1,62 @@
+export const PRODUCTS = [
+  {
+    id: 1,
+    name: 'Air Jordan XXXIII Premium',
+    brand: 'Nike Jordan',
+    price: 24999,
+    category: 'Basketball',
+    rating: 4.9,
+    discount: 15,
+    stock: 'In Stock',
+    sizes: [7, 8, 9, 10, 11],
+    description: 'Featuring an elite FlightSpeed carbon fiber plate and revolutionary laceless FastFit containment system.',
+    image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80',
+    bgGradient: 'linear-gradient(135deg, #3b0712 0%, #991b1b 100%)',
+    accentColor: '#ef4444'
+  },
+  {
+    id: 2,
+    name: 'Air Max Cobalt Pulse',
+    brand: 'Nike Sportswear',
+    price: 13499,
+    category: 'Running',
+    rating: 4.7,
+    discount: 10,
+    stock: 'In Stock',
+    sizes: [8, 9, 10],
+    description: 'Engineered with full-length visible Max Air cushioning units and layered hyper-fuse uppers.',
+    image: 'https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=600&q=80',
+    bgGradient: 'linear-gradient(135deg, #022c22 0%, #065f46 100%)',
+    accentColor: '#10b981'
+  },
+  {
+    id: 3,
+    name: 'Dunk Low Retro Obsidian',
+    brand: 'Nike Lifestyle',
+    price: 11999,
+    category: 'Lifestyle',
+    rating: 4.8,
+    discount: 5,
+    stock: 'In Stock',
+    sizes: [6, 7, 8, 9, 10, 11],
+    description: 'Classic color-blocking layouts met with premium grain leather panels and vintage cup-sole construction.',
+    image: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80',
+    bgGradient: 'linear-gradient(135deg, #1e1b4b 0%, #3730a3 100%)',
+    accentColor: '#6366f1'
+  },
+  {
+    id: 4,
+    name: 'Zoom Freak Emerald Pods',
+    brand: 'Nike Basketball',
+    price: 16499,
+    category: 'Basketball',
+    rating: 4.6,
+    discount: 20,
+    stock: 'In Stock',
+    sizes: [9, 10, 11, 12],
+    description: 'Asymmetric outsoles paired with responsive dual-stacked Zoom Air pods in the forefoot structural layer.',
+    image: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=600&q=80',
+    bgGradient: 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%)',
+    accentColor: '#3b82f6'
+  }
+];

@@ -6,6 +6,7 @@
   align-items: center;
   padding: 32px 20px;
   font-family: 'Inter', 'Segoe UI', sans-serif;
+  position: relative;
 
   background: linear-gradient(
     -45deg,
@@ -372,6 +373,32 @@
   margin-right: 6px;
 }
 
+.product-mgmt-btn {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  color: #fff !important;
+  border-radius: 14px !important;
+  padding: 10px 24px !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em;
+  border: none !important;
+  box-shadow:
+    0 4px 16px rgba(16, 185, 129, 0.35),
+    0 0 24px rgba(52, 211, 153, 0.15) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.product-mgmt-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 8px 28px rgba(16, 185, 129, 0.5),
+    0 0 36px rgba(52, 211, 153, 0.25) !important;
+}
+
+.product-mgmt-btn mat-icon {
+  margin-right: 6px;
+}
+
 .back-btn {
   border-radius: 14px !important;
   color: rgba(255, 255, 255, 0.85) !important;
@@ -392,6 +419,41 @@
   font-size: 18px;
   width: 18px;
   height: 18px;
+}
+
+.profile-back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.16) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+  font-weight: 700 !important;
+  font-size: 0.88rem !important;
+  letter-spacing: 0.01em;
+  transition: transform 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+}
+
+.profile-back-btn mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.profile-back-btn:hover {
+  transform: translateX(-4px);
+  background: rgba(255, 255, 255, 0.26) !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 0 12px 32px rgba(124, 77, 255, 0.38);
 }
 
 /* ── Responsive ── */
