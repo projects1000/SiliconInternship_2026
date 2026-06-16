@@ -35,6 +35,12 @@ import { Member10AttendanceDashboardComponent } from './member10/member10-attend
 import { BillingComponent } from './member10/billing/billing.component';
 import { GrpFRoutingModule } from './grp-f-routing.module';
 
+import { Member10ChatAppComponent } from './member10/member10-chatapp/member10-chatapp.component';
+import { Member10UserAComponent } from './member10/member10-chatapp/user-a/user-a.component';
+import { Member10UserBComponent } from './member10/member10-chatapp/user-b/user-b.component';
+import { Member10ChatWindowComponent } from './member10/member10-chatapp/chat-window/chat-window.component';
+
+
 @NgModule({
   declarations: [
     GrpFComponent,
@@ -52,7 +58,12 @@ import { GrpFRoutingModule } from './grp-f-routing.module';
     Member6ChatComponent,
     AttendanceComponent,
     Member10AttendanceDashboardComponent,
-    BillingComponent
+    BillingComponent,
+    Member10ChatAppComponent,
+    Member10UserAComponent,
+    Member10UserBComponent,
+    Member10ChatWindowComponent
+    
   ],
   imports: [
     CommonModule,

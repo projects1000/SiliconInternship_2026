@@ -1,0 +1,133 @@
+/* src/app/grp-f/member10/member10-chatapp/user-a/user-a.component.css */
+
+.user-panel {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
+  border: 2px solid #e8f5e9;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatar-a {
+  background: linear-gradient(135deg, #43a047, #1b5e20);
+  box-shadow: 0 4px 12px rgba(67, 160, 71, 0.4);
+}
+
+.panel-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1b5e20;
+  margin: 0;
+  letter-spacing: 0.03em;
+}
+
+.panel-subtitle {
+  font-size: 12px;
+  color: #666;
+  margin-top: 2px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 6px;
+  letter-spacing: 0.03em;
+}
+
+.msg-input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #c8e6c9;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #1a1a1a;
+  outline: none;
+  background: #f9fff9;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+
+.msg-input:focus {
+  border-color: #43a047;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(67, 160, 71, 0.12);
+}
+
+.send-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  color: white;
+  font-family: inherit;
+}
+
+.send-btn-a {
+  background: linear-gradient(135deg, #43a047, #2e7d32);
+}
+
+.send-btn-a:hover {
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(67, 160, 71, 0.38);
+}
+
+.send-btn-a:active {
+  transform: translateY(0);
+}
+
+.logged-in {
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+  padding-top: 4px;
+}
+
+.logged-name {
+  font-weight: 700;
+}
+
+.name-a {
+  color: #2e7d32;
+}

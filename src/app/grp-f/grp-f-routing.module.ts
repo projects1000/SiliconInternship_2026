@@ -17,6 +17,7 @@ import { Member9Component } from './member9/member9.component';
 import { Member10Component } from './member10/member10.component';
 import { Member10AttendanceDashboardComponent } from './member10/member10-attendance-dashboard/member10-attendance-dashboard.component';
 import { BillingComponent } from './member10/billing/billing.component';
+import { Member10ChatAppComponent } from './member10/member10-chatapp/member10-chatapp.component';
 
 const routes: Routes = [
   {
@@ -82,7 +83,12 @@ const routes: Routes = [
   {
     path: 'member10/billing',
     component: BillingComponent
-  }
+  },
+  { 
+    path: 'member10/chatapp',         
+    component: Member10ChatAppComponent 
+  }  // ← NEW
+  
 ];
 
 @NgModule({
