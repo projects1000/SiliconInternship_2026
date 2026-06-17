@@ -1,0 +1,124 @@
+<div class="products-page">
+
+  <!-- LEFT SIDEBAR FILTER -->
+  <div class="sidebar">
+    <div class="filter-header">
+      <h2>Filters</h2>
+      <button class="clear-btn" (click)="clearFilters()">Clear All</button>
+    </div>
+
+    <div class="filter-topbar">
+      <!-- Price Range -->
+      <div class="filter-item price-filter">
+        <label>Price</label>
+        <div class="price-inputs">
+          <input 
+            type="number" 
+            [(ngModel)]="priceRange.min" 
+            placeholder="Min" 
+            class="input-box">
+          <span class="separator">–</span>
+          <input 
+            type="number" 
+            [(ngModel)]="priceRange.max" 
+            placeholder="Max" 
+            class="input-box">
+          <button class="apply-btn" (click)="filterByPrice()">Apply</button>
+        </div>
+      </div>
+
+      <!-- Sort -->
+      <div class="filter-item">
+        <label>Sort by</label>
+        <select 
+          [(ngModel)]="sortBy" 
+          (change)="onSortChange()" 
+          class="select-box">
+          <option value="featured">Featured</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="rating">Avg. Customer Review</option>
+        </select>
+      </div>
+
+      <!-- Quick Categories -->
+      <div class="filter-chips">
+        <button (click)="clearFilters()" class="chip" [class.active]="!selectedCategory">All</button>
+        <button (click)="filterCategory('Dress')" class="chip" [class.active]="selectedCategory === 'Dress'">👗 Dresses</button>
+        <button (click)="filterCategory('Footwear')" class="chip" [class.active]="selectedCategory === 'Footwear'">👟 Shoes</button>
+        <button (click)="filterCategory('Mobile')" class="chip" [class.active]="selectedCategory === 'Mobile'">📱 Mobiles</button>
+        <button (click)="filterCategory('Accessories')" class="chip" [class.active]="selectedCategory === 'Accessories'">⌚ Accessories</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN PRODUCT SECTION -->
+  <main class="product-section">
+    <div class="results-bar">
+      <div>
+        <h2>
+          {{ selectedCategory ? selectedCategory + ' Collection' : 
+             searchQuery ? 'Results for "' + searchQuery + '"' : 'All Products' }}
+        </h2>
+        <p>{{ filteredProducts.length }} items found</p>
+      </div>
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <div class="product-grid">
+      <div 
+        class="product-card" 
+        *ngFor="let product of filteredProducts"
+        (click)="viewProductDetails(product)">
+
+        <div class="image-wrapper">
+          <img 
+            [src]="product.image" 
+            [alt]="product.name" 
+            loading="lazy">
+
+          <div class="discount-badge" *ngIf="getDiscountPercentage(product) > 0">
+            -{{ getDiscountPercentage(product) }}%
+          </div>
+
+          <div class="hover-actions">
+            <button 
+              title="Add to Wishlist" 
+              (click)="addToWishlist(product); $event.stopPropagation()">
+              ❤️
+            </button>
+          </div>
+        </div>
+
+        <div class="info">
+          <h3 class="name">{{ product.name }}</h3>
+          <p class="desc">{{ product.description | slice:0:65 }}...</p>
+          
+          <div class="rating">⭐⭐⭐⭐☆ ({{ product.reviews || 0 }})</div>
+
+          <div class="price-row">
+            <span class="price">₹{{ product.price | number }}</span>
+            <span class="old-price" *ngIf="product.originalPrice">₹{{ product.originalPrice | number }}</span>
+          </div>
+
+          <div class="stock-status">
+            <span *ngIf="product.stock > 0" class="in">✅ In Stock</span>
+            <span *ngIf="product.stock <= 0" class="out">❌ Out of Stock</span>
+          </div>
+
+          <button 
+            class="cart-btn" 
+            (click)="addToCart(product, $event)">
+            🛒 Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="filteredProducts.length === 0" class="empty-state">
+      <h3>No products found</h3>
+      <p>Try changing your filters</p>
+    </div>
+  </main>
+</div>
