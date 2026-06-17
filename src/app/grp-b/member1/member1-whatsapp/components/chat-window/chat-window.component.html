@@ -1,0 +1,29 @@
+<div class="child-box chat-window-box">
+    <div class="chat-header-row">
+        <h3>3. CHAT WINDOW COMPONENT <small>(Shared Registry)</small></h3>
+        <button class="btn-clear" (click)="clearChat()" [disabled]="chatHistory.length === 0">🗑️ Clear Chat</button>
+    </div>
+
+    <div class="chat-logs-screen">
+        <div *ngFor="let msg of chatHistory" class="bubble-wrapper"
+            [ngClass]="msg.sender === 'Gents' ? 'left' : 'right'">
+            <div class="chat-bubble">
+                <span class="bubble-sender">{{ msg.sender }}</span>
+                <p class="bubble-text">{{ msg.text }}</p>
+                <span class="bubble-time">{{ msg.timestamp | date:'shortTime' }}</span>
+            </div>
+        </div>
+
+        <div class="no-chats" *ngIf="chatHistory.length === 0">
+            <p>No chat transactions synchronized yet. Send messages from the panels above!</p>
+        </div>
+    </div>
+
+    <div class="chat-metrics-footer">
+        <div class="metric-chip"><strong>Total Messages:</strong> {{ chatHistory.length }}</div>
+        <div class="metric-chip">
+            <strong>Last Message:</strong>
+            <span *ngIf="lastMessageSender">[{{ lastMessageSender }}]</span> {{ lastMessageText }}
+        </div>
+    </div>
+</div>

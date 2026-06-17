@@ -1,0 +1,1180 @@
+<section class="hms-wrapper">
+
+  <!-- Toast Notification System Container -->
+  <div class="toast-container">
+    <div *ngFor="let toast of toasts" class="toast-message" [ngClass]="'toast-' + toast.type">
+      <span class="toast-icon" *ngIf="toast.type === 'success'">🟢</span>
+      <span class="toast-icon" *ngIf="toast.type === 'error'">🔴</span>
+      <span class="toast-icon" *ngIf="toast.type === 'info'">🔵</span>
+      <span class="toast-icon" *ngIf="toast.type === 'warning'">🟡</span>
+      <div class="toast-content">
+        <p class="toast-text">{{ toast.message }}</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Symmetric Header -->
+  <header class="hms-header">
+    <div class="header-brand">
+      <span class="header-logo">🏥</span>
+      <div>
+        <h1 class="system-title">CareSync Command</h1>
+        <p class="system-tagline">Integrated Clinical Intelligence Center</p>
+      </div>
+    </div>
+    
+    <div class="header-center-info">
+      <span class="pulse-icon-green"></span>
+      <span class="facility-status">Central Facility: <strong>Active</strong></span>
+    </div>
+
+    <button (click)="goBackToProfile()" class="btn btn-secondary back-profile-btn" id="btn-back-profile">
+      <span class="icon">←</span> Exit Command Center
+    </button>
+  </header>
+
+  <!-- Symmetric Command Layout -->
+  <div class="hms-layout-grid" [class.no-right-sidebar]="activeTab !== 'dashboard'">
+    
+    <!-- LEFT COLUMN: Sidebar Navigation & Live Telemetry Monitor -->
+    <aside class="layout-left-sidebar">
+      
+      <div class="sidebar-section">
+        <h3 class="sidebar-sec-title">Operational Tabs</h3>
+        <nav class="sidebar-nav">
+          <button (click)="activeTab = 'dashboard'" [class.active]="activeTab === 'dashboard'" class="nav-link" id="nav-dashboard">
+            <span class="nav-icon">📊</span> Command Dashboard
+          </button>
+          <button (click)="activeTab = 'appointments'" [class.active]="activeTab === 'appointments'" class="nav-link" id="nav-appointments">
+            <span class="nav-icon">📅</span> Appointment Queue
+          </button>
+          <button (click)="activeTab = 'patients'" [class.active]="activeTab === 'patients'" class="nav-link" id="nav-patients">
+            <span class="nav-icon">👥</span> Patient Registry
+          </button>
+          <button (click)="activeTab = 'beds'" [class.active]="activeTab === 'beds'" class="nav-link" id="nav-beds">
+            <span class="nav-icon">🛏️</span> Bed Allocation Map
+          </button>
+          <button (click)="activeTab = 'diagnostics'" [class.active]="activeTab === 'diagnostics'" class="nav-link" id="nav-diagnostics">
+            <span class="nav-icon">🩺</span> Lab &amp; Diagnostics
+          </button>
+          <button (click)="activeTab = 'pharmacy'" [class.active]="activeTab === 'pharmacy'" class="nav-link" id="nav-pharmacy">
+            <span class="nav-icon">💊</span> Pharmacy Inventory
+          </button>
+          <button (click)="activeTab = 'billing'" [class.active]="activeTab === 'billing'" class="nav-link" id="nav-billing">
+            <span class="nav-icon">💳</span> Financial Operations
+          </button>
+          <button (click)="activeTab = 'communications'" [class.active]="activeTab === 'communications'" class="nav-link" id="nav-communications">
+            <span class="nav-icon">💬</span> Communications &amp; Chat
+          </button>
+        </nav>
+      </div>
+
+      <!-- Live Vitals Telemetry Screen -->
+      <div class="vitals-telemetry-widget">
+        <div class="telemetry-header">
+          <h4>ECG Telemetry Live</h4>
+          <span class="telemetry-dot-red"></span>
+        </div>
+        
+        <div class="form-group select-patient-vitals">
+          <select name="monitoredPatient" [(ngModel)]="monitoredPatient">
+            <option value="Alice Smith">Alice Smith (ICU-A1)</option>
+            <option value="Bob Johnson">Bob Johnson (Cabin-101)</option>
+            <option value="Charlie Brown">Charlie Brown (Ward-B3)</option>
+          </select>
+        </div>
+
+        <!-- Pulse Animated SVG Waveform -->
+        <div class="ecg-graph-box">
+          <svg viewBox="0 0 100 50" class="ecg-svg">
+            <path class="ecg-grid-line" d="M 0,10 L 100,10 M 0,20 L 100,20 M 0,30 L 100,30 M 0,40 L 100,40 M 10,0 L 10,50 M 20,0 L 20,50 M 30,0 L 30,50 M 40,0 L 40,50 M 50,0 L 50,50 M 60,0 L 60,50 M 70,0 L 70,50 M 80,0 L 80,50 M 90,0 L 90,50" />
+            <path class="ecg-wave-path" d="M 0,25 Q 10,25 20,25 T 25,10 T 28,45 T 32,25 T 45,25 T 60,25 T 65,10 T 68,45 T 72,25 T 85,25 T 100,25" />
+          </svg>
+        </div>
+
+        <!-- Telemetry Vitals Reading Grid -->
+        <div class="vitals-stats-grid">
+          <div class="vitals-box">
+            <span class="vital-lbl">HR (BPM)</span>
+            <span class="vital-val neon-green">{{ heartRate }}</span>
+          </div>
+          <div class="vitals-box">
+            <span class="vital-lbl">BP (mmHg)</span>
+            <span class="vital-val neon-cyan">{{ bloodPressure }}</span>
+          </div>
+          <div class="vitals-box">
+            <span class="vital-lbl">SpO2 (%)</span>
+            <span class="vital-val neon-green">{{ oxygenSaturation }}%</span>
+          </div>
+          <div class="vitals-box">
+            <span class="vital-lbl">TEMP (°F)</span>
+            <span class="vital-val neon-gold">{{ temperature }}</span>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- CENTER COLUMN: Active Workspace (Tab View Panels) -->
+    <main class="layout-center-workspace">
+      
+      <!-- 1. DASHBOARD OVERVIEW -->
+      <div *ngIf="activeTab === 'dashboard'" class="workspace-pane">
+        <div class="pane-header">
+          <h2>Clinical Intelligence Overview</h2>
+          <p>Real-time telemetry and resource capacity audit.</p>
+        </div>
+
+        <!-- Stats Grid (Symmetric 4 Columns) -->
+        <div class="command-stats-grid">
+          <div class="c-stat-card border-green">
+            <div class="c-stat-body">
+              <span class="c-stat-icon bg-green-dim">👥</span>
+              <div>
+                <h4>{{ totalPatients }}</h4>
+                <p>Admitted Registry</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="c-stat-card border-cyan">
+            <div class="c-stat-body">
+              <span class="c-stat-icon bg-cyan-dim">🛏️</span>
+              <div>
+                <h4>{{ occupiedBedsCount }} / {{ beds.length }}</h4>
+                <p>Bed Occupancy Rate ({{ roomOccupancyPercent }}%)</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-stat-card border-blue">
+            <div class="c-stat-body">
+              <span class="c-stat-icon bg-blue-dim">📅</span>
+              <div>
+                <h4>{{ pendingAppointments }}</h4>
+                <p>Pending Consults</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-stat-card border-gold">
+            <div class="c-stat-body">
+              <span class="c-stat-icon bg-gold-dim">💳</span>
+              <div>
+                <h4>${{ totalRevenue | number }}</h4>
+                <p>Secured Revenue Ledger</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Capacity Dashboard Card Grid -->
+        <div class="dashboard-widgets-grid">
+          <!-- Resource Capacity Gauges -->
+          <div class="glass-card">
+            <h3>Facility Capacity Audit</h3>
+            
+            <div class="meter-wrapper">
+              <div class="meter-header">
+                <span>ICU bed allocation rate</span>
+                <strong>{{ icuOccupancyPercent }}%</strong>
+              </div>
+              <div class="meter-progress-container">
+                <div class="meter-fill bg-cyan" [style.width.%]="icuOccupancyPercent"></div>
+              </div>
+            </div>
+
+            <div class="meter-wrapper">
+              <div class="meter-header">
+                <span>General Wards</span>
+                <strong>{{ wardOccupancyPercent }}%</strong>
+              </div>
+              <div class="meter-progress-container">
+                <div class="meter-fill bg-green" [style.width.%]="wardOccupancyPercent"></div>
+              </div>
+            </div>
+
+            <div class="meter-wrapper">
+              <div class="meter-header">
+                <span>Deluxe Cabins</span>
+                <strong>{{ cabinOccupancyPercent }}%</strong>
+              </div>
+              <div class="meter-progress-container">
+                <div class="meter-fill bg-gold" [style.width.%]="cabinOccupancyPercent"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pharmacy Alert Center -->
+          <div class="glass-card">
+            <h3>Critical Pharmacy Alerts</h3>
+            <div class="alert-list-box">
+              <div class="supply-alert" *ngFor="let med of pharmacy">
+                <div *ngIf="med.stock < 50" class="supply-warning-item">
+                  <span class="warning-dot-red"></span>
+                  <div class="warning-text">
+                    <p>Low Inventory: <strong>{{ med.name }}</strong></p>
+                    <small>Currently {{ med.stock }} units remaining (Restock required)</small>
+                  </div>
+                  <button (click)="restockMedicine(med)" class="btn btn-sm btn-primary">Restock</button>
+                </div>
+              </div>
+              <div class="supply-status-ok" *ngIf="!hasLowStockMedicines">
+                <span class="ok-dot"></span>
+                <p>All core pharmaceuticals have stable stock levels.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Command Statistics Visual Chart -->
+        <div class="glass-card full-span-card">
+          <h3>Centralized Department Workload Analysis</h3>
+          <div class="symmetric-workload-grid">
+            <div class="workload-col">
+              <div class="workload-pill-card">
+                <div class="pill-title">Cardiovascular Medicine</div>
+                <div class="workload-capacity bg-blue-glow" style="width: 75%;">Cardiology (75%)</div>
+              </div>
+            </div>
+            <div class="workload-col">
+              <div class="workload-pill-card">
+                <div class="pill-title">Neurological Sciences</div>
+                <div class="workload-capacity bg-cyan-glow" style="width: 55%;">Neurology (55%)</div>
+              </div>
+            </div>
+            <div class="workload-col">
+              <div class="workload-pill-card">
+                <div class="pill-title">Clinical Pediatrics</div>
+                <div class="workload-capacity bg-green-glow" style="width: 35%;">Pediatrics (35%)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 2. APPOINTMENT QUEUE -->
+      <div *ngIf="activeTab === 'appointments'" class="workspace-pane">
+        <div class="pane-header">
+          <h2>Appointment Scheduling Queue</h2>
+          <p>Register outpatient slots and assign medical specialists.</p>
+        </div>
+
+        <div class="workspace-grid-layout">
+          <!-- Scheduling Form -->
+          <div class="glass-card">
+            <h3>Register Appointment Slot</h3>
+            <form (submit)="bookAppointment(); $event.preventDefault();" class="hms-form">
+              <div class="form-group">
+                <label for="appt-patient">Patient Name</label>
+                <input type="text" id="appt-patient" name="patientName" [(ngModel)]="newAppointment.patientName" placeholder="e.g. John Watson" required>
+              </div>
+
+              <div class="form-group">
+                <label for="appt-doctor">Select Specialist</label>
+                <select id="appt-doctor" name="doctorName" [(ngModel)]="newAppointment.doctorName" required>
+                  <option value="" disabled selected>Select Specialist</option>
+                  <option *ngFor="let doc of doctors" [value]="doc.name">{{ doc.name }} ({{ doc.specialty }})</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="appt-date">Appointment Date</label>
+                  <input type="date" id="appt-date" name="date" [(ngModel)]="newAppointment.date" required>
+                </div>
+                <div class="form-group">
+                  <label for="appt-time">Preferred Time</label>
+                  <input type="text" id="appt-time" name="time" [(ngModel)]="newAppointment.time" placeholder="e.g. 10:00 AM" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="appt-priority">Triage Priority</label>
+                <select id="appt-priority" name="priority" [(ngModel)]="newAppointment.priority">
+                  <option value="Low">Low (Routine Checkup)</option>
+                  <option value="Medium">Medium (Diagnostic consultation)</option>
+                  <option value="High">High (Immediate Intervention)</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Confirm Appointment</button>
+            </form>
+          </div>
+
+          <!-- Appointments List -->
+          <div class="glass-card max-table-card">
+            <h3>Scheduled Appointments</h3>
+            <div class="responsive-table-wrapper">
+              <table class="hms-table">
+                <thead>
+                  <tr>
+                    <th>Patient</th>
+                    <th>Physician</th>
+                    <th>Date/Time</th>
+                    <th>Triage</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let appt of appointments">
+                    <td class="font-bold">{{ appt.patientName }}</td>
+                    <td>{{ appt.doctorName }}</td>
+                    <td>
+                      <div>{{ appt.date }}</div>
+                      <small class="text-muted">{{ appt.time }}</small>
+                    </td>
+                    <td>
+                      <span class="badge" [ngClass]="{
+                        'badge-high': appt.priority === 'High',
+                        'badge-med': appt.priority === 'Medium',
+                        'badge-low': appt.priority === 'Low'
+                      }">{{ appt.priority }}</span>
+                    </td>
+                    <td>
+                      <span class="badge" [ngClass]="{
+                        'badge-scheduled': appt.status === 'Scheduled',
+                        'badge-completed': appt.status === 'Completed',
+                        'badge-cancelled': appt.status === 'Cancelled'
+                      }">{{ appt.status }}</span>
+                    </td>
+                    <td>
+                      <div class="action-buttons-cell">
+                        <button *ngIf="appt.status === 'Scheduled'" (click)="updateAppointmentStatus(appt, 'Completed')" class="btn-icon btn-icon-check" title="Completed">✓</button>
+                        <button *ngIf="appt.status === 'Scheduled'" (click)="updateAppointmentStatus(appt, 'Cancelled')" class="btn-icon btn-icon-cancel" title="Cancel">✗</button>
+                        <span *ngIf="appt.status !== 'Scheduled'" class="text-muted">-</span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. PATIENTS REGISTRY -->
+      <div *ngIf="activeTab === 'patients'" class="workspace-pane">
+        <div class="pane-header">
+          <h2>Admitted Patient Registry Database</h2>
+          <p>Audit admitted hospital cases, triage levels, and clinician assignments.</p>
+        </div>
+
+        <!-- Search Header -->
+        <div class="symmetric-search-bar">
+          <input type="text" name="searchPatientQuery" [(ngModel)]="searchPatientQuery" placeholder="🔍 Search Registry by Patient Name, Diagnosis, or Doctor...">
+        </div>
+
+        <div class="workspace-grid-layout">
+          <!-- Admission Form -->
+          <div class="glass-card">
+            <h3>Admit New Patient</h3>
+            <form (submit)="registerPatient(); $event.preventDefault();" class="hms-form">
+              <div class="form-group">
+                <label for="pat-name">Full Name</label>
+                <input type="text" id="pat-name" name="name" [(ngModel)]="newPatient.name" placeholder="Patient Name" required>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="pat-age">Age</label>
+                  <input type="number" id="pat-age" name="age" [(ngModel)]="newPatient.age" placeholder="Age" required>
+                </div>
+                <div class="form-group">
+                  <label for="pat-gender">Gender</label>
+                  <select id="pat-gender" name="gender" [(ngModel)]="newPatient.gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="pat-disease">Diagnosed Pathology</label>
+                <input type="text" id="pat-disease" name="disease" [(ngModel)]="newPatient.disease" placeholder="e.g. Hypertension, Pneumonia" required>
+              </div>
+
+              <div class="form-group">
+                <label for="pat-doctor">Assign Physician</label>
+                <select id="pat-doctor" name="doctor" [(ngModel)]="newPatient.doctor" required>
+                  <option value="" disabled selected>Select Doctor</option>
+                  <option *ngFor="let doc of doctors" [value]="doc.name">{{ doc.name }}</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="pat-room">Suggested Room (e.g. ICU, Cabin, Ward)</label>
+                <input type="text" id="pat-room" name="room" [(ngModel)]="newPatient.room" placeholder="e.g. ICU-A2, Cabin-102" required>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Authorize Admission</button>
+            </form>
+          </div>
+
+          <!-- Patients List -->
+          <div class="glass-card max-table-card">
+            <h3>Admissions Registry</h3>
+            <div class="responsive-table-wrapper">
+              <table class="hms-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Patient</th>
+                    <th>Age/Gender</th>
+                    <th>Diagnosed Pathology</th>
+                    <th>Assignee</th>
+                    <th>Bed / Room</th>
+                    <th>Admitted</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let pat of filteredPatients">
+                    <td class="font-mono">#{{ pat.id }}</td>
+                    <td class="font-bold">{{ pat.name }}</td>
+                    <td>{{ pat.age }} / {{ pat.gender }}</td>
+                    <td><span class="disease-tag">{{ pat.disease }}</span></td>
+                    <td>{{ pat.doctor }}</td>
+                    <td><span class="room-tag">{{ pat.room }}</span></td>
+                    <td>{{ pat.admissionDate }}</td>
+                  </tr>
+                  <tr *ngIf="filteredPatients.length === 0">
+                    <td colspan="7" class="text-center text-muted">No patient records match the query.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. BED MAP GRID -->
+      <div *ngIf="activeTab === 'beds'" class="workspace-pane">
+        <div class="pane-header">
+          <h2>Interactive Bed Allocation Map</h2>
+          <p>Real-time visual map of the facility floors (ICU, Wards, and Cabins).</p>
+        </div>
+
+        <!-- Beds Grid -->
+        <div class="bed-layout-grid-box">
+          <div *ngFor="let bed of beds" class="bed-cell-card" [ngClass]="{
+            'bed-occupied': bed.status === 'Occupied',
+            'bed-available': bed.status === 'Available',
+            'bed-cleaning': bed.status === 'Cleaning'
+          }">
+            <div class="bed-card-header">
+              <span class="bed-icon">🛏️</span>
+              <span class="bed-id-label">{{ bed.id }}</span>
+            </div>
+            
+            <div class="bed-card-body">
+              <span class="badge bed-status-badge" [ngClass]="{
+                'badge-paid': bed.status === 'Available',
+                'badge-unpaid': bed.status === 'Occupied',
+                'badge-med': bed.status === 'Cleaning'
+              }">{{ bed.status }}</span>
+              
+              <div class="bed-occupant-name" *ngIf="bed.status === 'Occupied'">
+                Patient: <strong>{{ bed.patientName }}</strong>
+              </div>
+              <div class="bed-occupant-name" *ngIf="bed.status === 'Cleaning'">
+                Sterilizing...
+              </div>
+              <div class="bed-occupant-name" *ngIf="bed.status === 'Available'">
+                Ready for Admission
+              </div>
+            </div>
+
+            <div class="bed-card-actions">
+              <button *ngIf="bed.status === 'Available'" (click)="openAllocationModal(bed)" class="btn btn-sm btn-primary btn-block">Assign Patient</button>
+              <button *ngIf="bed.status === 'Occupied'" (click)="releaseBed(bed)" class="btn btn-sm btn-secondary btn-block">Release Bed</button>
+              <span *ngIf="bed.status === 'Cleaning'" class="text-muted-cleaning">Maintenance Active</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. DIAGNOSTICS & PRESCRIPTION BUILDER -->
+      <div *ngIf="activeTab === 'diagnostics'" class="workspace-pane">
+        <div class="pane-header">
+          <h2>Lab Diagnostics &amp; Prescriptions</h2>
+          <p>Write patient prescription orders and register clinical lab diagnostics.</p>
+        </div>
+
+        <div class="workspace-grid-layout">
+          <!-- Diagnostics Creator Form -->
+          <div class="glass-card">
+            <h3>Prescription Order Builder</h3>
+            <form (submit)="generatePrescription(); $event.preventDefault();" class="hms-form">
+              <div class="form-group">
+                <label for="rx-patient">Patient Name</label>
+                <select id="rx-patient" name="patientName" [(ngModel)]="newPrescription.patientName" required>
+                  <option value="" disabled selected>Select Patient</option>
+                  <option *ngFor="let pat of patients" [value]="pat.name">{{ pat.name }}</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="rx-doctor">Prescribing Clinician</label>
+                <select id="rx-doctor" name="doctorName" [(ngModel)]="newPrescription.doctorName" required>
+                  <option value="" disabled selected>Select Doctor</option>
+                  <option *ngFor="let doc of doctors" [value]="doc.name">{{ doc.name }}</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="rx-diagnosis">Diagnosed Pathology</label>
+                <input type="text" id="rx-diagnosis" name="diagnosis" [(ngModel)]="newPrescription.diagnosis" placeholder="e.g. Hypertension, Flu" required>
+              </div>
+
+              <div class="form-group">
+                <label for="rx-meds">Medications &amp; Dosage Instructions</label>
+                <textarea id="rx-meds" name="medications" [(ngModel)]="newPrescription.medications" rows="3" placeholder="e.g. Amoxicillin 500mg (3x Daily for 7 Days)" required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="rx-notes">Dietary / Clinical Instructions</label>
+                <input type="text" id="rx-notes" name="notes" [(ngModel)]="newPrescription.notes" placeholder="e.g. Drink lots of fluids, take after meal">
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Generate Prescription (Rx)</button>
+            </form>
+          </div>
+
+          <!-- Prescription Cards Grid -->
+          <div class="glass-card rx-list-card">
+            <h3>Registered Clinical Prescription Orders</h3>
+            <div class="prescriptions-grid-view">
+              <div *ngFor="let rx of prescriptions" class="rx-card-item">
+                <div class="rx-card-header">
+                  <span class="rx-id">{{ rx.id }}</span>
+                  <span class="rx-date">{{ rx.date }}</span>
+                </div>
+                
+                <div class="rx-card-body">
+                  <p class="rx-pat">Patient: <strong>{{ rx.patientName }}</strong></p>
+                  <p class="rx-doc">By: <strong>{{ rx.doctorName }}</strong></p>
+                  <div class="rx-details">
+                    <span class="rx-lbl">Diagnosis:</span>
+                    <p class="rx-text">{{ rx.diagnosis }}</p>
+                  </div>
+                  <div class="rx-details">
+                    <span class="rx-lbl">Medications:</span>
+                    <p class="rx-meds-text">{{ rx.medications }}</p>
+                  </div>
+                  <div class="rx-details" *ngIf="rx.notes">
+                    <span class="rx-lbl">Instructions:</span>
+                    <p class="rx-notes-text">{{ rx.notes }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. PHARMACY INVENTORY -->
+      <div *ngIf="activeTab === 'pharmacy'" class="workspace-pane">
+        <div class="pane-header">
+          <h2>Pharmacy Supply &amp; Drug Inventory</h2>
+          <p>Track medicine stocks, categories, and unit price indexes.</p>
+        </div>
+
+        <div class="symmetric-search-bar">
+          <input type="text" name="searchPharmacyQuery" [(ngModel)]="searchPharmacyQuery" placeholder="🔍 Search supply inventory by medicine name or category...">
+        </div>
+
+        <div class="workspace-grid-layout">
+          <!-- Add Medicine Form -->
+          <div class="glass-card">
+            <h3>Register Supply Item</h3>
+            <form (submit)="addNewMedicine(); $event.preventDefault();" class="hms-form">
+              <div class="form-group">
+                <label for="med-name">Medicine Name</label>
+                <input type="text" id="med-name" name="name" [(ngModel)]="newMedicine.name" placeholder="e.g. Paracetamol 500mg" required>
+              </div>
+
+              <div class="form-group">
+                <label for="med-category">Category</label>
+                <select id="med-category" name="category" [(ngModel)]="newMedicine.category">
+                  <option value="Analgesic">Analgesic (Pain Reliever)</option>
+                  <option value="Antibiotic">Antibiotic</option>
+                  <option value="Antidiabetic">Antidiabetic</option>
+                  <option value="Cardiovascular">Cardiovascular</option>
+                  <option value="Respiratory">Respiratory</option>
+                  <option value="Anesthetic">Anesthetic</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="med-stock">Starting Stock</label>
+                  <input type="number" id="med-stock" name="stock" [(ngModel)]="newMedicine.stock" placeholder="e.g. 100" required>
+                </div>
+                <div class="form-group">
+                  <label for="med-price">Unit Price ($)</label>
+                  <input type="number" step="0.01" id="med-price" name="unitPrice" [(ngModel)]="newMedicine.unitPrice" placeholder="e.g. 12.50" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="med-expiry">Expiry Date</label>
+                <input type="date" id="med-expiry" name="expiryDate" [(ngModel)]="newMedicine.expiryDate" required>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Add to Stock Ledger</button>
+            </form>
+          </div>
+
+          <!-- Pharmacy Inventory List -->
+          <div class="glass-card max-table-card">
+            <h3>Pharmaceutical Supply Ledger</h3>
+            <div class="responsive-table-wrapper">
+              <table class="hms-table">
+                <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Medicine</th>
+                    <th>Category</th>
+                    <th>In Stock</th>
+                    <th>Unit Cost</th>
+                    <th>Expiry Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let med of filteredPharmacy">
+                    <td class="font-mono">{{ med.id }}</td>
+                    <td class="font-bold">{{ med.name }}</td>
+                    <td><span class="disease-tag">{{ med.category }}</span></td>
+                    <td>
+                      <span class="font-bold" [ngClass]="med.stock < 50 ? 'text-red' : 'text-emerald'">{{ med.stock }} units</span>
+                    </td>
+                    <td class="font-bold">${{ med.unitPrice | number:'1.2-2' }}</td>
+                    <td>{{ med.expiryDate }}</td>
+                    <td>
+                      <button (click)="restockMedicine(med)" class="btn btn-sm btn-secondary" title="Add 50 Units">+50 Restock</button>
+                    </td>
+                  </tr>
+                  <tr *ngIf="filteredPharmacy.length === 0">
+                    <td colspan="7" class="text-center text-muted">No medicines found matching the search criteria.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. BILLING & FINANCIAL OPERATIONS -->
+      <div *ngIf="activeTab === 'billing'" class="workspace-pane">
+        <div class="pane-header">
+          <h2>Advanced SDE Billing &amp; Revenue Cycle Management</h2>
+          <p>Verify insurance coverage ratios, import procedural codes, and generate patient copays.</p>
+        </div>
+
+        <div class="workspace-grid-layout">
+          <!-- Create Invoice Form -->
+          <div class="glass-card">
+            <h3>Billing Ledger compiler</h3>
+            <form (submit)="createInvoice(); $event.preventDefault();" class="hms-form">
+              <div class="form-group">
+                <label for="inv-patient">Select Admitted Patient</label>
+                <select id="inv-patient" name="patientName" [(ngModel)]="newInvoice.patientName" (change)="onInvoicePatientChange()" required>
+                  <option value="" disabled selected>Select Patient</option>
+                  <option *ngFor="let pat of patients" [value]="pat.name">{{ pat.name }}</option>
+                </select>
+              </div>
+
+              <!-- Insurance Coverage Verification Card -->
+              <div class="insurance-card" [ngClass]="activeInsuranceInfo.provider !== 'Uninsured' ? 'insurance-active' : 'insurance-none'">
+                <div class="ins-header">
+                  <span class="ins-logo">🛡️</span>
+                  <strong>Insurance Carrier Verified</strong>
+                </div>
+                <div class="ins-body">
+                  <p>Provider: <strong>{{ activeInsuranceInfo.provider }}</strong></p>
+                  <p>Policy ID: <code>{{ activeInsuranceInfo.policyNumber }}</code></p>
+                  <p>Coverage: <strong>{{ activeInsuranceInfo.coveragePercent }}%</strong> of allowed costs</p>
+                </div>
+              </div>
+
+              <!-- Auto Import Cost Controls -->
+              <div class="import-tools-box">
+                <h4>Automated Cost Import</h4>
+                <div class="import-btn-grid">
+                  <button type="button" (click)="importBedCharges()" class="btn btn-sm btn-secondary">
+                    🛏️ Import Bed Charges
+                  </button>
+                  <button type="button" (click)="importPharmacyCharges()" class="btn btn-sm btn-secondary">
+                    💊 Import Rx Charges
+                  </button>
+                </div>
+              </div>
+
+              <!-- Searchable Procedure Code Catalog -->
+              <div class="procedure-catalog-box">
+                <h4>Procedural Procedure Search</h4>
+                <div class="form-group catalog-search">
+                  <input type="text" name="searchProcedureQuery" [(ngModel)]="searchProcedureQuery" placeholder="🔍 Search procedure catalog by name or code (e.g. CPT)...">
+                </div>
+                <div class="procedure-scroll-list">
+                  <div *ngFor="let proc of filteredProcedures" class="proc-item-row">
+                    <div>
+                      <code class="proc-code">{{ proc.code }}</code>
+                      <span class="proc-name">{{ proc.name }}</span>
+                    </div>
+                    <button type="button" (click)="addProcedure(proc)" class="btn btn-xs btn-primary">
+                      + Add (${{ proc.cost }})
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Custom charges binding -->
+              <div class="billing-charges-section">
+                <h4>Custom Itemized Charge</h4>
+                <div class="form-group">
+                  <label for="item-desc">Service Description</label>
+                  <input type="text" id="item-desc" name="itemDescription" [(ngModel)]="invoiceItemInput.description" placeholder="e.g. Laboratory Draw, Ambulance">
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="item-cost">Cost ($)</label>
+                    <input type="number" id="item-cost" name="itemCost" [(ngModel)]="invoiceItemInput.cost" placeholder="Amount">
+                  </div>
+                  <div class="form-group add-charge-btn-group">
+                    <button type="button" (click)="addInvoiceItem()" class="btn btn-secondary btn-block">Add Charge</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Compile invoice items and totals -->
+              <div class="invoice-items-preview" *ngIf="newInvoice.items && newInvoice.items.length > 0">
+                <h5>Invoice Charges Preview</h5>
+                <ul>
+                  <li *ngFor="let item of newInvoice.items; let idx = index">
+                    <span>{{ item.description }}</span>
+                    <span>
+                      <strong>${{ item.cost }}</strong>
+                      <button type="button" (click)="removeInvoiceItem(idx)" class="btn-remove-item" title="Remove Charge">×</button>
+                    </span>
+                  </li>
+                </ul>
+                
+                <div class="billing-summary-block">
+                  <div class="summary-line">
+                    <span>Subtotal:</span>
+                    <strong>${{ newInvoiceSubtotal }}</strong>
+                  </div>
+                  <div class="summary-line">
+                    <span>Tax (10%):</span>
+                    <strong>${{ newInvoiceSubtotal * 0.1 | number:'1.0-0' }}</strong>
+                  </div>
+                  <div class="summary-line" *ngIf="activeInsuranceInfo.coveragePercent > 0">
+                    <span>Ins. Covered ({{ activeInsuranceInfo.coveragePercent }}%):</span>
+                    <strong class="text-emerald">-${{ (newInvoiceSubtotal * 1.1) * (activeInsuranceInfo.coveragePercent / 100) | number:'1.0-0' }}</strong>
+                  </div>
+                  <div class="summary-line total-line">
+                    <span>Net Patient Due:</span>
+                    <strong class="text-gold">${{ (newInvoiceSubtotal * 1.1) - (activeInsuranceInfo.coveragePercent > 0 ? (newInvoiceSubtotal * 1.1) * (activeInsuranceInfo.coveragePercent / 100) : 0) | number:'1.0-0' }}</strong>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Generate &amp; Issue Invoice</button>
+            </form>
+          </div>
+
+          <!-- Invoices Directory -->
+          <div class="glass-card max-table-card">
+            <h3>Invoice Directory</h3>
+            <div class="responsive-table-wrapper">
+              <table class="hms-table">
+                <thead>
+                  <tr>
+                    <th>Invoice ID</th>
+                    <th>Patient</th>
+                    <th>Date</th>
+                    <th>Gross</th>
+                    <th>Ins. Covered</th>
+                    <th>Patient Due</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let inv of invoices">
+                    <td class="font-mono">{{ inv.id }}</td>
+                    <td class="font-bold">{{ inv.patientName }}</td>
+                    <td>{{ inv.date }}</td>
+                    <td>${{ inv.subtotal + inv.tax }}</td>
+                    <td class="text-emerald">${{ inv.insuranceCovered }}</td>
+                    <td class="font-bold text-gold">${{ inv.patientCopay }}</td>
+                    <td>
+                      <span class="badge" [ngClass]="{
+                        'badge-paid': inv.status === 'Paid',
+                        'badge-unpaid': inv.status === 'Unpaid',
+                        'badge-pending-ins': inv.status === 'Pending Insurance',
+                        'badge-cancelled': inv.status === 'Disputed'
+                      }">{{ inv.status }}</span>
+                    </td>
+                    <td>
+                      <div class="invoice-actions">
+                        <button (click)="viewInvoice(inv)" class="btn btn-xs btn-secondary">View</button>
+                        <button *ngIf="inv.status === 'Unpaid' || inv.status === 'Pending Insurance'" (click)="payInvoice(inv)" class="btn btn-xs btn-primary">Pay</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. COMMUNICATIONS & CHAT -->
+      <div *ngIf="activeTab === 'communications'" class="workspace-pane">
+        <div class="pane-header">
+          <h2>CareSync WhatsApp Tele-Communications</h2>
+          <p>Simulate two-user clinical channel threads or consult the GenAI Diagnostics Assistant.</p>
+        </div>
+
+        <div class="whatsapp-layout-container">
+          <!-- Left Sidebar: Channels list -->
+          <div class="chat-sidebar">
+            <div class="chat-sidebar-header">
+              <div class="user-avatar-main">🏥</div>
+              <div class="header-user-info">
+                <h4>CareSync Command Center</h4>
+                <p>Status: Active Nurse</p>
+              </div>
+            </div>
+            
+            <div class="chat-search-bar">
+              <input type="text" placeholder="🔍 Search or start new clinical thread...">
+            </div>
+
+            <div class="chat-channels-list">
+              <div *ngFor="let chan of channels" 
+                   class="channel-list-item" 
+                   [class.active-channel]="chan.id === activeChannelId"
+                   (click)="selectChannel(chan.id)">
+                <div class="chan-avatar">{{ chan.avatar }}</div>
+                <div class="chan-meta">
+                  <div class="chan-name-time">
+                    <span class="chan-name">{{ chan.name }}</span>
+                    <span class="chan-time">{{ chan.lastMessageTime }}</span>
+                  </div>
+                  <div class="chan-msg-unread">
+                    <p class="chan-last-msg">{{ chan.lastMessage }}</p>
+                    <span *ngIf="chan.unreadCount > 0" class="chan-unread-badge">{{ chan.unreadCount }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Chat Window -->
+          <div class="chat-window">
+            <div *ngIf="activeChannel" class="active-chat-container">
+              <!-- Chat Header -->
+              <div class="chat-window-header">
+                <div class="active-avatar">{{ activeChannel.avatar }}</div>
+                <div class="active-chan-info">
+                  <h4>{{ activeChannel.name }}</h4>
+                  <p class="active-status">
+                    <span *ngIf="activeChannel.status === 'typing'" class="text-typing-blink">typing...</span>
+                    <span *ngIf="activeChannel.status === 'online'" class="text-online">online</span>
+                    <span *ngIf="activeChannel.status === 'offline'" class="text-offline">offline</span>
+                  </p>
+                </div>
+
+                <!-- Search box in active chat -->
+                <div class="chat-message-search-box">
+                  <input type="text" name="chatSearchQuery" [(ngModel)]="chatSearchQuery" placeholder="🔍 Search chat history...">
+                </div>
+                
+                <!-- Role Toggle Switch for Doctor-Patient chat -->
+                <div class="role-selector-widget" *ngIf="activeChannelId === 'dr-sarah-alice'">
+                  <span class="widget-label">Simulating As:</span>
+                  <div class="role-toggle-buttons">
+                    <button type="button" 
+                            (click)="activeChatRole = 'patient'; updateActiveChannel()"
+                            [class.active-role]="activeChatRole === 'patient'">
+                      Alice (Patient)
+                    </button>
+                    <button type="button" 
+                            (click)="activeChatRole = 'doctor'; updateActiveChannel()"
+                            [class.active-role]="activeChatRole === 'doctor'">
+                      Dr. Sarah (Doctor)
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Message History Body -->
+              <div class="chat-messages-container" #chatScrollContainer>
+                <div *ngFor="let msg of filteredChatMessages" class="msg-bubble-wrapper">
+                  <div class="message-bubble" [ngClass]="{
+                    'msg-sent': (msg.sender === 'Dr. Sarah Connor' && activeChatRole === 'doctor') || (msg.sender === 'Alice Smith' && activeChatRole === 'patient') || (activeChannelId === 'caresync-ai' && msg.sender !== 'CareSync AI'),
+                    'msg-received': (msg.sender === 'Alice Smith' && activeChatRole === 'doctor') || (msg.sender === 'Dr. Sarah Connor' && activeChatRole === 'patient') || (activeChannelId === 'caresync-ai' && msg.sender === 'CareSync AI')
+                  }">
+                    <div class="msg-sender-name" *ngIf="activeChannelId === 'dr-sarah-alice'">{{ msg.sender }}</div>
+                    <div class="msg-text" [innerHTML]="formatMessageText(msg.text)"></div>
+                    <div class="msg-time-ticks">
+                      <span class="msg-time">{{ msg.timestamp }}</span>
+                      <!-- WhatsApp ticks -->
+                      <span class="msg-ticks" *ngIf="(msg.sender === 'Dr. Sarah Connor' && activeChatRole === 'doctor') || (msg.sender === 'Alice Smith' && activeChatRole === 'patient') || (activeChannelId === 'caresync-ai' && msg.sender !== 'CareSync AI')">
+                        <span *ngIf="msg.status === 'sent'" class="tick-sent">✓</span>
+                        <span *ngIf="msg.status === 'delivered'" class="tick-delivered">✓✓</span>
+                        <span *ngIf="msg.status === 'read'" class="tick-read">✓✓</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Animated typing indicator bubble -->
+                <div class="msg-bubble-wrapper" *ngIf="activeChannel.status === 'typing'">
+                  <div class="message-bubble msg-received typing-indicator-bubble">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Suggestion Quick Chips & Emoji reaction bar -->
+              <div class="chat-suggestion-chips-wrapper">
+                <div class="quick-emoji-picker">
+                  <button type="button" (click)="addEmoji('👍')" class="emoji-btn">👍</button>
+                  <button type="button" (click)="addEmoji('❤️')" class="emoji-btn">❤️</button>
+                  <button type="button" (click)="addEmoji('😂')" class="emoji-btn">😂</button>
+                  <button type="button" (click)="addEmoji('🩺')" class="emoji-btn">🩺</button>
+                  <button type="button" (click)="addEmoji('🏥')" class="emoji-btn">🏥</button>
+                </div>
+                <div class="suggestion-chips-scroller">
+                  <button type="button" *ngFor="let chip of currentSuggestionChips" (click)="quickSendChip(chip)" class="quick-chip-btn">
+                    {{ chip }}
+                  </button>
+                </div>
+              </div>
+
+              <!-- Message Input Box with attachment triggers -->
+              <div class="chat-input-footer">
+                <div class="attachment-trigger-wrapper">
+                  <button type="button" class="btn-attachment" (click)="showAttachmentOverlay = !showAttachmentOverlay" title="Attach Document">
+                    📎
+                  </button>
+                  <div class="attachment-overlay-menu" *ngIf="showAttachmentOverlay">
+                    <button type="button" (click)="attachMockFile('ecg')">🛏️ Alice Smith ECG Trace</button>
+                    <button type="button" (click)="attachMockFile('lab')">🧬 Alice Smith Lab Report</button>
+                  </div>
+                </div>
+                
+                <input type="text" 
+                       [(ngModel)]="newMessageText" 
+                       (keyup.enter)="sendChatMessage()"
+                       placeholder="Type clinical inquiry or AI query (e.g. 'analyze Alice Smith')...">
+                <button type="button" (click)="sendChatMessage()" class="btn-chat-send">
+                  ➔
+                </button>
+              </div>
+            </div>
+            
+            <div *ngIf="!activeChannel" class="no-chat-placeholder">
+              <div class="placeholder-icon">💬</div>
+              <h3>CareSync Tele-Comms Desk</h3>
+              <p>Select a clinical channel or consult the GenAI assistant to begin.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- RIGHT COLUMN: Notifications Feed & Medical Staff Roster -->
+    <aside class="layout-right-sidebar" *ngIf="activeTab === 'dashboard'">
+      
+      <!-- Operational Feed -->
+      <div class="sidebar-section">
+        <h3 class="sidebar-sec-title">Operational Feed</h3>
+        <div class="feed-container-card">
+          <ul class="activity-feed">
+            <li>
+              <span class="feed-dot active-dot"></span>
+              <div class="feed-details">
+                <p>New Patient <strong>Charlie Brown</strong> admitted to General Ward-B3 under pediatric care.</p>
+                <span class="feed-time">Just now</span>
+              </div>
+            </li>
+            <li>
+              <span class="feed-dot"></span>
+              <div class="feed-details">
+                <p>Appointment scheduled: <strong>David Miller</strong> with cardiologist <strong>Dr. Sarah Connor</strong>.</p>
+                <span class="feed-time">1 hour ago</span>
+              </div>
+            </li>
+            <li>
+              <span class="feed-dot paid-dot"></span>
+              <div class="feed-details">
+                <p>Invoice <strong>INV-2026-001</strong> ($880) settled by <strong>Alice Smith</strong>.</p>
+                <span class="feed-time">3 hours ago</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Medical Staff Quick Status -->
+      <div class="sidebar-section">
+        <h3 class="sidebar-sec-title">On-Duty Clinicians</h3>
+        <div class="clinicians-status-box">
+          <div *ngFor="let doc of doctors" class="clinician-status-row">
+            <div class="clinician-meta">
+              <span class="clinician-avatar-circle">🩺</span>
+              <div>
+                <h5>{{ doc.name }}</h5>
+                <small>{{ doc.specialty }}</small>
+              </div>
+            </div>
+            <button (click)="toggleDoctorStatus(doc)" class="status-btn-toggle" [ngClass]="{
+              'c-available': doc.status === 'Available',
+              'c-busy': doc.status === 'Busy',
+              'c-off': doc.status === 'Off Duty'
+            }">
+              {{ doc.status }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- MODAL: BED ALLOCATION -->
+  <div class="modal-backdrop" *ngIf="showAllocationModal && selectedBedForAllocation">
+    <div class="invoice-modal">
+      <div class="modal-header">
+        <h3>Allocate Bed {{ selectedBedForAllocation.id }}</h3>
+        <button (click)="closeAllocationModal()" class="btn-close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form (submit)="allocateBed(); $event.preventDefault();" class="hms-form">
+          <div class="form-group">
+            <label for="alloc-pat">Select Admitted Patient</label>
+            <select id="alloc-pat" name="allocationPatientName" [(ngModel)]="allocationPatientName" required>
+              <option value="" disabled selected>Choose Patient</option>
+              <option *ngFor="let pat of patients" [value]="pat.name">{{ pat.name }} ({{ pat.disease }})</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" (click)="closeAllocationModal()" class="btn btn-secondary">Cancel</button>
+            <button type="submit" class="btn btn-primary">Allocate Bed</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: INVOICE DETAILED RECEIPT -->
+  <div class="modal-backdrop" *ngIf="showInvoiceModal && selectedInvoice">
+    <div class="invoice-modal">
+      <div class="modal-header">
+        <h3>Electronic Invoice &amp; Settlement</h3>
+        <button (click)="closeInvoiceModal()" class="btn-close-modal">&times;</button>
+      </div>
+
+      <div class="modal-body" id="print-area">
+        <div class="hospital-modal-brand">
+          <span class="modal-logo">🏥</span>
+          <div>
+            <h4>CareSync General Hospital</h4>
+            <p>100 Health Avenue, Silicon Valley</p>
+          </div>
+        </div>
+
+        <hr class="modal-divider">
+
+        <div class="modal-invoice-meta">
+          <div>
+            <p class="meta-label">Invoice ID</p>
+            <p class="meta-val font-mono">{{ selectedInvoice.id }}</p>
+          </div>
+          <div>
+            <p class="meta-label">Date Issued</p>
+            <p class="meta-val">{{ selectedInvoice.date }}</p>
+          </div>
+          <div>
+            <p class="meta-label">Patient Name</p>
+            <p class="meta-val font-bold">{{ selectedInvoice.patientName }}</p>
+          </div>
+          <div>
+            <p class="meta-label">Insurance Carrier</p>
+            <p class="meta-val font-bold">{{ selectedInvoice.insuranceProvider }}</p>
+          </div>
+          <div>
+            <p class="meta-label">Settlement Status</p>
+            <p class="meta-val">
+              <span class="badge" [ngClass]="{
+                'badge-paid': selectedInvoice.status === 'Paid',
+                'badge-unpaid': selectedInvoice.status === 'Unpaid',
+                'badge-pending-ins': selectedInvoice.status === 'Pending Insurance',
+                'badge-cancelled': selectedInvoice.status === 'Disputed'
+              }">{{ selectedInvoice.status }}</span>
+            </p>
+          </div>
+        </div>
+
+        <table class="modal-items-table">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th class="text-right">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of selectedInvoice.items">
+              <td>{{ item.description }}</td>
+              <td class="text-right">${{ item.cost }}</td>
+            </tr>
+            <tr class="summary-row border-top">
+              <td>Gross Subtotal</td>
+              <td class="text-right">${{ selectedInvoice.subtotal }}</td>
+            </tr>
+            <tr class="summary-row">
+              <td>Regulatory Tax (10%)</td>
+              <td class="text-right">${{ selectedInvoice.tax }}</td>
+            </tr>
+            <tr class="summary-row total-row font-bold">
+              <td>Total Gross Cost</td>
+              <td class="text-right">${{ selectedInvoice.subtotal + selectedInvoice.tax }}</td>
+            </tr>
+            <tr class="summary-row text-emerald" *ngIf="selectedInvoice.insuranceCovered > 0">
+              <td>Insurance Payment Coverage</td>
+              <td class="text-right">-${{ selectedInvoice.insuranceCovered }}</td>
+            </tr>
+            <tr class="summary-row total-row net-due font-bold text-gold">
+              <td>Net Patient Co-pay Due</td>
+              <td class="text-right">${{ selectedInvoice.patientCopay }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="modal-receipt-footer">
+          <p>Thank you for choosing CareSync General Hospital.</p>
+          <small class="text-muted">Generated by Billing Agent Swagat Das &bull; Electronically Audited</small>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button (click)="closeInvoiceModal()" class="btn btn-secondary">Close</button>
+        <button (click)="payInvoice(selectedInvoice); closeInvoiceModal();" *ngIf="selectedInvoice.status === 'Unpaid' || selectedInvoice.status === 'Pending Insurance'" class="btn btn-primary">Process Payment</button>
+      </div>
+    </div>
+  </div>
+
+</section>

@@ -2,47 +2,204 @@
 
   <div class="profile-card">
 
+    <!-- LEFT SIDE -->
+
     <div class="profile-image">
-      <img src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="User">
+
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png"
+        alt="User"
+      >
+
+      <!-- ONLINE STATUS -->
+
+      <div class="online-status">
+
+        <span class="dot"></span>
+
+        Online
+
+      </div>
+
     </div>
+
+    <!-- RIGHT SIDE -->
 
     <div class="profile-content">
 
-      <h1>Motilal Turuk</h1>
+      <!-- GREETING -->
 
-      <h2>Java Full Stack Developer</h2>
+      <div class="greeting-box">
+
+        <h3>
+
+          {{ greetingMessage }}
+
+        </h3>
+
+        <span>
+
+          {{ currentTheme }}
+
+        </span>
+
+      </div>
+
+      <!-- NAME -->
+
+      <h1>
+
+        Motilal Turuk
+
+      </h1>
+
+      <!-- TYPING EFFECT -->
+
+      <h2 class="typing-text">
+
+        {{ displayedText }}
+
+        <span class="cursor">|</span>
+
+      </h2>
+
+      <!-- STATUS -->
 
       <button class="status-btn">
+
         Available for Opportunities
+
       </button>
 
+      <!-- DESCRIPTION -->
+
       <p>
-        Passionate about Java, Spring Boot, Angular and Database Management.
-        Interested in building scalable web applications and continuously
-        improving problem-solving skills.
+
+        Passionate about Java,
+        Spring Boot, Angular,
+        TypeScript and Database
+        Management.
+
+        Interested in building scalable
+        enterprise applications with
+        modern UI/UX and continuously
+        improving development skills.
+
       </p>
+
+      <!-- SKILLS -->
 
       <div class="skills">
 
         <span>Java</span>
+
         <span>Spring Boot</span>
-        <span>Web Technologies</span>
+
+        <span>Angular</span>
+
+        <span>TypeScript</span>
+
         <span>MySQL</span>
+
         <span>Git</span>
+
+        <span>HTML</span>
+
+        <span>CSS</span>
+
+        <span>REST API</span>
 
       </div>
 
+      <!-- SOCIAL -->
+
       <div class="social-links">
 
-        <a href="https://github.com/" target="_blank">
+        <a
+          href="https://github.com/"
+          target="_blank"
+        >
+
           GitHub
+
+        </a>
+
+        <a
+          href="https://linkedin.com/"
+          target="_blank"
+        >
+
+          LinkedIn
+
         </a>
 
       </div>
 
-      <button class="back-btn" (click)="goBackToGroup()">
-        Go Back to Group B
-      </button>
+      <!-- STATS -->
+
+      <div class="stats-container">
+
+        <div class="stat-card">
+
+          <h4>Projects</h4>
+
+          <p>12+</p>
+
+        </div>
+
+        <div class="stat-card">
+
+          <h4>Skills</h4>
+
+          <p>9+</p>
+
+        </div>
+
+        <div class="stat-card">
+
+          <h4>Experience</h4>
+
+          <p>Intern</p>
+
+        </div>
+
+        <div class="stat-card">
+
+          <h4>Attendance</h4>
+
+          <p>Smart</p>
+
+        </div>
+
+      </div>
+
+      <!-- BUTTONS -->
+
+      <div class="button-group">
+
+        <!-- ATTENDANCE -->
+
+        <button
+          class="attendance-btn"
+          (click)="openAttendance()"
+        >
+
+          Attendance
+
+        </button>
+
+        <!-- BACK -->
+
+        <button
+          class="back-btn"
+          (click)="goBackToGroup()"
+        >
+
+          Go Back to Group B
+
+        </button>
+
+      </div>
 
     </div>
 

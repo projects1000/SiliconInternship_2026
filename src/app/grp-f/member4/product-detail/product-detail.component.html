@@ -1,0 +1,180 @@
+<div *ngIf="product" class="product-detail-container">
+  <div class="breadcrumb">
+  <a routerLink="/grp-f/member4/product-list">Home</a>
+
+  <span>/</span>
+
+  <a
+    [routerLink]="['/grp-f/member4/product-list']"
+    [queryParams]="{ category: product.category }">
+    {{ product.category }}
+  </a>
+
+  <span>/</span>
+
+  <span>{{ product.name }}</span>
+</div>>
+
+  <div class="product-detail">
+    <!-- IMAGE SECTION -->
+    <div class="image-section">
+      <div class="main-image">
+        <img [src]="mainImage" [alt]="product.name">
+        <div *ngIf="getDiscountPercentage() > 0" class="discount-tag">
+          -{{ getDiscountPercentage() }}%
+        </div>
+      </div>
+      <div class="thumbnails">
+        <img 
+          *ngFor="let img of product.images" 
+          [src]="img" 
+          [alt]="product.name"
+          (click)="selectImage(img)"
+          [class.active]="img === mainImage">
+      </div>
+    </div>
+
+    <!-- INFO SECTION -->
+    <div class="info-section">
+      <h1>{{ product.name }}</h1>
+
+      <div class="rating-section">
+        <div class="stars">★★★★★</div>
+        <span class="rating-text">{{ product.rating }}/5 ({{ product.reviews }} reviews)</span>
+      </div>
+
+      <div class="price-section">
+        <span class="current-price">₹{{ product.price | number }}</span>
+        <span *ngIf="product.originalPrice" class="original-price">₹{{ product.originalPrice | number }}</span>
+        <span *ngIf="getDiscountPercentage() > 0" class="saving">
+          Save ₹{{ (product.originalPrice! - product.price) | number }}
+        </span>
+      </div>
+
+      <p class="description">{{ product.description }}</p>
+
+      <!-- OPTIONS -->
+      <div class="options-section">
+        <!-- Color Selection -->
+        <div *ngIf="product.colors && product.colors.length > 0" class="option-group">
+          <label>Color</label>
+          <div class="option-buttons">
+            <button 
+              *ngFor="let color of product.colors" 
+              class="option-btn"
+              [class.selected]="selectedColor === color"
+              (click)="selectedColor = color">
+              {{ color }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Size Selection -->
+        <div *ngIf="product.sizes && product.sizes.length > 0" class="option-group">
+          <label>Size</label>
+          <div class="option-buttons">
+            <button 
+              *ngFor="let size of product.sizes" 
+              class="option-btn"
+              [class.selected]="selectedSize === size"
+              (click)="selectedSize = size">
+              {{ size }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUANTITY & ACTIONS -->
+      <div class="purchase-section">
+        <div class="quantity-selector">
+          <label>Quantity</label>
+          <div class="quantity-control">
+            <button (click)="decreaseQuantity()" class="qty-btn">−</button>
+            <input type="number" [(ngModel)]="quantity" readonly class="qty-input">
+            <button (click)="increaseQuantity()" class="qty-btn">+</button>
+          </div>
+          <span class="stock-status">
+            <span *ngIf="product.stock > 0" class="in-stock">✓ {{ product.stock }} in stock</span>
+            <span *ngIf="product.stock <= 0" class="out-of-stock">Out of Stock</span>
+          </span>
+        </div>
+
+        <div class="action-buttons">
+          <button class="add-to-cart-btn" (click)="addToCart()" [disabled]="product.stock <= 0">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-now-btn" (click)="buyNow()" [disabled]="product.stock <= 0">
+            ⚡ Buy Now
+          </button>
+        </div>
+      </div>
+
+      <!-- DELIVERY INFO -->
+      <div class="delivery-info">
+        <div class="info-item">
+          <span class="icon">🚚</span>
+          <div>
+            <p class="label">Free Delivery</p>
+            <p class="detail">on orders above ₹499</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="icon">🔄</span>
+          <div>
+            <p class="label">Easy Returns</p>
+            <p class="detail">7 days money back</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="icon">🛡️</span>
+          <div>
+            <p class="label">Secure Payment</p>
+            <p class="detail">100% secure</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED PRODUCTS -->
+  <div class="related-products" *ngIf="relatedProducts.length > 0">
+    <h2>Related Products</h2>
+    <div class="grid">
+      <div 
+        *ngFor="let product of relatedProducts" 
+        class="product-card"
+        (click)="viewRelatedProduct(product)">
+        <img [src]="product.image" [alt]="product.name">
+        <h3>{{ product.name }}</h3>
+        <p class="price">₹{{ product.price | number }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT DETAILS TAB -->
+  <div class="details-tab">
+    <h2>Product Details</h2>
+    <div class="details-content">
+      <div class="detail-row">
+        <span class="label">Category:</span>
+        <span class="value">{{ product.category }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Stock:</span>
+        <span class="value">{{ product.stock }} items</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Rating:</span>
+        <span class="value">⭐ {{ product.rating }}/5</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Reviews:</span>
+        <span class="value">{{ product.reviews }} customer reviews</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!product" class="loading">
+  <p>Loading product...</p>
+</div>

@@ -1,0 +1,140 @@
+<div class="attendance-page">
+
+    <div class="top-bar">
+
+        <button class="back-btn" (click)="goBack()">
+            ← Back to Profile
+        </button>
+
+    </div>
+
+    <div class="header-card">
+
+        <h1>📋 Attendance Management System</h1>
+
+        <div class="date-picker-section">
+
+            <label>Select Attendance Date</label>
+
+            <input
+                type="date"
+                [max]="today"
+                [value]="selectedDate"
+                (change)="onDateChange($event)">
+
+        </div>
+
+        <p class="date">
+            Selected Date: {{selectedDate}}
+        </p>
+
+        <div class="stats">
+
+            <div class="stat-box">
+                <h3>Total Students</h3>
+                <p>{{students.length}}</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>Present</h3>
+                <p>{{presentCount}}</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>Absent</h3>
+                <p>{{absentCount}}</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="search-container">
+
+        <input
+            type="text"
+            placeholder="🔍 Search Student..."
+            [(ngModel)]="searchText">
+
+    </div>
+
+    <div class="table-card">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Student Name</th>
+                    <th>Attendance</th>
+                    <th>Status</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr *ngFor="let student of filteredStudents">
+
+                    <td>{{student.name}}</td>
+
+                    <td>
+
+                        <input
+                            type="checkbox"
+                            [checked]="student.present"
+                            (change)="toggleAttendance(student)"
+                            [disabled]="isLocked">
+
+                    </td>
+
+                    <td>
+
+                        <span
+                            class="present"
+                            *ngIf="student.present">
+
+                            ✔ Present
+
+                        </span>
+
+                        <span
+                            class="absent"
+                            *ngIf="!student.present">
+
+                            ✖ Absent
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <button
+            class="lock-btn"
+            (click)="lockAttendance()"
+            [disabled]="isLocked">
+
+            🔒 Lock Attendance
+
+        </button>
+
+        <div
+            class="lock-message"
+            *ngIf="isLocked">
+
+            🔒 Attendance Locked Successfully. No further changes allowed.
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Attendance Management System | Angular Project 2026
+    </div>
+
+</div>

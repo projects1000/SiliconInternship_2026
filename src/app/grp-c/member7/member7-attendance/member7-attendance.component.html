@@ -1,0 +1,47 @@
+<div class="attendance-container">
+  <h2>Group C Attendance Tracker</h2>
+  
+  <!-- Stats Cards -->
+  <div class="stats-grid">
+    <div class="card total">
+      <h3>Total</h3>
+      <p>{{ totalStudents }}</p>
+    </div>
+    <div class="card present">
+      <h3>Present</h3>
+      <p>{{ presentCount }}</p>
+    </div>
+    <div class="card absent">
+      <h3>Absent</h3>
+      <p>{{ absentCount }}</p>
+    </div>
+  </div>
+
+  <!-- Attendance Table -->
+  <table class="attendance-table">
+    <thead>
+      <tr>
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students" [ngClass]="{'row-absent': !student.isPresent}">
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>
+          <span class="badge" [ngClass]="student.isPresent ? 'badge-present' : 'badge-absent'">
+            {{ student.isPresent ? 'Present' : 'Absent' }}
+          </span>
+        </td>
+        <td>
+          <button (click)="toggleAttendance(student)" [className]="student.isPresent ? 'btn-mark-absent' : 'btn-mark-present'">
+            Mark {{ student.isPresent ? 'Absent' : 'Present' }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

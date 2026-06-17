@@ -1,0 +1,394 @@
+<div class="billing-page">
+
+  <!-- ══ TOP NAV ══ -->
+  <nav class="top-nav">
+    
+    <div class="nav-center">
+
+
+      <span class="nav-logo">🏪</span>
+      <span class="nav-title">Billing Management System</span>
+    </div>
+    
+    <button class="nav-btn btn-profile" routerLink="/grp-f/member10">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+         back to Profile
+      </button>
+
+    <div class="nav-right">
+      <div class="nav-cart-bubble">
+        🛒 <span class="cart-bubble-count">{{ totalQty }}</span>
+      </div>
+
+      
+
+      <div class="nav-total-box">
+        <span class="nav-total-label">Total</span>
+        <span class="nav-total-val">₹{{ grandTotal }}</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══ SUMMARY STRIP ══ -->
+  <div class="summary-strip">
+    <div class="strip-item">
+      <span class="strip-icon">👤</span>
+      <div>
+        <p class="strip-label">Customer</p>
+        <p class="strip-val">{{ customerName || '—' }}</p>
+      </div>
+    </div>
+    <div class="strip-divider"></div>
+    <div class="strip-item">
+      <span class="strip-icon">📱</span>
+      <div>
+        <p class="strip-label">Mobile</p>
+        <p class="strip-val">{{ mobileNumber || '—' }}</p>
+      </div>
+    </div>
+    <div class="strip-divider"></div>
+    <div class="strip-item">
+      <span class="strip-icon">🛒</span>
+      <div>
+        <p class="strip-label">Items in Cart</p>
+        <p class="strip-val">{{ totalQty }}</p>
+      </div>
+    </div>
+    <div class="strip-divider"></div>
+    <div class="strip-item">
+      <span class="strip-icon">💰</span>
+      <div>
+        <p class="strip-label">Grand Total</p>
+        <p class="strip-val amber">₹{{ grandTotal }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TABS ══ -->
+  <div class="tab-bar">
+    <button class="tab-btn" [class.tab-active]="activeTab==='products'"
+            (click)="activeTab='products'">
+      🛒 Products
+      <span class="tab-count" *ngIf="billItems.length > 0">{{ billItems.length }}</span>
+    </button>
+    <button class="tab-btn" [class.tab-active]="activeTab==='customer'"
+            (click)="activeTab='customer'">
+      👤 Customer
+      <span class="tab-check" *ngIf="customerSaved">✓</span>
+    </button>
+    <button class="tab-btn" [class.tab-active]="activeTab==='bill'"
+            (click)="activeTab='bill'">
+      🧾 Bill
+      <span class="tab-check green-check" *ngIf="billGenerated">✓</span>
+    </button>
+  </div>
+
+  <!-- ══ CONTENT ══ -->
+  <div class="content-area">
+
+    <!-- ════════ PRODUCTS TAB ════════ -->
+    <div class="tab-panel" *ngIf="activeTab==='products'">
+
+      <!-- Search -->
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input class="search-input" [(ngModel)]="searchQuery"
+               placeholder="Search any product..." />
+        <button class="search-clear" *ngIf="searchQuery"
+                (click)="searchQuery=''">✕</button>
+      </div>
+
+      <!-- Category pills -->
+      <div class="category-scroll">
+        <button *ngFor="let cat of categories"
+                class="cat-pill"
+                [class.cat-active]="selectedCategory === cat.name"
+                [style.--cat-color]="cat.color"
+                (click)="selectedCategory = cat.name">
+          <span>{{ cat.icon }}</span>
+          <span class="cat-name">{{ cat.name }}</span>
+          <span class="cat-count">{{ getCategoryCount(cat.name) }}</span>
+        </button>
+      </div>
+
+      <!-- Popular strip -->
+      <div class="popular-section"
+           *ngIf="selectedCategory === 'All' && !searchQuery">
+        <div class="section-label">
+          <span>🔥</span> Popular Items
+        </div>
+        <div class="popular-scroll">
+          <div class="popular-card" *ngFor="let p of popularProducts"
+               [class.in-cart]="getQty(p.name) > 0">
+            <div class="pop-emoji">{{ p.icon }}</div>
+            <p class="pop-name">{{ p.name }}</p>
+            <p class="pop-price">₹{{ p.price }}</p>
+            <ng-container *ngIf="getQty(p.name) === 0">
+              <button class="pop-add-btn" (click)="addToCart(p)">+ Add</button>
+            </ng-container>
+            <ng-container *ngIf="getQty(p.name) > 0">
+              <div class="pop-stepper">
+                <button (click)="decrement(getItem(p.name))">−</button>
+                <span>{{ getQty(p.name) }}</span>
+                <button (click)="increment(getItem(p.name))">+</button>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products heading -->
+      <div class="section-label" style="margin-bottom:14px">
+        <span>📦</span>
+        {{ selectedCategory === 'All' ? 'All Products' : selectedCategory }}
+        <span class="result-count">({{ filteredProducts.length }} items)</span>
+      </div>
+
+      <!-- Products grid -->
+      <div class="product-grid" *ngIf="filteredProducts.length > 0">
+        <div class="product-card" *ngFor="let p of filteredProducts"
+             [class.in-cart]="getQty(p.name) > 0"
+             [style.--cat-color]="getCategoryColor(p.category)">
+
+          <div class="pc-top">
+            <div class="pc-emoji-wrap">{{ p.icon }}</div>
+            <div class="pc-details">
+              <p class="pc-name">{{ p.name }}</p>
+              <p class="pc-cat" [style.color]="getCategoryColor(p.category)">
+                {{ p.category }}
+              </p>
+              <p class="pc-unit">per {{ p.unit }}</p>
+            </div>
+            <span class="popular-star" *ngIf="p.popular" title="Popular">⭐</span>
+          </div>
+
+          <div class="pc-bottom">
+            <span class="pc-price">₹{{ p.price }}</span>
+            <ng-container *ngIf="getQty(p.name) === 0">
+              <button class="btn-add-product" (click)="addToCart(p)">+ Add</button>
+            </ng-container>
+            <ng-container *ngIf="getQty(p.name) > 0">
+              <div class="qty-stepper">
+                <button class="qs-minus" (click)="decrement(getItem(p.name))">−</button>
+                <span class="qs-val">{{ getQty(p.name) }}</span>
+                <button class="qs-plus"  (click)="increment(getItem(p.name))">+</button>
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="in-cart-badge" *ngIf="getQty(p.name) > 0">✓ Added</div>
+        </div>
+      </div>
+
+      <!-- No results -->
+      <div class="no-results" *ngIf="filteredProducts.length === 0">
+        <p class="no-results-icon">🔍</p>
+        <p>No products found for "<strong>{{ searchQuery }}</strong>"</p>
+        <button class="btn-outline"
+                (click)="searchQuery=''; selectedCategory='All'">
+          Clear Filter
+        </button>
+      </div>
+
+      <!-- Footer -->
+      <div class="panel-footer">
+        <button class="btn-clear-cart" (click)="clearCart()"
+                *ngIf="billItems.length > 0">
+          🗑 Clear Cart ({{ billItems.length }})
+        </button>
+        <span class="footer-note" *ngIf="billItems.length === 0">
+          No products added yet
+        </span>
+        <button class="btn-primary" (click)="activeTab='customer'"
+                [disabled]="billItems.length === 0">
+          Next: Customer Details →
+        </button>
+      </div>
+    </div>
+
+    <!-- ════════ CUSTOMER TAB ════════ -->
+    <div class="tab-panel" *ngIf="activeTab==='customer'">
+      <div class="panel-header">
+        <div>
+          <h2>👤 Customer Details</h2>
+          <p>Enter the customer's information below</p>
+        </div>
+        <span class="panel-badge green-badge" *ngIf="customerSaved">✓ Saved</span>
+      </div>
+
+      <div class="saved-card" *ngIf="customerSaved">
+        <div class="saved-avatar">{{ customerName.charAt(0).toUpperCase() }}</div>
+        <div class="saved-info">
+          <div class="saved-row">
+            <span class="saved-lbl">👤 Name</span>
+            <span class="saved-val">{{ customerName }}</span>
+          </div>
+          <div class="saved-row">
+            <span class="saved-lbl">📱 Mobile</span>
+            <span class="saved-val">{{ mobileNumber }}</span>
+          </div>
+        </div>
+        <div class="saved-btns">
+          <button class="btn-outline" (click)="editCustomer()">✏️ Edit</button>
+          <button class="btn-primary" (click)="activeTab='bill'">View Bill →</button>
+        </div>
+      </div>
+
+      <div class="customer-form" *ngIf="!customerSaved">
+        <div class="form-grid">
+          <div class="field">
+            <label class="field-label">👤 Customer Name</label>
+            <input class="field-input" [(ngModel)]="customerName"
+                   placeholder="e.g. Rahul Kumar" />
+          </div>
+          <div class="field">
+            <label class="field-label">📱 Mobile Number</label>
+            <input class="field-input" [(ngModel)]="mobileNumber"
+                   placeholder="e.g. 9876543210"
+                   maxlength="10" type="tel" />
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn-outline" (click)="activeTab='products'">← Back</button>
+          <button class="btn-save"    (click)="saveCustomer()">💾 Save Customer</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════ BILL TAB ════════ -->
+    <div class="tab-panel" *ngIf="activeTab==='bill'">
+      <div class="panel-header">
+        <div>
+          <h2>🧾 Bill Summary</h2>
+          <p>Review your items and generate the bill</p>
+        </div>
+        <button class="btn-reset-sm" (click)="resetAll()">🔄 Reset All</button>
+      </div>
+
+      <div class="empty-bill" *ngIf="billItems.length === 0">
+        <p class="empty-icon">🛒</p>
+        <p>No products added yet</p>
+        <button class="btn-primary" (click)="activeTab='products'">
+          ← Add Products
+        </button>
+      </div>
+
+      <div class="bill-content" *ngIf="billItems.length > 0">
+
+        <!-- Customer chip -->
+        <div class="customer-chip" *ngIf="customerSaved">
+          <div class="chip-avatar">{{ customerName.charAt(0).toUpperCase() }}</div>
+          <span><strong>{{ customerName }}</strong>&nbsp;·&nbsp;{{ mobileNumber }}</span>
+          <span class="chip-edit" (click)="editCustomer()">edit</span>
+        </div>
+        <div class="no-customer-warn" *ngIf="!customerSaved">
+          ⚠️ Customer details not saved.
+          <span (click)="activeTab='customer'">Add now →</span>
+        </div>
+
+        <!-- Bill table -->
+        <div class="table-wrap">
+          <table class="bill-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Rate</th>
+                <th>Qty</th>
+                <th>Amount</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of billItems; let i = index">
+                <td class="td-sr">{{ i + 1 }}</td>
+                <td class="td-name">{{ item.icon }} {{ item.name }}</td>
+                <td>
+                  <span class="cat-tag"
+                    [style.background]="getCategoryColor(item.category) + '22'"
+                    [style.color]="getCategoryColor(item.category)">
+                    {{ item.category }}
+                  </span>
+                </td>
+                <td class="td-rate">
+                  ₹{{ item.price }}
+                  <span class="td-unit">/{{ item.unit }}</span>
+                </td>
+                <td class="td-qty">
+                  <div class="bill-stepper">
+                    <button (click)="decrement(item)">−</button>
+                    <span>{{ item.qty }}</span>
+                    <button (click)="increment(item)">+</button>
+                  </div>
+                </td>
+                <td class="td-amt">₹{{ item.price * item.qty }}</td>
+                <td>
+                  <button class="del-btn" (click)="removeItem(item)">✕</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Category breakdown -->
+        <div class="breakdown-section" *ngIf="getCategoryBreakdown().length > 1">
+          <p class="breakdown-title">📊 Category Breakdown</p>
+          <div class="breakdown-grid">
+            <div class="breakdown-item" *ngFor="let bd of getCategoryBreakdown()"
+                 [style.border-left]="'4px solid ' + bd.color">
+              <span class="bd-icon">{{ bd.icon }}</span>
+              <div class="bd-info">
+                <p class="bd-cat">{{ bd.name }}</p>
+                <p class="bd-count">{{ bd.count }} item(s)</p>
+              </div>
+              <span class="bd-amt" [style.color]="bd.color">₹{{ bd.total }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Totals -->
+        <div class="totals-card">
+          <div class="tot-row">
+            <span class="tot-label">Sub Total</span>
+            <span class="tot-val">₹{{ subTotal }}</span>
+          </div>
+          <div class="tot-row">
+            <span class="tot-label">💰 You Save (5%)</span>
+            <span class="tot-val save-green">− ₹{{ savings }}</span>
+          </div>
+          <div class="tot-row">
+            <span class="tot-label">GST @ 18%</span>
+            <span class="tot-val gst-val">+ ₹{{ gstAmount }}</span>
+          </div>
+          <div class="tot-divider"></div>
+          <div class="tot-row grand-row">
+            <span class="grand-label">Grand Total</span>
+            <span class="grand-val">₹{{ grandTotal }}</span>
+          </div>
+        </div>
+
+        <!-- Generate / Success -->
+        <div class="bill-footer">
+          <button class="btn-generate" (click)="generateBill()"
+                  *ngIf="!billGenerated">
+            🖨️ Generate Bill
+          </button>
+          <div class="success-banner" *ngIf="billGenerated">
+            <span class="success-icon">✅</span>
+            <div>
+              <p class="success-title">Bill Generated Successfully!</p>
+              <p class="success-sub">
+                {{ customerName }}&nbsp;·&nbsp;₹{{ grandTotal }}
+                &nbsp;·&nbsp;{{ billItems.length }} item(s)
+              </p>
+            </div>
+            <button class="btn-new" (click)="resetAll()">New Bill</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

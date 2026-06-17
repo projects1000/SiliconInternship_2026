@@ -1,0 +1,204 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* FULL PAGE */
+.erp-layout {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f6f7ff, #fff8e1);
+  overflow-x: hidden;
+}
+
+/* HEADER - FIXED SPACING ONLY */
+.erp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 15px 25px;
+  background: linear-gradient(90deg, #5f2c82, #49a09d);
+  color: white;
+
+  gap: 20px; /* ensures spacing between all sections */
+}
+
+/* BRAND - CLEAN TEXT ALIGNMENT */
+.brand {
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  min-width: 180px;
+}
+
+/* CALENDAR INPUT - BETTER SPACING */
+.erp-header input {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+
+  background: rgba(255,255,255,0.9);
+  margin: 0 20px;  /* 🔥 adds gap from both sides */
+}
+
+/* BUTTON CONTAINER - FIX GAP BETWEEN BUTTONS */
+.erp-actions {
+  display: flex;
+  gap: 15px; /* 🔥 proper spacing between buttons */
+  align-items: center;
+}
+
+/* BUTTONS (UNCHANGED LOOK, ONLY ALIGNMENT SAFE) */
+.btn-lock,
+.btn-export {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-lock {
+  background: #ffb300;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-lock:hover {
+  transform: translateY(-2px);
+  background: #ffca28;
+}
+
+.btn-export {
+  background: #00c853;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  transition: 0.3s;
+}
+
+.btn-export:hover {
+  transform: translateY(-2px);
+  background: #00e676;
+}
+
+/* BODY */
+.erp-body {
+  display: flex;
+  height: calc(100vh - 75px);
+}
+
+/* SIDEBAR */
+.erp-sidebar {
+  width: 240px;
+  background: white;
+  padding: 18px;
+  border-right: 1px solid #eee;
+
+  box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+}
+
+.erp-sidebar h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* SIDEBAR BUTTONS */
+.erp-sidebar button {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #f3f4ff;
+  cursor: pointer;
+  transition: 0.3s;
+
+  font-weight: 500;
+}
+
+.erp-sidebar button:hover {
+  background: #dfe7ff;
+  transform: translateX(3px);
+}
+
+.erp-sidebar button.active {
+  background: linear-gradient(90deg, #7c4dff, #5f2c82);
+  color: white;
+}
+
+/* CONTENT */
+.erp-content {
+  flex: 1;
+  padding: 25px;
+}
+
+/* CARD */
+.erp-card {
+  background: white;
+  padding: 22px;
+  border-radius: 15px;
+
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.erp-card h2 {
+  margin-bottom: 18px;
+  color: #333;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th {
+  background: #ede7f6;
+  padding: 14px;
+  text-align: left;
+  font-weight: 600;
+}
+
+td {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+/* STATUS BUTTON */
+.status {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 20px;
+
+  background: #ff5252;
+  color: white;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.status:hover {
+  transform: scale(1.05);
+}
+
+.status.present {
+  background: #4caf50;
+}

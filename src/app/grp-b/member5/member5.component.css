@@ -143,6 +143,99 @@ button:hover{
           0 0 50px #00ffff;
   }
 }
+.attendance-btn{
+  background: linear-gradient(135deg,#06b6d4,#3b82f6);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 12px;
+  margin-top: 20px;
+  transition: 0.3s;
+  box-shadow: 0 0 15px rgba(59,130,246,.4);
+}
+.dashboard{
+
+  min-height:100vh;
+
+  padding:30px;
+
+  background:#f5f5f5;
+
+  text-align:center;
+}
+
+.private-chat-btn{
+
+  padding:15px 40px;
+
+  font-size:18px;
+
+  font-weight:600;
+
+  border:none;
+
+  border-radius:15px;
+
+  cursor:pointer;
+
+  color:white;
+
+  background:
+  linear-gradient(
+  135deg,
+  #2563eb,
+  #7c3aed
+  );
+
+  transition:.3s;
+}
+
+.private-chat-btn:hover{
+
+  transform:
+  translateY(-4px);
+
+}
+
+.chat-section{
+
+  margin-top:30px;
+
+}
+
+.top-row{
+
+  display:grid;
+
+  grid-template-columns:
+  1fr 1fr 1fr;
+
+  gap:20px;
+
+  margin-bottom:20px;
+
+}
+
+.service-box{
+
+  background:white;
+
+  border-radius:15px;
+
+  padding:20px;
+
+  border:2px solid #2563eb;
+
+}
+
+.attendance-btn:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px rgba(59,130,246,.7);
+}
 
 @media(max-width:900px){
   .profile-card{
@@ -157,5 +250,66 @@ button:hover{
   .image-section img{
       width:220px;
       height:220px;
+  }
+}
+.page{
+  min-height:100vh;
+  background:#111b21;
+  padding:30px;
+}
+
+h1{
+  text-align:center;
+  color:white;
+  margin-bottom:20px;
+}
+
+.top-users{
+  display:grid;
+  grid-template-columns:300px 1fr 300px;
+  gap:20px;
+}
+
+@media(max-width:1200px){
+
+  .top-users{
+      grid-template-columns:1fr;
+  }
+
+}
+.private-chat-btn{
+  padding:14px 35px;
+  border:none;
+  border-radius:12px;
+  background:#25d366;
+  color:white;
+  font-size:18px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.back-btn{
+  margin-bottom:20px;
+  padding:10px 25px;
+  border:none;
+  border-radius:10px;
+  background:#2563eb;
+  color:white;
+  cursor:pointer;
+}
+
+.chat-layout{
+  display:grid;
+  grid-template-columns:300px 1fr 300px;
+  gap:20px;
+  min-height:85vh;
+  background:#111b21;
+  padding:20px;
+  border-radius:20px;
+}
+
+@media(max-width:1100px){
+  .chat-layout{
+    grid-template-columns:1fr;
   }
 }

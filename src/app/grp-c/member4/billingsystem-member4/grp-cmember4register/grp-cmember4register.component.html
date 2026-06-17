@@ -1,0 +1,33 @@
+<div class="register-page">
+
+  <div class="register-card">
+
+    <h2>Register Customer</h2>
+    <p>Enter customer details before billing</p>
+
+    <div class="form-group">
+      <label>Customer Name</label>
+      <input type="text" placeholder="Enter customer name" [(ngModel)]="data.name">
+    </div>
+
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input type="text" placeholder="Enter phone number" [(ngModel)]="data.phone">
+    </div>
+
+    <div class="tip-section">
+      <h3>Add Tip</h3>
+
+      <div class="tip-options">
+        <button (click)="data.tip = '$5'" [class.selected]="data.tip === '$5'">$5</button>
+        <button (click)="data.tip = '$10'" [class.selected]="data.tip === '$10'">$10</button>
+        <button (click)="data.tip = '$20'" [class.selected]="data.tip === '$20'">$20</button>
+        <button (click)="data.tip = 'No Tip'" [class.selected]="data.tip === 'No Tip'">No Tip</button>
+      </div>
+    </div>
+
+    <button class="save-btn" (click)="submit()">Save Customer</button>
+
+  </div>
+
+</div>

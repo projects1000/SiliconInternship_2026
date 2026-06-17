@@ -1,0 +1,11 @@
+<style>
+  .user-box { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+  .chat-input { width: 90%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; margin-bottom: 10px; }
+  .btn-send { background-color: #075e54; color: white; border: none; padding: 10px 20px; border-radius: 6px; width: 100%; cursor: pointer; font-weight: bold; }
+</style>
+
+<div class="user-box">
+  <h3 style="color: #075e54;">👨‍💻 Ayush</h3>
+  <input type="text" [(ngModel)]="messageText" (keyup.enter)="send()" placeholder="Type a message..." class="chat-input">
+  <button class="btn-send" (click)="send()">🚀 SEND</button>
+</div>

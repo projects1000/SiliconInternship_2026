@@ -1,0 +1,43 @@
+<div class="pm-panel">
+  <div class="panel-header">
+    <div class="panel-icon-wrap product-icon-bg">
+      <span class="panel-icon">🛒</span>
+    </div>
+    <div>
+      <h3 class="panel-title">Product List</h3>
+    </div>
+  </div>
+
+  <div class="product-table-wrapper">
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th class="col-name">Product Name</th>
+          <th class="col-price">Price (₹)</th>
+          <th class="col-action">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products" class="product-row">
+          <td class="col-name">
+            <span class="product-name">{{ product.name }}</span>
+          </td>
+          <td class="col-price">
+            <span class="product-price">₹{{ product.price }}</span>
+          </td>
+          <td class="col-action">
+            <button
+              class="add-btn"
+              [class.added]="addedProductName === product.name"
+              (click)="addProduct(product)"
+            >
+              <span class="add-btn-icon" *ngIf="addedProductName !== product.name">+</span>
+              <span class="add-btn-icon" *ngIf="addedProductName === product.name">✓</span>
+              {{ addedProductName === product.name ? 'Added' : 'Add' }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

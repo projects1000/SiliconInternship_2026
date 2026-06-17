@@ -1,0 +1,39 @@
+<div class="user-card user-a">
+
+  <div class="profile">
+    <div class="avatar-wrapper">
+        <img src="assets/debashis.jpg">
+        <span class="online-dot"></span>
+
+</div>
+
+    <div>
+
+      <h3>Debashis</h3>
+
+      <span>Active now</span>
+
+    </div>
+
+  </div>
+
+  <div class="input-box">
+
+    <input [(ngModel)]="messageText"
+      (input)="onTyping()"
+
+      (keyup.enter)="sendMessage()"
+
+      placeholder="Type a message..."
+    >
+
+    <button
+      (click)="sendMessage()">
+
+      ➤
+
+    </button>
+
+  </div>
+
+</div>

@@ -1,0 +1,57 @@
+<div class="user-card glass-card">
+  <div class="card-header">
+    <div class="avatar-wrap">
+      <div class="avatar">👨🏽</div>
+      <div class="online-indicator"></div>
+    </div>
+    <div class="user-info">
+      <h3>Terminal B</h3>
+      <p class="status">Logged in as: <strong>{{ username }}</strong></p>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <!-- TEXT INPUT ZONE -->
+    <div class="zone-label">Text Communication</div>
+    <div class="text-zone">
+      <textarea 
+        class="modern-textarea" 
+        [(ngModel)]="messageText" 
+        (keyup.enter)="sendMessage()" 
+        placeholder="Type your message here..."
+        rows="3">
+      </textarea>
+      <div class="text-actions">
+        <button class="btn-primary" (click)="sendMessage()">
+          <mat-icon>send</mat-icon> Send Text
+        </button>
+      </div>
+    </div>
+
+    <!-- DIVIDER -->
+    <div class="zone-divider"></div>
+
+    <!-- MEDIA & FILE ZONE -->
+    <div class="zone-label">Media & Attachments</div>
+    <div class="media-zone">
+      <div class="media-btn-group">
+        <button class="btn-secondary" (click)="triggerFolderSelect()" title="Upload Folder">
+          <mat-icon class="icon-yellow">folder_open</mat-icon>
+          <span>Upload Folder</span>
+        </button>
+        <input type="file" #folderInput webkitdirectory directory multiple style="display: none;" (change)="onFolderSelected($event)">
+        
+        <button class="btn-secondary voice-btn" [class.recording]="isRecording" (click)="toggleRecording()">
+          <mat-icon [class.icon-red]="isRecording" [class.icon-blue]="!isRecording">
+            {{ isRecording ? 'stop_circle' : 'mic' }}
+          </mat-icon>
+          <span>{{ isRecording ? 'Stop Recording' : 'Voice Note' }}</span>
+        </button>
+      </div>
+      
+      <div *ngIf="isRecording" class="recording-indicator">
+        <span class="pulse-dot"></span> Recording audio... Click stop to send.
+      </div>
+    </div>
+  </div>
+</div>

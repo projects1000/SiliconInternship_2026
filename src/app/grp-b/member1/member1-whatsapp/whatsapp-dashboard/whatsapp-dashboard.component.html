@@ -1,0 +1,11 @@
+<div class="wa-dashboard-container" [class.dark-theme]="isDarkMode">
+
+    <app-whatsapp-navbar [isDark]="isDarkMode" (themeToggled)="toggleTheme()"></app-whatsapp-navbar>
+
+    <div class="users-flex-row">
+        <app-user-a class="flex-item"></app-user-a>
+        <app-user-b class="flex-item"></app-user-b>
+    </div>
+
+    <app-chat-window></app-chat-window>
+</div>

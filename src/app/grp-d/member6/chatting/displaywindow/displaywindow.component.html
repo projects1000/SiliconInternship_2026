@@ -1,0 +1,30 @@
+<div class="chat-box">
+
+  <div
+    *ngFor="let msg of messages"
+    class="message"
+    [ngClass]="{
+      'left-msg': msg.sender === 'Arjun',
+      'right-msg': msg.sender === 'Priya'
+    }"
+  >
+
+    <div class="bubble">
+
+      <div class="sender">
+        {{ msg.sender }}
+      </div>
+
+      <div class="text">
+        {{ msg.text }}
+      </div>
+
+      <div class="time">
+        {{ msg.time | date:'shortTime' }}
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

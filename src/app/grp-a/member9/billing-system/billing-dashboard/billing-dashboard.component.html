@@ -1,0 +1,48 @@
+<div class="container-fluid py-4 bg-light rounded shadow-sm border mt-4">
+    <div class="bg-primary text-white text-center py-2 mb-4 rounded shadow">
+        <h3 class="mb-0">BILLING MANAGEMENT SYSTEM</h3>
+    </div>
+
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <app-product-list (productAdded)="handleProductAdded($event)"></app-product-list>
+        </div>
+
+        <div class="col-md-3">
+            <app-customer (customerSaved)="handleCustomerSaved($event)"></app-customer>
+        </div>
+
+        <div class="col-md-3">
+            <app-billing [cartItems]="cart" [subTotal]="subTotal" [gst]="gst" [grandTotal]="grandTotal">
+            </app-billing>
+        </div>
+
+        <div class="col-md-3">
+            <app-notification></app-notification>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-info mt-4">
+        <div class="card-header bg-light text-info fw-bold text-center">
+            PARENT COMPONENT (Billing Dashboard)
+        </div>
+        <div class="card-body d-flex justify-content-around align-items-center flex-wrap">
+            <div class="text-center">
+                <small class="text-muted d-block">Customer Name</small>
+                <strong>{{ customer?.name || 'N/A' }}</strong>
+            </div>
+            <div class="text-center">
+                <small class="text-muted d-block">Mobile Number</small>
+                <strong>{{ customer?.mobile || 'N/A' }}</strong>
+            </div>
+            <div class="text-center">
+                <small class="text-muted d-block">Total Products Selected</small>
+                <strong>{{ cart.length }}</strong>
+            </div>
+            <div class="text-center">
+                <small class="text-muted d-block">Total Bill Amount</small>
+                <strong class="text-danger fs-5">₹{{ grandTotal.toFixed(2) }}</strong>
+            </div>
+        </div>
+    </div>
+</div>
