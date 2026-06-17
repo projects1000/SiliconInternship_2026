@@ -25,6 +25,8 @@ import{ChatService} from './member4/chat-service/chat.service';
 import { CustomerService } from './member4/shared/customer.service';
 import { Member5Component } from './member5/member5.component';
 import { AttendanceComponent } from './member5/attendance/attendance.component';
+import { Member5ChatWindowComponent }
+from './member5/member5-chat-window/member5-chat-window.component';
 import { Member6Component } from './member6/member6.component';
 import { Member6AttendanceComponent } from './member6-attendance/member6-attendance.component';
 import { Member6ChatComponent } from './member6-chat/member6-chat.component';
@@ -152,6 +154,10 @@ const routes: Routes = [
   path: 'member5/attendance',
   component: Member5AttendanceComponent
 },
+   {
+    path: 'member5/member5-chat-window',
+    component: Member5ChatWindowComponent
+  },
   {
     path: 'member6',
     component: Member6Component
