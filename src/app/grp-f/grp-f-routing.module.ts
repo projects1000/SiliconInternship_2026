@@ -1,3 +1,5 @@
+// src/app/grp-f/grp-f-routing.module.ts
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -22,7 +24,7 @@ import{CheckoutComponent} from './member4/checkout/checkout.component';
 import{ChatService} from './member4/chat-service/chat.service';
 import { CustomerService } from './member4/shared/customer.service';
 import { Member5Component } from './member5/member5.component';
-
+import { AttendanceComponent } from './member5/attendance/attendance.component';
 import { Member6Component } from './member6/member6.component';
 import { Member6AttendanceComponent } from './member6-attendance/member6-attendance.component';
 import { Member6ChatComponent } from './member6-chat/member6-chat.component';
@@ -38,6 +40,9 @@ import { ChatWindowComponent } from './member4/chat-window/chat-window.component
 
 
 const routes: Routes = [
+  
+  { path: 'member10/chatapp',         
+   component: Member10ChatAppComponent },  // ← NEW
   {
     path: '',
     component: GrpFComponent
@@ -46,10 +51,28 @@ const routes: Routes = [
     path: 'member1',
     component: Member1Component
   },
+  
   {
     path: 'member2',
     component: Member2Component
   },
+  {
+ path: 'member2/member2-attendance',
+ component: Member2AttendanceComponent
+},
+{
+  path: 'member2/attendance-history',
+  component: AttendanceHistoryComponent
+},
+{
+  path: 'member2/product-management',
+  component: ProductDashboardComponent
+},
+{
+  path:'member2/whatsapp-chat',
+  component:WhatsappChatDashboardComponent
+},
+
   {
     path: 'member3',
     component: Member3Component
