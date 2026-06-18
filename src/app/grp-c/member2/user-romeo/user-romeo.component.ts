@@ -3,11 +3,11 @@ import { ChatService } from '../services/chat.service';
 import { NotificationService } from '../services/notification.service';
 
 @Component({
-  selector: 'app-user-a',
-  templateUrl: './user-a.component.html',
-  styleUrls: ['./user-a.component.css']
+  selector: 'app-user-romeo',
+  templateUrl: './user-romeo.component.html',
+  styleUrls: ['./user-romeo.component.css']
 })
-export class UserAComponent {
+export class UserRomeoComponent {
 
   message = '';
 

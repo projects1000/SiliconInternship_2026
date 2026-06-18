@@ -1,0 +1,107 @@
+<div class="chat-container">
+  <div class="chat-header">
+    <div class="search-bar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input 
+        type="text" 
+        placeholder="Search messages..." 
+        class="cyber-input"
+        [(ngModel)]="searchQuery"
+        (ngModelChange)="filterMessages()">
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" (click)="exportChat()" title="Export Chat">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+      </button>
+      <button class="icon-btn danger" (click)="clearChat()" title="Clear Chat">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="3 6 5 6 21 6"></polyline>
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="chat-messages" #scrollMe>
+    
+    <div *ngIf="messages.length === 0" class="empty-state">
+      <div class="empty-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="1.5">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+      </div>
+      <h3>No messages yet...</h3>
+      <p>Send a message to start the conversation.</p>
+    </div>
+
+    <div *ngFor="let msg of filteredMessages" 
+         class="message-wrapper" 
+         [class.own-message]="msg.senderId === 'userB'"
+         [class.other-message]="msg.senderId === 'userA'">
+      
+      <img *ngIf="msg.senderId === 'userA'" src="assets/rohan.jpg" class="msg-avatar" onerror="this.src='assets/rohan.jpg'">
+      
+      <div class="message-bubble" [ngClass]="msg.type">
+        <div class="msg-header">
+          <span class="sender-name">{{ msg.senderName }}</span>
+          <span class="timestamp">{{ msg.timestamp | date:'shortTime' }}</span>
+        </div>
+        
+        <div class="msg-content" *ngIf="msg.type === 'text'">
+          {{ msg.message }}
+        </div>
+
+        <div class="msg-content file-preview" *ngIf="msg.type === 'image'">
+          <img [src]="msg.fileUrl" class="image-preview" alt="Attached image">
+          <div class="file-meta">
+            <span>{{ msg.fileName }}</span>
+            <span class="file-size">{{ msg.fileSize }}</span>
+          </div>
+          <button class="download-btn" (click)="downloadFile(msg.fileUrl, msg.fileName)">Download</button>
+        </div>
+
+        <div class="msg-content file-card" *ngIf="msg.type === 'file'">
+          <div class="file-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+              <polyline points="13 2 13 9 20 9"></polyline>
+            </svg>
+          </div>
+          <div class="file-info">
+            <span class="file-name">{{ msg.fileName }}</span>
+            <span class="file-size">{{ msg.fileSize }}</span>
+          </div>
+          <button class="download-btn icon-only" (click)="downloadFile(msg.fileUrl, msg.fileName)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <img *ngIf="msg.senderId === 'userB'" src="assets/Gaurav.jpeg" class="msg-avatar" onerror="this.src='assets/github.png'">
+    </div>
+
+    <!-- Typing Indicators -->
+    <div class="typing-indicator-container" *ngIf="typingA || typingB">
+      <div class="typing-indicator" *ngIf="typingA">
+        <span class="name">Rohan is typing</span>
+        <div class="dots"><span>.</span><span>.</span><span>.</span></div>
+      </div>
+      <div class="typing-indicator right" *ngIf="typingB">
+        <span class="name">Gaurav is typing</span>
+        <div class="dots"><span>.</span><span>.</span><span>.</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>

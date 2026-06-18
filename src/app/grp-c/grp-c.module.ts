@@ -36,6 +36,10 @@ import { UserAyushComponent } from './member3/chat-system/user-ayush/user-ayush.
 import { UserAnshumanComponent } from './member3/chat-system/user-anshuman/user-anshuman.component';
 import { ChatWindowComponent } from './member3/chat-system/chat-window/chat-window.component';
 import { Member8AttendanceComponent } from './member8-attendance/member8-attendance.component';
+import { Member8ChatParentComponent } from './member8/chat-system/chat-parent/chat-parent.component';
+import { Member8UserAComponent } from './member8/chat-system/user-a/user-a.component';
+import { Member8UserBComponent }from './member8/chat-system/user-b/user-b.component';
+import { Member8ChatWindowComponent } from './member8/chat-system/chat-window/chat-window.component';
 
 import { AttendanceDashboardComponent } from './member2/attendance-dashboard/attendance-dashboard.component';
 
@@ -45,7 +49,7 @@ import { CustomerManagementComponent } from './member2/customer-management/custo
 import { InvoiceManagementComponent } from './member2/invoice-management/invoice-management.component';
 import { ToastNotificationComponent } from './member2/toast-notification/toast-notification.component';
 import { WhatsappChatComponent } from './member2/whatsapp-chat/whatsapp-chat.component';
-import { UserAComponent } from './member2/user-a/user-a.component';
+import { UserRomeoComponent } from './member2/user-romeo/user-romeo.component';
 import { UserBComponent } from './member2/user-b/user-b.component';
 import { MessagingPanelComponent } from './member2/messaging-panel/messaging-panel.component';
 
@@ -84,18 +88,22 @@ import { SenderTwoComponent } from './member4/member4chatsystem/sender-two/sende
     InvoiceManagementComponent,
     ToastNotificationComponent,
     WhatsappChatComponent,
-    UserAComponent,
+    UserRomeoComponent,
     UserBComponent,
     MessagingPanelComponent,
 
     Member8AttendanceComponent,
+    Member8ChatParentComponent,
+    Member8UserAComponent,
+    Member8UserBComponent,
+    Member8ChatWindowComponent,
     AttendanceComponent,
     Member4attmngComponent,
     Member3AttendanceComponent,
     ProductManagementComponent,
-   Member9UserAComponent,
-Member9UserBComponent,
-Member9ChatWindowComponent,
+    Member9UserAComponent,
+    Member9UserBComponent,
+    Member9ChatWindowComponent,
     ChatbotComponent,
     BillingParentComponent,
     ProductListComponent,
@@ -106,6 +114,7 @@ Member9ChatWindowComponent,
     UserAyushComponent,
     UserAnshumanComponent,
     ChatWindowComponent,
+
     Member4chatsystemComponent,
     SenderOneComponent,
     SenderTwoComponent

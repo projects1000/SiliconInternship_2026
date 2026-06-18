@@ -28,6 +28,8 @@ import { MatDividerModule } from '@angular/material/divider';
 
 
 
+
+
 @NgModule({
 
 
@@ -35,9 +37,12 @@ import { MatDividerModule } from '@angular/material/divider';
     AppComponent,
     NavBarComponent,
     HomeComponent,
-    
-  ],
 
+   
+    
+
+
+ ],
   imports: [
     BrowserModule,
     AppRoutingModule,

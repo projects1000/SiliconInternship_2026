@@ -1,0 +1,298 @@
+/* Notification Page */
+.notification-page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding-bottom: 40px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #0F1111;
+  background: #EAEDED;
+}
+
+/* Header */
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 16px;
+  background: #fff;
+  border-bottom: 1px solid #E3E6E6;
+  margin-bottom: 12px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-left h1 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.header-left p {
+  margin: 0;
+  font-size: 12px;
+  color: #565959;
+}
+
+.badge-new {
+  background: #FF9900;
+  color: #232F3E;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+/* Notification List */
+.notif-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.notif-card {
+  display: flex;
+  gap: 14px;
+  padding: 15px;
+  background: white;
+  border: 1px solid #E3E6E6;
+  border-left: 4px solid transparent;
+}
+
+.notif-card.unread {
+  border-left-color: #FF9900;
+}
+
+.notif-card:hover {
+  background: #F7F8F8;
+}
+
+.notif-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #E8F0FE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.notif-body {
+  flex: 1;
+}
+
+.notif-body h3 {
+  margin: 0 0 5px;
+  font-size: 14px;
+}
+
+.notif-body p {
+  margin: 0 0 8px;
+  color: #565959;
+}
+
+.notif-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.notif-time {
+  font-size: 11px;
+  color: #888C8C;
+}
+
+.notif-tag {
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.notif-tag.success {
+  background: #E6F4EA;
+  color: #1A7A3A;
+}
+
+.notif-tag.info {
+  background: #E8F0FE;
+  color: #1A56C4;
+}
+
+.notif-tag.warning {
+  background: #FFF3CD;
+  color: #7A5C00;
+}
+
+/* Order Success Card */
+.order-success-card {
+  background: white;
+  border: 1px solid #D5D9D9;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.order-success-header {
+  background: #232F3E;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+}
+
+.check-circle {
+  width: 48px;
+  height: 48px;
+  background: #FF9900;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #232F3E;
+  font-size: 24px;
+}
+
+.order-success-text h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.order-success-text p {
+  margin-top: 4px;
+  color: #cccccc;
+}
+
+.order-success-body {
+  padding: 20px;
+}
+
+.order-id-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #E3E6E6;
+}
+
+.label {
+  color: #565959;
+}
+
+.order-items-list {
+  border: 1px solid #E3E6E6;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-bottom: 1px solid #E3E6E6;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.item-icon-wrap {
+  width: 44px;
+  height: 44px;
+  background: #F7F8F8;
+  border: 1px solid #E3E6E6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-info p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.item-info span {
+  font-size: 12px;
+  color: #565959;
+}
+
+.item-price {
+  font-weight: bold;
+}
+
+.order-summary {
+  background: #F7F8F8;
+  border: 1px solid #E3E6E6;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 15px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.summary-row.total {
+  border-top: 1px solid #E3E6E6;
+  padding-top: 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.free {
+  color: green;
+}
+
+.delivery-row {
+  display: flex;
+  gap: 12px;
+  background: #E6F4EA;
+  border: 1px solid #B2DFCC;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 15px;
+}
+
+.action-row {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-primary,
+.btn-secondary {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #FF9900;
+  border: 1px solid #d97706;
+}
+
+.btn-secondary {
+  background: white;
+  border: 1px solid #D5D9D9;
+}
+
+.thank-you-strip {
+  display: flex;
+  gap: 10px;
+  padding: 14px 20px;
+  background: #F7F8F8;
+  border-top: 1px solid #E3E6E6;
+}

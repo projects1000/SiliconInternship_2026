@@ -1,0 +1,40 @@
+<!-- src/app/grp-f/member10/member10-chatapp/user-a/user-a.component.html -->
+
+<div class="user-panel panel-a">
+  <div class="panel-header">
+    <div class="avatar avatar-a">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+    </div>
+    <div class="panel-info">
+      <h3 class="panel-title">USER A COMPONENT</h3>
+      <span class="panel-subtitle">(Gents)</span>
+    </div>
+  </div>
+
+  <div class="input-group">
+    <label class="input-label">Enter Message</label>
+    <input
+      class="msg-input"
+      type="text"
+      [(ngModel)]="message"
+      (keydown)="onKeyDown($event)"
+      placeholder="Type a message..."
+    />
+  </div>
+
+  <button class="send-btn send-btn-a" (click)="sendMessage()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"
+         stroke-linecap="round" stroke-linejoin="round">
+      <line x1="22" y1="2" x2="11" y2="13"/>
+      <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+    </svg>
+    SEND
+  </button>
+
+  <div class="logged-in">
+    Logged in as : <span class="logged-name name-a">{{ senderName }}</span>
+  </div>
+</div>

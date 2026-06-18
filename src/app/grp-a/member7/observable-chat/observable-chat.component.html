@@ -1,0 +1,216 @@
+<!-- ══ TOAST NOTIFICATIONS ═══════════════════════════════════════════════ -->
+<div class="toast-container">
+  <div
+    *ngFor="let t of toasts; trackBy: trackToast"
+    class="toast"
+    [class.toast-gents]="t.sender === 'gents'"
+    [class.toast-mayur]="t.sender === 'mayur'"
+    (click)="removeToast(t.id)"
+  >
+    <div class="toast-avatar" [class.tav-g]="t.sender === 'gents'" [class.tav-m]="t.sender === 'mayur'">
+      {{ t.sender === 'gents' ? 'G' : 'M' }}
+    </div>
+    <div class="toast-body">
+      <span class="toast-label">{{ t.sender === 'gents' ? 'Gents' : 'Mayur' }} sent a message</span>
+      <span class="toast-text">{{ t.text | slice:0:50 }}{{ t.text.length > 50 ? '…' : '' }}</span>
+    </div>
+    <span class="toast-close">✕</span>
+  </div>
+</div>
+
+<!-- ══ MAIN DASHBOARD ════════════════════════════════════════════════════ -->
+<div class="oc-dashboard">
+
+  <!-- ── Aurora Background ──────────────────────────────────────────────── -->
+  <div class="aurora-bg" aria-hidden="true">
+    <div class="aurora aurora-green"></div>
+    <div class="aurora aurora-purple"></div>
+  </div>
+
+  <!-- ── Page Header ──────────────────────────────────────────────────── -->
+  <header class="oc-header">
+    <div class="header-left">
+      <button class="back-btn" (click)="goBack()" id="oc-back-btn">
+        <span class="back-arrow">←</span> Back to Portfolio
+      </button>
+      <div class="header-brand">
+        <span class="brand-dot"></span>
+        <span class="brand-name">Priyanshu.</span>
+      </div>
+    </div>
+    <div class="header-center">
+      <h1 class="page-title">Observable Chat App</h1>
+      <div class="live-status">
+        <span class="live-dot"></span>
+        <span class="live-dot live-dot-purple"></span>
+        <span class="live-text">2 users online · Live demo</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <button class="session-clear-btn" (click)="chatService.clearAll()" id="clear-session-btn">
+        🗑 Clear Session
+      </button>
+    </div>
+  </header>
+
+  <!-- ── 4-Column Chat Layout ─────────────────────────────────────────── -->
+  <div class="chat-layout">
+    <app-user-a></app-user-a>
+    <app-chat-window></app-chat-window>
+    <app-user-b></app-user-b>
+
+    <!-- Observable Flow Diagram -->
+    <div class="flow-card">
+      <div class="fc-header">
+        <span class="fc-icon">📡</span>
+        <h4 class="fc-title">RxJS Observable Flow</h4>
+        <div class="fc-legend">
+          <span class="fc-legend-dot fc-ld-g"></span><span class="fc-legend-lbl">Gents</span>
+          <span class="fc-legend-dot fc-ld-m"></span><span class="fc-legend-lbl">Mayur</span>
+        </div>
+      </div>
+
+      <div class="flow-diagram">
+
+        <!-- Step 0: Senders -->
+        <div class="fd-senders">
+          <div class="fd-sender"
+            [class.fds-active-g]="flowStep >= 0 && flowSender === 'gents'"
+            [class.fds-active-m]="flowStep >= 0 && flowSender === 'mayur' && false"
+          >
+            <div class="fd-av fd-av-g">G</div>
+            <span class="fd-name">Gents</span>
+            <code class="fd-code">next()</code>
+          </div>
+          <div class="fd-sender"
+            [class.fds-active-m]="flowStep >= 0 && flowSender === 'mayur'"
+          >
+            <div class="fd-av fd-av-m">M</div>
+            <span class="fd-name">Mayur</span>
+            <code class="fd-code">next()</code>
+          </div>
+        </div>
+
+        <!-- Converging arrows -->
+        <div class="fd-converge">
+          <div class="fd-line fd-line-l" [class.fdl-active-g]="flowStep >= 1 && flowSender === 'gents'" [class.fdl-active-m]="flowStep >= 1 && flowSender === 'mayur'"></div>
+          <div class="fd-center-dot" [class.fdc-active-g]="flowStep >= 1 && flowSender === 'gents'" [class.fdc-active-m]="flowStep >= 1 && flowSender === 'mayur'">↓</div>
+          <div class="fd-line fd-line-r" [class.fdl-active-g]="flowStep >= 1 && flowSender === 'gents'" [class.fdl-active-m]="flowStep >= 1 && flowSender === 'mayur'"></div>
+        </div>
+
+        <!-- Step 1: Subject -->
+        <div class="fd-node fd-node-subject"
+          [class.fdn-active-g]="flowStep >= 1 && flowSender === 'gents'"
+          [class.fdn-active-m]="flowStep >= 1 && flowSender === 'mayur'"
+        >
+          <span class="fdn-icon">⚡</span>
+          <span class="fdn-title">Subject</span>
+          <code class="fdn-code">messageSource</code>
+        </div>
+
+        <!-- Arrow -->
+        <div class="fd-down-arrow"
+          [class.fda-active-g]="flowStep >= 2 && flowSender === 'gents'"
+          [class.fda-active-m]="flowStep >= 2 && flowSender === 'mayur'"
+        >↓</div>
+
+        <!-- Step 2: Observable -->
+        <div class="fd-node fd-node-observable"
+          [class.fdn-active-g]="flowStep >= 2 && flowSender === 'gents'"
+          [class.fdn-active-m]="flowStep >= 2 && flowSender === 'mayur'"
+        >
+          <span class="fdn-icon">👁</span>
+          <span class="fdn-title">Observable</span>
+          <code class="fdn-code">messages$</code>
+        </div>
+
+        <!-- Arrow -->
+        <div class="fd-down-arrow"
+          [class.fda-active-g]="flowStep >= 3 && flowSender === 'gents'"
+          [class.fda-active-m]="flowStep >= 3 && flowSender === 'mayur'"
+        >↓</div>
+
+        <!-- Step 3: Chat Window -->
+        <div class="fd-node fd-node-chat"
+          [class.fdn-active-g]="flowStep >= 3 && flowSender === 'gents'"
+          [class.fdn-active-m]="flowStep >= 3 && flowSender === 'mayur'"
+        >
+          <span class="fdn-icon">💬</span>
+          <span class="fdn-title">Chat Window</span>
+          <code class="fdn-code">subscribe()</code>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Bottom Section ───────────────────────────────────────────────── -->
+  <div class="bottom-section">
+
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+
+      <div class="stat-card" id="stat-total">
+        <div class="stat-icon-wrap stat-gold">📨</div>
+        <div class="stat-value">{{ totalMessages }}</div>
+        <div class="stat-label">Total Messages</div>
+      </div>
+
+      <div class="stat-card" id="stat-gents">
+        <div class="stat-icon-wrap stat-green">💬</div>
+        <div class="stat-value stat-val-green">{{ gentsCount }}</div>
+        <div class="stat-label">From Gents</div>
+      </div>
+
+      <div class="stat-card" id="stat-mayur">
+        <div class="stat-icon-wrap stat-purple">💬</div>
+        <div class="stat-value stat-val-purple">{{ mayurCount }}</div>
+        <div class="stat-label">From Mayur</div>
+      </div>
+
+      <div class="stat-card" id="stat-users">
+        <div class="stat-icon-wrap stat-blue">👥</div>
+        <div class="stat-value stat-val-blue">2</div>
+        <div class="stat-label">Active Users</div>
+      </div>
+
+    </div>
+
+    <!-- Lower row: Latest Activity + Observable Flow -->
+    <div class="lower-grid">
+
+      <!-- Latest Activity Card -->
+      <div class="latest-card">
+        <div class="lc-header">
+          <span class="lc-icon">⚡</span>
+          <h4 class="lc-title">Latest Activity</h4>
+        </div>
+
+        <div class="lc-empty" *ngIf="!latestMsg">
+          <p>No messages yet — start chatting!</p>
+        </div>
+
+        <div class="lc-content" *ngIf="latestMsg">
+          <div class="lc-avatar" [class.lca-g]="latestMsg.sender === 'gents'" [class.lca-m]="latestMsg.sender === 'mayur'">
+            {{ latestMsg.sender === 'gents' ? 'G' : 'M' }}
+          </div>
+          <div class="lc-info">
+            <span class="lc-sender" [class.lcs-g]="latestMsg.sender === 'gents'" [class.lcs-m]="latestMsg.sender === 'mayur'">
+              {{ latestMsg.senderName }}
+            </span>
+            <p class="lc-message">"{{ latestMsg.message }}"</p>
+            <span class="lc-time">{{ formatTime(latestMsg.timestamp) }}</span>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="oc-footer">
+    <p>© 2026 Priyanshu Sekhar Badhei — Group A, Member 7 · Angular RxJS Observable Demo</p>
+  </footer>
+
+</div>

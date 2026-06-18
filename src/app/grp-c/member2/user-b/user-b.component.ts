@@ -3,7 +3,7 @@ import { ChatService } from '../services/chat.service';
 import { NotificationService } from '../services/notification.service';
 
 @Component({
-  selector: 'app-user-b',
+  selector: 'app-user-juliet',
   templateUrl: './user-b.component.html',
   styleUrls: ['./user-b.component.css']
 })
