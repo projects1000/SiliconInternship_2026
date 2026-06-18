@@ -31,6 +31,8 @@ import { MatDividerModule } from '@angular/material/divider';
 
 
 
+
+
 @NgModule({
 
 
@@ -41,9 +43,12 @@ import { MatDividerModule } from '@angular/material/divider';
     WhatsappChatComponent,
     UserAComponent,
     ChatWindowComponent,
-    
-  ],
 
+   
+    
+
+
+ ],
   imports: [
     BrowserModule,
     AppRoutingModule,

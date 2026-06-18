@@ -1,0 +1,38 @@
+<div class="bill-desk-container">
+  <h3 class="desk-title">Bill Desk</h3>
+
+  <div class="bill-table">
+    <div class="table-header">
+      <span>Product</span>
+      <span>Price</span>
+    </div>
+    <div class="table-body">
+      <div *ngFor="let p of products" class="table-row">
+        <span>{{p.name}}</span>
+        <span>₹{{p.price}}</span>
+      </div>
+      <div *ngIf="products.length === 0" class="empty-msg">
+        No products added yet.
+      </div>
+    </div>
+  </div>
+
+  <div class="bill-footer">
+    <div class="total-display">
+      <span>Total Amount:</span>
+      <span class="amount">₹{{ totalAmount }}</span>
+    </div>
+    
+    <button class="generate-btn" [disabled]="totalAmount === 0" (click)="generateBill()">
+      Generate Bill
+    </button>
+  </div>
+
+  <div class="notification-container" *ngIf="messages.length > 0">
+    <h4>Recent Activity</h4>
+    <div *ngFor="let msg of messages" class="notification-toast">
+      <span class="icon">✅</span>
+      <span class="message-text">{{ msg }}</span>
+    </div>
+  </div>
+</div>

@@ -37,6 +37,10 @@ import { ProductFormComponent } from './member3/product-form/product-form.compon
 import { BillingComponent } from './member3/billing/billing.component';
 import { ChatWindowComponent as Member3Chat } from './member3/chat-window/chat-window.component';
 
+
+
+// Routing & Material Modules
+
 // Angular Material Modules
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -48,6 +52,23 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { AboutComponent } from './member5/about/about.component';
+import { NavbarComponent } from './member5/navbar/navbar.component';
+import { HomeComponent } from './member5/home/home.component';
+import { HeroComponent } from './member5/hero/hero.component';
+import { ProfileComponent } from './member5/profile/profile.component';
+import { AttendanceSComponent } from './member5/attendance-s/attendance-s.component';
+import { BillingdashboardComponent } from './member5/billingdashboard/billingdashboard.component';
+import { WhatsappComponent } from './member5/whatsapp/whatsapp.component';
+import { TrackattendanceComponent } from './member6/trackattendance/trackattendance.component';
+import { M6ShopShellComponent } from './member6/m6-shop-shell/m6-shop-shell.component';
+import { M6ShopBillDeskComponent } from './member6/m6-shop-bill-desk/m6-shop-bill-desk.component';
+import { M6ShopCustomerCaptureComponent } from './member6/m6-shop-customer-capture/m6-shop-customer-capture.component';
+import { M6ShopProductFeedComponent } from './member6/m6-shop-product-feed/m6-shop-product-feed.component';
+import { Friend1Component } from './member6/chatting/friend1/friend1.component';
+import { Friend2Component } from './member6/chatting/friend2/friend2.component';
+import { DisplaywindowComponent } from './member6/chatting/displaywindow/displaywindow.component';
+
 
 @NgModule({
   declarations: [
@@ -68,6 +89,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     Member1List,
     CustomerDetailsComponent,
     BillDetailsComponent,
+
+    AboutComponent,
+    NavbarComponent,
+    HomeComponent,
+    HeroComponent,
+    ProfileComponent,
+    AttendanceSComponent,
+    BillingdashboardComponent,
+    WhatsappComponent,
     UserAComponent,
     UserBComponent,
     Member1Chat,
@@ -76,7 +106,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     Member3List,
     ProductFormComponent,
     BillingComponent,
-    Member3Chat
+    Member3Chat,
+    TrackattendanceComponent,
+    M6ShopShellComponent,
+    M6ShopBillDeskComponent,
+    M6ShopCustomerCaptureComponent,
+    M6ShopProductFeedComponent,
+    Friend1Component,
+    Friend2Component,
+    DisplaywindowComponent
   ],
   imports: [
     CommonModule,

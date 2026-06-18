@@ -14,7 +14,7 @@ export class Member3Component {
     this.router.navigate(['grp-f']);
   }
 
-  goToAttendance() {
+    goToAttendance() {
     this.router.navigate([
       '/grp-f/member3/attendance-project'
     ]);
@@ -31,5 +31,9 @@ export class Member3Component {
       '/grp-f/member3/billing-system'
     ]);
   }
+ goToAttendance() {
+  console.log('Button clicked');
+  this.router.navigate(['/grp-f/member3/attendance-project']);
+}
 
 }

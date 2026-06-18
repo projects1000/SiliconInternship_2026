@@ -27,4 +27,7 @@ openAttendance() {
 openProductManagement() {
   this.router.navigate(['/grp-c/member8-product-management']);
 }
+openChat() {
+  this.router.navigate(['/grp-c/member8-chat']);
+}
 }

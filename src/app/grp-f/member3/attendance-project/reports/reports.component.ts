@@ -8,6 +8,7 @@ import {
 } from 'chart.js';
 
 Chart.register(...registerables);
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-reports',
@@ -262,5 +263,8 @@ export class ReportsComponent implements OnInit {
     doc.save('Attendance_Report.pdf');
 
   }
+
+}
+export class ReportsComponent {
 
 }

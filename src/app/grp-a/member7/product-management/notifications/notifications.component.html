@@ -1,0 +1,35 @@
+<div class="pm-panel">
+  <div class="panel-header">
+    <div class="panel-icon-wrap notif-icon-bg">
+      <span class="panel-icon">🔔</span>
+    </div>
+    <div class="header-text">
+      <h3 class="panel-title">Notifications</h3>
+    </div>
+    <button class="clear-btn" *ngIf="messages.length > 0" (click)="clearAll()" title="Clear all">
+      ✕
+    </button>
+  </div>
+
+  <!-- Empty State -->
+  <div class="notif-empty" *ngIf="messages.length === 0">
+    <span class="empty-icon">🔕</span>
+    <p class="empty-text">No notifications yet</p>
+    <p class="empty-hint">Actions will appear here</p>
+  </div>
+
+  <!-- Notification List (appended) -->
+  <div class="notif-list" *ngIf="messages.length > 0">
+    <div
+      *ngFor="let msg of messages; trackBy: trackById"
+      class="notif-item"
+      [class.notif-product]="msg.type === 'product'"
+      [class.notif-customer]="msg.type === 'customer'"
+      [class.notif-bill]="msg.type === 'bill'"
+      [class.notif-warn]="msg.type === 'warn'"
+    >
+      <span class="notif-dot"></span>
+      <span class="notif-text">{{ msg.icon }} {{ msg.text }}</span>
+    </div>
+  </div>
+</div>

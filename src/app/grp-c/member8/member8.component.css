@@ -194,7 +194,7 @@ li{
   cursor:pointer;
   font-size:16px;
   font-weight: 600;
-  margin-top:20px;
+
 }
 
 .attendance-btn:hover{
@@ -210,7 +210,7 @@ li{
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
-  margin-left: 15px;
+
   transition: 0.3s;
 }
 
@@ -218,4 +218,37 @@ li{
   transform: translateY(-2px);
 
   box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+.chat-btn {
+
+  background: linear-gradient(
+    #5b21b6);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+
+  transition: 0.3s;
+
+}
+
+.chat-btn:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(109, 40, 217, 0.45);
+}
+
+.chat-btn:active {
+
+  transform: scale(0.98);
+}
+.attendance-btn,
+.product-btn,
+.chat-btn {
+  margin-right: 20px;
 }

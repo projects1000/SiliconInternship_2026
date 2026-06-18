@@ -23,7 +23,7 @@ export class GrpBComponent {
   }
 
   goToMember3() {
-    this.router.navigate(['grp-b/member3']);
+    this.router.navigate(['grp-b/product-management']);
   }
 
   goToMember4() {

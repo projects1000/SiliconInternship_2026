@@ -1,0 +1,177 @@
+<!-- Stats Cards -->
+    <div class="stats-container">
+
+      <div class="stat-card">
+        <h2>7</h2>
+        <p>Groups</p>
+      </div>
+
+      <div class="stat-card">
+        <h2>66</h2>
+        <p>Members</p>
+      </div>
+
+      <div class="stat-card">
+        <h2>{{ presentCount }}</h2>
+        <p>Present Today</p>
+      </div>
+
+      <div class="stat-card">
+        <h2>{{ attendanceRate }}%</h2>
+        <p>Attendance Rate</p>
+      </div>
+
+      <div class="stat-card">
+        <h2>{{ totalMembers - presentCount }}</h2>
+        <p>Absent Today</p>
+      </div>
+
+    </div>
+
+    <div class="history-section">
+
+      <button
+  routerLink="/grp-f/member2/attendance-history"
+  class="history-btn">
+
+       Attendance History
+
+</button>
+
+    </div>
+    <app-attendance-calendar></app-attendance-calendar>
+    
+
+<div class="attendance-container">
+
+  <div class="table-header">
+    
+    
+     <div class="toolbar">
+  <div class="bulk-actions">
+
+  <button
+    class="present-all-btn"
+    (click)="markAllPresent()"
+    [disabled]="
+      isDateLocked() ||
+      isFutureDate()
+    ">
+
+    ✅ Mark All Present
+
+  </button>
+
+  <button
+    class="absent-all-btn"
+    (click)="markAllAbsent()"
+    [disabled]="
+      isDateLocked() ||
+      isFutureDate()
+    ">
+
+    ❌ Mark All Absent
+
+  </button>
+  <button
+  class="toggle-btn"
+  (click)="toggleAttendance()">
+
+  🔄 Toggle Attendance
+
+</button>
+
+</div>
+  
+
+  <!-- Search Box -->
+
+  <div class="search-box-container">
+
+  <label>
+    Search Member
+  </label>
+
+  <div class="search-wrapper">
+
+    <span class="search-icon">🔍</span>
+
+    <input
+      type="text"
+      placeholder="Search by member name..."
+      [(ngModel)]="searchText">
+
+  </div>
+
+</div>
+
+</div>
+      </div>
+<div>
+  <h2 class="attendance-title">
+  📋 Attendance Sheet
+</h2>
+
+
+</div>
+  <table>
+
+    <thead>
+
+      <tr>
+  <th>Member Name</th>
+  <th>Present</th>
+  <th>Status</th>
+</tr>
+
+    </thead>
+
+    <tbody>
+
+    <tr *ngFor="let member of getDisplayedAttendance()">
+
+        <td>{{ member.name }}</td>
+
+        <td>
+          
+         <input
+  type="checkbox"
+  [(ngModel)]="member.present"
+  [disabled]="
+    isDateLocked() ||
+    isFutureDate()
+  ">
+        </td>
+
+        <td>
+
+          <span [ngClass]="{ 'present': member.present, 'absent': !member.present }">
+            {{ member.present ? 'Present' : 'Absent' }}
+          </span>
+
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <button
+    class="save-btn"
+     [disabled]="isFutureDate()"
+    (click)="saveAttendance()">
+
+    Save Attendance
+
+  </button>
+  <button
+  class="lock-btn"
+    [disabled]="isFutureDate()"
+  (click)="lockAttendance()">
+
+  🔒 Lock Attendance
+
+</button>
+
+</div>

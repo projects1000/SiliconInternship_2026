@@ -21,6 +21,11 @@ import { ProductManagementModule } from './member8/product-management/product-ma
 import { GrpCRoutingModule } from './grp-c-routing.module';
 import { AttendanceComponent } from './member9/attendance/attendance.component';
 import { ProductManagementComponent } from './member9/product-management/product-management.component';
+import { UserAComponent as Member9UserAComponent } from './member9/user-a/user-a.component';
+import { UserBComponent as Member9UserBComponent } from './member9/user-b/user-b.component';
+import { ChatWindowComponent as Member9ChatWindowComponent } from './member9/chat-window/chat-window.component';
+
+import { ChatbotComponent } from './member9/chatbot/chatbot.component';
 import { BillingParentComponent } from './member3/billing-parent/billing-parent.component';
 import { ProductListComponent } from './member3/billing-parent/product-list/product-list.component';
 import { CustomerDetailsComponent } from './member3/billing-parent/customer-details/customer-details.component';
@@ -31,8 +36,36 @@ import { UserAyushComponent } from './member3/chat-system/user-ayush/user-ayush.
 import { UserAnshumanComponent } from './member3/chat-system/user-anshuman/user-anshuman.component';
 import { ChatWindowComponent } from './member3/chat-system/chat-window/chat-window.component';
 import { Member8AttendanceComponent } from './member8-attendance/member8-attendance.component';
+import { Member8ChatParentComponent } from './member8/chat-system/chat-parent/chat-parent.component';
+import { Member8UserAComponent } from './member8/chat-system/user-a/user-a.component';
+import { Member8UserBComponent }from './member8/chat-system/user-b/user-b.component';
+import { Member8ChatWindowComponent } from './member8/chat-system/chat-window/chat-window.component';
+
+import { AttendanceDashboardComponent } from './member2/attendance-dashboard/attendance-dashboard.component';
+
+import { ShoppingDashboardComponent } from './member2/shopping-dashboard/shopping-dashboard.component';
+import { AnimeCollectionComponent } from './member2/anime-collection/anime-collection.component';
+import { CustomerManagementComponent } from './member2/customer-management/customer-management.component';
+import { InvoiceManagementComponent } from './member2/invoice-management/invoice-management.component';
+import { ToastNotificationComponent } from './member2/toast-notification/toast-notification.component';
+import { WhatsappChatComponent } from './member2/whatsapp-chat/whatsapp-chat.component';
+import { UserRomeoComponent } from './member2/user-romeo/user-romeo.component';
+import { UserBComponent } from './member2/user-b/user-b.component';
+import { MessagingPanelComponent } from './member2/messaging-panel/messaging-panel.component';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { BillingSystemMember4Module } from './member4/billingsystem-member4/billing-system-member4.module';
+import { Member4chatsystemComponent } from './member4/member4chatsystem/member4chatsystem.component';
+import { SenderOneComponent } from './member4/member4chatsystem/sender-one/sender-one.component';
+import { SenderTwoComponent } from './member4/member4chatsystem/sender-two/sender-two.component';
+
 
 
 @NgModule({
@@ -47,11 +80,31 @@ import { BillingSystemMember4Module } from './member4/billingsystem-member4/bill
     Member8Component,
     Member9Component,
     Member10Component,
+
+    AttendanceDashboardComponent,
+    ShoppingDashboardComponent,
+    AnimeCollectionComponent,
+    CustomerManagementComponent,
+    InvoiceManagementComponent,
+    ToastNotificationComponent,
+    WhatsappChatComponent,
+    UserRomeoComponent,
+    UserBComponent,
+    MessagingPanelComponent,
+
     Member8AttendanceComponent,
+    Member8ChatParentComponent,
+    Member8UserAComponent,
+    Member8UserBComponent,
+    Member8ChatWindowComponent,
     AttendanceComponent,
     Member4attmngComponent,
     Member3AttendanceComponent,
     ProductManagementComponent,
+    Member9UserAComponent,
+    Member9UserBComponent,
+    Member9ChatWindowComponent,
+    ChatbotComponent,
     BillingParentComponent,
     ProductListComponent,
     CustomerDetailsComponent,
@@ -60,16 +113,28 @@ import { BillingSystemMember4Module } from './member4/billingsystem-member4/bill
     ChatParentComponent,
     UserAyushComponent,
     UserAnshumanComponent,
-    ChatWindowComponent
-  ],
+    ChatWindowComponent,
+    Member4chatsystemComponent,
+    SenderOneComponent,
+    SenderTwoComponent,
+],
   imports: [
     CommonModule,
     GrpCRoutingModule,
     FormsModule,
 
+    MatTreeModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatCardModule,
+
     BillingSystemMember4Module,
 
     ProductManagementModule
+
   ]
 })
 export class GrpCModule { }

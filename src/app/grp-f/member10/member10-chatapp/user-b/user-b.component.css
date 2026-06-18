@@ -1,0 +1,133 @@
+/* src/app/grp-f/member10/member10-chatapp/user-b/user-b.component.css */
+
+.user-panel {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
+  border: 2px solid #ede7f6;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatar-b {
+  background: linear-gradient(135deg, #7e57c2, #4527a0);
+  box-shadow: 0 4px 12px rgba(126, 87, 194, 0.4);
+}
+
+.panel-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4527a0;
+  margin: 0;
+  letter-spacing: 0.03em;
+}
+
+.panel-subtitle {
+  font-size: 12px;
+  color: #666;
+  margin-top: 2px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 6px;
+  letter-spacing: 0.03em;
+}
+
+.msg-input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #d1c4e9;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #1a1a1a;
+  outline: none;
+  background: #faf8ff;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+
+.msg-input:focus {
+  border-color: #7e57c2;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(126, 87, 194, 0.12);
+}
+
+.send-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  color: white;
+  font-family: inherit;
+}
+
+.send-btn-b {
+  background: linear-gradient(135deg, #7e57c2, #4527a0);
+}
+
+.send-btn-b:hover {
+  background: linear-gradient(135deg, #5e35b1, #311b92);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(126, 87, 194, 0.38);
+}
+
+.send-btn-b:active {
+  transform: translateY(0);
+}
+
+.logged-in {
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+  padding-top: 4px;
+}
+
+.logged-name {
+  font-weight: 700;
+}
+
+.name-b {
+  color: #5e35b1;
+}

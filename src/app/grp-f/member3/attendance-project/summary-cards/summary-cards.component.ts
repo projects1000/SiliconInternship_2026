@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-summary-cards',
@@ -15,4 +16,5 @@ export class SummaryCardsComponent {
 
   @Input() attendancePercentage = 0;
 
+}
 }

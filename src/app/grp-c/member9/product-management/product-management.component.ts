@@ -29,15 +29,26 @@ export class ProductManagementComponent {
 
   notifications: string[] = [];
 
+  addNotification(message: string) {
+
+    this.notifications.unshift(message);
+
+    if (this.notifications.length > 8) {
+      this.notifications.pop();
+    }
+
+  }
+
   addProduct(product: any) {
 
     this.selectedProducts.push(product);
 
     this.calculateBill();
 
-    this.notifications.unshift(
-      `${product.name} Added Successfully`
+    this.addNotification(
+      `Product '${product.name}' Added Successfully`
     );
+
   }
 
   saveCustomer() {
@@ -46,16 +57,18 @@ export class ProductManagementComponent {
       this.customerName.trim() === '' ||
       this.mobileNumber.trim() === ''
     ) {
-      this.notifications.unshift(
+
+      this.addNotification(
         'Please Enter Customer Details'
       );
 
       return;
     }
 
-    this.notifications.unshift(
-      'Customer Saved Successfully'
+    this.addNotification(
+      `Customer '${this.customerName}' Saved Successfully`
     );
+
   }
 
   calculateBill() {
@@ -67,8 +80,29 @@ export class ProductManagementComponent {
 
     this.gst = +(this.subtotal * 0.18).toFixed(2);
 
-    this.grandTotal =
-      +(this.subtotal + this.gst).toFixed(2);
+    this.grandTotal = +(
+      this.subtotal + this.gst
+    ).toFixed(2);
+
+  }
+
+  generateBill() {
+
+    if (this.selectedProducts.length === 0) {
+
+      this.addNotification(
+        'Please Add Products First'
+      );
+
+      return;
+    }
+
+    this.calculateBill();
+
+    this.addNotification(
+      `Bill Generated Successfully. Total ₹${this.grandTotal}`
+    );
+
   }
 
   clearBill() {
@@ -79,8 +113,10 @@ export class ProductManagementComponent {
     this.gst = 0;
     this.grandTotal = 0;
 
-    this.notifications.unshift(
+    this.addNotification(
       'Bill Cleared Successfully'
     );
+
   }
+
 }

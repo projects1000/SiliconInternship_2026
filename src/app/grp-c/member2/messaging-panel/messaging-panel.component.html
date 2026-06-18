@@ -1,0 +1,95 @@
+<div class="chat-window" [ngClass]="currentTheme">
+
+    <h2 class="title">
+        💬 Love Chat
+    </h2>
+
+    <div class="theme-container">
+
+        <div class="theme-switcher">
+
+            <button [class.active]="currentTheme === 'love'" (click)="currentTheme = 'love'">
+                💜 Love
+            </button>
+
+            <button [class.active]="currentTheme === 'dark'" (click)="currentTheme = 'dark'">
+                🌙 Dark
+            </button>
+
+            <button [class.active]="currentTheme === 'light'" (click)="currentTheme = 'light'">
+                🌞 Light
+            </button>
+
+            <button [class.active]="currentTheme === 'neon'" (click)="currentTheme = 'neon'">
+                🌈 Neon
+            </button>
+
+        </div>
+
+    </div>
+
+    <div *ngIf="typingUser" class="typing-indicator">
+
+        {{typingUser}}
+        is typing...
+
+    </div>
+
+    <div class="messages" #messageContainer>
+
+        <div *ngIf="messages.length === 0" class="empty-chat">
+
+            No messages yet...
+
+        </div>
+
+        <div *ngFor="let msg of messages" class="message-card" [ngClass]="{
+            'left-message': msg.sender === 'Romeo',
+            'right-message': msg.sender === 'Juliet'
+          }">
+
+            <strong>
+                {{msg.sender}}
+            </strong>
+
+            <p>
+                {{msg.text}}
+            </p>
+
+            <div class="message-time">
+                {{msg.time}}
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="chat-footer">
+
+        <div class="counter">
+
+            Messages
+
+            <span>
+                {{totalMessages}}
+            </span>
+
+        </div>
+
+        <div>
+
+            <strong>
+                Last Message:
+            </strong>
+
+            {{lastMessage}}
+
+        </div>
+
+        <button (click)="clearChat()">
+            Clear Chat
+        </button>
+
+    </div>
+
+</div>

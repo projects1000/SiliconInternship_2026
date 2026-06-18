@@ -1,0 +1,137 @@
+<!-- src/app/grp-f/member4/product-management/product-management.component.html -->
+<div class="main-container">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <!-- Logo -->
+      <div class="logo" (click)="loadAllProducts()">
+        <span class="logo-icon">🛍</span>
+        <span class="logo-text">Shop<span>Easy</span></span>
+      </div>
+
+      <!-- Search -->
+      <div class="search-section">
+        <input type="text" 
+               [(ngModel)]="searchText"
+               (input)="searchProducts()"
+               placeholder="Search products, brands...">
+        <button class="search-btn">🔍</button>
+      </div>
+
+      <!-- Nav Menu -->
+      <nav class="nav-menu">
+        <a routerLink="/grp-f/member4/login">
+          <span class="hello">Hello, Sign in</span>
+          <span class="account">Account</span>
+        </a>
+
+        
+        <a routerLink="/grp-f/member4/billing" class="cart-link">
+          <span class="cart-icon">🛒</span>
+          <span class="cart-text">Cart</span>
+          <span class="cart-count">{{getCartCount()}}</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Summer Collection 2026</h1>
+      <p>Discover fashion, mobiles, footwear and accessories at unbeatable prices.</p>
+      
+      <div class="hero-buttons">
+        <button class="primary-btn" (click)="onShopNow()">
+          Shop Now
+        </button>
+        <button class="secondary-btn" (click)="onExploreDeals()">
+          Explore Deals
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT LIST -->
+  <app-product-list></app-product-list>
+
+  <!-- FEATURES SECTION -->
+  <section class="features">
+    <div class="features-container">
+      <div class="features-header">
+        <h2>Why Shop With Us?</h2>
+        <p>We deliver trust, speed & quality shopping experience</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🚚</div>
+          <h3>Free Delivery</h3>
+          <p>On all orders above ₹499 with fast doorstep delivery.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3>Easy Returns</h3>
+          <p>Hassle-free 7 days return & replacement policy.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Secure Payment</h3>
+          <p>100% safe transactions with encrypted checkout.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Fast Support</h3>
+          <p>24/7 customer support for quick assistance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-section">
+          <h3>🛍 ShopEasy</h3>
+          <p>Your trusted online shopping destination for fashion, electronics & more.</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Shop</h4>
+          <a routerLink="/grp-f/member4/product-list">All Products</a>
+          <a routerLink="/grp-f/member4/billing">Shopping Cart</a>
+          <a routerLink="/grp-f/member4/login">Sign In</a>
+        </div>
+
+        <div class="footer-section">
+          <h4>Support</h4>
+          <a routerLink="/grp-f/member4/notification">Notifications</a>
+          <a routerLink="/grp-f/member4/customer">My Account</a>
+          <a routerLink="/grp-f/member4/billing">Track Order</a>
+        </div>
+
+        <div class="footer-section">
+          <h4>Company</h4>
+          <a href="#">About Us</a>
+          <a href="#">Contact</a>
+          <a href="#">Careers</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 ShopEasy. All Rights Reserved.</p>
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>

@@ -1,0 +1,32 @@
+<div
+  class="attendance-layout"
+  [ngClass]="{
+    'dark-theme': isDarkMode,
+    'light-theme': !isDarkMode
+  }">
+
+  <app-member-tree></app-member-tree>
+<div class="main-content">
+
+  <div class="dashboard-card">
+
+    <h1 class="dashboard-title">
+      Attendance Management System
+    </h1>
+      <div
+      class="theme-toggle"
+      (click)="toggleTheme()">
+
+      <span class="theme-icon">
+  {{ isDarkMode ? '☀️' : '🌙' }}
+</span>
+
+    </div>
+
+    
+  
+    <app-attendance-table></app-attendance-table>
+
+  </div>
+
+</div>
