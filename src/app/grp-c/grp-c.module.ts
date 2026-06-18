@@ -62,6 +62,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { BillingSystemMember4Module } from './member4/billingsystem-member4/billing-system-member4.module';
+import { Member4chatsystemComponent } from './member4/member4chatsystem/member4chatsystem.component';
+import { SenderOneComponent } from './member4/member4chatsystem/sender-one/sender-one.component';
+import { SenderTwoComponent } from './member4/member4chatsystem/sender-two/sender-two.component';
 
 
 
@@ -111,6 +114,9 @@ import { BillingSystemMember4Module } from './member4/billingsystem-member4/bill
     UserAyushComponent,
     UserAnshumanComponent,
     ChatWindowComponent,
+    Member4chatsystemComponent,
+    SenderOneComponent,
+    SenderTwoComponent,
 ],
   imports: [
     CommonModule,

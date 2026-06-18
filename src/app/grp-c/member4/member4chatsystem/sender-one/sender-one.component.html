@@ -1,0 +1,28 @@
+<div class="chat-box">
+
+  <h2>User One</h2>
+
+  <div class="messages">
+
+  <p
+    *ngFor="let msg of messages"
+    [class.sent]="msg.type === 'sent'"
+    [class.received]="msg.type === 'received'">
+
+    {{ msg.text }}
+
+  </p>
+
+</div>
+
+  <div class="input-area">
+    <input
+  type="text"
+  [(ngModel)]="message"
+  (keyup.enter)="sendMessage()"
+  placeholder="Type message">
+
+    <button (click)="sendMessage()">Send</button>
+  </div>
+
+</div>
