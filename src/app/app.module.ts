@@ -10,6 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
 import { FormsModule } from '@angular/forms';
+import { WhatsappChatComponent } from './member3/whatsapp-chat/whatsapp-chat.component';
+import { UserAComponent } from './member3/user-a/user-a.component';
+import { ChatWindowComponent } from './member3/chat-window/chat-window.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -37,6 +40,9 @@ import { MatDividerModule } from '@angular/material/divider';
     AppComponent,
     NavBarComponent,
     HomeComponent,
+    WhatsappChatComponent,
+    UserAComponent,
+    ChatWindowComponent,
 
    
     
