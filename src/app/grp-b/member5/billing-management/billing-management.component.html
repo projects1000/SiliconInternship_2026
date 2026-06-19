@@ -1,0 +1,108 @@
+<div class="billing-container">
+
+  <h1>🛒 Billing Management Store</h1>
+
+  <div class="billing-grid">
+
+    <!-- LEFT -->
+    <div class="left-section">
+
+      <div class="customer-card">
+
+        <h2>👤 Customer Details</h2>
+
+        <input
+          type="text"
+          placeholder="Enter Customer Name"
+          [(ngModel)]="customer.name">
+
+        <input
+          type="text"
+          placeholder="Enter Mobile Number"
+          [(ngModel)]="customer.mobile">
+
+      </div>
+
+      <div class="cart-card">
+
+        <h2>🛍 Shopping Cart</h2>
+
+        <div
+          class="cart-item"
+          *ngFor="let item of cart; let i=index">
+
+          <img
+            [src]="item.image"
+            alt="">
+
+          <div class="item-info">
+
+            <h3>{{item.name}}</h3>
+
+            <p>₹{{item.price}}</p>
+
+          </div>
+
+          <button
+            class="remove-btn"
+            (click)="removeItem(i)">
+            ❌
+          </button>
+
+        </div>
+
+        <div
+          *ngIf="cart.length===0"
+          class="empty">
+
+          No Products Added
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="summary-card">
+
+      <h2>📄 Order Summary</h2>
+
+      <div class="row">
+        <span>Total Items</span>
+        <span>{{cart.length}}</span>
+      </div>
+
+      <div class="row">
+        <span>Subtotal</span>
+        <span>₹{{getTotal()}}</span>
+      </div>
+
+      <div class="row">
+        <span>GST (18%)</span>
+        <span>₹{{getGST()}}</span>
+      </div>
+
+      <div class="grand">
+
+        Grand Total
+
+        <span>
+          ₹{{getGrandTotal()}}
+        </span>
+
+      </div>
+
+      <button
+        class="checkout-btn"
+        (click)="proceedToCheckout()">
+
+        🚀 Proceed To Checkout
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

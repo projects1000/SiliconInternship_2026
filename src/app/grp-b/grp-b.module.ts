@@ -54,6 +54,7 @@ import { ProductListComponent } from './member5/product-list/product-list.compon
 import { BillDetailsComponent } from './member5/bill-details/bill-details.component';
 import { NotificationComponent } from './member5/notification/notification.component';
 import { WorkflowComponent } from './member5/workflow/workflow.component';
+import { BillingManagementComponent } from './member5/billing-management/billing-management.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { WorkflowComponent } from './member5/workflow/workflow.component';
     BillDetailsComponent,
     NotificationComponent,
     WorkflowComponent,
+    BillingManagementComponent,
   ],
   imports: [
     CommonModule,
