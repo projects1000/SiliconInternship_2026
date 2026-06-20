@@ -1,0 +1,122 @@
+<div class="chat-app-container">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <header class="chat-header">
+    <button class="back-btn" (click)="goBackToProfile()">
+      <span class="btn-icon">←</span> Back to Profile
+    </button>
+    <div class="title-block">
+      <h1>Dual Pulse Chat</h1>
+      <p>Real-time dual-device messaging with RxJS subscribe alerts</p>
+    </div>
+  </header>
+
+  <div class="phones-row">
+    <!-- Ram's Phone -->
+    <div class="phone-column">
+      <div
+        class="side-notification ram-notif"
+        *ngIf="ramNotification?.visible"
+        [class.show]="ramNotification?.visible">
+        <span class="notif-icon">💬</span>
+        <div class="notif-body">
+          <strong>New message from {{ ramNotification?.from }}</strong>
+          <p>{{ ramNotification?.text }}</p>
+        </div>
+      </div>
+
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-status-bar">
+          <span>9:41</span>
+          <span class="signal">●●●</span>
+        </div>
+
+        <div class="phone-chat-header">
+          <div class="chat-avatar ram-avatar">R</div>
+          <div class="chat-meta">
+            <h3>Ram</h3>
+            <span class="online-dot">online</span>
+          </div>
+        </div>
+
+        <div class="phone-messages">
+          <div
+            *ngFor="let msg of ramMessages"
+            class="message-bubble"
+            [class.sent]="msg.type === 'sent'"
+            [class.received]="msg.type === 'received'">
+            {{ msg.text }}
+          </div>
+          <div class="empty-state" *ngIf="ramMessages.length === 0">
+            <span>Start chatting with Shyam…</span>
+          </div>
+        </div>
+
+        <div class="phone-input-area">
+          <input
+            type="text"
+            [(ngModel)]="ramInput"
+            placeholder="Message Shyam…"
+            (keyup.enter)="sendAsRam()" />
+          <button class="send-btn ram-send" (click)="sendAsRam()">↑</button>
+        </div>
+      </div>
+      <p class="phone-label">Ram's Device</p>
+    </div>
+
+    <!-- Shyam's Phone -->
+    <div class="phone-column">
+      <div
+        class="side-notification shyam-notif"
+        *ngIf="shyamNotification?.visible"
+        [class.show]="shyamNotification?.visible">
+        <span class="notif-icon">💬</span>
+        <div class="notif-body">
+          <strong>New message from {{ shyamNotification?.from }}</strong>
+          <p>{{ shyamNotification?.text }}</p>
+        </div>
+      </div>
+
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-status-bar">
+          <span>9:41</span>
+          <span class="signal">●●●</span>
+        </div>
+
+        <div class="phone-chat-header">
+          <div class="chat-avatar shyam-avatar">S</div>
+          <div class="chat-meta">
+            <h3>Shyam</h3>
+            <span class="online-dot">online</span>
+          </div>
+        </div>
+
+        <div class="phone-messages">
+          <div
+            *ngFor="let msg of shyamMessages"
+            class="message-bubble"
+            [class.sent]="msg.type === 'sent'"
+            [class.received]="msg.type === 'received'">
+            {{ msg.text }}
+          </div>
+          <div class="empty-state" *ngIf="shyamMessages.length === 0">
+            <span>Start chatting with Ram…</span>
+          </div>
+        </div>
+
+        <div class="phone-input-area">
+          <input
+            type="text"
+            [(ngModel)]="shyamInput"
+            placeholder="Message Ram…"
+            (keyup.enter)="sendAsShyam()" />
+          <button class="send-btn shyam-send" (click)="sendAsShyam()">↑</button>
+        </div>
+      </div>
+      <p class="phone-label">Shyam's Device</p>
+    </div>
+  </div>
+</div>

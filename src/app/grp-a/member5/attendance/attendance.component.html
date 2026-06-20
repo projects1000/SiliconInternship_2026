@@ -163,11 +163,11 @@
               <!-- Quick toggle button in list -->
               <button 
                 class="quick-toggle-btn"
-                [class.present]="attendanceData[member.name]?.[selectedDateStr]"
-                [class.absent]="!attendanceData[member.name]?.[selectedDateStr]"
+                [class.present]="attendanceData[member.name][selectedDateStr]"
+                [class.absent]="!attendanceData[member.name][selectedDateStr]"
                 [disabled]="!classDays[selectedDateStr]"
                 (click)="toggleAttendance(member.name); $event.stopPropagation()">
-                {{ classDays[selectedDateStr] ? (attendanceData[member.name]?.[selectedDateStr] ? 'Present' : 'Absent') : 'Off' }}
+                {{ classDays[selectedDateStr] ? (attendanceData[member.name][selectedDateStr] ? 'Present' : 'Absent') : 'Off' }}
               </button>
               
               <div class="selection-arrow">➜</div>
@@ -203,8 +203,8 @@
               [class.active-day]="cell.dateStr === selectedDateStr"
               [class.class-day]="cell.dayNum && classDays[cell.dateStr]"
               [class.no-class-day]="cell.dayNum && !classDays[cell.dateStr]"
-              [class.present]="cell.dayNum && selectedMember && classDays[cell.dateStr] && attendanceData[selectedMember.name]?.[cell.dateStr]"
-              [class.absent]="cell.dayNum && selectedMember && classDays[cell.dateStr] && !attendanceData[selectedMember.name]?.[cell.dateStr]"
+              [class.present]="cell.dayNum && selectedMember && classDays[cell.dateStr] && attendanceData[selectedMember.name][cell.dateStr]"
+              [class.absent]="cell.dayNum && selectedMember && classDays[cell.dateStr] && !attendanceData[selectedMember.name][cell.dateStr]"
               (click)="cell.dayNum && selectDate(cell.dateStr)">
               <span class="day-number" *ngIf="cell.dayNum">{{ cell.dayNum }}</span>
             </div>
@@ -246,17 +246,17 @@
 
             <button 
               class="attendance-status-btn"
-              [class.present]="attendanceData[selectedMember.name]?.[selectedDateStr]"
-              [class.absent]="!attendanceData[selectedMember.name]?.[selectedDateStr]"
+              [class.present]="attendanceData[selectedMember.name][selectedDateStr]"
+              [class.absent]="!attendanceData[selectedMember.name][selectedDateStr]"
               [disabled]="!classDays[selectedDateStr]"
               (click)="toggleAttendance(selectedMember.name)">
               <span class="icon" *ngIf="classDays[selectedDateStr]">
-                {{ attendanceData[selectedMember.name]?.[selectedDateStr] ? '✓' : '✗' }}
+                {{ attendanceData[selectedMember.name][selectedDateStr] ? '✓' : '✗' }}
               </span>
               <span class="text">
                 <span *ngIf="!classDays[selectedDateStr]">Holiday/No Class</span>
-                <span *ngIf="classDays[selectedDateStr] && attendanceData[selectedMember.name]?.[selectedDateStr]">Present</span>
-                <span *ngIf="classDays[selectedDateStr] && !attendanceData[selectedMember.name]?.[selectedDateStr]">Absent</span>
+                <span *ngIf="classDays[selectedDateStr] && attendanceData[selectedMember.name][selectedDateStr]">Present</span>
+                <span *ngIf="classDays[selectedDateStr] && !attendanceData[selectedMember.name][selectedDateStr]">Absent</span>
               </span>
             </button>
           </div>
