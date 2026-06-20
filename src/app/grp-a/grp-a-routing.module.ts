@@ -13,9 +13,6 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 
-import { Member5AttendanceComponent } from './member5/attendance/attendance.component';
-
-
 const routes: Routes = [
   {
     path: '',
@@ -47,7 +44,11 @@ const routes: Routes = [
   },
   {
     path: 'member5/attendance',
-    component: Member5AttendanceComponent
+    loadChildren: () => import('./member5/attendance/attendance.module').then(m => m.AttendanceModule)
+  },
+  {
+    path: 'member5/chat',
+    loadChildren: () => import('./member5/chat/chat.module').then(m => m.ChatModule)
   },
   {
     path: 'member6',

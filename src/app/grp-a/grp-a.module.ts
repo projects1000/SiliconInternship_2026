@@ -14,9 +14,8 @@ import { Member7Component } from './member7/member7.component';
 import { Member8Component } from './member8/member8.component';
 import { Member9Component } from './member9/member9.component';
 
-import { Member5AttendanceComponent } from './member5/attendance/attendance.component';
-
 import { GrpARoutingModule } from './grp-a-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +25,6 @@ import { GrpARoutingModule } from './grp-a-routing.module';
     Member3Component,
     Member4Component,
     Member5Component,
-    Member5AttendanceComponent,
     Member6Component,
     Member7Component,
     Member8Component,
