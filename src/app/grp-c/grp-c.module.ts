@@ -98,9 +98,9 @@ import { BillingSystemMember4Module } from './member4/billingsystem-member4/bill
     Member4attmngComponent,
     Member3AttendanceComponent,
     ProductManagementComponent,
-    Member9UserAComponent,
-    Member9UserBComponent,
-    Member9ChatWindowComponent,
+   Member9UserAComponent,
+Member9UserBComponent,
+Member9ChatWindowComponent,
     ChatbotComponent,
     BillingParentComponent,
     ProductListComponent,
@@ -111,7 +111,9 @@ import { BillingSystemMember4Module } from './member4/billingsystem-member4/bill
     UserAyushComponent,
     UserAnshumanComponent,
     ChatWindowComponent,
-],
+
+    
+  ],
   imports: [
     CommonModule,
     GrpCRoutingModule,
