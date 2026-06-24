@@ -1,0 +1,132 @@
+<div
+class="customer-info-card"
+*ngIf="customer">
+
+    <h2>
+        Customer Information
+    </h2>
+
+    <div class="customer-details">
+
+        <div class="info-box">
+            <div class="info-label">
+                Customer Name
+            </div>
+
+            <div class="info-value">
+                {{ customer.name }}
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-label">
+                Mobile Number
+            </div>
+
+            <div class="info-value">
+                {{ customer.mobile }}
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-label">
+                Email Address
+            </div>
+
+            <div class="info-value">
+                {{ customer.email }}
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-label">
+                City
+            </div>
+
+            <div class="info-value">
+                {{ customer.city }}
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div class="billing-card">
+
+  <h2>
+    Billing Summary
+  </h2>
+
+  <div
+    class="bill-item"
+
+    *ngFor="let item of cartItems">
+
+    <span>
+      {{ item.name }}
+    </span>
+
+    <span>
+      Qty:
+{{ item.quantity }}
+
+|
+
+₹{{ item.totalPrice }}
+    </span>
+
+  </div>
+
+  <hr>
+
+  <div class="summary">
+
+    <p>
+
+      Total Items:
+      {{ cartItems.length }}
+
+    </p>
+
+    <h3>
+
+      ₹{{ getTotalAmount() }}
+
+    </h3>
+
+  </div>
+
+  <div class="summary">
+
+  <p>
+    Subtotal:
+    ₹{{ getSubtotal() }}
+  </p>
+
+  <p>
+    GST (18%):
+    ₹{{ getGST() | number:'1.2-2' }}
+  </p>
+
+  <h2>
+    Grand Total:
+    ₹{{ getGrandTotal() | number:'1.2-2' }}
+  </h2>
+
+</div>
+<button
+class="generate-btn"
+(click)="generateBill()">
+
+Generate Bill
+
+</button>
+<button
+class="download-btn"
+(click)="downloadInvoice()">
+
+Download Invoice PDF
+
+</button>
+
+</div>

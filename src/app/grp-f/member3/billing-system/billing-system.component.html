@@ -1,0 +1,34 @@
+<div class="billing-container">
+
+  <app-customer
+    (customerSaved)="saveCustomer($event)">
+  </app-customer>
+
+  <app-product-list
+    (productAdded)="addProduct($event)">
+  </app-product-list>
+
+</div>
+
+<div class="billing-section">
+
+  <app-billing
+    [customer]="customer"
+    [products]="selectedProducts">
+  </app-billing>
+
+</div>
+
+<div class="notification-card">
+
+  <h2>Notifications</h2>
+
+  <div
+    class="notification"
+    *ngFor="let note of notifications">
+
+    {{note}}
+
+  </div>
+
+</div>

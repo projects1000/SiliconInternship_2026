@@ -49,7 +49,7 @@ import { CustomerManagementComponent } from './member2/customer-management/custo
 import { InvoiceManagementComponent } from './member2/invoice-management/invoice-management.component';
 import { ToastNotificationComponent } from './member2/toast-notification/toast-notification.component';
 import { WhatsappChatComponent } from './member2/whatsapp-chat/whatsapp-chat.component';
-import { UserAComponent } from './member2/user-a/user-a.component';
+import { UserRomeoComponent } from './member2/user-romeo/user-romeo.component';
 import { UserBComponent } from './member2/user-b/user-b.component';
 import { MessagingPanelComponent } from './member2/messaging-panel/messaging-panel.component';
 
@@ -62,6 +62,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { BillingSystemMember4Module } from './member4/billingsystem-member4/billing-system-member4.module';
+import { Member4chatsystemComponent } from './member4/member4chatsystem/member4chatsystem.component';
+import { SenderOneComponent } from './member4/member4chatsystem/sender-one/sender-one.component';
+import { SenderTwoComponent } from './member4/member4chatsystem/sender-two/sender-two.component';
 
 
 
@@ -85,7 +88,7 @@ import { BillingSystemMember4Module } from './member4/billingsystem-member4/bill
     InvoiceManagementComponent,
     ToastNotificationComponent,
     WhatsappChatComponent,
-    UserAComponent,
+    UserRomeoComponent,
     UserBComponent,
     MessagingPanelComponent,
 
@@ -111,9 +114,10 @@ Member9ChatWindowComponent,
     UserAyushComponent,
     UserAnshumanComponent,
     ChatWindowComponent,
-
-    
-  ],
+    Member4chatsystemComponent,
+    SenderOneComponent,
+    SenderTwoComponent,
+],
   imports: [
     CommonModule,
     GrpCRoutingModule,

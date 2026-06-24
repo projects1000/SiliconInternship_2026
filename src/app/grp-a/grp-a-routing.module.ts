@@ -76,6 +76,20 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'member7/product-management',
+    loadChildren: () =>
+      import('./member7/product-management/product-management.module').then(
+        (m) => m.ProductManagementModule,
+      ),
+  },
+  {
+    path: 'member7/observable-chat',
+    loadChildren: () =>
+      import('./member7/observable-chat/observable-chat.module').then(
+        (m) => m.ObservableChatModule,
+      ),
+  },
+  {
     path: 'member8',
     component: Member8Component,
   },

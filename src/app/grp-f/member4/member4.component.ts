@@ -1,19 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-member4',
   templateUrl: './member4.component.html',
   styleUrls: ['./member4.component.css']
 })
-export class Member4Component {
+export class Member4Component implements OnInit {
 
-  userName = 'Lipsa Panda';
+  userName: string = 'Lipsa Panda';
 
-  role = 'Frontend Developer';
+  role: string = 'Frontend Developer | Angular Specialist';
 
-  projects = 15;
+  projects: number = 12;
 
-  experience = '6+ Months';
+  experience: string = '1.5 Years';
 
   skills: string[] = [
     'Angular',
@@ -21,11 +22,24 @@ export class Member4Component {
     'JavaScript',
     'HTML5',
     'CSS3',
+    'RxJS',
+    'NgRx',
     'Bootstrap',
-    'Git',
-    'GitHub',
-    'Responsive Design'
+    'Tailwind CSS',
+    'Git & GitHub',
+    'Responsive Design',
+    'UI/UX'
   ];
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    console.log('Member4 Portfolio Loaded');
+  }
+
+  goBackToGroup(): void {
+    this.router.navigate(['/grp-f']);
+  }
 
   scrollTo(sectionId: string): void {
 

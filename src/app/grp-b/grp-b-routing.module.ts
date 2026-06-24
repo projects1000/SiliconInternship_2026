@@ -18,11 +18,15 @@ import { Memb6AttendanceComponent } from './member6/memb6-attendance/memb6-atten
 
 import { Member5AttendanceComponent } from './member5/attendance/attendance.component';
 
-// ✅ Angular Routing — Gaming PC Builder (Rohan Nayak 24BCSG13)
+// ✅ Angular Routing — (Rohan Nayak 24BCSG13)
 import { GamingPcBuilderComponent } from './member2/gaming-pc-builder/gaming-pc-builder.component';
+import { ObservableChatComponent } from './member2/observable-chat/observable-chat.component';
+
 import { BillingDashboardComponent as Member1BillingDashboardComponent } from './member1/billing-system/billing-dashboard/billing-dashboard.component';
 import { WhatsappDashboardComponent } from './member1/member1-whatsapp/whatsapp-dashboard/whatsapp-dashboard.component';
 import { ChatWindowComponent } from './member5/chat-window/chat-window.component';
+import { BillingManagementComponent } from './member5/billing-management/billing-management.component';
+import { ProductListComponent } from './member5/product-list/product-list.component';
 
 const routes: Routes = [
   {
@@ -37,6 +41,10 @@ const routes: Routes = [
   {
     path: 'member2/gaming-pc-builder',
     component: GamingPcBuilderComponent,
+  },
+  {
+    path: 'member2/observable-chat',
+    component: ObservableChatComponent,
   },
   {
     path: 'member1',
@@ -86,6 +94,14 @@ const routes: Routes = [
   {
     path: 'member5/chat-window',
     component: ChatWindowComponent,
+  },
+  {
+    path: 'member5/products',
+    component: ProductListComponent,
+  },
+  {
+    path: 'member5/billing',
+    component: BillingManagementComponent,
   },
   {
     path: 'member6',

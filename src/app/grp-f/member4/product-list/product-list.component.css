@@ -1,0 +1,243 @@
+/* ====================== PRODUCTS PAGE ====================== */
+.products-page {
+  max-width: 1420px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: 32px;
+  background: #f4f4f4;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* ====================== ADVANCED SIDEBAR FILTER ====================== */
+.sidebar {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 0;
+  height: fit-content;
+  position: sticky;
+  top: 90px;
+  align-self: start;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* Sidebar Header */
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  border-bottom: 1px solid #e7e7e7;
+  background: #fafafa;
+}
+
+.filter-header h2 {
+  font-size: 19px;
+  font-weight: 700;
+  color: #0F1111;
+  margin: 0;
+}
+
+.clear-btn {
+  color: #007185;
+  font-size: 14px;
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.clear-btn:hover {
+  background: #f0f0f0;
+  text-decoration: underline;
+}
+
+/* Filter Content */
+.filter-topbar {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Filter Item */
+.filter-item {
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 20px;
+}
+
+.filter-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.filter-item label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0F1111;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Price Filter - Advanced */
+.price-inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.input-box {
+  width: 90px;
+  padding: 10px 12px;
+  border: 1px solid #D5D9D9;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border 0.2s;
+}
+
+.input-box:focus {
+  border-color: #007185;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 113, 133, 0.15);
+}
+
+.separator {
+  color: #565959;
+  font-weight: 500;
+}
+
+.apply-btn {
+  padding: 10px 18px;
+  background: #007185;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.apply-btn:hover {
+  background: #005e6b;
+  transform: translateY(-1px);
+}
+
+/* Sort Select */
+.select-box {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #D5D9D9;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+}
+
+/* Quick Filter Chips - Amazon Style */
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 8px 16px;
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.chip:hover {
+  background: #e7f0f7;
+  border-color: #007185;
+}
+
+.chip.active {
+  background: #007185;
+  color: white;
+  border-color: #007185;
+  font-weight: 500;
+}
+
+/* ====================== MAIN PRODUCT SECTION ====================== */
+.product-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.results-bar h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0F1111;
+}
+
+/* Rest of product card styles (same as before) */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+  gap: 24px;
+}
+
+.product-card {
+  border: 1px solid #e7e7e7;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px);
+}
+
+/* ... (keep your existing image, price, button styles) */
+
+.cart-btn {
+  width: 100%;
+  background: #FFD814;
+  color: #111;
+  border: 1px solid #F2C200;
+  padding: 11px 0;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cart-btn:hover {
+  background: #f2c200;
+  box-shadow: 0 3px 8px rgba(242, 194, 0, 0.4);
+}
+
+/* Responsive - No Overlap */
+@media (max-width: 992px) {
+  .products-page {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .sidebar {
+    position: static;
+    top: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  }
+}

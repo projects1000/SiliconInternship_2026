@@ -1,0 +1,12 @@
+.chat-container {
+  min-height: 100vh;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  background:
+    radial-gradient(circle at top left, #00f5ff33, transparent 30%),
+    radial-gradient(circle at bottom right, #ff00ff33, transparent 30%),
+    linear-gradient(135deg, #020617, #0f172a);
+}

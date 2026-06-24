@@ -31,5 +31,9 @@ openPrivateChat(){
 goBackToGroup() {
   this.router.navigate(['/grp-b']);
 }
+openBillingPage() {
+  this.router.navigate(['/grp-b/member5/products']);
+}
+
 
 }

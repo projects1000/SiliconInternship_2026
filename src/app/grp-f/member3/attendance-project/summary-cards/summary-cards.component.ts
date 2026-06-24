@@ -1,3 +1,4 @@
+import { Component, Input } from '@angular/core';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class SummaryCardsComponent {
 
+  @Input() totalStudents = 0;
+
+  @Input() presentCount = 0;
+
+  @Input() absentCount = 0;
+
+  @Input() attendancePercentage = 0;
+
+}
 }

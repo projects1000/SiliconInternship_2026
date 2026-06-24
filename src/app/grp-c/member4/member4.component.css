@@ -1,131 +1,184 @@
 .member-page {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: linear-gradient(
-        135deg,
-        #0f172a,
-        #1e293b,
-        #334155
-    );
-
-    padding: 20px;
+  min-height: 100vh;
+  padding: 45px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:
+    radial-gradient(circle at 15% 20%, #00f5ff55, transparent 28%),
+    radial-gradient(circle at 85% 15%, #ff00c855, transparent 30%),
+    radial-gradient(circle at 50% 90%, #7c3aed66, transparent 35%),
+    linear-gradient(135deg, #020617, #0f172a 45%, #111827);
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
 }
 
 .profile-card {
-    width: 420px;
-    background: rgba(255,255,255,0.08);
-
-    border: 1px solid rgba(255,255,255,0.15);
-
-    border-radius: 25px;
-    padding: 40px;
-
-    text-align: center;
-
-    box-shadow:
-        0 20px 40px rgba(0,0,0,0.3);
-
-    transition: 0.3s;
+  width: 100%;
+  max-width: 560px;
+  padding: 38px;
+  text-align: center;
+  border-radius: 34px;
+  background: rgba(255, 255, 255, 0.11);
+  backdrop-filter: blur(22px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.55),
+    inset 0 0 30px rgba(255, 255, 255, 0.06);
+  animation: cardEntry 0.9s ease;
+  position: relative;
 }
 
-.profile-card:hover {
-    transform: translateY(-8px);
+.profile-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 36px;
+  background: linear-gradient(135deg, #00f5ff, #a855f7, #ff00c8, #22c55e);
+  z-index: -1;
+  opacity: 0.45;
+  filter: blur(14px);
+  animation: glowMove 4s linear infinite;
 }
 
 .profile-image {
-    width: 160px;
-    height: 160px;
-    margin: 0 auto 25px;
-
-    border-radius: 50%;
-    overflow: hidden;
-
-    border: 5px solid white;
+  width: 155px;
+  height: 155px;
+  margin: 0 auto;
+  padding: 6px;
+  border-radius: 50%;
+  background: conic-gradient(#00f5ff, #a855f7, #ff00c8, #22c55e, #00f5ff);
+  animation: rotateRing 5s linear infinite;
 }
 
 .profile-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 5px solid #020617;
+  border-radius: 50%;
 }
 
-.profile-card h1 {
-    color: white;
-    font-size: 42px;
-    margin-bottom: 10px;
-    letter-spacing: 1px;
+h1 {
+  margin: 24px 0 8px;
+  font-size: 38px;
+  letter-spacing: 2.5px;
+  color: white;
+  text-shadow: 0 0 25px rgba(0, 245, 255, 0.4);
 }
 
 .designation {
-    color: #60a5fa;
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 15px;
+  display: inline-block;
+  margin-top: 6px;
+  padding: 9px 22px;
+  border-radius: 999px;
+  color: #67e8f9;
+  font-weight: 700;
+  background: rgba(103, 232, 249, 0.12);
+  border: 1px solid rgba(103, 232, 249, 0.25);
 }
 
 .description {
-    color: #d1d5db;
-    line-height: 1.7;
-    margin-bottom: 30px;
+  margin: 25px auto 32px;
+  max-width: 440px;
+  color: #cbd5e1;
+  font-size: 15.5px;
+  line-height: 1.8;
+}
+
+.projects-section h2 {
+  margin-bottom: 20px;
+  font-size: 25px;
+  letter-spacing: 1px;
+}
+
+.project-card {
+  margin-bottom: 17px;
+  padding: 20px 22px;
+  border-radius: 22px;
+  cursor: pointer;
+  color: white;
+  text-align: left;
+  background: linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.06));
+  border: 1px solid rgba(255,255,255,0.18);
+  position: relative;
+  overflow: hidden;
+  transition: 0.35s ease;
+}
+
+.project-card::after {
+  content: "→";
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%) translateX(-10px);
+  opacity: 0;
+  font-size: 28px;
+  transition: 0.35s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-7px) scale(1.03);
+  background: linear-gradient(135deg, #06b6d4, #7c3aed);
+  box-shadow: 0 20px 45px rgba(124, 58, 237, 0.5);
+}
+
+.project-card:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.project-card h3 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 0.4px;
 }
 
 button {
-    background: linear-gradient(
-        135deg,
-        #2563eb,
-        #1d4ed8
-    );
-
-    color: white;
-    border: none;
-
-    padding: 14px 30px;
-    font-size: 16px;
-    font-weight: 600;
-
-    border-radius: 12px;
-    cursor: pointer;
-
-    transition: 0.3s;
+  margin-top: 28px;
+  padding: 15px 32px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #00f5ff, #7c3aed, #ff00c8);
+  box-shadow: 0 15px 35px rgba(124, 58, 237, 0.45);
+  transition: 0.35s ease;
 }
 
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(37,99,235,0.4);
-}
-.projects-section{
-    margin: 25px 0;
-    width: 100%;
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 22px 55px rgba(0, 245, 255, 0.45);
 }
 
-.projects-section h2{
-    margin-bottom: 15px;
-    color: #333;
+@keyframes cardEntry {
+  from {
+    opacity: 0;
+    transform: translateY(45px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-.project-card{
-    background: #f5f7fa;
-    border: 2px solid #e0e0e0;
-    border-radius: 12px;
-    padding: 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+@keyframes rotateRing {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.project-card:hover{
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    border-color: #1976d2;
-}
-
-.project-card h3{
-    margin-bottom: 8px;
-    color: #1976d2;
-}
-
-.project-card p{
-    color: #555;
+@keyframes glowMove {
+  0%, 100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }

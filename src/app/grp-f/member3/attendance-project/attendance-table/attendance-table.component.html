@@ -1,5 +1,23 @@
 <div class="attendance-card">
 
+  <div class="attendance-header">
+
+    <h2>Attendance Management</h2>
+
+    <div class="controls">
+
+      <input
+        type="date"
+        [(ngModel)]="selectedDate">
+
+      <input
+        type="text"
+        placeholder="Search Student..."
+        [(ngModel)]="searchText">
+
+    </div>
+
+  </div>
   <h2>Attendance Matrix</h2>
 
   <table>
@@ -7,6 +25,11 @@
     <thead>
 
       <tr>
+        <th>Roll No</th>
+        <th>Student Name</th>
+        <th>Present</th>
+        <th>Status</th>
+        <th>Delete</th>
         <th>Student</th>
         <th>Present</th>
         <th>Absent</th>
@@ -16,6 +39,46 @@
     </thead>
 
     <tbody>
+
+      <tr *ngFor="let student of filteredStudents()">
+
+        <td>{{student.roll}}</td>
+
+        <td>{{student.name}}</td>
+
+        <td>
+
+          <input
+            type="checkbox"
+            [(ngModel)]="student.present"
+            (change)="saveToLocalStorage()">
+
+        </td>
+
+        <td>
+
+          <span
+            [class.present]="student.present"
+            [class.absent]="!student.present">
+
+            {{student.present ? 'Present' : 'Absent'}}
+
+          </span>
+
+        </td>
+
+        <td>
+
+          <button
+            class="delete-btn"
+            (click)="deleteStudent(student)"
+            title="Delete Student">
+
+            🗑️
+
+          </button>
+
+        </td>
 
       <tr>
         <td>Rupali Jena</td>
@@ -53,5 +116,29 @@
     </tbody>
 
   </table>
+
+  <div class="attendance-summary">
+
+    <div class="summary-box">
+      Present: {{getPresentCount()}}
+    </div>
+
+    <div class="summary-box">
+      Absent: {{getAbsentCount()}}
+    </div>
+
+    <div class="summary-box">
+      Attendance: {{getAttendancePercentage()}}%
+    </div>
+
+  </div>
+
+  <button
+    class="save-btn"
+    (click)="saveAttendance()">
+
+    Save Attendance
+
+  </button>
 
 </div>

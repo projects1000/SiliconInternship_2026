@@ -1,0 +1,42 @@
+<div class="customer-card">
+
+    <h2>
+        Customer Details
+    </h2>
+
+    <div class="customer-grid">
+
+        <input
+        type="text"
+        placeholder="Customer Name"
+        [(ngModel)]="customer.name">
+
+        <input
+        type="text"
+        placeholder="Mobile Number"
+        [(ngModel)]="customer.mobile">
+
+        <input
+        type="email"
+        placeholder="Email Address"
+        [(ngModel)]="customer.email">
+
+        <input
+        type="text"
+        placeholder="City"
+        [(ngModel)]="customer.city">
+
+    </div>
+
+    <textarea
+    placeholder="Full Address"
+    [(ngModel)]="customer.address">
+    </textarea>
+
+    <button class="save-btn" (click)="saveCustomer()">
+
+        Save Customer
+
+    </button>
+
+</div>

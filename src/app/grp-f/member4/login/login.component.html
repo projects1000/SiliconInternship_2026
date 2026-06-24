@@ -1,0 +1,94 @@
+<!-- src/app/grp-f/member4/login/login.component.html -->
+<div class="login-page">
+
+  <div class="login-container">
+    
+    <!-- Logo -->
+    <div class="login-logo" (click)="goHome()">
+      <span class="logo-icon">🛍</span>
+      <span class="logo-text">Shop<span>Easy</span></span>
+    </div>
+
+    <!-- Login Card -->
+    <div class="login-card" [class.has-error]="errorMessage">
+      
+      <div class="card-header">
+        <h2>Sign in</h2>
+        <p>Continue to ShopEasy</p>
+      </div>
+
+      <!-- Error Alert -->
+      <div *ngIf="errorMessage" class="error-alert">
+        <span class="error-icon">⚠️</span>
+        <span>{{ errorMessage }}</span>
+      </div>
+
+      <form (ngSubmit)="onLogin()">
+        
+        <!-- Email/Phone -->
+        <div class="form-group">
+          <label>Email or mobile phone number</label>
+          <input 
+            type="text" 
+            [(ngModel)]="credentials.email"
+            name="email"
+            placeholder="Enter email or phone">
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label>Password</label>
+          <div class="password-wrapper">
+            <input 
+              [type]="showPassword ? 'text' : 'password'" 
+              [(ngModel)]="credentials.password"
+              name="password"
+              placeholder="Enter password">
+          </div>
+          <a class="forgot-link" (click)="forgotPassword()">Forgot password?</a>
+        </div>
+
+        <!-- Login Button -->
+        <button type="submit" class="login-btn">
+          Continue
+        </button>
+
+      </form>
+
+      <!-- Terms -->
+      <p class="terms">
+        By continuing, you agree to ShopEasy's 
+        <a href="#">Terms of Use</a> and 
+        <a href="#">Privacy Notice</a>
+      </p>
+
+      <!-- Help -->
+      <div class="help-section">
+        <a (click)="needHelp()">Need help?</a>
+      </div>
+
+    </div>
+
+    <!-- New to ShopEasy -->
+    <div class="new-customer">
+      <div class="divider">
+        <span>New to ShopEasy?</span>
+      </div>
+      <button class="create-btn" (click)="signUp()">
+        Create your ShopEasy account
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Footer Links -->
+  <div class="login-footer">
+    <div class="footer-links">
+      <a href="#">Terms of Use</a>
+      <a href="#">Privacy Notice</a>
+      <a href="#">Help</a>
+    </div>
+    <p>© 2026 ShopEasy, Inc. or its affiliates</p>
+  </div>
+
+</div>

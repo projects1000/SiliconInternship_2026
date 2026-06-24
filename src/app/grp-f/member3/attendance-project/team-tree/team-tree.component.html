@@ -1,5 +1,21 @@
 <div class="sidebar">
 
+  <h2>Groups</h2>
+
+  <div class="group-list">
+
+    <div
+      *ngFor="let group of groups"
+      class="group-item"
+      [class.active]="selectedGroup === group"
+      (click)="selectGroup(group)">
+
+      {{group}}
+
+    </div>
+
+  </div>
+
   <h2>Students</h2>
 
   <div class="student-count">
