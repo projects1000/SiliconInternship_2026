@@ -14,11 +14,7 @@ export class Member3Component {
     this.router.navigate(['grp-f']);
   }
 
-    goToAttendance() {
-    this.router.navigate([
-      '/grp-f/member3/attendance-project'
-    ]);
-  }
+   
 
   goToWhatsappChat() {
     this.router.navigate([

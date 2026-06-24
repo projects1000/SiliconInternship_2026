@@ -7,8 +7,6 @@ import { ChatService, Message } from '../chat-service/chat.service';
 
 @Component({
   selector: 'app-student-a',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './student-a.component.html',
   styleUrls: ['./student-a.component.css']
 })

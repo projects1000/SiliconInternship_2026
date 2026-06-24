@@ -10,7 +10,7 @@ import { Member2Component } from './member2/member2.component';
 import { Member3Component } from './member3/member3.component';
 import { Member4Component } from './member4/member4.component';
 import { Member4AttendanceComponent} from './member4/attendance/attendance.component';
-import{BillingComponent} from './member4/billing/billing.component';
+import {BillingComponent as Mem4BillingComponent} from './member4/billing/billing.component';
 
 import{NotificationComponent} from './member4/notification/notification.component';
 import{ProductListComponent} from './member4/product-list/product-list.component';
@@ -42,7 +42,14 @@ import { StudentAComponent } from './member4/student-a/student-a.component';
 import { StudentBComponent } from './member4/student-b/student-b.component';
 import { ChatWindowComponent } from './member4/chat-window/chat-window.component';
 
-
+import { Member10ChatAppComponent } from './member10/member10-chatapp/member10-chatapp.component';
+import { Member2AttendanceComponent } from './member2/member2-attendance/member2-attendance.component';
+import { AttendanceHistoryComponent } from './member2/attendance-history/attendance-history.component';
+import { ProductDashboardComponent} from './member2/product-management/product-dashboard/product-dashboard.component';
+import { WhatsappChatDashboardComponent } from './member2/whatsapp-chat/whatsapp-chat-dashboard/whatsapp-chat-dashboard.component';
+import { Member5AttendanceComponent } from '../grp-b/member5/attendance/attendance.component';
+import { Member7AttendanceComponent } from '../grp-c/member7/member7-attendance/member7-attendance.component';
+import { ChatComponent } from './member7/chat/chat.component';
 
 
 const routes: Routes = [

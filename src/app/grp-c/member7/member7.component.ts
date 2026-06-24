@@ -16,6 +16,8 @@ interface TeamNavigationItem {
   members: string[];
 }
 
+
+
 @Component({
   selector: 'app-member7',
   templateUrl: './member7.component.html',

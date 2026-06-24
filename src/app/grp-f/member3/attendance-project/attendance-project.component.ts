@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { AttendanceTableComponent } from './attendance-table/attendance-table.component';
-import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-attendance-project',
@@ -66,4 +66,4 @@ addMember() {
 }
 }
 
-}
+

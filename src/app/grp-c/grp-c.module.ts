@@ -66,7 +66,7 @@ import { Member4chatsystemComponent } from './member4/member4chatsystem/member4c
 import { SenderOneComponent } from './member4/member4chatsystem/sender-one/sender-one.component';
 import { SenderTwoComponent } from './member4/member4chatsystem/sender-two/sender-two.component';
 
-
+import { Member7AttendanceComponent } from './member7/member7-attendance/member7-attendance.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +117,7 @@ Member9ChatWindowComponent,
     Member4chatsystemComponent,
     SenderOneComponent,
     SenderTwoComponent,
+    Member7AttendanceComponent
 ],
   imports: [
     CommonModule,

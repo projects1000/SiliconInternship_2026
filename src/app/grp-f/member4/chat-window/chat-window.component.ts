@@ -9,13 +9,6 @@ import { StudentBComponent } from '../student-b/student-b.component';
 
 @Component({
   selector: 'app-chat-window',
-  standalone: true,
-  imports: [
-    CommonModule, 
-    FormsModule,
-    StudentAComponent,
-    StudentBComponent
-  ],
   templateUrl: './chat-window.component.html',
   styleUrls: ['./chat-window.component.css']
 })
