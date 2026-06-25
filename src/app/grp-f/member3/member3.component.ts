@@ -7,9 +7,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./member3.component.css']
 })
 export class Member3Component {
- constructor(private router: Router) {}
+
+  constructor(private router: Router) {}
 
   goBackToGroup() {
     this.router.navigate(['grp-f']);
   }
+
+    goToAttendance() {
+    this.router.navigate([
+      '/grp-f/member3/attendance-project'
+    ]);
+  }
+
+  goToWhatsappChat() {
+    this.router.navigate([
+      '/grp-f/member3/whatsapp-chat'
+    ]);
+  }
+
+  goToBillingSystem() {
+    this.router.navigate([
+      '/grp-f/member3/billing-system'
+    ]);
+  }
+ goToAttendance() {
+  console.log('Button clicked');
+  this.router.navigate(['/grp-f/member3/attendance-project']);
+}
+
 }

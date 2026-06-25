@@ -1,0 +1,57 @@
+<div class="chat-users">
+
+  <app-member5-gents></app-member5-gents>
+
+  <app-member5-mayur></app-member5-mayur>
+
+</div>
+
+<div class="chat-history-container">
+
+  <h2 class="chat-title">
+    WhatsApp Chat History
+  </h2>
+
+  <div
+    class="message-box"
+    *ngFor="let msg of messages">
+
+    <div class="message-content">
+
+      <span class="sender">
+        {{ msg.sender }}
+      </span>
+
+      <span class="text">
+        {{ msg.text }}
+      </span>
+
+    </div>
+
+    <small class="time">
+      {{ msg.timestamp | date:'hh:mm a' }}
+    </small>
+
+  </div>
+
+  <div class="chat-footer">
+
+    <div class="stats">
+      Total Messages : {{ totalMessages }}
+    </div>
+
+    <div class="stats">
+      Last Message : {{ lastMessage }}
+    </div>
+
+    <button
+      class="clear-btn"
+      (click)="clearChat()">
+
+      Clear Chat
+
+    </button>
+
+  </div>
+
+</div>

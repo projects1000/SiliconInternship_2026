@@ -1,0 +1,57 @@
+<div class="products-page">
+
+  <div class="category-header">
+    <h2>Products Menu</h2>
+    <p>Select a category to view items</p>
+  </div>
+
+  <div class="options" [style.border-color]="getCategoryColor()"  [style.box-shadow]="'0 0 20px ' + getCategoryColor() + '40'">
+
+    <button (click)="activepage='Coffee'" [class.active]="activepage==='Coffee'">
+      ☕ Coffee
+    </button>
+
+    <button (click)="activepage='Drinks'" [class.active]="activepage==='Drinks'">
+      🥤 Drinks
+    </button>
+
+    <button (click)="activepage='Pizza'" [class.active]="activepage==='Pizza'">
+      🍕 Pizza
+    </button>
+
+    <button (click)="activepage='Burger'" [class.active]="activepage==='Burger'">
+      🍔 Burger
+    </button>
+
+    <button (click)="activepage='Fries'" [class.active]="activepage==='Fries'">
+      🍟 Fries
+    </button>
+
+    <button (click)="activepage='Sandwich'" [class.active]="activepage==='Sandwich'">
+      🥪 Sandwich
+    </button>
+
+    <button (click)="activepage='Pasta'" [class.active]="activepage==='Pasta'">
+      🍝 Pasta
+    </button>
+
+    <button (click)="activepage='Cake'" [class.active]="activepage==='Cake'">
+      🍰 Cake
+    </button>
+
+  </div>
+
+  <div class="menus">
+
+    <app-coffee *ngIf="activepage==='Coffee'"></app-coffee>
+    <app-drinks *ngIf="activepage==='Drinks'"></app-drinks>
+    <app-pizza *ngIf="activepage==='Pizza'"></app-pizza>
+    <app-burger *ngIf="activepage==='Burger'"></app-burger>
+    <app-fries *ngIf="activepage==='Fries'"></app-fries>
+    <app-sandwich *ngIf="activepage==='Sandwich'"></app-sandwich>
+    <app-pasta *ngIf="activepage==='Pasta'"></app-pasta>
+    <app-cake *ngIf="activepage==='Cake'"></app-cake>
+
+  </div>
+
+</div>

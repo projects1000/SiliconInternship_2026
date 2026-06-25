@@ -1,0 +1,242 @@
+<div
+
+class="chat-container"
+
+[ngClass]="[
+selectedTheme,
+isDarkMode ? 'dark-mode' : 'light-mode'
+]">
+
+    <div class="chat-toolbar">
+        
+      <div class="theme-selector">
+
+<button
+(click)="changeTheme('green')">
+
+🟢
+
+</button>
+
+<button
+(click)="changeTheme('orange')">
+
+🟠
+
+</button>
+
+<button
+(click)="changeTheme('pink')">
+
+🌸
+
+</button>
+
+<button
+(click)="changeTheme('purple')">
+
+🟣
+
+</button>
+
+<button
+(click)="changeTheme('blue')">
+
+🔵
+
+</button>
+
+</div>
+<button
+
+class="mode-btn"
+
+(click)="toggleMode()">
+
+{{ isDarkMode ? '☀️' : '🌙' }}
+
+</button>
+
+
+       <div>
+
+  <span class="online-dot"></span>
+
+  WhatsApp Chat
+
+</div>
+        <button
+            class="clear-btn"
+            (click)="clearChat()">
+
+            Clear Chat
+
+        </button>
+
+    </div>
+
+    <div class="chat-body"    #chatBody>
+
+        <div
+
+           *ngFor="let msg of messages;
+           let i=index"
+
+            class="message"
+
+            [ngClass]="{
+
+              'left': msg.userType === 'A',
+
+              'right': msg.userType === 'B'
+
+            }">
+
+            <!-- USER A AVATAR -->
+
+            <img
+
+                *ngIf="msg.userType === 'A'"
+
+                src="assets/Member-2(group-f)/chat/user-a.jpg"
+
+                class="avatar"
+
+                alt="User A avatar">
+
+            <div class="bubble">
+
+                <h5>
+
+                    {{ msg.sender }}
+
+                </h5>
+
+                <!-- TEXT MESSAGE -->
+                <p *ngIf="editingIndex !== i && (!msg.type || msg.type === 'text')">
+                    {{ msg.text }}
+                </p>
+
+                <!-- IMAGE -->
+                <img
+                    *ngIf="msg.type === 'image'"
+                    [src]="msg.content"
+                    class="chat-image"
+                    alt="Shared image">
+
+                <!-- VIDEO -->
+                <video
+                    *ngIf="msg.type === 'video'"
+                    controls
+                    class="chat-video">
+                    <source [src]="msg.content">
+                    Your browser does not support the video tag.
+                </video>
+
+                <!-- AUDIO -->
+                <audio
+                    *ngIf="msg.type === 'audio'"
+                    controls
+                    class="chat-audio">
+                    <source [src]="msg.content" type="audio/mpeg">
+                    Your browser does not support audio playback.
+                </audio>
+
+                <!-- DOCUMENT -->
+                <div *ngIf="msg.type === 'file'" class="file-card">
+                    <strong>Document</strong>
+                    <p>{{ msg.fileName }}</p>
+                    <a *ngIf="msg.content" [href]="msg.content" [attr.download]="msg.fileName" target="_blank">Download</a>
+                </div>
+<input
+
+*ngIf="editingIndex === i"
+
+[(ngModel)]="editedText">
+<button
+
+*ngIf="editingIndex === i"
+
+class="save-btn"
+
+(click)="saveEdit()">
+
+Save
+
+</button>
+
+                <div class="meta">
+
+                    {{ msg.time | date:'hh:mm a' }}
+
+                    <span class="tick">
+
+                        ✔✔
+
+                    </span>
+
+                </div>
+                <div class="action-buttons">
+
+<button
+
+class="delete-btn"
+
+(click)="deleteMessage(i)">
+
+🗑
+
+</button>
+<button
+
+class="edit-btn"
+
+(click)="
+
+editMessage(
+
+i,
+
+msg.text
+
+)
+
+">
+
+✏️
+
+</button>
+</div>
+
+            </div>
+
+            <!-- USER B AVATAR -->
+
+            <img
+
+                *ngIf="msg.userType === 'B'"
+
+                src="assets/Member-2(group-f)/chat/user-b.jpg"
+
+                class="avatar"
+
+                alt="User B avatar">
+
+        </div>
+
+    </div>
+    <div
+  class="typing-indicator"
+  *ngIf="typingUser">
+
+  ✍ {{ typingUser }} is typing...
+
+</div>
+    <div class="chat-footer">
+
+        Total Messages:
+        {{ messages.length }}
+
+    </div>
+
+</div>

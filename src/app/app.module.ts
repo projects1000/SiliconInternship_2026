@@ -10,7 +10,16 @@ import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
+ nirmit-member9-update
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { FormsModule } from '@angular/forms';
+import { WhatsappChatComponent } from './member3/whatsapp-chat/whatsapp-chat.component';
+import { UserAComponent } from './member3/user-a/user-a.component';
+import { ChatWindowComponent } from './member3/chat-window/chat-window.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ReactiveFormsModule } from '@angular/forms';
+ main
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -28,7 +37,10 @@ import { MatDividerModule } from '@angular/material/divider';
 import { CommonModule } from '@angular/common';
 import { GrpFRoutingModule } from './grp-f/grp-f-routing.module';
 
+
+
 @NgModule({
+ nirmit-member9-update
   declarations: [
     AppComponent,
     NavBarComponent,
@@ -39,14 +51,39 @@ import { GrpFRoutingModule } from './grp-f/grp-f-routing.module';
     BrowserModule,
     AppRoutingModule,
 
+
+
+
+  declarations: [
+    AppComponent,
+    NavBarComponent,
+    HomeComponent,
+    WhatsappChatComponent,
+    UserAComponent,
+    ChatWindowComponent,
+
+   
+    
+
+
+ ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+ main
     FormsModule,
+    MatSnackBarModule,
     ReactiveFormsModule,
+ nirmit-member9-update
 
     CommonModule,
     GrpFRoutingModule,
 
     BrowserAnimationsModule,
 
+
+ main
     ToastrModule.forRoot({
       timeOut: 3500,
       positionClass: 'toast-top-right',

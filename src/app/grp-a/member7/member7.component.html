@@ -46,9 +46,17 @@
         </div>
 
         <div class="portfolio-actions">
-          <button (click)="goToAttendance()" class="attendance-btn">
+          <button (click)="goToAttendance()" class="attendance-btn" id="btn-attendance">
             <span class="material-icons-round">assignment_turned_in</span>
             Attendance Management System
+          </button>
+          <button (click)="goToProductManagement()" class="product-btn" id="btn-product-management">
+            <span class="material-icons-round">shopping_cart</span>
+            Product Management System
+          </button>
+          <button (click)="goToObservableChat()" class="chat-btn" id="btn-observable-chat">
+            <span class="material-icons-round">forum</span>
+            Observable Chat App
           </button>
         </div>
       </div>

@@ -1,0 +1,20 @@
+<div style="background: red; color: white; padding: 10px;">
+  Total Products Loaded: {{ products.length }}
+</div>
+<div class="plant-grid"> ... </div>
+
+
+<div class="plant-grid">
+  <mat-card *ngFor="let plant of products" class="plant-card">
+    <img mat-card-image [src]="plant.image" alt="Plant">
+    <mat-card-content>
+      <h3>{{ plant.name }}</h3>
+      <p>{{ plant.price | currency:'INR' }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="addToCart(plant)">
+        Add to Build
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

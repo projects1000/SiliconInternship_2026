@@ -19,7 +19,7 @@ interface AttendanceRecord {
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.css'],
 })
- export class AttendanceComponent implements OnInit {
+ export class AttendanceComponent   implements OnInit {
   rawCsvData = [
     { team: 'Team A', name: 'Soyngsruti Jena' },
     { team: 'Team A', name: 'Swagat Das' },

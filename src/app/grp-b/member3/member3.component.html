@@ -1,5 +1,14 @@
 <div class="member-page">
 
+  <button
+    mat-stroked-button
+    class="profile-back-btn"
+    (click)="goBackToGroup()"
+    aria-label="Back to Group B">
+    <mat-icon>arrow_back</mat-icon>
+    Back to Group B
+  </button>
+
   <div class="bg-orb orb-1"></div>
   <div class="bg-orb orb-2"></div>
   <div class="bg-orb orb-3"></div>
@@ -88,6 +97,11 @@
       <button mat-raised-button class="attendance-btn" (click)="goToAttendance()">
         <mat-icon>fact_check</mat-icon>
         Attendance Dashboard
+      </button>
+
+      <button mat-raised-button class="product-mgmt-btn" (click)="goToProductManagement()">
+        <mat-icon>storefront</mat-icon>
+        Product Management
       </button>
 
       <button mat-stroked-button class="back-btn" (click)="goBackToGroup()">

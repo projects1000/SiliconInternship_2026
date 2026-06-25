@@ -12,4 +12,10 @@ export class Member5Component {
   goBackToGroup() {
     this.router.navigate(['grp-f']);
   }
+  openMember5Chat() {
+
+  this.router.navigate([
+    'grp-f/member5/member5-chat-window'
+  ]);
+}
 }

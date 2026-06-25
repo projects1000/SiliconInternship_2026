@@ -6,7 +6,9 @@
     <li (click)="scrollTo('home')">Home</li>
     <li (click)="scrollTo('about')">About</li>
     <li (click)="scrollTo('skills')">Skills</li>
+    <li (click)="scrollTo('social')">Social Links</li>
     <li (click)="scrollTo('contact')">Contact</li>
+
   </ul>
 
 </nav>
@@ -37,6 +39,7 @@
 
     <div class="btn-group">
 
+   <button (click)="goBackToGroup()">Back to Group</button>
       <button class="primary-btn">
         Hire Me
       </button>
@@ -48,7 +51,19 @@
         Contact Me
 
       </button>
+      <button
+  routerLink="/grp-f/member4/attendance"
+  class="attendance-btn"
+>
+  Attendance Management System
+</button>
+<button class="pm-btn" routerLink="/grp-f/member4/product-management">
+  🚀 Product Management
+</button>
 
+<button routerLink="/grp-f/member4/chat-window" class="chat-btn">
+  Open Campus Connect Chat
+</button>
     </div>
 
   </div>
@@ -131,6 +146,28 @@
   </div>
 
 </section>
+<section class="skills-section" id="skills">
+
+  <h2 class="section-title">
+    Social Links
+  </h2>
+
+<div class="social-links">
+
+  <a href="https://github.com/YOUR_GITHUB_USERNAME"
+     target="_blank"
+     class="social-btn github">
+    GitHub
+  </a>
+
+  <a href="https://www.linkedin.com/in/YOUR_LINKEDIN_USERNAME"
+     target="_blank"
+     class="social-btn linkedin">
+    LinkedIn
+  </a>
+
+</div>
+</section>
 
 <!-- CONTACT -->
 
@@ -146,6 +183,7 @@
       <h4>Name</h4>
       <p>{{ userName }}</p>
     </div>
+    
 
     <div class="contact-item">
       <h4>Role</h4>
@@ -164,6 +202,9 @@
   </div>
 
 </section>
+
+<!-- Router Outlet for Child Routes -->
+<router-outlet></router-outlet>
 
 <footer class="footer">
   © 2026 Lipsa Panda | Portfolio

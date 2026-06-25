@@ -1,0 +1,329 @@
+<div class="history-container">
+
+  <!-- Header -->
+  <h1 class="main-title">Attendance Management System</h1>
+
+  <!-- Tab Navigation -->
+  <div class="tab-navigation">
+    <button 
+      [class.active]="activeTab === 'student'" 
+      (click)="activeTab = 'student'"
+      class="tab-button">
+      <span class="tab-label">Student Attendance</span>
+    </button>
+    <button 
+      [class.active]="activeTab === 'group'" 
+      (click)="activeTab = 'group'"
+      class="tab-button">
+      <span class="tab-label">Group Attendance</span>
+    </button>
+    <button 
+      [class.active]="activeTab === 'report'" 
+      (click)="activeTab = 'report'"
+      class="tab-button">
+      <span class="tab-label">Reports</span>
+    </button>
+  </div>
+
+  <!-- Section 1: Student-Wise Attendance History -->
+  <div *ngIf="activeTab === 'student'" class="section">
+    <h2 class="section-title">Student Attendance History</h2>
+    
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Search by student name..."
+        [(ngModel)]="memberSearch"
+        (input)="filterByMember()"
+        name="memberSearch"
+        class="search-input">
+    </div>
+
+    <div class="history-cards">
+      <div
+        class="history-card"
+        *ngFor="let record of filteredHistory">
+
+        <h3 class="card-date">{{ record.date }}</h3>
+
+        <div class="history-section">
+          <h4 class="present-title">Present ({{ record.present.length }})</h4>
+          <ul *ngIf="record.present.length > 0">
+            <li *ngFor="let student of record.present" class="present-item">
+              <span class="status-dot present"></span>
+              {{ student.name }}
+            </li>
+          </ul>
+          <p *ngIf="record.present.length === 0" class="empty-message">No students present</p>
+        </div>
+
+        <div class="history-section">
+          <h4 class="absent-title">Absent ({{ record.absent.length }})</h4>
+          <ul *ngIf="record.absent.length > 0">
+            <li *ngFor="let student of record.absent" class="absent-item">
+              <span class="status-dot absent"></span>
+              {{ student.name }}
+            </li>
+          </ul>
+          <p *ngIf="record.absent.length === 0" class="empty-message">No students absent</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Student Summary Report -->
+    <div class="summary-section">
+      <h3>Student Summary</h3>
+      <div class="student-report">
+        <div *ngFor="let item of (studentReport | keyvalue)" class="student-card">
+          <div class="student-name">{{ item.key }}</div>
+          <div class="student-stats">
+            <div class="stat-row">
+              <span class="stat-label">Present</span>
+              <span class="stat-value">{{ item.value.present }}</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Absent</span>
+              <span class="stat-value">{{ item.value.absent }}</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Total Days</span>
+              <span class="stat-value">{{ item.value.totalDays }}</span>
+            </div>
+            <div class="stat-row attendance-percentage">
+              <span class="stat-label">Attendance</span>
+              <span class="stat-value">{{ item.value.percentage }}%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Group-Wise Attendance History -->
+  <div *ngIf="activeTab === 'group'" class="section">
+    <h2 class="section-title">Group Attendance History</h2>
+
+    <!-- Group Selection -->
+    <div class="group-selector-container">
+      <label for="groupSelect" class="group-selector-label">Select Group:</label>
+      <select 
+        id="groupSelect"
+        [(ngModel)]="selectedGroup" 
+        (change)="onGroupChange()"
+        class="group-select">
+        <option *ngFor="let group of availableGroups" [value]="group">
+          Group {{ group }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Group Summary Stats -->
+    <div class="group-summary">
+      <div class="stat-card present">
+        <h3>Present</h3>
+        <p class="stat-value">{{ groupReport.present }}</p>
+      </div>
+      <div class="stat-card absent">
+        <h3>Absent</h3>
+        <p class="stat-value">{{ groupReport.absent }}</p>
+      </div>
+      <div class="stat-card days">
+        <h3>Total Days</h3>
+        <p class="stat-value">{{ groupReport.totalDays }}</p>
+      </div>
+      <div class="stat-card percentage-present">
+        <h3>Attendance Rate</h3>
+        <p class="stat-value">{{ groupReport.presentPercentage }}%</p>
+      </div>
+    </div>
+
+    <!-- Group Attendance Records -->
+    <div class="group-records">
+      <h3>Daily Group Attendance</h3>
+      <div
+        class="group-card"
+        *ngFor="let record of groupAttendanceHistory">
+
+        <div class="group-card-header">
+          <span class="date">{{ record.date }}</span>
+          <span class="stats">
+            <span class="present-count">Present: {{ record.present.length }}</span>
+            <span class="absent-count">Absent: {{ record.absent.length }}</span>
+          </span>
+        </div>
+
+        <div class="group-card-body">
+          <div class="column">
+            <h4 class="present-title">Present</h4>
+            <ul>
+              <li *ngFor="let student of record.present" class="present-item">
+                <span class="status-dot present"></span>
+                {{ student.name }}
+              </li>
+            </ul>
+          </div>
+
+          <div class="column">
+            <h4 class="absent-title">Absent</h4>
+            <ul>
+              <li *ngFor="let student of record.absent" class="absent-item">
+                <span class="status-dot absent"></span>
+                {{ student.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Attendance Reports -->
+  <div *ngIf="activeTab === 'report'" class="section">
+    <h2 class="section-title">Attendance Reports</h2>
+
+    <!-- Report Type Selection -->
+    <div class="report-controls">
+      <div class="report-type-selector">
+        <button 
+          [class.active]="reportType === 'yearly'" 
+          (click)="reportType = 'yearly'"
+          class="report-btn">
+          Yearly
+        </button>
+        <button 
+          [class.active]="reportType === 'monthly'" 
+          (click)="reportType = 'monthly'"
+          class="report-btn">
+          Monthly
+        </button>
+        <button 
+          [class.active]="reportType === 'weekly'" 
+          (click)="reportType = 'weekly'"
+          class="report-btn">
+          Weekly
+        </button>
+      </div>
+
+      <div class="export-buttons">
+        <button (click)="exportToCSV()" class="export-btn csv-btn">
+          Export to CSV
+        </button>
+        <button (click)="downloadPDF()" class="export-btn pdf-btn">
+          Download PDF
+        </button>
+      </div>
+    </div>
+
+    <!-- Yearly Report -->
+    <div *ngIf="reportType === 'yearly'" class="report-content">
+      <h3>Yearly Attendance Report</h3>
+      <div class="report-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Present</th>
+              <th>Absent</th>
+              <th>Total</th>
+              <th>Attendance %</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of yearlyReport" class="report-row">
+              <td>{{ item.year }}</td>
+              <td class="present-stat">{{ item.present }}</td>
+              <td class="absent-stat">{{ item.absent }}</td>
+              <td>{{ item.present + item.absent }}</td>
+              <td class="percentage-stat">{{ item.percentage }}%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Monthly Report -->
+    <div *ngIf="reportType === 'monthly'" class="report-content">
+      <h3>Monthly Attendance Report</h3>
+      <div class="report-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Present</th>
+              <th>Absent</th>
+              <th>Total</th>
+              <th>Attendance %</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of monthlyReport" class="report-row">
+              <td>{{ item.month }}</td>
+              <td class="present-stat">{{ item.present }}</td>
+              <td class="absent-stat">{{ item.absent }}</td>
+              <td>{{ item.present + item.absent }}</td>
+              <td class="percentage-stat">{{ item.percentage }}%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Weekly Report -->
+    <div *ngIf="reportType === 'weekly'" class="report-content">
+      <h3>Weekly Attendance Report</h3>
+      <div class="report-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Week Starting</th>
+              <th>Present</th>
+              <th>Absent</th>
+              <th>Total</th>
+              <th>Attendance %</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of weeklyReport" class="report-row">
+              <td>{{ item.weekStart }}</td>
+              <td class="present-stat">{{ item.present }}</td>
+              <td class="absent-stat">{{ item.absent }}</td>
+              <td>{{ item.present + item.absent }}</td>
+              <td class="percentage-stat">{{ item.percentage }}%</td>
+            </tr>
+            <tr *ngFor="let item of weeklyReport" class="member-row" >
+              <td colspan="5" class="member-details-cell">
+                <div *ngIf="item.members && item.members.length" class="member-weekly">
+                  <h4>Member-wise (Group {{ selectedGroup }})</h4>
+                  <table class="inner-table">
+                    <thead>
+                      <tr>
+                        <th>Member</th>
+                        <th>Present</th>
+                        <th>Absent</th>
+                        <th>Total</th>
+                        <th>Attendance %</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let m of item.members">
+                        <td>{{ m.name }}</td>
+                        <td class="present-stat">{{ m.present }}</td>
+                        <td class="absent-stat">{{ m.absent }}</td>
+                        <td>{{ m.total }}</td>
+                        <td class="percentage-stat">{{ m.percentage }}%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>

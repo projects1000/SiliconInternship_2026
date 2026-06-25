@@ -1,0 +1,156 @@
+.activity-panel {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+}
+
+.activity-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.activity-panel__header h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.activity-panel__header span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #64748b;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #f1f5f9;
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.activity-placeholder {
+  padding: 20px 16px;
+  border-radius: 14px;
+  border: 1px dashed #e2e8f0;
+  background: #f8fafc;
+  text-align: center;
+}
+
+.activity-placeholder mat-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+
+.activity-placeholder strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+  color: #0f172a;
+}
+
+.activity-placeholder p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+.activity-grid--live {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.activity-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  animation: fadeSlide 0.28s ease;
+}
+
+.activity-card__icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.activity-card__icon mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.activity-card__content strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: #0f172a;
+}
+
+.activity-card__content span {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.activity-card--product {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.activity-card--product .activity-card__icon {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.activity-card--customer {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.activity-card--customer .activity-card__icon {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.activity-card--bill {
+  background: #f5f3ff;
+  border-color: #ddd6fe;
+}
+
+.activity-card--bill .activity-card__icon {
+  background: #ede9fe;
+  color: #7c3aed;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .activity-grid {
+    grid-template-columns: 1fr;
+  }
+}
