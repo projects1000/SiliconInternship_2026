@@ -356,129 +356,49 @@
 
         </div>
 
-        <table
-          mat-table
-          [dataSource]="filteredTableData"
-          class="attendance-table mat-elevation-z2">
-
-          <!-- DELETE -->
-
-          <ng-container matColumnDef="actions">
-
-            <th
-              mat-header-cell
-              *matHeaderCellDef>
-
-              Delete
-
-            </th>
-
-            <td
-              mat-cell
-              *matCellDef="let row">
-
-              <button
-                mat-icon-button
-                color="warn"
-                [disabled]="isLocked"
-                (click)="deleteMember(row.memberId)">
-
-                <mat-icon>
-                  delete
-                </mat-icon>
-
-              </button>
-
-            </td>
-
-          </ng-container>
-
-          <!-- NAME -->
-
-          <ng-container matColumnDef="memberName">
-
-            <th
-              mat-header-cell
-              *matHeaderCellDef>
-
-              Member Details
-
-            </th>
-
-            <td
-              mat-cell
-              *matCellDef="let row">
-
-              <div class="member-info">
-
-                <strong>
-                  {{ row.memberName }}
-                </strong>
-
-                <small>
-                  {{ row.teamName }}
-                </small>
-
-              </div>
-
-            </td>
-
-          </ng-container>
-
-          <!-- DATES -->
-
-          <ng-container
-            *ngFor="let dateStr of dates"
-            [matColumnDef]="dateStr">
-
-            <th
-              mat-header-cell
-              *matHeaderCellDef>
-
-              {{ dateStr | date:'MMM d' }}
-
-            </th>
-
-            <td
-              mat-cell
-              *matCellDef="let row">
-
-              <div class="attendance-cell">
-
-                <mat-checkbox
-
-                  [checked]="isRowChecked(row,dateStr)"
-
-                  [disabled]="!isDateEditable(dateStr)"
-
-                  (change)="onCheckboxToggle(row,dateStr,$event.checked)">
-
-                </mat-checkbox>
-
-                <mat-icon
-                  *ngIf="row.attendance[dateStr]"
-                  class="tick">
-
-                  check_circle
-
-                </mat-icon>
-
-              </div>
-
-            </td>
-
-          </ng-container>
-
-          <tr
-            mat-header-row
-            *matHeaderRowDef="displayedColumns">
-          </tr>
-
-          <tr
-            mat-row
-            *matRowDef="let row; columns: displayedColumns;">
-          </tr>
-
+        <table class="attendance-table mat-elevation-z2">
+          <thead>
+            <tr>
+              <th>Delete</th>
+              <th>Member Details</th>
+              <th *ngFor="let dateStr of dates">
+                {{ dateStr | date:'MMM d' }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of filteredTableData">
+              <td>
+                <button
+                  mat-icon-button
+                  color="warn"
+                  [disabled]="isLocked"
+                  (click)="deleteMember(row.memberId)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+              <td>
+                <div class="member-info">
+                  <strong>{{ row.memberName }}</strong>
+                  <small>{{ row.teamName }}</small>
+                </div>
+              </td>
+              <td *ngFor="let dateStr of dates">
+                <div class="attendance-cell">
+                  <mat-checkbox
+                    [checked]="isRowChecked(row,dateStr)"
+                    [disabled]="!isDateEditable(dateStr)"
+                    (change)="onCheckboxToggle(row,dateStr,$event.checked)">
+                  </mat-checkbox>
+                  <mat-icon
+                    *ngIf="row.attendance[dateStr]"
+                    class="tick">
+                    check_circle
+                  </mat-icon>
+                </div>
+              </td>
+            </tr>
+          </tbody>
         </table>
 
         <div
