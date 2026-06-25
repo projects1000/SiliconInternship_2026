@@ -1,0 +1,243 @@
+/* ============================================================
+   bill-summary.component.css
+   Bill panel gaming styles
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
+
+.bill-panel {
+  background: rgba(15, 15, 35, 0.7);
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  border-radius: 16px;
+  padding: 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #a78bfa;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+  letter-spacing: 0.5px;
+}
+
+.panel-header svg {
+  color: #7c3aed;
+}
+
+.input-badge {
+  margin-left: auto;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.65rem;
+  background: rgba(124, 58, 237, 0.15);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  color: #7c3aed;
+  padding: 3px 8px;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 10px;
+  padding: 40px 20px;
+  color: rgba(167, 139, 250, 0.4);
+}
+
+.empty-state p {
+  margin: 0;
+  font-family: 'Fira Sans', sans-serif;
+  color: #a78bfa;
+  font-size: 0.9rem;
+}
+
+.empty-state span {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.72rem;
+}
+
+/* Products List */
+.products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 280px;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: #7c3aed transparent;
+}
+
+.products-list::-webkit-scrollbar {
+  width: 4px;
+}
+.products-list::-webkit-scrollbar-thumb {
+  background: #7c3aed;
+  border-radius: 4px;
+}
+
+.product-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(124, 58, 237, 0.07);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  border-radius: 10px;
+  padding: 10px 12px;
+  gap: 10px;
+}
+
+.row-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.row-img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(15, 15, 35, 0.5);
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.row-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.row-name {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.row-cat {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.65rem;
+  color: #7c3aed;
+  margin-top: 2px;
+}
+
+.row-price {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #a78bfa;
+  white-space: nowrap;
+}
+
+/* Totals */
+.totals-section {
+  background: rgba(124, 58, 237, 0.06);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  padding: 6px 0;
+}
+
+.gst-row {
+  color: rgba(167, 139, 250, 0.7);
+}
+
+.divider {
+  height: 1px;
+  background: rgba(124, 58, 237, 0.2);
+  margin: 8px 0;
+}
+
+.grand-total-row {
+  color: #e2e8f0;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.grand-total-value {
+  font-family: 'Fira Code', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #a78bfa;
+  text-shadow: 0 0 12px rgba(167, 139, 250, 0.5);
+}
+
+/* Customer Section */
+.customer-section {
+  margin-bottom: 12px;
+}
+
+.customer-info-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.7rem;
+  color: #7c3aed;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 10px 0 8px;
+}
+
+.cust-detail {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  padding: 3px 0;
+}
+
+.cust-detail span {
+  color: #a78bfa;
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+/* Bill Stamp */
+.bill-stamp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, rgba(34,197,94,0.15), rgba(34,197,94,0.08));
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #22c55e;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  padding: 12px;
+  border-radius: 12px;
+  margin-top: auto;
+  text-transform: uppercase;
+}

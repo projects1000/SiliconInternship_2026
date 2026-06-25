@@ -1,0 +1,93 @@
+<div class="bill-box" id="print-section">
+
+  <!-- Invoice Header -->
+  <div class="invoice-header">
+    <h1>🛒 Grocery Store Invoice</h1>
+    <p><strong>Invoice ID:</strong> {{ invoiceId }}</p>
+    <p><strong>Billing Date:</strong> {{ today | date:'medium' }}</p>
+
+    <div class="store-info">
+      <p>Grocery Store, Bhubaneswar, Odisha</p>
+      <p>Phone: 9876543210 | Email: grocerystore@gmail.com</p>
+    </div>
+  </div>
+
+  <h2>🧾 Bill Details</h2>
+
+  <!-- Customer Section -->
+  <div class="customer-info" *ngIf="customer && customer.name">
+    <h3>Customer Information</h3>
+    <p><strong>Name:</strong> {{ customer.name }}</p>
+    <p><strong>Phone:</strong> {{ customer.phone }}</p>
+    <p><strong>Email:</strong> {{ customer.email }}</p>
+    <p><strong>Address:</strong> {{ customer.address }}</p>
+  </div>
+
+  <div class="empty-card" *ngIf="!customer || !customer.name">
+    <h3>No Customer Saved</h3>
+    <p>Please fill the customer form and click <strong>Save Customer</strong>.</p>
+  </div>
+
+  <!-- Products Section -->
+  <div class="products-section">
+    <h3>Selected Products</h3>
+
+    <table *ngIf="products.length > 0">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price (₹)</th>
+          <th>Quantity</th>
+          <th>Subtotal (₹)</th>
+          <th class="no-print">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of products">
+          <td>{{ item.name }}</td>
+          <td>₹{{ item.price }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>₹{{ item.subtotal }}</td>
+          <td class="action-buttons no-print">
+            <button class="qty-btn" (click)="decreaseQty(item)">−</button>
+            <button class="qty-btn" (click)="increaseQty(item)">+</button>
+            <button class="remove-btn" (click)="removeItem(item)">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="products.length === 0" class="empty-msg">
+      No products added yet. Select items from the product section to build the bill.
+    </p>
+  </div>
+
+  <!-- Summary -->
+  <div class="total-section">
+    <div class="summary-info">
+      <p><strong>Total Unique Products:</strong> {{ products.length }}</p>
+      <p><strong>Total Quantity:</strong> {{ getTotalQuantity() }}</p>
+      <p><strong>Subtotal:</strong> ₹{{ total }}</p>
+      <p><strong>GST ({{ gstRate }}%):</strong> ₹{{ getGSTAmount() }}</p>
+
+      <div class="discount-box no-print">
+        <label><strong>Discount (₹):</strong></label>
+        <input type="number" [(ngModel)]="discount" min="0" placeholder="Enter discount">
+      </div>
+
+      <p><strong>Discount:</strong> ₹{{ discount }}</p>
+      <h3>Final Amount: ₹{{ getFinalAmount() }}</h3>
+    </div>
+
+    <div class="bill-buttons no-print">
+      <button class="clear-btn" (click)="clearBill()">Clear Bill</button>
+      <button class="generate-btn" (click)="generateBill()">Generate Bill</button>
+    </div>
+  </div>
+
+  <div class="thank-you">
+    <p>Thank you for shopping with us 💙</p>
+  </div>
+
+</div>

@@ -1,9 +1,203 @@
-<div class="member-page">
+<div class="portfolio-container">
+  <!-- Glowing background blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
 
-  <h1>Member 5</h1>
+  <!-- Main Glass Card -->
+  <div class="glass-card">
+    
+    <!-- Header Area -->
+    <header class="profile-header">
+      <button class="back-btn" (click)="goBackToGroup()">
+        <span class="btn-icon">←</span> Back to Group A
+      </button>
+      
+      <div class="profile-avatar">
+        <span>RM</span>
+      </div>
+      
+      <h1 class="profile-name">Roshan Mishra</h1>
+      <p class="profile-tagline">Frontend Developer & UI/UX Design Specialist</p>
+      <div class="profile-badge">Group A • Member 5</div>
+    </header>
 
-  <button (click)="goBackToGroup()">
-    Go back to Group A
-  </button>
+    <!-- Navigation Tabs -->
+    <nav class="tab-nav">
+      <button class="tab-btn" [class.active]="activeTab === 'about'" (click)="setActiveTab('about')">
+        <span class="tab-icon">👤</span> About Me
+      </button>
+      <button class="tab-btn" [class.active]="activeTab === 'designs'" (click)="setActiveTab('designs')">
+        <span class="tab-icon">✨</span> HTML/CSS Designs
+      </button>
+      <button class="tab-btn" [class.active]="activeTab === 'stats'" (click)="setActiveTab('stats')">
+        <span class="tab-icon">⚡</span> Skills & Stats
+      </button>
+    </nav>
 
+    <!-- Tab Contents -->
+    <main class="tab-content">
+      
+      <!-- ABOUT ME TAB -->
+      <section *ngIf="activeTab === 'about'" class="animate-fade">
+        <div class="info-grid">
+          <div class="grid-card">
+            <h3>Who I Am</h3>
+            <p>I am a passionate frontend developer dedicated to creating stunning, high-performance web applications. I specialize in turning design concepts into clean, maintainable code with excellent user experience.</p>
+          </div>
+          <div class="grid-card">
+            <h3>My Philosophy</h3>
+            <p>Web development is not just about writing code; it's about crafting an experience. I believe in clean layouts, responsive grid structures, vibrant typography, and micro-interactions that feel alive.</p>
+          </div>
+          <div class="grid-card double-width">
+            <h3>Quick Details</h3>
+            <ul class="details-list">
+              <li><strong>Role:</strong> Group A, Member 5 (HTML & CSS Designer)</li>
+              <li><strong>Focus Area:</strong> Responsive Web Design, Component Architectures</li>
+              <li><strong>Preferred Stack:</strong> HTML5, CSS3, JavaScript, Angular</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESIGNS TAB -->
+      <section *ngIf="activeTab === 'designs'" class="animate-fade">
+        <div class="designs-gallery">
+          
+          <!-- Design Card 1: Music Player -->
+          <div class="design-card">
+            <div class="card-preview neon-blue">
+              <!-- Inline mock UI elements to demonstrate premium styling -->
+              <div class="mock-player">
+                <div class="mock-album-art">🎵</div>
+                <div class="mock-song-title">Digital Horizons</div>
+                <div class="mock-song-artist">Roshan Mishra</div>
+                <div class="mock-progress-bar">
+                  <div class="mock-progress-fill"></div>
+                </div>
+                <div class="mock-controls">
+                  <span>⏮️</span>
+                  <span class="play-btn">⏸️</span>
+                  <span>⏭️</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-info">
+              <h4>Neumorphic Music Widget</h4>
+              <p>An interactive, CSS-heavy audio controller featuring rich depth, gradients, and polished play states.</p>
+            </div>
+          </div>
+
+          <!-- Design Card 2: Glassmorphic Finance Widget -->
+          <div class="design-card">
+            <div class="card-preview neon-purple">
+              <div class="mock-finance">
+                <div class="finance-header">
+                  <span>Balance</span>
+                  <span class="trend-up">+$4,210</span>
+                </div>
+                <div class="finance-amount">$24,892.45</div>
+                <div class="finance-cards-row">
+                  <div class="mini-card active">VISA</div>
+                  <div class="mini-card">MC</div>
+                </div>
+                <div class="finance-graph">
+                  <div class="bar h-40"></div>
+                  <div class="bar h-60"></div>
+                  <div class="bar h-80"></div>
+                  <div class="bar h-50"></div>
+                  <div class="bar h-90"></div>
+                </div>
+              </div>
+            </div>
+            <div class="card-info">
+              <h4>Glassmorphic Finance Card</h4>
+              <p>A sleek dashboard element featuring custom backdrop filter effects, vivid linear gradient graphs, and grid layouts.</p>
+            </div>
+          </div>
+
+          <!-- Design Card 3: Interactive Profile Card -->
+          <div class="design-card">
+            <div class="card-preview neon-green">
+              <div class="mock-badge">
+                <div class="badge-header">
+                  <div class="badge-status">ONLINE</div>
+                </div>
+                <div class="badge-avatar">💫</div>
+                <div class="badge-name">Creator Pro</div>
+                <div class="badge-tags">
+                  <span>#CSS3</span>
+                  <span>#UX</span>
+                  <span>#Angular</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-info">
+              <h4>Modern Gaming Badge</h4>
+              <p>An animated identity card using neon shadow pulses, glowing statuses, and modern flexbox alignment.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SKILLS TAB -->
+      <section *ngIf="activeTab === 'stats'" class="animate-fade">
+        <div class="skills-container">
+          <h3>Skill Competencies</h3>
+          
+          <div class="skill-row">
+            <div class="skill-label">
+              <span>HTML5 & Semantic Markup</span>
+              <span>95%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-bar-fill" style="width: 95%"></div>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-label">
+              <span>CSS3, Flexbox & CSS Grid</span>
+              <span>90%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-bar-fill" style="width: 90%"></div>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-label">
+              <span>TypeScript & JavaScript ES6+</span>
+              <span>85%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-bar-fill" style="width: 85%"></div>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-label">
+              <span>Angular Framework</span>
+              <span>80%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-bar-fill" style="width: 80%"></div>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-label">
+              <span>Git & Collaboration Workflows</span>
+              <span>85%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-bar-fill" style="width: 85%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
 </div>

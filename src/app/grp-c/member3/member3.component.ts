@@ -7,9 +7,4 @@ import { Router } from '@angular/router';
   styleUrls: ['./member3.component.css']
 })
 export class Member3Component {
- constructor(private router: Router) {}
-
-  goBackToGroup() {
-    this.router.navigate(['grp-c']);
-  }
 }

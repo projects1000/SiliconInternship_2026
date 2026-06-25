@@ -1,9 +1,492 @@
-<div class="member-page">
+<div class="portfolio-container">
 
-  <h1>Member 10</h1>
+  <!-- ==========================
+       NAVBAR
+  =========================== -->
 
-  <button (click)="goBackToGroup()">
-    Go back to Group C
-  </button>
+  <nav class="navbar">
 
-</div>
+    <div class="logo">
+      HRP
+    </div>
+
+    <ul class="nav-links">
+
+      <li>
+        <a href="#about">About</a>
+      </li>
+
+      <li>
+        <a href="#skills">Skills</a>
+      </li>
+
+      <li>
+        <a href="#projects">Projects</a>
+      </li>
+
+      <li>
+        <a href="#contact">Contact</a>
+      </li>
+
+    </ul>
+
+  </nav>
+  
+ <section class="hero">
+  <div class="hero-left">
+    <img src="assets/hrp.jpeg" alt="Hrushikesh Pattanaik" class="profile-img">
+  </div>
+
+  <div class="hero-right">
+
+      <span class="badge">
+        Silicon Internship 2026
+      </span>
+
+      <h1>
+        Hrushikesh Pattanaik
+      </h1>
+
+      <h2>
+        B.Tech Undergrad. Group C. Member 10
+      </h2>
+
+      <!-- TECH STACK -->
+
+      <div class="tech-badges">
+
+        <span>Angular</span>
+        <span>TypeScript</span>
+        <span>Java</span>
+        <span>Python</span>
+        <span>MySQL</span>
+
+      </div>
+
+      <p class="hero-desc">
+
+       I'm not waiting for an opportunity — I'm building toward one. CS undergrad, relentless learner, and someone who genuinely believes the best work of my life is still ahead.
+
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="#projects" class="btn-primary">
+          View Projects
+        </a>
+
+        <a href="#contact" class="btn-secondary">
+          Contact Me
+        </a>
+
+      </div>
+
+      <!-- STATS -->
+
+      <div class="stats">
+
+        <div class="stat">
+          <h3>4+</h3>
+          <span>Projects</span>
+        </div>
+
+        <div class="stat">
+          <h3>11+</h3>
+          <span>Skills</span>
+        </div>
+
+        <div class="stat">
+          <h3>7.5+</h3>
+          <span>CGPA</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ==========================
+       ABOUT
+  =========================== -->
+
+  <section class="section-card" id="about">
+
+    <h2 class="section-title">
+      About Me
+    </h2>
+
+    <p class="about-text">
+
+      A 3rd-year B.Tech Computer Science undergraduate at Silicon University
+      with a strong interest in full-stack development.
+
+      I enjoy building end-to-end web applications,
+      from creating intuitive and responsive user interfaces
+      to developing scalable backend solutions.
+
+      Passionate about problem-solving,
+      clean architecture,
+      and continuous learning,
+      I strive to write code that is efficient,
+      maintainable and impactful.
+
+      Always eager to explore emerging technologies
+      and solve meaningful challenges.
+
+    </p>
+
+  </section>
+
+  <!-- ==========================
+       EDUCATION
+  =========================== -->
+
+ <section class="section-card" id="education">
+  <h2 class="section-title">Education</h2>
+
+  <div class="education-timeline">
+
+    <!-- College -->
+    <div class="education-item">
+      <div class="edu-dot"></div>
+
+      <div class="education-box">
+        <div class="edu-header">
+          <h3>Bachelor of Technology</h3>
+          <span class="edu-year">2024 - 2028</span>
+        </div>
+
+        <h4>Computer Science Engineering</h4>
+
+        <p class="college-name">
+          Silicon University, Bhubaneswar
+        </p>
+      </div>
+    </div>
+
+    <!-- School -->
+    <div class="education-item">
+      <div class="edu-dot"></div>
+
+      <div class="education-box">
+        <div class="edu-header">
+          <h3>Higher Secondary Education</h3>
+          <span class="edu-year">2022 - 2024</span>
+        </div>
+
+        <p class="college-name">
+          Sri Sathya Sai Vidya Vihar, Baripada, Odisha
+        </p>
+      </div>
+    </div>
+
+    <!-- School -->
+    <div class="education-item">
+      <div class="edu-dot"></div>
+
+      <div class="education-box">
+        <div class="edu-header">
+          <h3>Secondary Education</h3>
+          <span class="edu-year">Till 2022</span>
+        </div>
+
+        <p class="college-name">
+          Maharishi Public School, Baripada, Odisha
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  <!-- ==========================
+     SKILLS
+=========================== -->
+
+<section class="section-card" id="skills">
+
+  <h2 class="section-title">Technical Skills</h2>
+
+  <div class="skills-grid">
+
+    <div class="skill-pill">
+      <div class="skill-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+      </div>
+      HTML
+    </div>
+
+    <div class="skill-pill">
+      <div class="skill-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      CSS
+    </div>
+
+    <div class="skill-pill">
+      <div class="skill-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      JavaScript
+    </div>
+
+    <div class="skill-pill">
+      <div class="skill-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      TypeScript
+    </div>
+
+    <div class="skill-pill">
+      <div class="skill-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/></svg>
+      </div>
+      Angular
+    </div>
+
+    <div class="skill-pill">
+      <div class="skill-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+      </div>
+      Java
+    </div>
+
+    <div class="skill-pill">
+      <div class="skill-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      Python
+    </div>
+
+    <div class="skill-pill">
+      <div class="skill-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      C
+    </div>
+
+    <div class="skill-pill">
+      <div class="skill-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+      </div>
+      MySQL
+    </div>
+
+    <div class="skill-pill">
+      <div class="skill-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+      </div>
+      Git
+    </div>
+
+    <div class="skill-pill">
+      <div class="skill-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      </div>
+      GitHub
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ==========================
+     CURRENTLY LEARNING
+=========================== -->
+
+<section class="section-card">
+
+  <h2 class="section-title">Currently Learning</h2>
+  <p class="learning-subtitle">Always leveling up — here's what's on the workbench</p>
+
+  <div class="learning-grid">
+
+    <div class="learning-card">
+      <h4>Angular Routing</h4>
+      <p>Deep diving into lazy loading and route guards</p>
+      <span class="learning-tag">In Progress</span>
+    </div>
+
+    <div class="learning-card">
+      <h4>Generative AI</h4>
+      <p>Exploring LLMs, prompting and AI-powered apps</p>
+      <span class="learning-tag">Exploring</span>
+    </div>
+
+    <div class="learning-card">
+      <h4>DSA</h4>
+      <p>Sharpening problem solving with algorithms</p>
+      <span class="learning-tag">Active</span>
+    </div>
+
+    <div class="learning-card">
+      <h4>Spring Boot</h4>
+      <p>Building REST APIs and backend services</p>
+      <span class="learning-tag">Starting</span>
+    </div>
+
+  </div>
+
+</section>
+  <!-- ==========================
+       PROJECTS
+  =========================== -->
+
+<section class="section-card" id="projects">
+
+  <h2 class="section-title">Featured Projects</h2>
+
+  <div class="projects-grid">
+
+    <div class="project-card featured">
+      <span class="project-badge">FEATURED</span>
+      <div class="project-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      </div>
+      <h3>GoKart E-Commerce System</h3>
+      <div class="tech-pills">
+        <span>Angular</span><span>TypeScript</span><span>CSS</span>
+      </div>
+      <p class="project-description">Full-stack e-commerce platform with authentication, cart management, product catalogue and responsive UI.</p>
+      <a href="#" class="project-link">View Project →</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      </div>
+      <h3>Portfolio Website</h3>
+      <div class="tech-pills">
+        <span>HTML</span><span>CSS</span><span>JavaScript</span>
+      </div>
+      <p class="project-description">Personal portfolio showcasing projects, technical skills and achievements.</p>
+      <a href="#" class="project-link">View Project →</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      </div>
+      <h3>Student Management System</h3>
+      <div class="tech-pills">
+        <span>Java</span><span>MySQL</span>
+      </div>
+      <p class="project-description">Student information management application for maintaining academic records.</p>
+      <a href="#" class="project-link">View Project →</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <h3>Decathlon Clone</h3>
+      <div class="tech-pills">
+        <span>HTML</span><span>CSS</span><span>JavaScript</span>
+      </div>
+      <p class="project-description">Responsive e-commerce clone inspired by the Decathlon shopping experience.</p>
+      <a href="#" class="project-link">View Project →</a>
+    </div>
+
+  </div>
+
+</section>
+
+  <!-- ==========================
+       ACHIEVEMENTS
+  =========================== -->
+<section class="section-card">
+
+  <h2 class="section-title">Achievements & Activities</h2>
+
+  <div class="achievement-grid">
+
+    <div class="achievement-card">
+      <h4>Hackathons</h4>
+      <p>Participated in multiple competitive hackathons</p>
+    </div>
+
+    <div class="achievement-card">
+      <h4>Cricket Tournaments</h4>
+      <p>Active team player in inter-college tournaments</p>
+    </div>
+
+    <div class="achievement-card">
+      <h4>NSS Activities</h4>
+      <p>Community service and social impact volunteer</p>
+    </div>
+
+    <div class="achievement-card">
+      <h4>Technical Workshops</h4>
+      <p>Attended industry-relevant tech workshops</p>
+    </div>
+
+    <div class="achievement-card">
+      <h4>Coding Competitions</h4>
+      <p>Regular participant in DSA and coding contests</p>
+    </div>
+
+  </div>
+
+</section>
+  <!-- ==========================
+       CONTACT
+  =========================== -->
+<section class="section-card" id="contact">
+
+  <h2 class="section-title">Contact Information</h2>
+  <p class="contact-subtitle">Feel free to reach out — always open to new opportunities</p>
+
+  <div class="contact-grid">
+
+    <a href="mailto:hrushikeshpattanaik06@gmail.com" class="contact-card">
+      <h4>Email</h4>
+      <p>hrushikeshpattanaik06@gmail.com</p>
+    </a>
+
+    <a href="https://github.com/hpattanaik12" target="_blank" class="contact-card">
+      <h4>GitHub</h4>
+      <p>hpattanaik12</p>
+    </a>
+
+    <a href="https://linkedin.com/in/hrushikesh-pattanaik" target="_blank" class="contact-card">
+      
+      <h4>LinkedIn</h4>
+      <p>Hrushikesh Pattanaik</p>
+    </a>
+
+    <div class="contact-card no-link">
+      
+      <h4>Location</h4>
+      <p>Bhubaneswar, Odisha</p>
+    </div>
+
+  </div>
+
+</section>
+  <!-- ==========================
+       FOOTER
+  =========================== -->
+<footer class="footer">
+
+  <div class="footer-inner">
+
+    <div class="footer-left">
+      <h3 class="footer-logo">HRP</h3>
+      <p class="footer-tagline">Building things that matter.</p>
+    </div>
+
+    <div class="footer-links">
+      <a href="mailto:hrushikeshpattanaik06@gmail.com">Email</a>
+      <a href="https://github.com/hpattanaik12" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/hrushikesh-pattanaik" target="_blank">LinkedIn</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Hrushikesh Pattanaik · Bhubaneswar, Odisha</p>
+    <p>Designed & built by me</p>
+  </div>
+
+</footer>

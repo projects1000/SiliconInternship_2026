@@ -7,7 +7,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./member5.component.css']
 })
 export class Member5Component {
- constructor(private router: Router) {}
+  activeTab: string = 'about';
+
+  constructor(private router: Router) {}
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+  }
 
   goBackToGroup() {
     this.router.navigate(['grp-a']);

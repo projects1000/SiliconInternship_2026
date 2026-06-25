@@ -1,0 +1,13 @@
+<div class="notification-box">
+  <h2>🔔 Notifications</h2>
+
+  <div *ngIf="messages.length === 0" class="empty-msg">
+    No notifications yet.
+  </div>
+
+  <div
+    class="message-item"
+    *ngFor="let msg of messages">
+    {{ msg }}
+  </div>
+</div>

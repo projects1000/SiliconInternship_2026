@@ -1,0 +1,30 @@
+<div class="grocery-container">
+
+  <h1>🛒 Grocery Store Billing System</h1>
+
+  <div class="top-section">
+
+    <app-product-list
+      (productAdded)="addProduct($event)">
+    </app-product-list>
+
+    <app-customer-details
+      (customerSaved)="saveCustomer($event)">
+    </app-customer-details>
+
+  </div>
+
+  <app-bill-details
+  [products]="selectedProducts"
+  [customer]="customer"
+  [total]="totalAmount"
+  (increase)="increaseQuantity($event)"
+  (decrease)="decreaseQuantity($event)"
+  (remove)="removeProduct($event)"
+  (clear)="clearBill()">
+</app-bill-details>
+
+  <app-notifications>
+  </app-notifications>
+
+</div>

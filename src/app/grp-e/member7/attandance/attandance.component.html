@@ -1,0 +1,265 @@
+<div class="swayam-page-container">
+  <!-- Top Navigation Header -->
+  <header class="swayam-header">
+    <div class="brand-block">
+      <div class="logo-group">
+        <span class="asterisk">✳</span>
+        <h2>ATTENDANCE<span>MATRIX</span></h2>
+      </div>
+      <span class="edition-sub">swayam edition v2.6</span>
+    </div>
+
+    <!-- Toolbar Actions -->
+    <div class="header-actions">
+      <!-- Back Button -->
+      <button mat-flat-button class="back-btn-portfolio" (click)="goBackToPortfolio()">
+        <mat-icon>arrow_back</mat-icon> BACK TO PORTFOLIO
+      </button>
+
+      <!-- Excel Export -->
+      <button mat-flat-button class="action-btn excel-btn" (click)="exportToExcel()">
+        <mat-icon>table_view</mat-icon> EXPORT EXCEL
+      </button>
+
+      <!-- PDF Export -->
+      <button mat-flat-button class="action-btn pdf-btn" (click)="exportToPDF()">
+        <mat-icon>picture_as_pdf</mat-icon> EXPORT PDF
+      </button>
+
+      <!-- Submit Attendance -->
+      <button mat-raised-button color="accent" class="submit-btn" [disabled]="isLocked" (click)="submitAttendance()">
+        <mat-icon>cloud_upload</mat-icon> SUBMIT TARGET DATE
+      </button>
+
+      <!-- Lock/Unlock Toggle -->
+      <button mat-raised-button [color]="isLocked ? 'warn' : 'primary'" class="lock-toggle-btn"
+        (click)="toggleLockState()">
+        <mat-icon>{{ isLocked ? 'lock_open' : 'lock' }}</mat-icon>
+        {{ isLocked ? 'UNLOCK SYSTEM' : 'LOCK SYSTEM' }}
+      </button>
+
+      <!-- System Status Badge -->
+      <span class="status-badge" [class.locked]="isLocked" [class.editable]="!isLocked">
+        {{ isLocked ? 'Locked (Read-Only)' : 'System Editable' }}
+      </span>
+    </div>
+  </header>
+
+  <!-- Main Sidenav Workspace Layout -->
+  <mat-sidenav-container class="attendance-workspace">
+
+    <!-- Left Sidebar Panel -->
+    <mat-sidenav mode="side" opened class="side-control-panel">
+      <div class="sidebar-wrapper">
+
+        <!-- Live Filter Search -->
+        <div class="control-card widget-search">
+          <h3><mat-icon>search</mat-icon> LIVE SEARCH</h3>
+          <div class="input-glow-wrapper">
+            <input type="text" [(ngModel)]="searchQuery" (input)="onSearchChange()" placeholder="Search member name..."
+              class="glass-input" />
+            <mat-icon *ngIf="searchQuery" class="clear-search" (click)="clearAllFilters()">close</mat-icon>
+          </div>
+        </div>
+
+        <!-- Inline Target Date Calendar -->
+        <div class="control-card widget-calendar">
+          <h3><mat-icon>calendar_month</mat-icon> TARGET CALENDAR DATE</h3>
+          <div class="calendar-glow-container">
+            <mat-calendar [selected]="selectedCalendarDate"
+              (selectedChange)="onCalendarDateChange($event)"></mat-calendar>
+          </div>
+          <div class="date-readout">
+            Selected Column: <strong class="glow-text-yellow">{{ currentDateStr }}</strong>
+          </div>
+        </div>
+
+        <!-- CRUD: Register Member -->
+        <div class="control-card widget-crud" *ngIf="!isLocked">
+          <h3><mat-icon>person_add</mat-icon> REGISTER NEW MEMBER</h3>
+          <div class="crud-form">
+            <input type="text" [(ngModel)]="newMemberName" placeholder="Full name..." class="glass-input" />
+            <select [(ngModel)]="newMemberTeam" class="glass-select">
+              <option *ngFor="let team of availableTeams" [value]="team">{{ team }}</option>
+            </select>
+            <button mat-flat-button class="add-member-btn" [disabled]="!newMemberName.trim()" (click)="addMember()">
+              ADD TO TEAM
+            </button>
+          </div>
+        </div>
+
+        <!-- Teams Directory Tree -->
+        <div class="control-card widget-tree">
+          <div class="tree-header">
+            <h3><mat-icon>folder_shared</mat-icon> TEAMS DIRECTORY</h3>
+            <button class="reset-filter-btn" (click)="clearAllFilters()">RESET FILTER</button>
+          </div>
+
+          <div class="tree-scroll-container">
+            <mat-tree [dataSource]="treeDataSource" [treeControl]="treeControl" class="glass-tree">
+              <!-- Leaf Node (Member Name) -->
+              <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+                <button mat-icon-button disabled class="node-spacer-btn"></button>
+                <div class="tree-leaf-item" [class.active-leaf]="activeFilteredMemberName === node.name"
+                  (click)="onNodeSelect(node)">
+                  <mat-icon class="leaf-avatar">person</mat-icon>
+                  <span>{{ node.name }}</span>
+                </div>
+              </mat-tree-node>
+
+              <!-- Parent Node (Team Name) -->
+              <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+                <div class="mat-tree-node">
+                  <button mat-icon-button matTreeNodeToggle class="node-toggle-btn">
+                    <mat-icon class="mat-icon-rtl-mirror">
+                      {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+                    </mat-icon>
+                  </button>
+                  <div class="tree-parent-item" [class.active-parent]="activeFilteredTeam === node.name"
+                    (click)="onNodeSelect(node)">
+                    <mat-icon class="parent-group-icon">group</mat-icon>
+                    <strong>{{ node.name }}</strong>
+                  </div>
+                </div>
+                <div [class.tree-node-hidden]="!treeControl.isExpanded(node)" class="nested-subtree-outlet">
+                  <ng-container matTreeNodeOutlet></ng-container>
+                </div>
+              </mat-nested-tree-node>
+            </mat-tree>
+          </div>
+        </div>
+
+      </div>
+    </mat-sidenav>
+
+    <!-- Right Content Panel -->
+    <mat-sidenav-content class="main-matrix-content">
+
+      <!-- History Summary Lookup Audit Banner -->
+      <section class="matrix-card audit-lookup-card">
+        <div class="card-header">
+          <mat-icon class="header-icon">history</mat-icon>
+          <div>
+            <h3>MONTHLY HISTORY AUDIT LOOKUP</h3>
+            <p class="subtitle">Search and view specific profile attendance records logs for a particular month</p>
+          </div>
+        </div>
+
+        <div class="lookup-filters">
+          <div class="filter-field">
+            <label>Profile Identifier</label>
+            <select [(ngModel)]="historySearchMemberId" (change)="calculateIndividualHistory()" class="glass-select">
+              <option value="">-- Choose Member Profile --</option>
+              <option *ngFor="let member of attendanceRecords" [value]="member.memberId">
+                {{ member.memberName }} ({{ member.teamName }})
+              </option>
+            </select>
+          </div>
+          <div class="filter-field">
+            <label>Target Month</label>
+            <select [(ngModel)]="historySearchMonth" (change)="calculateIndividualHistory()" class="glass-select">
+              <option value="5">June 2026</option>
+              <option value="6">July 2026</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Audit Results List -->
+        <div class="audit-results-block" *ngIf="historySearchMemberId">
+          <div *ngIf="individualHistoryLog.length === 0" class="no-logs">
+            <mat-icon>info_outline</mat-icon> No 'Present' marks logged for this user in the selected month.
+          </div>
+          <div *ngIf="individualHistoryLog.length > 0" class="logs-grid">
+            <span class="log-pill" *ngFor="let logDate of individualHistoryLog">
+              <mat-icon class="green-tick-small">check_circle</mat-icon> {{ logDate | date:'mediumDate' }}
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Active Attendance Matrix Table -->
+      <section class="matrix-card table-matrix-card">
+        <div class="card-header border-bottom">
+          <mat-icon class="header-icon text-yellow">table_chart</mat-icon>
+          <div>
+            <h3>ACTIVE MATRIX SHEET</h3>
+            <p class="subtitle">Displaying active team lists (Showing {{ filteredTableData.length }} records)</p>
+          </div>
+        </div>
+
+        <div class="table-scroll-container">
+          <table mat-table [dataSource]="filteredTableData" class="glass-matrix-table">
+
+            <!-- Actions Column (Delete Member) -->
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef class="header-cell action-hdr">PURGE</th>
+              <td mat-cell *matCellDef="let element" class="cell action-cell">
+                <button mat-icon-button class="delete-member-btn" [disabled]="isLocked"
+                  (click)="deleteMember(element.memberId)" title="Delete member profile">
+                  <mat-icon>delete_outline</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <!-- Name and Team Column -->
+            <ng-container matColumnDef="memberName">
+              <th mat-header-cell *matHeaderCellDef class="header-cell member-hdr">MEMBER IDENTITY</th>
+              <td mat-cell *matCellDef="let element" class="cell member-cell">
+                <div class="member-identity-stack">
+                  <span class="member-name-text">{{ element.memberName }}</span>
+                  <span class="member-team-badge">{{ element.teamName }}</span>
+                </div>
+              </td>
+            </ng-container>
+
+            <!-- Dynamically generated Date Columns -->
+            <ng-container *ngFor="let dateStr of dates">
+              <ng-container [matColumnDef]="dateStr">
+                <th mat-header-cell *matHeaderCellDef class="header-cell date-hdr"
+                  [class.highlighted-column]="dateStr === currentDateStr">
+                  <div class="date-header-stack">
+                    <span class="date-label-txt">{{ dateStr | date:'MMM d' }}</span>
+                    <span class="day-label-txt">{{ dateStr | date:'EEEE' }}</span>
+                    <span class="col-type-tag" [class.editable-tag]="isDateEditable(dateStr)"
+                      [class.readonly-tag]="!isDateEditable(dateStr)">
+                      {{ isDateEditable(dateStr) ? 'Editable' : 'Read-Only' }}
+                    </span>
+                  </div>
+                </th>
+
+                <td mat-cell *matCellDef="let element" class="cell date-cell"
+                  [class.highlighted-column]="dateStr === currentDateStr">
+                  <div class="cell-action-wrapper">
+                    <!-- Checkbox to toggle status -->
+                    <mat-checkbox [checked]="isRowChecked(element, dateStr)" [disabled]="!isDateEditable(dateStr)"
+                      (change)="onCheckboxToggle(element, dateStr, $event.checked)" color="accent"
+                      class="custom-mat-checkbox">
+                    </mat-checkbox>
+
+                    <!-- Rule 3: Green Tick icon visual representation if present -->
+                    <mat-icon *ngIf="isRowChecked(element, dateStr)" class="attendance-present-tick">
+                      check_circle
+                    </mat-icon>
+                  </div>
+                </td>
+              </ng-container>
+            </ng-container>
+
+            <!-- Header and Data Rows -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+          <!-- Empty Matrix State Overlay -->
+          <div class="empty-state-overlay" *ngIf="filteredTableData.length === 0">
+            <mat-icon class="empty-state-icon">group_off</mat-icon>
+            <h4>No Intern Records Found</h4>
+            <p>Modify search filters, reset selections or register a new member in the panel.</p>
+          </div>
+        </div>
+      </section>
+
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>

@@ -1,0 +1,49 @@
+<div class="product-wrapper">
+
+  <h2>🛍 Grocery Products</h2>
+
+  <div class="search-box">
+    <input
+      type="text"
+      [(ngModel)]="searchText"
+      placeholder="Search products...">
+  </div>
+
+  <div class="category-buttons">
+    <button
+      *ngFor="let category of categories"
+      (click)="selectCategory(category.value)"
+      [class.active]="selectedCategory === category.value">
+      {{ category.label }}
+    </button>
+  </div>
+
+  <h3>{{ selectedCategory }}</h3>
+
+  <div class="product-grid">
+
+    <div
+      class="product-card"
+      *ngFor="let product of products">
+
+      <img
+        [src]="product.image"
+        [alt]="product.name">
+
+      <h4>{{ product.name }}</h4>
+
+      <p>₹{{ product.price }}</p>
+
+      <button (click)="addProduct(product)">
+        Add To Cart
+      </button>
+
+    </div>
+
+  </div>
+
+  <p *ngIf="products.length === 0" class="empty-products">
+    No products found in this category.
+  </p>
+
+</div>

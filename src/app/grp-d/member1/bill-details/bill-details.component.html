@@ -1,0 +1,37 @@
+<div class="invoice-dark-card">
+  <h3>🧾 CURRENT RACK SPECIFICATIONS</h3>
+  
+  <div class="ledger-scroll-hull">
+    <table class="luxury-ledger-table">
+      <thead>
+        <tr>
+          <th>SNEAKER MODEL</th>
+          <th>SZ</th>
+          <th>QTY</th>
+          <th>VALUATION</th>
+          <th class="text-right">ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td class="model-name-cell">{{ item.name }}</td>
+          <td><span class="size-pill">{{ item.displaySize }}</span></td>
+          <td>{{ item.qty }}</td>
+          <td>₹{{ item.price * item.qty | number }}</td>
+          <td class="text-right">
+            <button class="rack-purge-btn" (click)="emitRemoval(item.cartUid)">✕ PURGE</button>
+          </td>
+        </tr>
+        <tr *ngIf="items.length === 0">
+          <td colspan="5" class="empty-matrix-msg">No sneakers mounted in current configuration.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="summary-breakdown-footer">
+    <div class="breakdown-row"><span>SubTotal Compilers:</span> <span>₹{{ subTotal | number:'1.2-2' }}</span></div>
+    <div class="breakdown-row"><span>GST Standard Fee (18%):</span> <span>₹{{ gst | number:'1.2-2' }}</span></div>
+    <div class="breakdown-row master-grand-total"><span>TOTAL ACCOUNT VALUATION:</span> <span>₹{{ grandTotal | number:'1.2-2' }}</span></div>
+  </div>
+</div>

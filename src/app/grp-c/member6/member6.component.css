@@ -1,33 +1,119 @@
-.member-page {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
+body {
+  margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
-  background: #f4f6f9;
+  background: #f5f7fb;
 }
 
-h1 {
-  font-size: 32px;
-  margin-bottom: 20px;
-  color: #2a2a2a;
+.profile-container {
+  background: #0056a6;
+  min-height: 100vh;
+  padding: 30px;
 }
 
-button {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 6px;
+.profile-card {
+  background: white;
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
 
-  background: #2a5298;
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 5px solid #0056a6;
+  object-fit: cover;
+}
+
+.profile-info h1 {
+  margin: 0;
+  font-size: 48px;
+  color: #111;
+}
+
+.profile-info h2 {
+  color: #1d4ed8;
+  margin-top: 10px;
+}
+
+.profile-info p {
+  color: #555;
+  font-size: 20px;
+}
+
+.section {
+  margin-top: 40px;
+}
+
+.section h2 {
+  color: #111;
+  margin-bottom: 15px;
+  font-size: 35px;
+}
+
+.section p {
+  line-height: 1.8;
+  color: #444;
+  font-size: 18px;
+}
+
+.internship-card,
+.education-card {
+  border-left: 5px solid #0056a6;
+  padding: 15px 20px;
+  background: #f8f9fc;
+  border-radius: 10px;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.skills span {
+  background: #0056a6;
   color: white;
-
-  cursor: pointer;
-  transition: 0.2s;
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 500;
 }
 
-button:hover {
-  background: #1e3c72;
-  transform: scale(1.05);
+hr {
+  margin: 30px 0;
+  border: 0;
+  height: 1px;
+  background: #ddd;
+}
+
+@media(max-width:768px) {
+
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-image {
+    width: 180px;
+    height: 180px;
+  }
+
+  .profile-info h1 {
+    font-size: 35px;
+  }
+
+  .section h2 {
+    font-size: 28px;
+  }
 }

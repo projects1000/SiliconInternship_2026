@@ -12,4 +12,13 @@ export class Member8Component {
   goBackToGroup() {
     this.router.navigate(['grp-c']);
   }
+  isDarkMode = false;
+
+toggleTheme() {
+  this.isDarkMode = !this.isDarkMode;
+}
+
+openGithub() {
+  window.open('https://github.com/safaq11', '_blank');
+}
 }

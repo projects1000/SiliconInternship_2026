@@ -1,0 +1,837 @@
+/* =====================================================
+   AMETHYST DAWN HAZE
+===================================================== */
+
+:root {
+
+  --amethyst: #341C67;
+  --plum: #472F5B;
+  --lavender: #C4AEF4;
+  --rose: #CCA4B4;
+  --gold: #DCCE40;
+
+}
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.attendance-page{
+
+  min-height:100vh;
+
+  padding:24px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #341C67,
+    #472F5B,
+    #341C67
+  );
+
+  color:#ffffff;
+}
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
+
+mat-toolbar{
+
+  display:flex !important;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  margin-bottom:24px;
+
+  border-radius:20px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #C4AEF4,
+    #CCA4B4
+  ) !important;
+
+  color:#341C67 !important;
+
+  font-weight:700;
+
+  box-shadow:
+  0 10px 25px rgba(0,0,0,.25);
+}
+
+.spacer{
+  flex:1 1 auto;
+}
+
+/* =====================================================
+   LAYOUT
+===================================================== */
+
+.page-layout{
+
+  display:grid;
+
+  grid-template-columns:
+  320px 1fr;
+
+  gap:24px;
+}
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.tree-panel{
+
+  padding:22px;
+
+  background:
+  rgba(71,47,91,.88) !important;
+
+  border:
+  1px solid rgba(196,174,244,.15);
+
+  border-radius:
+  22px !important;
+
+  backdrop-filter:
+  blur(14px);
+
+  box-shadow:
+  0 10px 25px rgba(0,0,0,.25);
+}
+
+.tree-panel h2{
+
+  color:white;
+
+  margin-bottom:18px;
+}
+
+/* =====================================================
+   TREE
+===================================================== */
+
+mat-tree{
+  background:transparent;
+}
+
+.tree-node,
+.mat-tree-node{
+
+  color:
+  #C4AEF4 !important;
+}
+
+.clickable-node{
+
+  cursor:pointer;
+
+  border-radius:10px;
+
+  padding:10px;
+
+  transition:.3s;
+}
+
+.clickable-node:hover{
+
+  background:
+  rgba(196,174,244,.15);
+
+  transform:
+  translateX(6px);
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+button[mat-raised-button],
+.all-team-btn{
+
+  background:
+  linear-gradient(
+    135deg,
+    #C4AEF4,
+    #CCA4B4
+  ) !important;
+
+  color:
+  #341C67 !important;
+
+  font-weight:700;
+
+  border-radius:12px !important;
+
+  transition:.3s;
+}
+
+button[mat-raised-button]:hover{
+
+  transform:
+  translateY(-3px);
+
+  box-shadow:
+  0 8px 20px rgba(196,174,244,.35);
+}
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.container{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:22px;
+}
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.form-card,
+.report-card,
+.summary-card{
+
+  background:
+  rgba(71,47,91,.88) !important;
+
+  border:
+  1px solid rgba(196,174,244,.12);
+
+  border-radius:
+  22px !important;
+
+  backdrop-filter:
+  blur(14px);
+
+  color:white !important;
+}
+
+.form-card,
+.report-card{
+
+  padding:22px;
+}
+
+.form-card h2,
+.report-card h2{
+
+  color:white;
+
+  margin-bottom:15px;
+}
+
+/* =====================================================
+   DATE CARD
+===================================================== */
+
+.selected-date-card{
+
+  padding:18px;
+
+  text-align:center;
+
+  border-radius:22px !important;
+
+  background:
+  linear-gradient(
+    135deg,
+    #622ada,
+    #da3074
+  ) !important;
+
+  color:
+  #341C67 !important;
+}
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-row{
+
+  display:flex;
+
+  gap:15px;
+
+  flex-wrap:wrap;
+}
+
+.form-row mat-form-field{
+  flex:1;
+}
+
+mat-form-field{
+  width:100%;
+}
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+.mat-mdc-input-element{
+
+  color:white !important;
+}
+
+.mat-mdc-select-value{
+
+  color:white !important;
+}
+
+.mat-mdc-select-arrow{
+
+  color:#DCCE40 !important;
+}
+
+.mdc-floating-label{
+
+  color:#C4AEF4 !important;
+}
+
+.mdc-notched-outline__leading,
+.mdc-notched-outline__notch,
+.mdc-notched-outline__trailing{
+
+  border-color:
+  rgba(196,174,244,.25) !important;
+}
+
+.mat-focused
+.mdc-notched-outline__leading,
+.mat-focused
+.mdc-notched-outline__notch,
+.mat-focused
+.mdc-notched-outline__trailing{
+
+  border-color:
+  #DCCE40 !important;
+}
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+.dashboard-cards{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(220px,1fr));
+
+  gap:20px;
+}
+
+.summary-card{
+
+  text-align:center;
+
+  padding:24px;
+
+  transition:.3s;
+}
+
+.summary-card:hover{
+
+  transform:
+  translateY(-8px);
+
+  box-shadow:
+  0 15px 35px rgba(196,174,244,.20);
+}
+
+.summary-card h2{
+
+  font-size:2.6rem;
+
+  color:#DCCE40 !important;
+
+  margin-bottom:10px;
+}
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+table{
+
+  width:100%;
+
+  overflow:hidden;
+
+  border-radius:18px;
+
+  background:
+  rgba(71,47,91,.75);
+}
+
+.mat-mdc-header-row,
+.mat-header-row{
+
+  background:
+  rgba(196,174,244,.15);
+
+  backdrop-filter:
+  blur(10px);
+
+  border-bottom:
+  2px solid rgba(220,206,64,.35);
+}
+
+th{
+
+  color:#DCCE40 !important;
+
+  font-weight:700 !important;
+
+  text-transform:uppercase;
+
+  letter-spacing:1px;
+}
+
+td{
+
+  color:white !important;
+}
+
+tr.mat-mdc-row{
+
+  transition:
+  all .25s ease;
+}
+
+tr.mat-mdc-row:hover{
+
+  background:
+  rgba(196,174,244,.12);
+
+  transform:
+  scale(1.005);
+}
+/* =====================================================
+   REPORT
+===================================================== */
+
+.report-row{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  padding:12px;
+
+  margin-bottom:10px;
+
+  border-radius:10px;
+
+  background:
+  rgba(255,255,255,.04);
+}
+
+/* =====================================================
+   ICONS
+===================================================== */
+
+mat-icon{
+
+  color:#DCCE40 !important;
+}
+
+/* =====================================================
+   TREE COLLAPSE
+===================================================== */
+
+.hidden{
+  display:none !important;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1000px){
+
+  .page-layout{
+    grid-template-columns:1fr;
+  }
+
+  .dashboard-cards{
+    grid-template-columns:1fr;
+  }
+
+}
+
+.action-panel {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 18px;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 22px;
+
+  margin-top: 15px;
+
+  border-radius: 20px;
+
+  background:
+  rgba(255,255,255,.05);
+
+  border:
+  1px solid rgba(196,174,244,.12);
+}
+
+.export-excel-btn {
+
+  background:
+  linear-gradient(
+    135deg,
+    #DCCE40,
+    #f5e76f
+  ) !important;
+
+  color:
+  #341C67 !important;
+
+  font-weight: 700;
+
+  border-radius: 14px !important;
+
+  transition: .3s;
+}
+
+.export-excel-btn:hover {
+
+  transform:
+  translateY(-4px)
+  scale(1.03);
+
+  box-shadow:
+  0 0 20px rgba(220,206,64,.45);
+}
+
+.export-pdf-btn {
+
+  background:
+  linear-gradient(
+    135deg,
+    #CCA4B4,
+    #C4AEF4
+  ) !important;
+
+  color:
+  #341C67 !important;
+
+  font-weight: 700;
+
+  border-radius: 14px !important;
+
+  transition: .3s;
+}
+
+.export-pdf-btn:hover {
+
+  transform:
+  translateY(-4px)
+  scale(1.03);
+
+  box-shadow:
+  0 0 20px rgba(196,174,244,.4);
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.upload-btn {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 12px 22px;
+
+  cursor: pointer;
+
+  border-radius: 14px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #472F5B,
+    #341C67
+  );
+
+  color: white;
+
+  font-weight: 600;
+
+  transition: .3s;
+}
+
+.upload-btn:hover {
+
+  transform:
+  translateY(-4px);
+
+  box-shadow:
+  0 0 20px rgba(196,174,244,.25);
+}
+
+/* =====================================================
+   ACTION CENTER
+===================================================== */
+
+.action-panel-card {
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+.action-panel {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 20px;
+
+  padding: 20px;
+
+  border-radius: 18px;
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(196,174,244,.08),
+    rgba(204,164,180,.08)
+  );
+
+  border:
+  1px solid rgba(196,174,244,.15);
+
+  animation:
+  floatingPanel 5s ease-in-out infinite;
+}
+
+@keyframes floatingPanel {
+
+  0%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-3px);
+  }
+
+  100%{
+    transform:translateY(0);
+  }
+}
+
+/* =====================================================
+   HIDE INPUT
+===================================================== */
+
+.action-panel input[type="file"]{
+
+  display:none;
+}
+
+/* =====================================================
+   IMPORT BUTTON
+===================================================== */
+
+.upload-btn {
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  padding:14px 24px;
+
+  cursor:pointer;
+
+  border-radius:14px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #472F5B,
+    #341C67
+  );
+
+  color:white;
+
+  font-weight:700;
+
+  transition:.3s;
+
+  border:
+  1px solid rgba(196,174,244,.15);
+}
+
+.upload-btn:hover {
+
+  transform:
+  translateY(-4px);
+
+  box-shadow:
+  0 10px 25px rgba(196,174,244,.25);
+}
+
+/* =====================================================
+   EXCEL BUTTON
+===================================================== */
+
+.export-excel-btn {
+
+  background:
+  linear-gradient(
+    135deg,
+    #DCCE40,
+    #f5e76f
+  ) !important;
+
+  color:
+  #341C67 !important;
+
+  font-weight:700 !important;
+
+  border-radius:14px !important;
+
+  padding:0 20px !important;
+
+  transition:.3s !important;
+}
+
+.export-excel-btn:hover {
+
+  transform:
+  translateY(-4px)
+  scale(1.03);
+
+  box-shadow:
+  0 0 25px rgba(220,206,64,.45);
+}
+
+/* =====================================================
+   PDF BUTTON
+===================================================== */
+
+.export-pdf-btn {
+
+  background:
+  linear-gradient(
+    135deg,
+    #CCA4B4,
+    #C4AEF4
+  ) !important;
+
+  color:
+  #341C67 !important;
+
+  font-weight:700 !important;
+
+  border-radius:14px !important;
+
+  padding:0 20px !important;
+
+  transition:.3s !important;
+}
+
+.export-pdf-btn:hover {
+
+  transform:
+  translateY(-4px)
+  scale(1.03);
+
+  box-shadow:
+  0 0 25px rgba(196,174,244,.45);
+}
+
+/* =====================================================
+   BUTTON ICONS
+===================================================== */
+
+.export-excel-btn mat-icon,
+.export-pdf-btn mat-icon,
+.upload-btn mat-icon {
+
+  margin-right:8px;
+
+  vertical-align:middle;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:768px){
+
+  .action-panel{
+
+    flex-direction:column;
+  }
+
+  .upload-btn,
+  .export-excel-btn,
+  .export-pdf-btn{
+
+    width:100%;
+  }
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: #5A4F45;
+  color: #E9E3DE;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.mat-mdc-card *,
+.mat-tree-node,
+.mat-nested-tree-node
+{
+  color:violet !important;
+}

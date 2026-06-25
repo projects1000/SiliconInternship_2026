@@ -1,0 +1,108 @@
+<section class="billing-page">
+
+  <!-- HEADER -->
+  <header class="billing-header">
+
+    <div>
+      <h1>Billing Home</h1>
+    </div>
+
+    <div class="billing-nav">
+
+      <button class="cart-button" (click)="openCart.emit()">
+        🛒 Cart ({{ totals.totalItems }})
+      </button>
+
+      <button class="exit-button" (click)="exitBilling.emit()">
+        🚪 Exit
+      </button>
+
+    </div>
+
+  </header>
+
+  <!-- CUSTOMER FORM MODAL -->
+  <div *ngIf="showCustomerForm" class="modal-overlay">
+    <div class="modal-box">
+
+      <app-customer-details
+        [customer]="null"
+        (customerSaved)="saveCustomer($event)">
+      </app-customer-details>
+
+      <button class="btn-default" (click)="closeCustomerForm()">
+        Close
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ACTIVE CUSTOMER -->
+  <section *ngIf="customer" class="customer-summary">
+
+    <div>
+      <strong>{{ customer.name }}</strong>
+    </div>
+
+    <div>
+      <strong>{{ customer.mobile }}</strong>
+    </div>
+
+    <div>
+      <strong>{{ customer.address }}</strong>
+    </div>
+
+    <div class="actions">
+      <button class="btn-default" (click)="openCustomerActivity()">
+        Open Activity
+      </button>
+       <button class="signout-btn" (click)="signOutCustomer()">
+    Sign Out
+  </button>
+    </div>
+
+  </section>
+
+  <!-- SAVED CUSTOMERS -->
+  <div class="saved-customers">
+
+    <h3>Saved Customers</h3>
+
+    <div
+      class="customer-card"
+      *ngFor="let cust of customers"
+      (click)="selectCustomer(cust)"
+      [class.active]="cust.id === customer?.id">
+
+      <div>
+        <p><b>{{ cust.name }}</b></p>
+        <p>{{ cust.mobile }}</p>
+      </div>
+
+      <button class="delete-btn"
+        (click)="deleteCustomer(cust.id); $event.stopPropagation()">
+        Delete
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- PRODUCT SECTION -->
+  <div *ngIf="customerActivityOpen" class="product-section">
+
+    <app-product-list
+      [customerSaved]="!!customer"
+      (productAdded)="addProduct($event)">
+    </app-product-list>
+
+  </div>
+<!-- ADD CUSTOMER BUTTON -->
+  <div class="top-actions center">
+  <button class="btn-default" (click)="openCustomerForm()">
+    + Add Customer
+  </button>
+</div>
+  <app-notification></app-notification>
+
+</section>

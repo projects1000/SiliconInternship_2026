@@ -1,0 +1,192 @@
+/* member1/billing-system/components/customer-details/customer-details.component.css */
+
+/* ==========================================================================
+   LIGHT MODE DESIGN TOKENS (DEFAULT STATE)
+   ========================================================================== */
+.customer-box {
+    --bg-card: #ffffff;
+    --bg-input: #f7fafc;
+    --border-color: #cbd5e0;
+    --border-subtle: #edf2f7;
+    --text-main: #2d3748;
+    --text-muted: #718096;
+    --text-label: #4a5568;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border-top: 4px solid #6b46c1;
+    /* Purple theme from the blueprint */
+    transition: all 0.3s ease;
+}
+
+.customer-box:hover {
+    box-shadow: 0 6px 24px rgba(107, 70, 193, 0.08);
+}
+
+/* ==========================================================================
+   DARK THEME VARIABLE OVERRIDES
+   ========================================================================== */
+:host-context(.dark-theme) .customer-box {
+    --bg-card: #1e293b;
+    /* Slate 800 */
+    --bg-input: #0f172a;
+    /* Slate 900 */
+    --border-color: #334155;
+    /* Slate 700 */
+    --border-subtle: #334155;
+    --text-main: #f1f5f9;
+    /* Slate 100 */
+    --text-muted: #94a3b8;
+    /* Slate 400 */
+    --text-label: #cbd5e0;
+    /* Gray 300 */
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+:host-context(.dark-theme) .customer-box:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Card Header Section Layout */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 12px;
+}
+
+.step-badge {
+    background: #e9d8fd;
+    color: #6b46c1;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:host-context(.dark-theme) .step-badge {
+    background: #44337a;
+    /* Muted violet tint for cozy reading curves */
+    color: #d6bcfa;
+}
+
+.card-header h3 {
+    margin: 0;
+    color: var(--text-main);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.card-header h3 small {
+    font-weight: 400;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* Form Structural Framework */
+.form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    color: var(--text-label);
+    font-size: 13px;
+    font-weight: 600;
+    margin-left: 2px;
+}
+
+/* Input Fields & Icon Containers */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    font-size: 14px;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 12px 14px 12px 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-main);
+    background-color: var(--bg-input);
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+/* Input Focus States */
+.input-wrapper input:focus {
+    background-color: var(--bg-card);
+    border-color: #6b46c1;
+    box-shadow: 0 0 0 3px rgba(107, 70, 193, 0.25);
+}
+
+:host-context(.dark-theme) .input-wrapper input:focus {
+    border-color: #9f7aea;
+    /* Slightly brighter purple line focus indicator on dark canvases */
+    box-shadow: 0 0 0 3px rgba(159, 122, 234, 0.25);
+}
+
+.input-wrapper input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Interactive Action Button Style */
+.btn-save {
+    background: #6b46c1;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(107, 70, 193, 0.2);
+}
+
+.btn-save:hover {
+    background: #553c9a;
+    box-shadow: 0 6px 16px rgba(107, 70, 193, 0.3);
+    transform: translateY(-1px);
+}
+
+.btn-save:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 6px rgba(107, 70, 193, 0.2);
+}
+
+.btn-arrow {
+    transition: transform 0.2s ease;
+}
+
+.btn-save:hover .btn-arrow {
+    transform: translateX(4px);
+}

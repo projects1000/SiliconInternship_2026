@@ -1,33 +1,575 @@
-.member-page {
-  height: 100vh;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:host {
+  display: block;
+}
+
+/* Beautiful Premium Custom Scrollbar */
+.portfolio-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.portfolio-container::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+.portfolio-container::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+
+.portfolio-container::-webkit-scrollbar-thumb:hover {
+  background: #6366f1;
+}
+
+.portfolio-container {
+  max-height: 100vh;
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #020617;
+  /* Slate deep backdrop palette */
+  color: #f8fafc;
+  position: relative;
+  padding: 20px 40px 60px 40px;
+  margin-bottom: 20px;
+}
+
+/* Fluid Moving Gradient Background Orbs */
+.portfolio-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, #020617, #0b1329, #070a1e, #020617);
+  background-size: 400% 400%;
+  z-index: -2;
+}
+
+/* Floating Blurred Colored Background Accents */
+.floating-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.45;
+  animation: floatingMotion 12s infinite ease-in-out;
+  z-index: -1;
+}
+
+.shape1 {
+  width: 350px;
+  height: 350px;
+  background: #38bdf8;
+  top: 5%;
+  left: -50px;
+}
+
+.shape2 {
+  width: 300px;
+  height: 300px;
+  background: #ec4899;
+  right: -50px;
+  top: 25%;
+  animation-delay: 2s;
+}
+
+.shape3 {
+  width: 400px;
+  height: 400px;
+  background: #10b981;
+  bottom: 10%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+.shape4 {
+  width: 300px;
+  height: 300px;
+  background: #f59e0b;
+  bottom: 40%;
+  right: 5%;
+  animation-delay: 6s;
+}
+
+@keyframes floatingMotion {
+
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+
+  50% {
+    transform: translateY(-40px) scale(1.15);
+  }
+}
+
+/* Top Utility Navigation Alignment */
+.utility-nav {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.nav-back-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  transition: all 0.3s;
+}
+
+.nav-back-btn:hover {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: #6366f1;
+  color: #ffffff;
+}
+
+/* Hero Content Frame Alignment Matrix */
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  padding: 20px 0;
+  margin-top: 20px;
+}
+
+.hero-left {
+  flex: 1.2;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: left;
+  /* Guaranteed explicit left alignment */
+}
+
+.hero-right {
+  flex: 0.8;
+  display: flex;
+  justify-content: center;
   align-items: center;
-
-  font-family: Arial, sans-serif;
-  background: #f4f6f9;
 }
 
-h1 {
-  font-size: 32px;
+.welcome-text {
+  color: #38bdf8;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.hero-title {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #38bdf8, #ec4899, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.typing-text {
+  color: #f1f5f9;
+  font-size: 26px;
+  font-weight: 500;
   margin-bottom: 20px;
-  color: #2a2a2a;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
 }
 
-button {
-  padding: 10px 18px;
+.inline-icon {
+  margin-right: 8px;
+  color: #ec4899;
+}
+
+.cursor-blink {
+  color: #38bdf8;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+.hero-description {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #94a3b8;
+  max-width: 580px;
+}
+
+/* Structural Navigation Buttons Adjustments */
+.hero-buttons {
+  margin-top: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 14px;
+}
+
+.btn {
+  padding: 12px 24px;
   border: none;
-  border-radius: 6px;
-
-  background: #2a5298;
-  color: white;
-
   cursor: pointer;
-  transition: 0.2s;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
-button:hover {
-  background: #1e3c72;
-  transform: scale(1.05);
+/* Premium Emerald attendance direct entry route trigger styling */
+.attendance-btn {
+  background: linear-gradient(135deg, #c86311 0%, #059669 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+}
+.billing-btn{
+  background: linear-gradient(135deg, #1095c2 0%, #059669 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(11, 126, 242, 0.601);
+}
+.whatsapp-btn{
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+}
+
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.secondary-btn:hover {
+  background: rgba(56, 189, 248, 0.1);
+  border-color: #38bdf8;
+  color: #ffffff;
+}
+
+/* Image Layer Container Elements */
+.profile-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-image {
+  width: 320px;
+  height: 320px;
+  border-radius: 24px;
+  /* Premium softened corner rectangle instead of perfect circle */
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.profile-glow {
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  filter: blur(40px);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+/* Structural Glassmorphism Cards Framework Rules */
+.glass-card,
+.skill-card,
+.project-card,
+.contact-card {
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-card:hover,
+.project-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 12px 30px rgba(99, 102, 241, 0.15);
+}
+
+/* Sections Global Alignment layouts */
+section {
+  margin-top: 80px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #f1f5f9;
+}
+
+.title-icon {
+  color: #6366f1;
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+
+.section-card {
+  padding: 32px;
+}
+
+.about-content {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #cbd5e1;
+  text-align: justify;
+}
+
+/* Grid layout alignment setups */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.skill-card {
+  padding: 24px;
+  text-align: center;
+}
+
+.skill-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px auto;
+  color: #6366f1;
+}
+
+.skill-card h3 {
+  color: #ffffff;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.skill-card p {
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* Featured Projects Cards styling adjustments */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  padding: 20px;
+}
+
+.project-image {
+  height: 160px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.item-clone {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.item-weather {
+  background: linear-gradient(135deg, #0ea5e9, #0369a1);
+}
+
+.item-shop {
+  background: linear-gradient(135deg, #ec4899, #be185d);
+}
+
+.project-card h3 {
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #94a3b8;
+}
+
+/* Experience Layout Mappings */
+.timeline {
+  position: relative;
+  padding-left: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: #334155;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -30px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background: #6366f1;
+  border: 2px solid #020617;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #6366f1;
+}
+
+.timeline-content {
+  padding: 20px;
+}
+
+.timeline-content h3 {
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.timeline-date {
+  font-size: 12px;
+  color: #38bdf8;
+  font-weight: 600;
+  display: inline-block;
+  margin: 4px 0 10px 0;
+}
+
+.timeline-content p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #94a3b8;
+}
+
+/* Contact layout input structure transformations */
+.contact-card {
+  max-width: 600px;
+  margin: auto;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-field {
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.6);
+  color: #f8fafc;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.form-field:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.submit-contact-btn {
+  justify-content: center;
+  padding: 14px;
+}
+
+/* Responsive Scaling breakpoints */
+@media(max-width:900px) {
+  .portfolio-container {
+    padding: 20px;
+  }
+
+  .hero-section {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .hero-left {
+    text-align: center;
+    items: center;
+  }
+
+  .hero-title {
+    font-size: 44px;
+  }
+
+  .typing-text {
+    justify-content: center;
+    font-size: 22px;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .profile-image {
+    width: 260px;
+    height: 260px;
+  }
+
+  .profile-glow {
+    width: 280px;
+    height: 280px;
+  }
 }

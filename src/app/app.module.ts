@@ -6,34 +6,69 @@ import { AppComponent } from './app.component';
 
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDividerModule } from '@angular/material/divider';
+
 import { CommonModule } from '@angular/common';
 import { GrpFRoutingModule } from './grp-f/grp-f-routing.module';
+
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     HomeComponent
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
+
     FormsModule,
+    ReactiveFormsModule,
+
     CommonModule,
     GrpFRoutingModule,
+
     BrowserAnimationsModule,
+
+    ToastrModule.forRoot({
+      timeOut: 3500,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      progressBar: true,
+    }),
+
+    MatIconModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatFormFieldModule,
-    MatInputModule
+    MatButtonModule,
+    MatTableModule,
+    MatSortModule,
+    MatChipsModule,
+    MatDividerModule
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

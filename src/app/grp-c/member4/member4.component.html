@@ -1,9 +1,41 @@
 <div class="member-page">
 
-  <h1>Member 4</h1>
+    <div class="profile-card">
 
-  <button (click)="goBackToGroup()">
-    Go back to Group C
-  </button>
+        <div class="profile-image">
+            <img src="assets/Anup.jpeg" alt="Anup Mohanty">
+        </div>
+
+        <h1>ANUP MOHANTY</h1>
+
+        <p class="designation">Frontend Developer</p>
+
+        <p class="description">
+            Passionate about Web Development, Angular, Cloud Computing
+            and Cybersecurity. Building modern and responsive web
+            applications.
+        </p>
+
+        <!-- Projects Section -->
+        <div class="projects-section">
+
+            <h2 style="color:white">Projects</h2>
+
+            <div
+                class="project-card"
+                (click)="goToAttendanceManagement()">
+
+                <h3>Attendance Management System</h3>
+
+
+            </div>
+
+        </div>
+
+        <button (click)="goBackToGroup()">
+            Go back to Group C
+        </button>
+
+    </div>
 
 </div>

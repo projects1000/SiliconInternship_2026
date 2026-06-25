@@ -1,0 +1,50 @@
+.container{
+  width:80%;
+  margin:auto;
+  text-align:center;
+  margin-top:30px;
+}
+
+.attendance-form{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin:20px 0;
+}
+
+input,
+select{
+  padding:10px;
+}
+
+button{
+  padding:10px 20px;
+  cursor:pointer;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:20px;
+}
+
+th,
+td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{
+  background:#0a66c2;
+  color:white;
+}
+
+.summary{
+  margin-top:30px;
+}
+
+.back-home{
+  display:flex;
+  justify-content:center;
+  margin:40px 0;
+}

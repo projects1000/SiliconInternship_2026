@@ -7,9 +7,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./member1.component.css']
 })
 export class Member1Component {
- constructor(private router: Router) {}
+
+  constructor(private router: Router) {}
 
   goBackToGroup() {
     this.router.navigate(['grp-e']);
   }
+
+  scrollToSection(sectionId: string): void {
+
+    const element = document.getElementById(sectionId);
+
+    if (element) {
+
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+
+    }
+
+  }
+
 }

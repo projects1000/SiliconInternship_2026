@@ -1,72 +1,275 @@
+/* =========================
+   MAIN LAYOUT
+========================= */
+
 .member-container {
   display: flex;
-  height: 100vh;
-  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* LEFT SIDEBAR */
+/* =========================
+   SIDEBAR
+========================= */
+
 .member-sidebar {
-  width: 220px;
-  background: linear-gradient(180deg, #1e3c72, #2a5298);
-  color: white;
+  width: 260px;
+
+  background: #cfc4e8;
+
+  color: #3f2d63;
 
   display: flex;
   flex-direction: column;
 
-  padding: 15px;
-  gap: 10px;
+  padding: 25px;
 
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  gap: 14px;
+
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
+
+  z-index: 2;
 }
 
 .member-sidebar h3 {
-  margin: 10px 0;
-  font-size: 16px;
+  margin: 15px 0;
+
+  color: #3f2d63;
+
   text-transform: uppercase;
+
   letter-spacing: 1px;
+
+  font-size: 16px;
+
+  border-bottom: 1px solid rgba(63, 45, 99, 0.2);
+
+  padding-bottom: 10px;
 }
 
-/* BUTTONS */
 .member-sidebar button {
-  padding: 10px;
   border: none;
-  border-radius: 6px;
 
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
+  padding: 13px 16px;
+
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.45);
+
+  color: #3f2d63;
+
+  text-align: left;
+
+  font-size: 14px;
 
   cursor: pointer;
-  transition: all 0.2s ease;
-  text-align: left;
+
+  transition: all 0.25s ease;
 }
 
 .member-sidebar button:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.85);
+
   transform: translateX(4px);
 }
 
-/* BACK BUTTON SPECIAL STYLE */
 .member-sidebar button:first-child {
-  background: #ff4d4d;
+  background: #8d79b8;
+
+  color: white;
+
   font-weight: bold;
+
+  margin-bottom: 10px;
 }
 
 .member-sidebar button:first-child:hover {
-  background: #ff1a1a;
+  background: #7865a5;
 }
 
-/* MAIN CONTENT AREA */
+/* =========================
+   CONTENT AREA
+========================= */
+
 .member-content {
   flex: 1;
+
+  background-image: url("/assets/grpC.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+
+  overflow-y: auto;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.overlay {
+  width: 100%;
+  min-height: 100vh;
+
+  background: rgba(30, 20, 60, 0.20);
+
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background: #f4f6f9;
+  padding: 40px;
 }
 
-.member-content h1 {
-  font-size: 36px;
-  color: #2a2a2a;
-  letter-spacing: 2px;
+/* =========================
+   GLASS CARD
+========================= */
+
+.group-card {
+  width: 100%;
+  max-width: 650px;
+
+  padding: 35px;
+
+  text-align: center;
+
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.10);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.20);
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================
+   TAG
+========================= */
+
+.group-tag {
+  display: inline-block;
+
+  padding: 8px 18px;
+
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.18);
+
+  color: white;
+
+  letter-spacing: 1px;
+
+  font-size: 0.8rem;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.group-card h1 {
+  margin-top: 20px;
+  margin-bottom: 15px;
+
+  color: white;
+
+  font-size: 3.2rem;
+
+  letter-spacing: 6px;
+}
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.group-card p {
+  max-width: 520px;
+
+  margin: auto;
+
+  color: white;
+
+  font-size: 1rem;
+
+  line-height: 1.8;
+}
+
+/* =========================
+   INFO BOXES
+========================= */
+
+.group-info {
+  display: flex;
+
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 15px;
+
+  margin-top: 30px;
+}
+
+.info-box {
+  min-width: 120px;
+
+  padding: 15px;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  backdrop-filter: blur(8px);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.info-box h2 {
+  margin: 0;
+
+  color: white;
+
+  font-size: 1.7rem;
+}
+
+.info-box span {
+  color: rgba(255, 255, 255, 0.9);
+
+  font-size: 0.9rem;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .member-container {
+    flex-direction: column;
+  }
+
+  .member-sidebar {
+    width: 100%;
+  }
+
+  .overlay {
+    padding: 20px;
+  }
+
+  .group-card {
+    padding: 25px;
+  }
+
+  .group-card h1 {
+    font-size: 2.3rem;
+    letter-spacing: 4px;
+  }
+
+  .group-info {
+    flex-direction: column;
+    align-items: center;
+  }
 }
