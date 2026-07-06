@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChatService, ChatMessage } from '../chat.service';
 
 @Component({
-  selector: 'app-chat-window',
+  selector: 'app-ayush-chat-window',
   templateUrl: './chat-window.component.html'
 })
 export class ChatWindowComponent implements OnInit {
