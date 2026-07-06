@@ -4,36 +4,24 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-member3',
   templateUrl: './member3.component.html',
-  styleUrls: ['./member3.component.css']
+  styleUrls: ['./member3.component.css'],
 })
 export class Member3Component {
-
   constructor(private router: Router) {}
 
   goBackToGroup() {
     this.router.navigate(['grp-f']);
   }
 
-    goToAttendance() {
-    this.router.navigate([
-      '/grp-f/member3/attendance-project'
-    ]);
-  }
-
   goToWhatsappChat() {
-    this.router.navigate([
-      '/grp-f/member3/whatsapp-chat'
-    ]);
+    this.router.navigate(['/grp-f/member3/whatsapp-chat']);
   }
 
   goToBillingSystem() {
-    this.router.navigate([
-      '/grp-f/member3/billing-system'
-    ]);
+    this.router.navigate(['/grp-f/member3/billing-system']);
   }
- goToAttendance() {
-  console.log('Button clicked');
-  this.router.navigate(['/grp-f/member3/attendance-project']);
-}
-
+  goToAttendance() {
+    console.log('Button clicked');
+    this.router.navigate(['/grp-f/member3/attendance-project']);
+  }
 }
