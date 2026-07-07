@@ -1,0 +1,55 @@
+<div class="product-catalog">
+  <div class="product-catalog__filters">
+    <button
+      type="button"
+      class="filter-chip"
+      *ngFor="let category of categories"
+      [class.filter-chip--active]="selectedCategory === category"
+      (click)="selectCategory(category)">
+      <mat-icon>{{ categoryIcons[category] }}</mat-icon>
+      {{ category }}
+    </button>
+  </div>
+
+  <div class="product-catalog__header">
+    <div>
+      <h2>Featured Products</h2>
+      <p>{{ filteredProducts.length }} product{{ filteredProducts.length === 1 ? '' : 's' }} in {{ selectedCategory }}</p>
+    </div>
+    <span class="product-catalog__count">{{ allProducts.length }} total</span>
+  </div>
+
+  <div class="product-grid">
+    <article class="product-card" *ngFor="let product of filteredProducts">
+      <div class="product-card__media" [style.--accent]="product.accent">
+        <mat-icon class="product-card__fallback-icon">{{ product.icon }}</mat-icon>
+        <img
+          [src]="product.image"
+          [alt]="product.name"
+          class="product-card__image"
+          loading="lazy"
+          (error)="onImageError($event)" />
+        <span class="product-card__badge" *ngIf="product.badge" [ngClass]="badgeClass[product.badge]">
+          {{ product.badge }}
+        </span>
+      </div>
+
+      <div class="product-card__body">
+        <span class="product-card__category">{{ product.category }}</span>
+        <h3>{{ product.name }}</h3>
+        <div class="product-card__footer">
+          <strong>&#8377;{{ product.price | number: '1.0-0' }}</strong>
+          <button
+            mat-raised-button
+            color="primary"
+            class="product-card__add"
+            (click)="addProduct(product)"
+            [attr.aria-label]="'Add ' + product.name">
+            <mat-icon>add</mat-icon>
+            Add
+          </button>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>

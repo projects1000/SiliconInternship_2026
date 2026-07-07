@@ -1,0 +1,109 @@
+<div class="chat-layout">
+
+  <!-- USER 1 -->
+
+  <div class="user-panel left-panel">
+
+    <div class="panel-header">
+      User One
+    </div>
+
+    <div class="input-section">
+
+      <input
+        type="text"
+        [(ngModel)]="user1Message"
+        (keyup.enter)="sendUser1()"
+        placeholder="Type message">
+
+      <div class="emoji-bar">
+        <span (click)="addEmojiUser1('😀')">😀</span>
+        <span (click)="addEmojiUser1('❤️')">❤️</span>
+        <span (click)="addEmojiUser1('👍')">👍</span>
+        <span (click)="addEmojiUser1('🎉')">🎉</span>
+      </div>
+
+      <button (click)="sendUser1()">
+        Send
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- CHAT ROOM -->
+
+  <div class="chat-room">
+
+    <div class="chat-header">
+
+      <span>User One ● Online</span>
+
+      <span class="msg-count">
+        Messages : {{messageCount}}
+      </span>
+
+      <button
+        class="clear-btn"
+        (click)="clearChat()">
+        Clear Chat
+      </button>
+
+      <span>User Two ● Online</span>
+
+    </div>
+
+    <div class="chat-body">
+
+      <div
+        *ngFor="let msg of messages"
+        [ngClass]="msg.sender=='User1'
+        ? 'left-msg'
+        : 'right-msg'">
+
+        {{msg.text}}
+
+        <br>
+
+        <small>{{msg.time}}</small>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- USER 2 -->
+
+  <div class="user-panel right-panel">
+
+    <div class="panel-header pink">
+      User Two
+    </div>
+
+    <div class="input-section">
+
+      <input
+        type="text"
+        [(ngModel)]="user2Message"
+        (keyup.enter)="sendUser2()"
+        placeholder="Type message">
+
+      <div class="emoji-bar">
+        <span (click)="addEmojiUser2('😀')">😀</span>
+        <span (click)="addEmojiUser2('❤️')">❤️</span>
+        <span (click)="addEmojiUser2('👍')">👍</span>
+        <span (click)="addEmojiUser2('🎉')">🎉</span>
+      </div>
+
+      <button
+        class="pink-btn"
+        (click)="sendUser2()">
+        Send
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

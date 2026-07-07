@@ -37,6 +37,14 @@ export class Member7Component {
   goToAttendance() {
     this.router.navigate(['/grp-a/member7/attendance']);
   }
+
+  goToProductManagement() {
+    this.router.navigate(['/grp-a/member7/product-management']);
+  }
+
+  goToObservableChat() {
+    this.router.navigate(['/grp-a/member7/observable-chat']);
+  }
 }
 
 

@@ -22,6 +22,11 @@ import { NotificationPanelComponent } from './product-management/components/noti
 import { ProductLoginComponent } from './product-management/components/login/product-login.component';
 import { BillingService } from './product-management/services/billing.service';
 
+import { ChatContainerComponent } from './chat-app/chat-container/chat-container.component';
+import { UserAComponent } from './chat-app/user-a/user-a.component';
+import { UserBComponent } from './chat-app/user-b/user-b.component';
+import { ChatWindowComponent } from './chat-app/chat-window/chat-window.component';
+
 @NgModule({
   declarations: [
     ProductManagementComponent,
@@ -29,7 +34,11 @@ import { BillingService } from './product-management/services/billing.service';
     CustomerDetailsComponent,
     BillDetailsComponent,
     NotificationPanelComponent,
-    ProductLoginComponent
+    ProductLoginComponent,
+    ChatContainerComponent,
+    UserAComponent,
+    UserBComponent,
+    ChatWindowComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +62,8 @@ import { BillingService } from './product-management/services/billing.service';
     CustomerDetailsComponent,
     BillDetailsComponent,
     NotificationPanelComponent,
-    ProductLoginComponent
+    ProductLoginComponent,
+    ChatContainerComponent
   ],
   providers: [
     BillingService

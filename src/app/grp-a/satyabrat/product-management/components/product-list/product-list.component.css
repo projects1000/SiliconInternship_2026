@@ -242,3 +242,48 @@ mat-card-content {
   background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
   color: #3b82f6 !important;
 }
+
+/* Discount Badge on product image */
+.discount-badge {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  padding: 3px 10px 3px 8px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  border-radius: 0 6px 6px 0;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.35);
+  text-transform: uppercase;
+  animation: discountPulse 2s ease-in-out infinite;
+}
+
+@keyframes discountPulse {
+  0%, 100% { box-shadow: 0 2px 8px rgba(220, 38, 38, 0.35); }
+  50% { box-shadow: 0 2px 14px rgba(220, 38, 38, 0.6); }
+}
+
+/* Discounted price display */
+.product-price-discounted {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.original-price {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.new-price {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #dc2626;
+  font-family: 'Outfit', 'Inter', sans-serif;
+  letter-spacing: -0.2px;
+}

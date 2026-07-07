@@ -1,0 +1,48 @@
+<div class="mobile-frame orange-accent">
+
+    <div class="dynamic-island" [class.expanded]="showDynamicIsland">
+        <div class="island-content" *ngIf="showDynamicIsland">
+            <div class="island-avatar">👨🏻‍💻</div>
+            <div class="island-text">
+                <span class="island-title">Mayur</span>
+                <span class="island-msg">{{ notificationMessage }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="status-bar">
+        <span>{{ currentTime }}</span>
+        <div class="icons">📶 🔋</div>
+    </div>
+
+    <div class="header">
+        <div class="user-info">
+            <div class="avatar">👨🏽‍💼</div>
+            <div class="details">
+                <h2>Gents</h2>
+                <span class="online">Online</span>
+            </div>
+        </div>
+        <button class="clear-btn" (click)="clearChat()">Clear</button>
+    </div>
+
+    <div class="chat-history" #scrollMe>
+        <div *ngFor="let msg of messages" class="message-wrapper"
+            [ngClass]="{'sent-wrapper': msg.sender === 'Gents', 'received-wrapper': msg.sender !== 'Gents'}">
+            <div class="bubble" [ngClass]="msg.sender === 'Gents' ? 'sent' : 'received'">
+                <span class="text">{{ msg.text }}</span>
+                <span class="time">{{ msg.timestamp | date:'shortTime' }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <span>Total: {{ totalMessages }}</span>
+        <span class="last-msg">Last: {{ lastMessage | slice:0:15 }}{{ lastMessage.length > 15 ? '...' : '' }}</span>
+    </div>
+
+    <div class="input-area">
+        <input type="text" [(ngModel)]="messageText" (keyup.enter)="send()" placeholder="Message...">
+        <button class="send-btn" (click)="send()">➤</button>
+    </div>
+</div>

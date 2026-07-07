@@ -1,0 +1,93 @@
+<div class="cw-panel">
+
+  <!-- ── Header ──────────────────────────────────────────── -->
+  <div class="cw-header">
+    <div class="cw-title-area">
+      <span class="cw-icon">💬</span>
+      <div>
+        <h3 class="cw-title">Chat Window</h3>
+        <span class="cw-count">{{ messages.length }} message{{ messages.length !== 1 ? 's' : '' }}</span>
+      </div>
+    </div>
+    <button class="cw-clear-btn" (click)="clearChat()" title="Clear chat history" id="clear-chat-btn">
+      <span>🗑</span> Clear
+    </button>
+  </div>
+
+  <!-- ── Chat Body ─────────────────────────────────────────── -->
+  <div class="cw-body" #chatBody>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="messages.length === 0 && !gentsTyping && !mayurTyping">
+      <div class="empty-bubble">💬</div>
+      <h4 class="empty-title">Start a Conversation</h4>
+      <p class="empty-desc">
+        This demo showcases Angular component communication
+        using <code>Subject</code>, <code>Observable</code>,
+        <code>next()</code>, and <code>subscribe()</code>.
+      </p>
+    </div>
+
+    <!-- Messages List -->
+    <div class="messages-list" *ngIf="messages.length > 0 || gentsTyping || mayurTyping">
+
+      <div
+        *ngFor="let msg of messages; trackBy: trackById"
+        class="msg-row"
+        [class.msg-gents]="msg.sender === 'gents'"
+        [class.msg-mayur]="msg.sender === 'mayur'"
+        [class.msg-entering]="msg.isNew"
+      >
+        <!-- Gents: avatar LEFT -->
+        <div class="msg-avatar msg-av-gents" *ngIf="msg.sender === 'gents'">G</div>
+
+        <div class="msg-block" [class.block-gents]="msg.sender === 'gents'" [class.block-mayur]="msg.sender === 'mayur'">
+          <div class="msg-meta">
+            <span class="msg-sender-name">{{ msg.senderName }}</span>
+            <span class="msg-timestamp">{{ formatTime(msg.timestamp) }}</span>
+          </div>
+          <div class="msg-bubble" [class.bubble-gents]="msg.sender === 'gents'" [class.bubble-mayur]="msg.sender === 'mayur'">
+            {{ msg.message }}
+            <span class="msg-check" *ngIf="msg.sender === 'gents'">✓✓</span>
+            <span class="msg-check msg-check-mayur" *ngIf="msg.sender === 'mayur'">✓✓</span>
+          </div>
+        </div>
+
+        <!-- Mayur: avatar RIGHT -->
+        <div class="msg-avatar msg-av-mayur" *ngIf="msg.sender === 'mayur'">M</div>
+      </div>
+
+      <!-- Typing Indicators -->
+      <div class="typing-area">
+        <div class="typing-row typing-gents" *ngIf="gentsTyping">
+          <div class="typing-avatar av-g">G</div>
+          <div class="typing-bubble">
+            <span class="typing-name">Gents is typing</span>
+            <span class="typing-dots">
+              <span></span><span></span><span></span>
+            </span>
+          </div>
+        </div>
+        <div class="typing-row typing-mayur" *ngIf="mayurTyping">
+          <div class="typing-avatar av-m">M</div>
+          <div class="typing-bubble typing-bubble-m">
+            <span class="typing-name">Mayur is typing</span>
+            <span class="typing-dots">
+              <span></span><span></span><span></span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Footer Bar ────────────────────────────────────────── -->
+  <div class="cw-footer">
+    <span class="cw-footer-stat">Total: <strong>{{ messages.length }}</strong></span>
+    <span class="cw-footer-last" *ngIf="messages.length > 0">
+      Last: {{ messages[messages.length - 1].message | slice:0:35 }}{{ messages[messages.length - 1].message.length > 35 ? '…' : '' }}
+    </span>
+  </div>
+
+</div>

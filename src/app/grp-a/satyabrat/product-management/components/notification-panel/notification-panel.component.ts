@@ -17,8 +17,8 @@ export class NotificationPanelComponent implements OnInit, OnDestroy {
     this.subscription = this.billingService.notifications$.subscribe(msg => {
       // Add the message to the top of the list
       this.notifications.unshift(msg);
-      // Keep only the last 5 notifications to prevent cluttering
-      if (this.notifications.length > 5) {
+      // Keep only the last 10 notifications to prevent cluttering
+      if (this.notifications.length > 10) {
         this.notifications.pop();
       }
     });

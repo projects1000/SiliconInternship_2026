@@ -9,14 +9,16 @@
     </button>
 
     <h1 class="title">
-    🛒 Billing Management System
-</h1>
+        🛒 Billing Management System
+    </h1>
 
     <div class="grid">
 
+        <!-- Product List -->
+
         <div class="card">
 
-            <h3>Product List</h3>
+            <h3>📦 Product List</h3>
 
             <table>
 
@@ -45,9 +47,11 @@
 
         </div>
 
+        <!-- Customer Details -->
+
         <div class="card">
 
-            <h3>Customer Details</h3>
+            <h3>👤 Customer Details</h3>
 
             <input
                 type="text"
@@ -68,9 +72,11 @@
 
         </div>
 
+        <!-- Bill Details -->
+
         <div class="card">
 
-            <h3>Bill Details</h3>
+            <h3>🧾 Bill Details</h3>
 
             <table>
 
@@ -88,13 +94,26 @@
 
             </table>
 
-            <p><strong>Sub Total:</strong> ₹{{subtotal}}</p>
+            <p>
+                <strong>Sub Total:</strong>
+                ₹{{subtotal}}
+            </p>
 
-            <p><strong>GST (18%):</strong> ₹{{gst}}</p>
+            <p>
+                <strong>GST (18%):</strong>
+                ₹{{gst}}
+            </p>
 
             <h3 class="total">
                 Grand Total ₹{{grandTotal}}
             </h3>
+
+            <button
+                (click)="generateBill()">
+
+                Generate Bill
+
+            </button>
 
             <button
                 class="clear-btn"
@@ -106,13 +125,17 @@
 
         </div>
 
+        <!-- Notifications -->
+
         <div class="card">
 
-            <h3>Notifications</h3>
+            <h3>🔔 Notifications</h3>
 
             <div
-                class="notification"
-                *ngFor="let msg of notifications">
+                *ngFor="let msg of notifications"
+                class="notification">
+
+                <span class="icon">✔</span>
 
                 {{msg}}
 
@@ -122,16 +145,18 @@
 
     </div>
 
+    <!-- Dashboard -->
+
     <div class="dashboard">
 
         <div class="box">
             <h4>Customer Name</h4>
-            {{customerName}}
+            {{customerName || '-'}}
         </div>
 
         <div class="box">
             <h4>Mobile Number</h4>
-            {{mobileNumber}}
+            {{mobileNumber || '-'}}
         </div>
 
         <div class="box">

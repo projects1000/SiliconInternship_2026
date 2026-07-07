@@ -1,0 +1,87 @@
+.user-card{
+
+    width:100%;
+
+    height:fit-content;
+
+    background:white;
+
+    border-radius:24px;
+
+    padding:20px;
+
+    border-top:8px solid #ec4899;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+}
+
+.user-card h2{
+
+    text-align:center;
+
+    color:#ec4899;
+
+    margin-bottom:20px;
+}
+
+.user-card input{
+
+    width:100%;
+
+    height:45px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#fdf0f8;
+
+    padding:0 14px;
+
+    box-sizing:border-box;
+
+    margin-bottom:15px;
+}
+
+.user-card button{
+
+    width:100%;
+
+    height:45px;
+
+    border:none;
+
+    border-radius:25px;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    background:linear-gradient(
+        90deg,
+        #ec4899,
+        #c084fc
+    );
+
+    transition:.3s;
+}
+
+.user-card button:hover{
+
+    transform:translateY(-2px);
+}
+
+.online{
+
+    text-align:center;
+
+    color:#16a34a;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    margin-bottom:20px;
+}

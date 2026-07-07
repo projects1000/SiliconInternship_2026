@@ -183,3 +183,22 @@ mat-card-content {
 .alert-bill .alert-icon {
   color: #eab308;
 }
+
+/* Subscription milestone alert - vibrant purple */
+.alert-subscription {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.12) 0%, rgba(236, 72, 153, 0.08) 100%);
+  border-color: rgba(168, 85, 247, 0.35);
+  color: #a855f7;
+  font-weight: 700;
+  animation: subscriptionPulse 0.6s ease-out;
+}
+
+.alert-subscription .alert-icon {
+  color: #a855f7;
+}
+
+@keyframes subscriptionPulse {
+  0% { transform: scale(0.95); opacity: 0; }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); opacity: 1; }
+}

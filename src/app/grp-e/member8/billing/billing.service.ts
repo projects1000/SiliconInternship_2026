@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { BillingCartItem, BillingCustomer, BillingProduct, BillingTotals } from './billing.models';
 
 const CUSTOMER_KEY = 'grpE_member8_billing_customer';
+const CUSTOMERS_KEY = 'grpE_member8_billing_customers';
 const CART_KEY = 'grpE_member8_billing_cart';
 
 @Injectable({
@@ -10,43 +11,103 @@ const CART_KEY = 'grpE_member8_billing_cart';
 })
 export class BillingService {
   private customerSubject = new BehaviorSubject<BillingCustomer | null>(this.readCustomer());
+  private customersSubject = new BehaviorSubject<BillingCustomer[]>(
+  this.readCustomers()
+);
   private cartSubject = new BehaviorSubject<BillingCartItem[]>(this.readCart());
   private notificationsSubject = new BehaviorSubject<string[]>([]);
 
   customer$ = this.customerSubject.asObservable();
+  customers$ = this.customersSubject.asObservable();
   cart$ = this.cartSubject.asObservable();
   notifications$ = this.notificationsSubject.asObservable();
 
   get customer(): BillingCustomer | null {
     return this.customerSubject.value;
   }
+  get customers(): BillingCustomer[] {
+  return this.customersSubject.value;
+}
 
   get cart(): BillingCartItem[] {
     return this.cartSubject.value;
   }
 
-  saveCustomer(customer: BillingCustomer): void {
-    localStorage.setItem(CUSTOMER_KEY, JSON.stringify(customer));
-    this.customerSubject.next(customer);
-    this.addNotification('Customer saved successfully');
+saveCustomer(customer: BillingCustomer): void {
+
+  const customers = [...this.customersSubject.value];
+
+  // Prevent duplicate Customer IDs
+  const exists = customers.find(c => c.id === customer.id);
+
+  if (!exists) {
+    customers.push(customer);
   }
 
-  addProduct(product: BillingProduct): void {
-    if (!this.customer) {
-      this.addNotification('Please save customer details first');
-      return;
-    }
+  localStorage.setItem(
+    CUSTOMERS_KEY,
+    JSON.stringify(customers)
+  );
 
-    const existingItem = this.cart.find(item => item.id === product.id);
-    const updatedCart = existingItem
-      ? this.cart.map(item =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        )
-      : [...this.cart, { ...product, quantity: 1 }];
+  localStorage.setItem(
+    CUSTOMER_KEY,
+    JSON.stringify(customer)
+  );
 
-    this.saveCart(updatedCart);
-    this.addNotification(`${product.name} added successfully`);
+  this.customersSubject.next(customers);
+  this.customerSubject.next(customer);
+
+  this.addNotification('Customer saved successfully');
+
+}
+
+setCurrentCustomer(customer: BillingCustomer): void {
+
+  localStorage.setItem(
+    CUSTOMER_KEY,
+    JSON.stringify(customer)
+  );
+
+  this.customerSubject.next(customer);
+
+  const customerCartKey = 'cart_' + customer.id;
+
+  const savedCart = localStorage.getItem(customerCartKey);
+
+  this.cartSubject.next(
+    savedCart ? JSON.parse(savedCart) : []
+  );
+
+}
+
+addProduct(product: BillingProduct): void {
+
+  if (!this.customer) {
+    this.addNotification('Please save customer details first');
+    return;
   }
+
+  const existingItem = this.cart.find(item => item.id === product.id);
+
+  const updatedCart = existingItem
+    ? this.cart.map(item =>
+        item.id === product.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    : [
+        ...this.cart,
+        {
+          id: product.id,
+          name: product.name,   // ✅ FIXED
+          price: product.price,
+          quantity: 1
+        }
+      ];
+
+  this.saveCart(updatedCart);
+  this.addNotification(`${product.name} added successfully`);
+}
 
   removeProduct(productId: number): void {
     const updatedCart = this.cart
@@ -93,11 +154,23 @@ export class BillingService {
       totalItems: cart.reduce((sum, item) => sum + item.quantity, 0)
     };
   }
+private saveCart(cart: BillingCartItem[]): void {
 
-  private saveCart(cart: BillingCartItem[]): void {
-    localStorage.setItem(CART_KEY, JSON.stringify(cart));
-    this.cartSubject.next(cart);
+  if (!this.customer) {
+    return;
   }
+
+  const customerCartKey =
+    'cart_' + this.customer.id;
+
+  localStorage.setItem(
+    customerCartKey,
+    JSON.stringify(cart)
+  );
+
+  this.cartSubject.next(cart);
+
+}
 
   private addNotification(message: string): void {
     const messages = [message, ...this.notificationsSubject.value].slice(0, 5);
@@ -110,7 +183,29 @@ export class BillingService {
   }
 
   private readCart(): BillingCartItem[] {
-    const savedCart = localStorage.getItem(CART_KEY);
-    return savedCart ? JSON.parse(savedCart) : [];
+
+  const customer = this.readCustomer();
+
+  if (!customer) {
+    return [];
   }
+
+  const customerCartKey =
+    'cart_' + customer.id;
+
+  const savedCart =
+    localStorage.getItem(customerCartKey);
+
+  return savedCart
+    ? JSON.parse(savedCart)
+    : [];
+
+}
+  private readCustomers(): BillingCustomer[] {
+  const savedCustomers = localStorage.getItem(CUSTOMERS_KEY);
+
+  return savedCustomers
+    ? JSON.parse(savedCustomers)
+    : [];
+}
 }

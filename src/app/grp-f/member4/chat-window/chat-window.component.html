@@ -1,0 +1,59 @@
+<!-- member4/chat-window/chat-window.component.html -->
+<div class="main-container" [class.dark]="isDark">
+  
+  <!-- LEFT SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <button class="back-btn" (click)="goBack()">
+        ⬅ Back
+      </button>
+      <div class="header-title">
+        <span class="app-icon">💬</span>
+        <h3>Student Chat</h3>
+      </div>
+      <button class="mode-btn" (click)="toggleMode()">
+        {{ isDark ? '☀️' : '🌙' }}
+      </button>
+    </div>
+    
+    <!-- Student List -->
+    <div class="chats-list">
+      <div class="student-list-item">
+        <span class="student-avatar">👩</span>
+        <div class="student-info">
+          <h4>Aryu</h4>
+          <p>🟢 Online</p>
+        </div>
+      </div>
+      <div class="student-list-item">
+        <span class="student-avatar">👨</span>
+        <div class="student-info">
+          <h4>Kim</h4>
+          <p>🟢 Online</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+      <button class="clear-btn" (click)="clearChat()">
+        🗑️ Clear All
+      </button>
+    </div>
+  </div>
+
+  <!-- RIGHT SIDE: Two Chat Windows -->
+  <div class="chats-area">
+    
+    <!-- Chat Window A - Lipsa -->
+    <div class="chat-window">
+      <app-student-a></app-student-a>
+    </div>
+
+    <!-- Chat Window B - Raj -->
+    <div class="chat-window">
+      <app-student-b></app-student-b>
+    </div>
+    
+  </div>
+</div>

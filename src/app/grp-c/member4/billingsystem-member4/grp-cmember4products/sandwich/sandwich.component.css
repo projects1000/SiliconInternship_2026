@@ -1,0 +1,91 @@
+.sandwich-page {
+  height: 430px;
+  overflow-y: auto;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: linear-gradient(135deg, #ecfccb, #d9f99d);
+  border-radius: 22px;
+}
+
+.sandwich-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #ffffff;
+  padding: 16px 20px;
+  border-radius: 18px;
+  border-left: 8px solid #65a30d;
+  box-shadow: 0 8px 22px rgba(101, 163, 13, 0.14);
+  transition: 0.3s ease;
+}
+
+.sandwich-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(101, 163, 13, 0.22);
+}
+
+.sandwich-card img {
+  width: 95px;
+  height: 95px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.sandwich-info {
+  flex: 1;
+}
+
+.sandwich-info h3 {
+  margin: 0;
+  font-size: 21px;
+  color: #111827;
+}
+
+.sandwich-info p {
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #65a30d;
+}
+
+.sandwich-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f7fee7;
+  padding: 8px 10px;
+  border-radius: 14px;
+}
+
+.sandwich-actions button {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: #65a30d;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.sandwich-actions button:hover {
+  background: #4d7c0f;
+}
+
+.sandwich-actions span {
+  font-size: 14px;
+  font-weight: 700;
+  color: #374151;
+}
+
+.sandwich-page::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sandwich-page::-webkit-scrollbar-thumb {
+  background: #a3e635;
+  border-radius: 20px;
+}
