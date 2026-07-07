@@ -18,4 +18,11 @@ export class Member5Component {
   goBackToGroup() {
     this.router.navigate(['grp-a']);
   }
+  openAttendanceTracker() {
+    this.router.navigate(['grp-a/member5/attendance']);
+  }
+
+  openChatApp() {
+    this.router.navigate(['grp-a/member5/chat']);
+  }
 }

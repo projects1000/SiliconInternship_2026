@@ -54,6 +54,14 @@ const routes: Routes = [
     component: Member5Component,
   },
   {
+    path: 'member5/attendance',
+    loadChildren: () => import('./member5/attendance/attendance.module').then(m => m.AttendanceModule)
+  },
+  {
+    path: 'member5/chat',
+    loadChildren: () => import('./member5/chat/chat.module').then(m => m.ChatModule)
+  },
+  {
     path: 'member6',
     component: Member6Component,
   },
