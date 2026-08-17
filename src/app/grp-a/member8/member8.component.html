@@ -1,9 +1,93 @@
-<div class="member-page">
+<div [class.dark-theme]="isDarkMode" [class.light-theme]="!isDarkMode" class="portfolio-container">
+  
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
 
-  <h1>Member 8</h1>
+  <header class="navbar">
+    <div class="logo">Ankit<span>.dev</span></div>
+    <button class="theme-toggle" (click)="toggleTheme()" aria-label="Toggle Theme">
+      <span class="toggle-icon">{{ isDarkMode ? '☀️' : '🌙' }}</span>
+      <span class="toggle-text">{{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}</span>
+    </button>
+  </header>
 
-  <button (click)="goBackToGroup()">
-    Go back to Group A
-  </button>
+  <section class="hero">
+    <div class="profile-frame-container">
+      <div class="profile-glow-ring"></div>
+      <img src="assets/profile.jpg" alt="Ankit Profile Picture" class="profile-image">
+    </div>
+
+    <div class="badge">Available For Internships</div>
+    <h1 class="gradient-text">Engineering High-Performance Full‑Stack Applications</h1>
+    <p class="subtitle">B.Tech Developer specializing in intelligent data pipelines, reactive user architectures, and robust system designs.</p>
+    <div class="cta-buttons">
+      <a href="#projects-section" class="btn btn-primary">Explore Projects</a>
+      <a href="#timeline-section" class="btn btn-secondary">View Journey</a>
+    </div>
+  </section>
+
+  <section id="projects-section" class="projects-section">
+    <div class="section-header">
+      <h2>Featured Creations</h2>
+      <p>Filter my engineering work by architecture focus</p>
+    </div>
+    
+    <div class="filter-tabs">
+      <button *ngFor="let cat of categories" 
+              [class.active]="selectedFilter === cat"
+              (click)="setFilter(cat)">
+        {{ cat }}
+      </button>
+    </div>
+
+    <div class="projects-grid" [@listAnimation]="filteredProjects.length">
+      <div class="project-card" *ngFor="let project of filteredProjects">
+        <div class="card-glass">
+          <div class="card-header">
+            <span class="category-tag">{{ project.category }}</span>
+            <div class="live-indicator"><span></span> Active</div>
+          </div>
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.description }}</p>
+          <div class="tech-tags">
+            <span *ngFor="let tag of project.tags">{{ tag }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="timeline-section" class="timeline-section">
+    <div class="section-header">
+      <h2>Milestones & Experience</h2>
+      <p>A look at my track record, education, and team builds</p>
+    </div>
+
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-date">2026</span>
+          <h3>MERN Full‑Stack Training</h3>
+          <h4>Summer Internship Project</h4>
+          <p>Engineered comprehensive micro-architectures, structured secure payment gateways, and compiled complex interactive component modules using React and Node.js.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-date">January 2026</span>
+          <h3>NIT Rourkela Hackathon</h3>
+          <h4>AI Stream Pipeline Developer</h4>
+          <p>Designed and presented a high-speed Real-Time RAG Pipeline using Pathway, parsing unstructured streams instantly to feed responsive language model tasks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="portfolio-footer">
+    <p>© 2026 Member 08 Suite • Shared Project Environment</p>
+  </footer>
 
 </div>
